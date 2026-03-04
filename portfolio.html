@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LBS Portfolio – Past clients and software and web applications built by Linton Business Solutions since 2017." />
+  <title>Portfolio | Linton Business Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .client-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-12);
+    }
+    .client-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .client-card:hover {
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+    .client-card__icon {
+      font-size: 2rem;
+      margin-bottom: var(--space-3);
+    }
+    .client-card__name {
+      font-size: var(--text-lg);
+      font-weight: var(--fw-bold);
+      color: var(--color-gray-900);
+      margin-bottom: var(--space-1);
+    }
+    .client-card__type {
+      font-size: var(--text-sm);
+      color: var(--color-teal);
+      font-weight: var(--fw-semi);
+      margin-bottom: var(--space-3);
+    }
+    .client-card__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: var(--lh-relaxed);
+    }
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-12);
+    }
+    .app-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .app-card:hover {
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+    .app-card__header {
+      background: var(--color-navy);
+      padding: var(--space-6);
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+    .app-card__icon {
+      font-size: 2rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .app-card__title {
+      font-size: var(--text-base);
+      font-weight: var(--fw-bold);
+      color: var(--color-white);
+      margin-bottom: 2px;
+    }
+    .app-card__category {
+      font-size: var(--text-xs);
+      color: var(--color-teal);
+      font-weight: var(--fw-semi);
+    }
+    .app-card__body {
+      padding: var(--space-5);
+    }
+    .app-card__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: var(--lh-relaxed);
+      margin-bottom: var(--space-4);
+    }
+    .app-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+    .app-tag {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-semi);
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--color-gray-100);
+      color: var(--color-gray-700);
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="LBS Home">
+        <div class="nav__logo-mark">LBS</div>
+        <div class="nav__logo-text">
+          <span class="nav__logo-name">LBS</span>
+          <span class="nav__logo-tagline">Technology Solutions</span>
+        </div>
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="services.html" class="nav__link">Services</a></li>
+        <li><a href="portfolio.html" class="nav__link active">Portfolio</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li><a href="https://www.LBS4.com" class="nav__link" target="_blank" rel="noopener noreferrer">Certification Center</a></li>
+      </ul>
+      <div class="nav__cta"><a href="contact.html" class="btn btn--primary">Get Started</a></div>
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <nav class="nav__mobile" id="nav-mobile" aria-label="Mobile navigation">
+    <a href="index.html" class="nav__mobile-link">Home</a>
+    <a href="about.html" class="nav__mobile-link">About</a>
+    <a href="services.html" class="nav__mobile-link">Services</a>
+    <a href="portfolio.html" class="nav__mobile-link active">Portfolio</a>
+    <a href="contact.html" class="nav__mobile-link">Contact</a>
+    <a href="https://www.LBS4.com" class="nav__mobile-link" target="_blank" rel="noopener noreferrer">Certification Center</a>
+    <div class="nav__mobile-cta"><a href="contact.html" class="btn btn--primary" style="width:100%;justify-content:center;">Get Started</a></div>
+  </nav>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="about-hero" aria-label="Portfolio">
+      <div class="container">
+        <div class="page-hero-label"><span>📁</span> Our Work</div>
+        <h1 class="page-hero-heading">Clients Served.<br><span class="accent">Solutions Delivered.</span></h1>
+        <p class="page-hero-desc">Since 2017, LBS has supported Texas state agencies, government contractors, and organizations across sectors with business analysis, process modernization, and custom technology solutions.</p>
+      </div>
+    </section>
+
+    <!-- ============ PAST CLIENTS ============ -->
+    <section class="section" aria-labelledby="clients-heading">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-label">Past Clients</span>
+          <h2 class="section-heading" id="clients-heading">Organizations We Have Served</h2>
+          <p class="section-sub">A selection of the agencies, primes, and organizations LBS has partnered with since 2017.</p>
+        </div>
+
+        <div class="client-grid">
+
+          <div class="client-card fade-in">
+            <div class="client-card__icon">🏛️</div>
+            <div class="client-card__name">Texas Health and Human Services</div>
+            <div class="client-card__type">State Agency</div>
+            <p class="client-card__desc">Business analysis and requirements engineering in support of digital process modernization initiatives.</p>
+          </div>
+
+          <div class="client-card fade-in fade-in-delay-1">
+            <div class="client-card__icon">🏛️</div>
+            <div class="client-card__name">Texas Department of Information Resources (DIR)</div>
+            <div class="client-card__type">State Agency</div>
+            <p class="client-card__desc">Procurement-grade requirements documentation and vendor evaluation support.</p>
+          </div>
+
+          <div class="client-card fade-in fade-in-delay-2">
+            <div class="client-card__icon">🚀</div>
+            <div class="client-card__name">Federal Prime Contractors</div>
+            <div class="client-card__type">Government Contractor</div>
+            <p class="client-card__desc">Subcontracting engagements supporting backlog readiness, sprint velocity, and agency deliverable compliance.</p>
+          </div>
+
+          <div class="client-card fade-in">
+            <div class="client-card__icon">🏢</div>
+            <div class="client-card__name">Texas State Agencies</div>
+            <div class="client-card__type">State Government</div>
+            <p class="client-card__desc">Process mapping, stakeholder alignment workshops, and RFP-ready scope documentation across multiple Texas agencies.</p>
+          </div>
+
+          <div class="client-card fade-in fade-in-delay-1">
+            <div class="client-card__icon">🤝</div>
+            <div class="client-card__name">Nonprofit Organizations</div>
+            <div class="client-card__type">Nonprofit Sector</div>
+            <p class="client-card__desc">Technology planning and modernization roadmaps for mission-driven organizations navigating digital transformation.</p>
+          </div>
+
+          <div class="client-card fade-in fade-in-delay-2">
+            <div class="client-card__icon">💼</div>
+            <div class="client-card__name">Small and Midsize Businesses</div>
+            <div class="client-card__type">Private Sector</div>
+            <p class="client-card__desc">Requirements analysis, workflow optimization, and technology selection support for growing organizations.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SOFTWARE AND WEB APPLICATIONS ============ -->
+    <section class="section section--light" aria-labelledby="apps-heading">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-label">Built by LBS</span>
+          <h2 class="section-heading" id="apps-heading">Software and Web Applications</h2>
+          <p class="section-sub">Custom platforms and tools designed and developed to solve real operational problems.</p>
+        </div>
+
+        <div class="app-grid">
+
+          <div class="app-card fade-in">
+            <div class="app-card__header">
+              <div class="app-card__icon">🎓</div>
+              <div>
+                <div class="app-card__title">LBS4 Certification Center</div>
+                <div class="app-card__category">Learning Management Platform</div>
+              </div>
+            </div>
+            <div class="app-card__body">
+              <p class="app-card__desc">An online certification and training platform serving professionals seeking business analysis and process modernization credentials. Accessible at LBS4.com.</p>
+              <div class="app-card__tags">
+                <span class="app-tag">LMS</span>
+                <span class="app-tag">Certification</span>
+                <span class="app-tag">E-Learning</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="app-card fade-in fade-in-delay-1">
+            <div class="app-card__header">
+              <div class="app-card__icon">📋</div>
+              <div>
+                <div class="app-card__title">Requirements Backlog Manager</div>
+                <div class="app-card__category">Internal Delivery Tool</div>
+              </div>
+            </div>
+            <div class="app-card__body">
+              <p class="app-card__desc">A structured backlog management tool built for LBS engagement teams, enabling consistent user story creation, acceptance criteria tracking, and audit-ready artifact export.</p>
+              <div class="app-card__tags">
+                <span class="app-tag">Web App</span>
+                <span class="app-tag">BA Tooling</span>
+                <span class="app-tag">Backlog</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="app-card fade-in fade-in-delay-2">
+            <div class="app-card__header">
+              <div class="app-card__icon">🌐</div>
+              <div>
+                <div class="app-card__title">LBSconnect.net</div>
+                <div class="app-card__category">Corporate Website</div>
+              </div>
+            </div>
+            <div class="app-card__body">
+              <p class="app-card__desc">The LBS corporate site, designed and built in-house as a fast, accessible, and procurement-grade web presence serving Texas state agency clients and prime contractors.</p>
+              <div class="app-card__tags">
+                <span class="app-tag">Static Site</span>
+                <span class="app-tag">HTML / CSS</span>
+                <span class="app-tag">Responsive</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="app-card fade-in">
+            <div class="app-card__header">
+              <div class="app-card__icon">📊</div>
+              <div>
+                <div class="app-card__title">Agency Modernization Dashboard</div>
+                <div class="app-card__category">Client Reporting Tool</div>
+              </div>
+            </div>
+            <div class="app-card__body">
+              <p class="app-card__desc">A sprint progress and deliverable tracking dashboard provided to agency clients during active engagements, offering real-time visibility into milestones, backlog status, and ROI metrics.</p>
+              <div class="app-card__tags">
+                <span class="app-tag">Dashboard</span>
+                <span class="app-tag">Reporting</span>
+                <span class="app-tag">Client Portal</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="app-card fade-in fade-in-delay-1">
+            <div class="app-card__header">
+              <div class="app-card__icon">🔍</div>
+              <div>
+                <div class="app-card__title">Rapid Audit Intake System</div>
+                <div class="app-card__category">Intake and Assessment Tool</div>
+              </div>
+            </div>
+            <div class="app-card__body">
+              <p class="app-card__desc">A structured digital intake and scoring tool used during Requirements Rapid Audit engagements to capture existing artifacts, identify gaps, and auto-generate the initial diagnostic report framework.</p>
+              <div class="app-card__tags">
+                <span class="app-tag">Web Form</span>
+                <span class="app-tag">Automation</span>
+                <span class="app-tag">Assessment</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="app-card fade-in fade-in-delay-2">
+            <div class="app-card__header">
+              <div class="app-card__icon">📁</div>
+              <div>
+                <div class="app-card__title">Procurement Document Generator</div>
+                <div class="app-card__category">Document Automation</div>
+              </div>
+            </div>
+            <div class="app-card__body">
+              <p class="app-card__desc">A template-driven document generation tool that produces DIR and HHS compliant RFP scopes, SOWs, and requirements packages from structured engagement data, reducing output time significantly.</p>
+              <div class="app-card__tags">
+                <span class="app-tag">Automation</span>
+                <span class="app-tag">Document Gen</span>
+                <span class="app-tag">Compliance</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="section" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-banner">
+          <h2 class="cta-banner__heading">Ready to Add Your Organization to This List?</h2>
+          <p class="cta-banner__sub">Start with a $2,500 Rapid Audit, credited toward your Sprint if you proceed. No long RFPs. No ambiguous timelines.</p>
+          <div class="cta-banner__actions">
+            <a href="contact.html" class="btn btn--teal btn--lg">Book a Discovery Call</a>
+            <a href="services.html" class="btn btn--outline btn--lg">View All Packages</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo" style="margin-bottom:var(--space-4);display:inline-flex;"><div class="nav__logo-mark">LBS</div><div class="nav__logo-text"><span class="nav__logo-name">LBS</span><span class="nav__logo-tagline">Technology Solutions</span></div></a>
+          <p class="footer__brand-desc">Linton Business Solutions LLC, Veteran-owned business and technology consulting firm delivering measurable results for Texas state agencies since 2017.</p>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-5);"><span style="background:rgba(0,196,180,0.15);color:var(--color-teal);font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">VOSB Verified</span><span style="background:rgba(30,111,255,0.15);color:#7eb8ff;font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">TX HUB Certified</span></div>
+          <div class="footer__social"><a href="https://linkedin.com/company/lbsconnect" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">in</a></div>
+        </div>
+        <div><h3 class="footer__col-title">Services</h3><ul class="footer__links" role="list"><li><a href="services.html#silver" class="footer__link">Silver: Clarity Package</a></li><li><a href="services.html#gold" class="footer__link">Gold: Modernization Sprint</a></li><li><a href="services.html#platinum" class="footer__link">Platinum: Full Execution</a></li></ul></div>
+        <div><h3 class="footer__col-title">Company</h3><ul class="footer__links" role="list"><li><a href="about.html" class="footer__link">About LBS</a></li><li><a href="portfolio.html" class="footer__link">Portfolio</a></li><li><a href="about.html#certifications" class="footer__link">Certifications</a></li><li><a href="contact.html" class="footer__link">Contact</a></li></ul></div>
+        <div><h3 class="footer__col-title">Contact</h3><ul class="footer__links" role="list"><li><a href="mailto:info@lbsconnect.net" class="footer__link">info@lbsconnect.net</a></li><li><span class="footer__link" style="cursor:default;">lbsconnect.net</span></li><li><span class="footer__link" style="cursor:default;">Texas, United States</span></li></ul></div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2025 Linton Business Solutions LLC. All rights reserved.</p>
+        <nav class="footer__legal" aria-label="Legal links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></nav>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
