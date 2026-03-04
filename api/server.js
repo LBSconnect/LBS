@@ -5,12 +5,16 @@ const { Webhook } = require('svix');
 const http = require('http');
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL;
 const TO_EMAIL = 'info@lbsconnect.net';
 const PORT = process.env.PORT || 3000;
 
 if (!RESEND_API_KEY) {
   console.error('ERROR: RESEND_API_KEY environment variable is required');
+  process.exit(1);
+}
+if (!FROM_EMAIL) {
+  console.error('ERROR: RESEND_FROM_EMAIL environment variable is required (e.g. LBS Website <noreply@lbsconnect.net>). Using onboarding@resend.dev will silently drop emails.');
   process.exit(1);
 }
 
@@ -112,14 +116,17 @@ const server = http.createServer(async (req, res) => {
 `;
 
     try {
-      await resend.emails.send({
+      const { data, error } = await resend.emails.send({
         from: FROM_EMAIL,
         to: TO_EMAIL,
-        replyTo: email,
+        reply_to: email,
         subject: `New inquiry from ${first_name} ${last_name}${organization ? ` — ${organization}` : ''}`,
         html: emailHtml,
       });
 
+      if (error) throw error;
+
+      console.log('Email sent:', data.id);
       res.writeHead(200, { ...headers, 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ ok: true }));
     } catch (err) {
