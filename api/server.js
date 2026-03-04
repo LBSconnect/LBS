@@ -1,6 +1,7 @@
 'use strict';
 
 const { Resend } = require('resend');
+const { Webhook } = require('svix');
 const http = require('http');
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -126,6 +127,49 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(500, { ...headers, 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: 'Failed to send email' }));
     }
+    return;
+  }
+
+  // Resend webhook endpoint
+  if (req.method === 'POST' && req.url === '/webhook') {
+    let rawBody = '';
+    req.setEncoding('utf8');
+    req.on('data', chunk => { rawBody += chunk; });
+    req.on('end', () => {
+      const secret = process.env.RESEND_WEBHOOK_SECRET;
+      if (secret) {
+        const wh = new Webhook(secret);
+        try {
+          wh.verify(rawBody, {
+            'svix-id': req.headers['svix-id'],
+            'svix-timestamp': req.headers['svix-timestamp'],
+            'svix-signature': req.headers['svix-signature'],
+          });
+        } catch (err) {
+          console.error('Webhook signature verification failed:', err.message);
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Invalid signature' }));
+          return;
+        }
+      }
+
+      let event;
+      try {
+        event = JSON.parse(rawBody);
+      } catch {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Invalid JSON' }));
+        return;
+      }
+
+      console.log('Resend webhook event:', event.type, JSON.stringify(event.data));
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ received: true }));
+    });
+    req.on('error', () => {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Read error' }));
+    });
     return;
   }
 
