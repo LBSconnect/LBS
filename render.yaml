@@ -5,3 +5,16 @@ services:
     buildCommand: ""
     staticPublishPath: .
     pullRequestPreviewsEnabled: false
+
+  - type: web
+    name: lbs-api
+    runtime: node
+    rootDir: api
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: RESEND_API_KEY
+        sync: false
+      - key: RESEND_FROM_EMAIL
+        sync: false
+    pullRequestPreviewsEnabled: false
