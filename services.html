@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LBS Modernization Service Packages — Silver, Gold, and Platinum. Fixed-fee Business Analysis and Digital Process Modernization sprints designed for Texas state agencies." />
+  <title>Services &amp; Packages | Linton Business Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    /* Services page specific styles */
+    .pkg-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:var(--space-6); margin-top:var(--space-12); align-items:start; }
+    .pkg-card { border-radius:var(--radius-xl); padding:var(--space-8); position:relative; overflow:hidden; display:flex; flex-direction:column; }
+    .pkg-card--silver { background:var(--color-white); border:2px solid var(--color-gray-200); }
+    .pkg-card--gold { background:var(--color-navy); border:2px solid rgba(255,193,0,0.4); color:white; }
+    .pkg-card--platinum { background:var(--gradient-card); border:2px solid rgba(139,92,246,0.5); color:white; }
+    .pkg-card__crown { position:absolute; top:var(--space-4); right:var(--space-4); font-size:1.5rem; }
+    .pkg-card__popular { position:absolute; top:-1px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,#1e6fff,#00c4b4); color:white; font-size:var(--text-xs); font-weight:var(--fw-bold); padding:4px 16px; border-radius:0 0 var(--radius-md) var(--radius-md); letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap; }
+    .pkg-card__tier { font-size:var(--text-xs); font-weight:var(--fw-bold); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:var(--space-3); }
+    .pkg-card--silver .pkg-card__tier { color:var(--color-text-muted); }
+    .pkg-card--gold .pkg-card__tier { color:rgba(255,193,0,0.9); }
+    .pkg-card--platinum .pkg-card__tier { color:#c4b5fd; }
+    .pkg-card__price { font-size:clamp(2rem,5vw,3rem); font-weight:var(--fw-black); letter-spacing:-0.03em; line-height:1; margin-bottom:var(--space-2); }
+    .pkg-card--silver .pkg-card__price { color:var(--color-gray-800); }
+    .pkg-card--gold .pkg-card__price, .pkg-card--platinum .pkg-card__price { color:white; }
+    .pkg-card__duration { font-size:var(--text-sm); margin-bottom:var(--space-5); }
+    .pkg-card--silver .pkg-card__duration { color:var(--color-text-muted); }
+    .pkg-card--gold .pkg-card__duration, .pkg-card--platinum .pkg-card__duration { color:rgba(255,255,255,0.6); }
+    .pkg-card__name { font-size:var(--text-xl); font-weight:var(--fw-bold); margin-bottom:var(--space-3); }
+    .pkg-card--silver .pkg-card__name { color:var(--color-gray-800); }
+    .pkg-card--gold .pkg-card__name, .pkg-card--platinum .pkg-card__name { color:white; }
+    .pkg-card__desc { font-size:var(--text-sm); line-height:var(--lh-relaxed); margin-bottom:var(--space-6); flex:1; }
+    .pkg-card--silver .pkg-card__desc { color:var(--color-text-muted); }
+    .pkg-card--gold .pkg-card__desc, .pkg-card--platinum .pkg-card__desc { color:rgba(255,255,255,0.7); }
+    .pkg-card__divider { border:none; border-top:1px solid; margin-bottom:var(--space-6); }
+    .pkg-card--silver .pkg-card__divider { border-color:var(--color-gray-200); }
+    .pkg-card--gold .pkg-card__divider { border-color:rgba(255,255,255,0.12); }
+    .pkg-card--platinum .pkg-card__divider { border-color:rgba(255,255,255,0.12); }
+    .pkg-card__includes-label { font-size:var(--text-xs); font-weight:var(--fw-bold); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:var(--space-4); }
+    .pkg-card--silver .pkg-card__includes-label { color:var(--color-text-muted); }
+    .pkg-card--gold .pkg-card__includes-label, .pkg-card--platinum .pkg-card__includes-label { color:rgba(255,255,255,0.5); }
+    .pkg-features { display:flex; flex-direction:column; gap:var(--space-3); margin-bottom:var(--space-6); }
+    .pkg-feature { display:flex; align-items:flex-start; gap:var(--space-3); font-size:var(--text-sm); line-height:var(--lh-snug); }
+    .pkg-feature__check { width:20px; height:20px; border-radius:var(--radius-full); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:var(--fw-bold); flex-shrink:0; margin-top:1px; }
+    .pkg-card--silver .pkg-feature__check { background:rgba(0,196,180,0.12); color:var(--color-teal-dark); }
+    .pkg-card--gold .pkg-feature__check { background:rgba(255,193,0,0.15); color:rgba(255,193,0,0.9); }
+    .pkg-card--platinum .pkg-feature__check { background:rgba(196,181,253,0.15); color:#c4b5fd; }
+    .pkg-card--silver .pkg-feature { color:var(--color-text); }
+    .pkg-card--gold .pkg-feature, .pkg-card--platinum .pkg-feature { color:rgba(255,255,255,0.8); }
+    .pkg-card__cta { width:100%; justify-content:center; margin-top:auto; }
+    .pkg-card__guarantee { margin-top:var(--space-5); padding:var(--space-4); border-radius:var(--radius-md); font-size:var(--text-xs); line-height:var(--lh-relaxed); }
+    .pkg-card--gold .pkg-card__guarantee { background:rgba(255,193,0,0.08); color:rgba(255,255,255,0.7); border:1px solid rgba(255,193,0,0.2); }
+    .pkg-card--platinum .pkg-card__guarantee { background:rgba(196,181,253,0.08); color:rgba(255,255,255,0.7); border:1px solid rgba(196,181,253,0.2); }
+    .pkg-card__upgrade-credit { margin-top:var(--space-4); font-size:var(--text-xs); text-align:center; }
+    .pkg-card--silver .pkg-card__upgrade-credit { color:var(--color-blue); }
+
+    /* Comparison table */
+    .comp-table-wrap { overflow-x:auto; margin-top:var(--space-12); border-radius:var(--radius-xl); border:1px solid var(--color-gray-200); }
+    .comp-table { width:100%; border-collapse:collapse; font-size:var(--text-sm); }
+    .comp-table th, .comp-table td { padding:var(--space-4) var(--space-6); text-align:left; border-bottom:1px solid var(--color-gray-200); }
+    .comp-table th { font-weight:var(--fw-semi); white-space:nowrap; }
+    .comp-table thead tr { background:var(--color-navy); }
+    .comp-table thead th { color:rgba(255,255,255,0.9); }
+    .comp-table thead th:first-child { border-radius:var(--radius-xl) 0 0 0; }
+    .comp-table thead th:last-child { border-radius:0 var(--radius-xl) 0 0; }
+    .comp-table tbody tr:last-child td { border-bottom:none; }
+    .comp-table tbody tr:nth-child(even) { background:var(--color-gray-100); }
+    .comp-table td:first-child { font-weight:var(--fw-medium); color:var(--color-gray-800); }
+    .comp-table td { color:var(--color-text-muted); }
+    .comp-table .check-yes { color:var(--color-teal-dark); font-weight:var(--fw-bold); }
+    .comp-table .check-no { color:var(--color-gray-400); }
+    .comp-table .price-row td { font-weight:var(--fw-bold); font-size:var(--text-base); }
+    .comp-table .price-row td:nth-child(2) { color:var(--color-gray-600); }
+    .comp-table .price-row td:nth-child(3) { color:var(--color-blue); }
+    .comp-table .price-row td:nth-child(4) { color:#8b5cf6; }
+
+    /* Terms section */
+    .terms-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:var(--space-5); margin-top:var(--space-8); }
+    .term-card { background:var(--color-white); border:1px solid var(--color-gray-200); border-radius:var(--radius-lg); padding:var(--space-6); }
+    .term-card__icon { font-size:1.6rem; margin-bottom:var(--space-3); }
+    .term-card__title { font-size:var(--text-base); font-weight:var(--fw-semi); color:var(--color-gray-800); margin-bottom:var(--space-2); }
+    .term-card__desc { font-size:var(--text-sm); color:var(--color-text-muted); line-height:var(--lh-relaxed); }
+
+    /* Win themes */
+    .win-themes { display:flex; flex-wrap:wrap; gap:var(--space-3); margin-top:var(--space-6); }
+    .win-theme { display:inline-flex; align-items:center; gap:var(--space-2); padding:var(--space-2) var(--space-4); background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:var(--radius-full); font-size:var(--text-sm); color:rgba(255,255,255,0.8); font-weight:var(--fw-medium); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="LBS Home">
+        <div class="nav__logo-mark">LBS</div>
+        <div class="nav__logo-text">
+          <span class="nav__logo-name">LBS</span>
+          <span class="nav__logo-tagline">Technology Solutions</span>
+        </div>
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="services.html" class="nav__link active">Services</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__cta"><a href="contact.html" class="btn btn--primary">Get Started</a></div>
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <nav class="nav__mobile" id="nav-mobile" aria-label="Mobile navigation">
+    <a href="index.html" class="nav__mobile-link">Home</a>
+    <a href="about.html" class="nav__mobile-link">About</a>
+    <a href="services.html" class="nav__mobile-link active">Services</a>
+    <a href="contact.html" class="nav__mobile-link">Contact</a>
+    <div class="nav__mobile-cta"><a href="contact.html" class="btn btn--primary" style="width:100%;justify-content:center;">Get Started</a></div>
+  </nav>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="about-hero" aria-label="Services">
+      <div class="container">
+        <div class="page-hero-label"><span>📋</span> Modernization Packages</div>
+        <h1 class="page-hero-heading">Fixed Scope.<br>Fixed Fees.<br>Guaranteed Results.</h1>
+        <p class="page-hero-desc">Three purpose-built packages designed for clarity, speed, and compliance in Texas public-sector modernization. No ambiguous retainers. No surprise invoices.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-4);margin-top:var(--space-8);">
+          <a href="#silver" class="btn btn--outline">🥈 Silver — $7,500</a>
+          <a href="#gold" class="btn btn--teal">🥇 Gold — $20,000</a>
+          <a href="#platinum" class="btn btn--outline">💎 Platinum — $55,000</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PACKAGES -->
+    <section class="section" aria-labelledby="packages-heading">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-label">Our Packages</span>
+          <h2 class="section-heading" id="packages-heading">Choose Your Modernization Path</h2>
+          <p class="section-sub">Start where you are. Every package includes a credit toward the next tier — so your investment always moves you forward.</p>
+        </div>
+
+        <div class="pkg-grid">
+
+          <!-- SILVER -->
+          <article class="pkg-card pkg-card--silver" id="silver">
+            <div class="pkg-card__tier">🥈 Silver</div>
+            <div class="pkg-card__price">$7,500</div>
+            <div class="pkg-card__duration">10 Business Days</div>
+            <h2 class="pkg-card__name">Clarity &amp; Readiness Package</h2>
+            <p class="pkg-card__desc">A fast, low-risk way for agencies to get clear requirements and a modernization direction — with zero long commitments.</p>
+            <hr class="pkg-card__divider" />
+            <div class="pkg-card__includes-label">What's Included</div>
+            <ul class="pkg-features" role="list">
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Requirements Rapid Audit (full 1-week version)</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Existing documentation review (requirements, workflows, past project artifacts)</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>60–90 min stakeholder alignment workshop</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>10-page diagnostic report: key gaps, risks, missing requirements, top 10 prioritized fixes</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>High-level modernization roadmap (30–60 day view)</span></li>
+            </ul>
+            <div class="pkg-card__upgrade-credit">💡 $2,500 credited toward Gold or Platinum if you proceed</div>
+            <hr class="pkg-card__divider" style="margin-top:var(--space-5);" />
+            <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-6);">
+              <strong style="color:var(--color-gray-800);">Ideal for:</strong> Agencies with a stalled or unclear project · Divisions preparing for RFP/vendor selection · Programs needing clarity before fiscal-year deadlines
+            </div>
+            <a href="contact.html?pkg=silver" class="btn btn--primary pkg-card__cta">Start with Silver</a>
+          </article>
+
+          <!-- GOLD -->
+          <article class="pkg-card pkg-card--gold" id="gold">
+            <div class="pkg-card__popular">Most Popular</div>
+            <div class="pkg-card__crown">🥇</div>
+            <div class="pkg-card__tier">Gold</div>
+            <div class="pkg-card__price">$20,000</div>
+            <div class="pkg-card__duration">6-Week Sprint</div>
+            <h2 class="pkg-card__name">Modernization Sprint Package</h2>
+            <p class="pkg-card__desc">Full requirements clarity, stakeholder alignment, and a compliance-ready modernization plan. Everything in Silver, plus the complete Sprint.</p>
+            <hr class="pkg-card__divider" />
+            <div class="pkg-card__includes-label">Everything in Silver, plus:</div>
+            <ul class="pkg-features" role="list">
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Stakeholder interviews (3–8 stakeholders)</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Current-state process maps</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Requirements backlog — user stories + acceptance criteria</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Non-functional requirements</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Gap analysis + dependency mapping</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Prioritized roadmap (6/12/18 months) + ROI estimate table</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Quick-win recommendations</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Implementation plan + optional RFP-ready scope</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Executive readout + decision brief</span></li>
+            </ul>
+            <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);margin-bottom:var(--space-5);">
+              <strong style="color:rgba(255,255,255,0.9);">Cadence:</strong> 2 working sessions/week · 1 exec touchpoint/week · Only 3–4 hrs/week of your staff's time
+            </div>
+            <div class="pkg-card__guarantee">
+              🛡️ <strong>Guarantee:</strong> If we don't deliver the roadmap + backlog by Week 6, we continue at no additional cost until fully delivered.
+            </div>
+            <hr class="pkg-card__divider" />
+            <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);margin-bottom:var(--space-6);">
+              <strong style="color:rgba(255,255,255,0.9);">Ideal for:</strong> Programs needing modernization clarity · Agencies preparing to onboard vendors · Primes needing requirements to hit delivery milestones
+            </div>
+            <a href="contact.html?pkg=gold" class="btn btn--teal pkg-card__cta">Start with Gold</a>
+          </article>
+
+          <!-- PLATINUM -->
+          <article class="pkg-card pkg-card--platinum" id="platinum">
+            <div class="pkg-card__crown">💎</div>
+            <div class="pkg-card__tier">Platinum</div>
+            <div class="pkg-card__price">$55,000</div>
+            <div class="pkg-card__duration">18-Week Program (6 + 12)</div>
+            <h2 class="pkg-card__name">Modernization + Delivery Execution</h2>
+            <p class="pkg-card__desc">Your end-to-end modernization and delivery engine for a full quarter. Everything in Silver + Gold, plus 12-week Execution Support.</p>
+            <hr class="pkg-card__divider" />
+            <div class="pkg-card__includes-label">Everything in Gold, plus 12-Week Execution:</div>
+            <ul class="pkg-features" role="list">
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Backlog refinement &amp; grooming</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Sprint planning &amp; Scrum cadence support</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Vendor coordination and requirement clarification</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>UAT readiness and acceptance criteria sign-off</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>PM risk/dependency tracking + weekly leadership status updates</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Transparency dashboards (Excel/SharePoint templates)</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>24–48 hr turnaround on requirement questions</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Up to 2 on-site days (optional)</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Up to 10 additional stories written per month</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Change request assessment support</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Agency knowledge transfer documentation</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Micro-SOW ready · Helps primes hit velocity &amp; deliverables</span></li>
+            </ul>
+            <div class="pkg-card__guarantee">
+              🛡️ <strong>Prime Value:</strong> Micro-SOW ready. Supports HUB/Veteran utilization goals. Helps primes meet velocity and deliverable commitments.
+            </div>
+            <hr class="pkg-card__divider" />
+            <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);margin-bottom:var(--space-6);">
+              <strong style="color:rgba(255,255,255,0.9);">Ideal for:</strong> Programs moving into implementation · Agencies onboarding vendors needing BA/PM support · Primes facing delivery pressure
+            </div>
+            <a href="contact.html?pkg=platinum" class="btn btn--primary pkg-card__cta" style="background:rgba(139,92,246,0.9);border-color:rgba(139,92,246,0.9);">Start with Platinum</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
+    <section class="section section--light" aria-labelledby="compare-heading">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-label">Side-by-Side</span>
+          <h2 class="section-heading" id="compare-heading">Package Comparison</h2>
+          <p class="section-sub">Every tier builds on the last — your investment always moves you forward.</p>
+        </div>
+        <div class="comp-table-wrap">
+          <table class="comp-table" aria-label="Package comparison">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">🥈 Silver</th>
+                <th scope="col">🥇 Gold</th>
+                <th scope="col">💎 Platinum</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Rapid Audit (1 week)</td><td class="check-yes">✔</td><td class="check-yes">✔</td><td class="check-yes">✔</td></tr>
+              <tr><td>Diagnostic Report (10 pages)</td><td class="check-yes">✔</td><td class="check-yes">✔</td><td class="check-yes">✔</td></tr>
+              <tr><td>Stakeholder Workshop</td><td class="check-yes">✔</td><td class="check-yes">✔</td><td class="check-yes">✔</td></tr>
+              <tr><td>Modernization Roadmap</td><td>High-level</td><td>Detailed 6/12/18mo</td><td>Detailed 6/12/18mo</td></tr>
+              <tr><td>Current-State Process Maps</td><td class="check-no">—</td><td class="check-yes">✔</td><td class="check-yes">✔</td></tr>
+              <tr><td>User Stories + Acceptance Criteria</td><td class="check-no">—</td><td class="check-yes">✔</td><td class="check-yes">✔</td></tr>
+              <tr><td>Full Requirements Backlog</td><td class="check-no">—</td><td class="check-yes">✔</td><td class="check-yes">✔</td></tr>
+              <tr><td>Gap Analysis + Dependencies</td><td class="check-no">—</td><td class="check-yes">✔</td><td class="check-yes">✔</td></tr>
+              <tr><td>ROI Estimate Table</td><td class="check-no">—</td><td class="check-yes">✔</td><td class="check-yes">✔</td></tr>
+              <tr><td>RFP-Ready Scope Document</td><td class="check-no">—</td><td>Optional</td><td class="check-yes">✔</td></tr>
+              <tr><td>Executive Readout &amp; Decision Brief</td><td class="check-no">—</td><td class="check-yes">✔</td><td class="check-yes">✔</td></tr>
+              <tr><td>12-Week Execution Support</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✔</td></tr>
+              <tr><td>Vendor Coordination</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✔</td></tr>
+              <tr><td>Weekly PM / Scrum Support</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✔</td></tr>
+              <tr><td>UAT Readiness Support</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✔</td></tr>
+              <tr><td>Transparency Dashboards</td><td class="check-no">—</td><td class="check-no">—</td><td class="check-yes">✔</td></tr>
+              <tr><td>On-Site Days</td><td class="check-no">—</td><td class="check-no">—</td><td>Up to 2</td></tr>
+              <tr><td>Upgrade Credit</td><td>$2,500 off Gold/Platinum</td><td>—</td><td>—</td></tr>
+              <tr class="price-row"><td><strong>Investment</strong></td><td><strong>$7,500</strong></td><td><strong>$20,000</strong></td><td><strong>$55,000</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TERMS & PAYMENT -->
+    <section class="section" aria-labelledby="terms-heading">
+      <div class="container">
+        <div class="two-col">
+          <div>
+            <span class="section-label">Pricing &amp; Terms</span>
+            <h2 class="section-heading" id="terms-heading">Transparent Terms. No Surprises.</h2>
+            <p class="section-sub">We protect your organization's investment and our cash flow with clear, milestone-based payment structures.</p>
+          </div>
+          <div></div>
+        </div>
+        <div class="terms-grid">
+          <div class="term-card">
+            <div class="term-card__icon">💳</div>
+            <div class="term-card__title">Payment Terms</div>
+            <div class="term-card__desc">50% upfront for all fixed-fee engagements. Balance due Net-15 upon delivery of final deliverables. Milestone-based structure available for Platinum.</div>
+          </div>
+          <div class="term-card">
+            <div class="term-card__icon">🛡️</div>
+            <div class="term-card__title">Delivery Guarantee (Gold)</div>
+            <div class="term-card__desc">If we don't deliver a ready-to-execute roadmap + backlog by Week 6, we continue working at no additional cost until fully and completely delivered.</div>
+          </div>
+          <div class="term-card">
+            <div class="term-card__icon">💡</div>
+            <div class="term-card__title">Upgrade Credit</div>
+            <div class="term-card__desc">The full $2,500 Silver fee is credited toward Gold or Platinum if you choose to proceed. Your initial investment always moves you forward.</div>
+          </div>
+          <div class="term-card">
+            <div class="term-card__icon">📄</div>
+            <div class="term-card__title">Procurement Flexibility</div>
+            <div class="term-card__desc">Ready to invoice via prime contractors when that's the fastest path. Micro-SOW ready for Platinum engagements. Can work under existing state contract vehicles.</div>
+          </div>
+          <div class="term-card">
+            <div class="term-card__icon">🔒</div>
+            <div class="term-card__title">Risk Reversal</div>
+            <div class="term-card__desc">Milestone-based payments protect your organization. We guarantee completeness of all core artifacts before the final invoice is due.</div>
+          </div>
+          <div class="term-card">
+            <div class="term-card__icon">🤝</div>
+            <div class="term-card__title">Prime-Friendly Structure</div>
+            <div class="term-card__desc">LBS is VOSB-verified and TX HUB-certified. Teaming with us helps primes meet subcontracting diversity goals while adding proven BA capacity.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WIN THEMES (dark) -->
+    <section class="section section--dark" aria-labelledby="why-heading">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:var(--space-10);">
+          <span class="section-label">Why Agencies Choose LBS</span>
+          <h2 class="section-heading section-heading--white" id="why-heading">Built for Texas. Proven in Practice.</h2>
+          <p class="section-sub section-sub--white">Our engagements are designed around the realities of public-sector procurement, fiscal timelines, and compliance requirements.</p>
+        </div>
+        <div class="win-themes" style="justify-content:center;">
+          <span class="win-theme">⏱️ Time-to-Decision Speed</span>
+          <span class="win-theme">📋 Compliance-Ready Artifacts</span>
+          <span class="win-theme">📉 Minimal Meeting Load</span>
+          <span class="win-theme">🎖️ Veteran-Owned Supplier</span>
+          <span class="win-theme">🏛️ Texas Familiarity</span>
+          <span class="win-theme">🔒 Audit-Ready Deliverables</span>
+          <span class="win-theme">💰 Fixed-Fee Predictability</span>
+          <span class="win-theme">✅ Delivery Guarantee</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-banner">
+          <h2 class="cta-banner__heading">Not Sure Which Package to Start With?</h2>
+          <p class="cta-banner__sub">Most clients start with Silver to get clarity fast — then move to Gold with the $2,500 upgrade credit already in their pocket. Book a free 30-minute discovery call and we'll recommend the right fit.</p>
+          <div class="cta-banner__actions">
+            <a href="contact.html" class="btn btn--teal btn--lg">Book a Free Discovery Call</a>
+            <a href="about.html" class="btn btn--outline btn--lg">Learn About LBS</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo" style="margin-bottom:var(--space-4);display:inline-flex;"><div class="nav__logo-mark">LBS</div><div class="nav__logo-text"><span class="nav__logo-name">LBS</span><span class="nav__logo-tagline">Technology Solutions</span></div></a>
+          <p class="footer__brand-desc">Linton Business Solutions LLC — Veteran-owned business and technology consulting firm delivering measurable results for Texas state agencies since 2017.</p>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-5);"><span style="background:rgba(0,196,180,0.15);color:var(--color-teal);font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">VOSB Verified</span><span style="background:rgba(30,111,255,0.15);color:#7eb8ff;font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">TX HUB Certified</span></div>
+          <div class="footer__social"><a href="https://linkedin.com/company/lbsconnect" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">in</a></div>
+        </div>
+        <div><h3 class="footer__col-title">Services</h3><ul class="footer__links" role="list"><li><a href="services.html#silver" class="footer__link">Silver — Clarity Package</a></li><li><a href="services.html#gold" class="footer__link">Gold — Modernization Sprint</a></li><li><a href="services.html#platinum" class="footer__link">Platinum — Full Execution</a></li></ul></div>
+        <div><h3 class="footer__col-title">Company</h3><ul class="footer__links" role="list"><li><a href="about.html" class="footer__link">About LBS</a></li><li><a href="about.html#certifications" class="footer__link">Certifications</a></li><li><a href="contact.html" class="footer__link">Contact</a></li></ul></div>
+        <div><h3 class="footer__col-title">Contact</h3><ul class="footer__links" role="list"><li><a href="mailto:info@lbsconnect.net" class="footer__link">info@lbsconnect.net</a></li><li><span class="footer__link" style="cursor:default;">lbsconnect.net</span></li><li><span class="footer__link" style="cursor:default;">Texas, United States</span></li></ul></div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2025 Linton Business Solutions LLC. All rights reserved.</p>
+        <nav class="footer__legal" aria-label="Legal links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></nav>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
