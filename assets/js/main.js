@@ -121,21 +121,40 @@
         return;
       }
 
-      // Simulate submission (replace with real endpoint / Formspree / etc.)
+      const API_URL = 'https://lbs-api.onrender.com/contact';
+
       const btn = contactForm.querySelector('button[type="submit"]');
       const originalText = btn.innerHTML;
       btn.innerHTML = 'Sending…';
       btn.disabled = true;
 
-      setTimeout(() => {
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-        contactForm.reset();
-        if (successMsg) {
-          successMsg.style.display = 'block';
-          successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-      }, 1200);
+      const formData = new FormData(contactForm);
+      const payload = Object.fromEntries(formData.entries());
+
+      fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then(res => {
+          if (!res.ok) throw new Error('Server error');
+          contactForm.reset();
+          if (successMsg) {
+            successMsg.style.display = 'block';
+            successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        })
+        .catch(() => {
+          if (errorMsg) {
+            errorMsg.textContent = '⚠️ Something went wrong. Please email us directly at info@lbsconnect.net.';
+            errorMsg.style.display = 'block';
+            errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        })
+        .finally(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        });
     });
   }
 
