@@ -85,7 +85,7 @@
     // Warm up the API server on page load so it's ready when the form is submitted.
     // Render free-tier services spin down after inactivity; this ping wakes it up
     // and lets us track whether the server has finished starting.
-    const API_BASE = 'https://lbs-api.onrender.com';
+    const API_BASE = 'https://lbs-api-m6hz.onrender.com';
     let serverReady = false;
     fetch(API_BASE + '/health')
       .then(r => { if (r.ok) serverReady = true; })
