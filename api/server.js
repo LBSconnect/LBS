@@ -115,18 +115,55 @@ const server = http.createServer(async (req, res) => {
 <p style="font-family:sans-serif;font-size:14px;white-space:pre-wrap;">${message}</p>
 `;
 
+    const confirmationHtml = `
+<div style="font-family:sans-serif;font-size:14px;color:#1a1a1a;max-width:600px;">
+  <h2 style="color:#1a3a5c;">We received your message, ${first_name}!</h2>
+  <p>Thank you for reaching out to <strong>Linton Business Solutions</strong>. We've received your inquiry and will get back to you within <strong>1 business day</strong>.</p>
+  <h3 style="color:#1a3a5c;margin-top:24px;">Your submission summary</h3>
+  <table cellpadding="6" cellspacing="0" style="border-collapse:collapse;">
+    <tr><td style="font-weight:bold;padding-right:16px;">Name</td><td>${first_name} ${last_name}</td></tr>
+    ${organization ? `<tr><td style="font-weight:bold;padding-right:16px;">Organization</td><td>${organization}</td></tr>` : ''}
+    ${pkg ? `<tr><td style="font-weight:bold;padding-right:16px;">Package Interest</td><td>${packageLabels[pkg] || pkg}</td></tr>` : ''}
+    ${timeline ? `<tr><td style="font-weight:bold;padding-right:16px;">Timeline</td><td>${timelineLabels[timeline] || timeline}</td></tr>` : ''}
+  </table>
+  <p style="margin-top:24px;">In the meantime, feel free to reply to this email or reach us at <a href="mailto:info@lbsconnect.net">info@lbsconnect.net</a>.</p>
+  <p style="margin-top:8px;">— The LBS Team</p>
+  <hr style="border:none;border-top:1px solid #e5e7eb;margin-top:32px;" />
+  <p style="font-size:12px;color:#6b7280;">Linton Business Solutions · <a href="https://lbsconnect.net" style="color:#6b7280;">lbsconnect.net</a></p>
+</div>
+`;
+
     try {
       const { data, error } = await resend.emails.send({
         from: FROM_EMAIL,
         to: TO_EMAIL,
-        reply_to: email,
+        replyTo: email,
         subject: `New inquiry from ${first_name} ${last_name}${organization ? ` — ${organization}` : ''}`,
         html: emailHtml,
       });
 
       if (error) throw error;
 
-      console.log('Email sent:', data.id);
+      console.log('Notification email sent:', data.id);
+
+      // Send confirmation email to submitter (best-effort — don't fail the request if this fails)
+      try {
+        const { data: confData, error: confError } = await resend.emails.send({
+          from: FROM_EMAIL,
+          to: email,
+          replyTo: TO_EMAIL,
+          subject: `We received your message — Linton Business Solutions`,
+          html: confirmationHtml,
+        });
+        if (confError) {
+          console.error('Confirmation email error:', confError);
+        } else {
+          console.log('Confirmation email sent:', confData.id);
+        }
+      } catch (confErr) {
+        console.error('Confirmation email exception:', confErr);
+      }
+
       res.writeHead(200, { ...headers, 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ ok: true }));
     } catch (err) {

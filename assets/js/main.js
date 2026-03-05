@@ -82,6 +82,10 @@
   // === Contact form ===
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
+    // Warm up the API server on page load so it's ready when the form is submitted.
+    // Render free-tier services spin down after inactivity; this silent ping wakes it.
+    fetch('https://lbs-api.onrender.com/health').catch(() => {});
+
     // Pre-select package from URL param
     const params = new URLSearchParams(window.location.search);
     const pkg = params.get('pkg');
@@ -131,12 +135,17 @@
       const formData = new FormData(contactForm);
       const payload = Object.fromEntries(formData.entries());
 
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 35000);
+
       fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       })
         .then(res => {
+          clearTimeout(timeoutId);
           if (!res.ok) throw new Error('Server error');
           contactForm.reset();
           if (successMsg) {
@@ -144,9 +153,12 @@
             successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           }
         })
-        .catch(() => {
+        .catch(err => {
+          clearTimeout(timeoutId);
           if (errorMsg) {
-            errorMsg.textContent = '⚠️ Something went wrong. Please email us directly at info@lbsconnect.net.';
+            errorMsg.textContent = err.name === 'AbortError'
+              ? '⏱️ The request timed out. Please try again or email us at info@lbsconnect.net.'
+              : '⚠️ Something went wrong. Please email us directly at info@lbsconnect.net.';
             errorMsg.style.display = 'block';
             errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           }
