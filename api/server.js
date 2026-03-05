@@ -63,7 +63,7 @@ const server = http.createServer(async (req, res) => {
 
   // Health check
   if (req.method === 'GET' && req.url === '/health') {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.writeHead(200, { ...headers, 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ ok: true }));
     return;
   }
