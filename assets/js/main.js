@@ -83,8 +83,13 @@
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     // Warm up the API server on page load so it's ready when the form is submitted.
-    // Render free-tier services spin down after inactivity; this silent ping wakes it.
-    fetch('https://lbs-api.onrender.com/health').catch(() => {});
+    // Render free-tier services spin down after inactivity; this ping wakes it up
+    // and lets us track whether the server has finished starting.
+    const API_BASE = 'https://lbs-api.onrender.com';
+    let serverReady = false;
+    fetch(API_BASE + '/health')
+      .then(r => { if (r.ok) serverReady = true; })
+      .catch(() => {});
 
     // Pre-select package from URL param
     const params = new URLSearchParams(window.location.search);
@@ -125,20 +130,28 @@
         return;
       }
 
-      const API_URL = 'https://lbs-api.onrender.com/contact';
-
       const btn = contactForm.querySelector('button[type="submit"]');
       const originalText = btn.innerHTML;
-      btn.innerHTML = 'Sending…';
+      btn.innerHTML = serverReady ? 'Sending…' : 'Waking up server…';
       btn.disabled = true;
 
       const formData = new FormData(contactForm);
       const payload = Object.fromEntries(formData.entries());
 
+      // Render free-tier can take up to 60 s to cold-start; use 58 s timeout.
+      // If the server wasn't warm yet, update the label after a short delay.
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 35000);
+      const TIMEOUT_MS = 58000;
+      const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
-      fetch(API_URL, {
+      let warmLabelTimer;
+      if (!serverReady) {
+        warmLabelTimer = setTimeout(() => {
+          if (btn.disabled) btn.innerHTML = 'Sending… (please wait)';
+        }, 8000);
+      }
+
+      fetch(API_BASE + '/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -146,6 +159,7 @@
       })
         .then(res => {
           clearTimeout(timeoutId);
+          clearTimeout(warmLabelTimer);
           if (!res.ok) throw new Error('Server error');
           contactForm.reset();
           if (successMsg) {
@@ -155,15 +169,17 @@
         })
         .catch(err => {
           clearTimeout(timeoutId);
+          clearTimeout(warmLabelTimer);
           if (errorMsg) {
             errorMsg.textContent = err.name === 'AbortError'
-              ? '⏱️ The request timed out. Please try again or email us at info@lbsconnect.net.'
+              ? '⏱️ The request timed out. Please try again — it can take up to 1 minute on first load.'
               : '⚠️ Something went wrong. Please email us directly at info@lbsconnect.net.';
             errorMsg.style.display = 'block';
             errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           }
         })
         .finally(() => {
+          clearTimeout(warmLabelTimer);
           btn.innerHTML = originalText;
           btn.disabled = false;
         });
