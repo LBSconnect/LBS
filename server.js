@@ -21,6 +21,15 @@ if (!FROM_EMAIL) {
 const resend = new Resend(RESEND_API_KEY);
 const app = express();
 
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // Serve static files from repo root
 app.use(express.static(path.join(__dirname)));
 app.use(express.json());
@@ -53,29 +62,36 @@ app.post('/contact', async (req, res) => {
     planning: 'Planning / exploring options',
   };
 
+  const eName = `${escHtml(first_name)} ${escHtml(last_name)}`;
+  const eEmail = escHtml(email);
+  const eOrg = organization ? escHtml(organization) : '';
+  const eMsg = escHtml(message);
+  const ePkg = pkg ? escHtml(packageLabels[pkg] || pkg) : '';
+  const eTimeline = timeline ? escHtml(timelineLabels[timeline] || timeline) : '';
+
   const emailHtml = `
 <h2>New Contact Form Submission</h2>
 <table cellpadding="6" cellspacing="0" style="border-collapse:collapse;font-family:sans-serif;font-size:14px;">
-  <tr><td style="font-weight:bold;padding-right:16px;">Name</td><td>${first_name} ${last_name}</td></tr>
-  <tr><td style="font-weight:bold;padding-right:16px;">Email</td><td><a href="mailto:${email}">${email}</a></td></tr>
-  ${organization ? `<tr><td style="font-weight:bold;padding-right:16px;">Organization</td><td>${organization}</td></tr>` : ''}
-  ${pkg ? `<tr><td style="font-weight:bold;padding-right:16px;">Package</td><td>${packageLabels[pkg] || pkg}</td></tr>` : ''}
-  ${timeline ? `<tr><td style="font-weight:bold;padding-right:16px;">Timeline</td><td>${timelineLabels[timeline] || timeline}</td></tr>` : ''}
+  <tr><td style="font-weight:bold;padding-right:16px;">Name</td><td>${eName}</td></tr>
+  <tr><td style="font-weight:bold;padding-right:16px;">Email</td><td><a href="mailto:${eEmail}">${eEmail}</a></td></tr>
+  ${eOrg ? `<tr><td style="font-weight:bold;padding-right:16px;">Organization</td><td>${eOrg}</td></tr>` : ''}
+  ${ePkg ? `<tr><td style="font-weight:bold;padding-right:16px;">Package</td><td>${ePkg}</td></tr>` : ''}
+  ${eTimeline ? `<tr><td style="font-weight:bold;padding-right:16px;">Timeline</td><td>${eTimeline}</td></tr>` : ''}
 </table>
 <h3 style="margin-top:24px;">Message</h3>
-<p style="font-family:sans-serif;font-size:14px;white-space:pre-wrap;">${message}</p>
+<p style="font-family:sans-serif;font-size:14px;white-space:pre-wrap;">${eMsg}</p>
 `;
 
   const confirmationHtml = `
 <div style="font-family:sans-serif;font-size:14px;color:#1a1a1a;max-width:600px;">
-  <h2 style="color:#1a3a5c;">We received your message, ${first_name}!</h2>
+  <h2 style="color:#1a3a5c;">We received your message, ${escHtml(first_name)}!</h2>
   <p>Thank you for reaching out to <strong>Linton Business Solutions</strong>. We've received your inquiry and will get back to you within <strong>1 business day</strong>.</p>
   <h3 style="color:#1a3a5c;margin-top:24px;">Your submission summary</h3>
   <table cellpadding="6" cellspacing="0" style="border-collapse:collapse;">
-    <tr><td style="font-weight:bold;padding-right:16px;">Name</td><td>${first_name} ${last_name}</td></tr>
-    ${organization ? `<tr><td style="font-weight:bold;padding-right:16px;">Organization</td><td>${organization}</td></tr>` : ''}
-    ${pkg ? `<tr><td style="font-weight:bold;padding-right:16px;">Package Interest</td><td>${packageLabels[pkg] || pkg}</td></tr>` : ''}
-    ${timeline ? `<tr><td style="font-weight:bold;padding-right:16px;">Timeline</td><td>${timelineLabels[timeline] || timeline}</td></tr>` : ''}
+    <tr><td style="font-weight:bold;padding-right:16px;">Name</td><td>${eName}</td></tr>
+    ${eOrg ? `<tr><td style="font-weight:bold;padding-right:16px;">Organization</td><td>${eOrg}</td></tr>` : ''}
+    ${ePkg ? `<tr><td style="font-weight:bold;padding-right:16px;">Package Interest</td><td>${ePkg}</td></tr>` : ''}
+    ${eTimeline ? `<tr><td style="font-weight:bold;padding-right:16px;">Timeline</td><td>${eTimeline}</td></tr>` : ''}
   </table>
   <p style="margin-top:24px;">In the meantime, feel free to reply to this email or reach us at <a href="mailto:info@lbsconnect.net">info@lbsconnect.net</a>.</p>
   <p style="margin-top:8px;">— The LBS Team</p>
