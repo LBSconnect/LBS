@@ -181,75 +181,38 @@
             </div>
           </div>
 
-          <!-- Right: Form -->
+          <!-- Right: Direct contact -->
           <div>
-            <div class="contact-form">
-              <h3 style="font-size:var(--text-xl);font-weight:var(--fw-bold);color:var(--color-gray-800);margin-bottom:var(--space-2);">Send Us a Message</h3>
-              <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-6);">Fill out the form and we'll get back to you within 1 business day.</p>
+            <div class="contact-form" style="display:flex;flex-direction:column;gap:var(--space-6);">
+              <div>
+                <h3 style="font-size:var(--text-xl);font-weight:var(--fw-bold);color:var(--color-gray-800);margin-bottom:var(--space-2);">Ready to Start a Conversation?</h3>
+                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:var(--lh-relaxed);">The fastest way to reach us is by email. Send us a brief description of your project and we'll reply within 1 business day to schedule a free 30-minute discovery call.</p>
+              </div>
 
-              <form id="contact-form" novalidate>
-                <div class="form-grid form-grid--2">
-                  <div class="form-group">
-                    <label class="form-label" for="first-name">First Name <span>*</span></label>
-                    <input class="form-input" type="text" id="first-name" name="first_name" placeholder="Jane" required autocomplete="given-name" />
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="last-name">Last Name <span>*</span></label>
-                    <input class="form-input" type="text" id="last-name" name="last_name" placeholder="Smith" required autocomplete="family-name" />
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="email">Work Email <span>*</span></label>
-                    <input class="form-input" type="email" id="email" name="email" placeholder="jane.smith@agency.texas.gov" required autocomplete="email" />
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="phone">Phone Number</label>
-                    <input class="form-input" type="tel" id="phone" name="phone" placeholder="(512) 555-0100" autocomplete="tel" />
-                  </div>
-                  <div class="form-group form-group--full">
-                    <label class="form-label" for="organization">Company / Organization</label>
-                    <input class="form-input" type="text" id="organization" name="organization" placeholder="Texas Health and Human Services" autocomplete="organization" />
-                  </div>
-                  <div class="form-group form-group--full">
-                    <label class="form-label" for="package">Package Interest</label>
-                    <select class="form-select" id="package" name="package">
-                      <option value="">Select a package (optional)</option>
-                      <option value="silver">🥈 Silver: Clarity &amp; Readiness ($7,500)</option>
-                      <option value="gold">🥇 Gold: Modernization Sprint ($20,000)</option>
-                      <option value="platinum">💎 Platinum: Full Execution ($55,000)</option>
-                      <option value="prime">Prime / Subcontracting Inquiry</option>
-                      <option value="unsure">Not sure yet, need guidance</option>
-                    </select>
-                  </div>
-                  <div class="form-group form-group--full">
-                    <label class="form-label" for="message">Tell Us About Your Project <span>*</span></label>
-                    <textarea class="form-textarea" id="message" name="message" placeholder="Briefly describe your project, current challenges, and what you're hoping to achieve..." required rows="5"></textarea>
-                  </div>
-                  <div class="form-group form-group--full">
-                    <label class="form-label" for="timeline">Project Timeline</label>
-                    <select class="form-select" id="timeline" name="timeline">
-                      <option value="">Select a timeline</option>
-                      <option value="asap">ASAP, we have a deadline</option>
-                      <option value="30days">Within 30 days</option>
-                      <option value="quarter">This quarter</option>
-                      <option value="planning">Planning / exploring options</option>
-                    </select>
-                  </div>
-                </div>
+              <a href="mailto:info@lbsconnect.net?subject=Project%20Inquiry%20%E2%80%94%20LBS" class="btn btn--primary btn--lg" style="justify-content:center;text-align:center;">
+                Email Us at info@lbsconnect.net
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </a>
 
-                <button type="submit" class="btn btn--primary btn--lg form-submit" style="margin-top:var(--space-6);">
-                  Send Message
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 19-7z"/></svg>
-                </button>
+              <div style="border:1px solid var(--color-gray-200);border-radius:var(--radius-xl);padding:var(--space-6);">
+                <div style="font-size:var(--text-sm);font-weight:var(--fw-semi);color:var(--color-gray-800);margin-bottom:var(--space-4);">What to include in your email</div>
+                <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:var(--space-3);">
+                  <li style="display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--text-sm);color:var(--color-text-muted);">
+                    <span style="color:var(--color-teal);font-weight:700;flex-shrink:0;">&#10003;</span> Your name and organization
+                  </li>
+                  <li style="display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--text-sm);color:var(--color-text-muted);">
+                    <span style="color:var(--color-teal);font-weight:700;flex-shrink:0;">&#10003;</span> A brief description of your project or challenge
+                  </li>
+                  <li style="display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--text-sm);color:var(--color-text-muted);">
+                    <span style="color:var(--color-teal);font-weight:700;flex-shrink:0;">&#10003;</span> Your general timeline or deadline (if any)
+                  </li>
+                  <li style="display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--text-sm);color:var(--color-text-muted);">
+                    <span style="color:var(--color-teal);font-weight:700;flex-shrink:0;">&#10003;</span> Package interest: Silver, Gold, or Platinum (optional)
+                  </li>
+                </ul>
+              </div>
 
-                <div class="form-message form-message--success" id="form-success" role="alert">
-                  ✅ <strong>Message sent!</strong> We'll get back to you within 1 business day.
-                </div>
-                <div class="form-message form-message--error" id="form-error" role="alert">
-                  ⚠️ Please fill in all required fields before submitting.
-                </div>
-
-                <p class="form-note">By submitting this form, you agree to be contacted by LBS regarding your inquiry. We never share your information with third parties.</p>
-              </form>
+              <p style="font-size:var(--text-xs);color:var(--color-text-muted);text-align:center;">We respond to every inquiry. No automated sequences — a real reply from Sean.</p>
             </div>
           </div>
 
