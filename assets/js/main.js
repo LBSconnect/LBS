@@ -133,15 +133,22 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
-        .then(res => {
-          if (!res.ok) throw new Error('Server error');
+        .then(async res => {
+          if (!res.ok) {
+            const body = await res.json().catch(() => ({}));
+            const err = new Error('Server error');
+            err.status = res.status;
+            err.body = body;
+            throw err;
+          }
           contactForm.reset();
           if (successMsg) {
             successMsg.style.display = 'block';
             successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           }
         })
-        .catch(() => {
+        .catch(err => {
+          console.error('[Contact form error]', err.status, err.body || err.message);
           if (errorMsg) {
             errorMsg.textContent = '⚠️ Something went wrong. Please email us directly at info@lbsconnect.net.';
             errorMsg.style.display = 'block';
