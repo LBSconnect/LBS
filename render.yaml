@@ -1,15 +1,7 @@
 services:
   - type: web
-    name: lbs-static-site
-    runtime: static
-    buildCommand: ""
-    staticPublishPath: .
-    pullRequestPreviewsEnabled: false
-
-  - type: web
-    name: lbs-api
+    name: lbsconnect
     runtime: node
-    rootDir: api
     buildCommand: npm install
     startCommand: npm start
     envVars:
