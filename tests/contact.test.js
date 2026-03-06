@@ -125,6 +125,28 @@ describe('POST /contact — successful submission', () => {
     const [notifArgs] = mockSend.mock.calls;
     expect(notifArgs[0].html).toContain('ASAP');
   });
+
+  it('includes phone number in notification email HTML when provided', async () => {
+    await request(app)
+      .post('/contact')
+      .send({ ...validPayload, phone: '(512) 555-0100' });
+    const [notifArgs] = mockSend.mock.calls;
+    expect(notifArgs[0].html).toContain('(512) 555-0100');
+  });
+
+  it('includes phone number in confirmation email HTML when provided', async () => {
+    await request(app)
+      .post('/contact')
+      .send({ ...validPayload, phone: '(512) 555-0100' });
+    const confirmArgs = mockSend.mock.calls[1];
+    expect(confirmArgs[0].html).toContain('(512) 555-0100');
+  });
+
+  it('omits phone row when phone is not provided', async () => {
+    await request(app).post('/contact').send(validPayload);
+    const [notifArgs] = mockSend.mock.calls;
+    expect(notifArgs[0].html).not.toContain('Phone');
+  });
 });
 
 // ---------------------------------------------------------------------------

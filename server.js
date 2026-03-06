@@ -41,7 +41,7 @@ app.get('/health', (req, res) => {
 
 // Contact form endpoint
 app.post('/contact', async (req, res) => {
-  const { first_name, last_name, email, organization, package: pkg, message, timeline } = req.body || {};
+  const { first_name, last_name, email, phone, organization, package: pkg, message, timeline } = req.body || {};
 
   if (!first_name || !last_name || !email || !message) {
     return res.status(422).json({ error: 'Missing required fields' });
@@ -64,6 +64,7 @@ app.post('/contact', async (req, res) => {
 
   const eName = `${escHtml(first_name)} ${escHtml(last_name)}`;
   const eEmail = escHtml(email);
+  const ePhone = phone ? escHtml(phone) : '';
   const eOrg = organization ? escHtml(organization) : '';
   const eMsg = escHtml(message);
   const ePkg = pkg ? escHtml(packageLabels[pkg] || pkg) : '';
@@ -74,7 +75,8 @@ app.post('/contact', async (req, res) => {
 <table cellpadding="6" cellspacing="0" style="border-collapse:collapse;font-family:sans-serif;font-size:14px;">
   <tr><td style="font-weight:bold;padding-right:16px;">Name</td><td>${eName}</td></tr>
   <tr><td style="font-weight:bold;padding-right:16px;">Email</td><td><a href="mailto:${eEmail}">${eEmail}</a></td></tr>
-  ${eOrg ? `<tr><td style="font-weight:bold;padding-right:16px;">Organization</td><td>${eOrg}</td></tr>` : ''}
+  ${ePhone ? `<tr><td style="font-weight:bold;padding-right:16px;">Phone</td><td>${ePhone}</td></tr>` : ''}
+  ${eOrg ? `<tr><td style="font-weight:bold;padding-right:16px;">Company / Organization</td><td>${eOrg}</td></tr>` : ''}
   ${ePkg ? `<tr><td style="font-weight:bold;padding-right:16px;">Package</td><td>${ePkg}</td></tr>` : ''}
   ${eTimeline ? `<tr><td style="font-weight:bold;padding-right:16px;">Timeline</td><td>${eTimeline}</td></tr>` : ''}
 </table>
@@ -89,7 +91,8 @@ app.post('/contact', async (req, res) => {
   <h3 style="color:#1a3a5c;margin-top:24px;">Your submission summary</h3>
   <table cellpadding="6" cellspacing="0" style="border-collapse:collapse;">
     <tr><td style="font-weight:bold;padding-right:16px;">Name</td><td>${eName}</td></tr>
-    ${eOrg ? `<tr><td style="font-weight:bold;padding-right:16px;">Organization</td><td>${eOrg}</td></tr>` : ''}
+    ${ePhone ? `<tr><td style="font-weight:bold;padding-right:16px;">Phone</td><td>${ePhone}</td></tr>` : ''}
+    ${eOrg ? `<tr><td style="font-weight:bold;padding-right:16px;">Company / Organization</td><td>${eOrg}</td></tr>` : ''}
     ${ePkg ? `<tr><td style="font-weight:bold;padding-right:16px;">Package Interest</td><td>${ePkg}</td></tr>` : ''}
     ${eTimeline ? `<tr><td style="font-weight:bold;padding-right:16px;">Timeline</td><td>${eTimeline}</td></tr>` : ''}
   </table>
