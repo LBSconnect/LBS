@@ -70,6 +70,21 @@
           "price": "55000",
           "priceCurrency": "USD"
         }
+      },
+      {
+        "@type": "Service",
+        "name": "Software Testing & UAT Package",
+        "provider": {"@id": "https://www.lbsconnect.net/#organization"},
+        "description": "4-week software testing and UAT engagement covering test strategy, execution, defect management, and go/no-go reporting.",
+        "offers": {
+          "@type": "Offer",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "120",
+            "priceCurrency": "USD",
+            "unitText": "HOUR"
+          }
+        }
       }
     ]
   }
@@ -157,6 +172,18 @@
     /* Win themes */
     .win-themes { display:flex; flex-wrap:wrap; gap:var(--space-3); margin-top:var(--space-6); }
     .win-theme { display:inline-flex; align-items:center; gap:var(--space-2); padding:var(--space-2) var(--space-4); background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:var(--radius-full); font-size:var(--text-sm); color:rgba(255,255,255,0.8); font-weight:var(--fw-medium); }
+
+    /* UAT / QA package card */
+    .pkg-card--uat { background: linear-gradient(135deg, #082730 0%, #0b3840 100%); border: 2px solid rgba(0,196,180,0.4); color: white; }
+    .pkg-card--uat .pkg-card__tier { color: var(--color-teal); }
+    .pkg-card--uat .pkg-card__price, .pkg-card--uat .pkg-card__name { color: white; }
+    .pkg-card--uat .pkg-card__duration { color: rgba(255,255,255,0.6); }
+    .pkg-card--uat .pkg-card__desc { color: rgba(255,255,255,0.7); }
+    .pkg-card--uat .pkg-card__divider { border-color: rgba(255,255,255,0.12); }
+    .pkg-card--uat .pkg-card__includes-label { color: rgba(255,255,255,0.5); }
+    .pkg-card--uat .pkg-feature { color: rgba(255,255,255,0.8); }
+    .pkg-card--uat .pkg-feature__check { background: rgba(0,196,180,0.15); color: var(--color-teal); }
+    .pkg-card--uat .pkg-card__guarantee { background: rgba(0,196,180,0.08); color: rgba(255,255,255,0.7); border: 1px solid rgba(0,196,180,0.2); }
   </style>
 </head>
 <body>
@@ -206,6 +233,7 @@
           <a href="#silver" class="btn btn--outline">🥈 Silver $7,500</a>
           <a href="#gold" class="btn btn--teal">🥇 Gold $20,000</a>
           <a href="#platinum" class="btn btn--outline">💎 Platinum $55,000</a>
+          <a href="#uat" class="btn btn--outline">🧪 QA &amp; UAT $120/hr</a>
         </div>
       </div>
     </section>
@@ -314,6 +342,40 @@
             <a href="contact.html?pkg=platinum" class="btn btn--primary pkg-card__cta" style="background:rgba(139,92,246,0.9);border-color:rgba(139,92,246,0.9);">Start with Platinum</a>
           </article>
 
+          <!-- SOFTWARE TESTING & UAT -->
+          <article class="pkg-card pkg-card--uat" id="uat">
+            <div class="pkg-card__crown">🧪</div>
+            <div class="pkg-card__tier">QA &amp; Testing</div>
+            <div class="pkg-card__price">$120<span style="font-size:1.2rem;font-weight:var(--fw-semi);">/hr</span></div>
+            <div class="pkg-card__duration">4 Weeks · ~160 Hours · Est. $19,200</div>
+            <h2 class="pkg-card__name">Software Testing &amp; UAT Package</h2>
+            <p class="pkg-card__desc">Comprehensive test planning, execution, defect management, and UAT facilitation. Structured quality assurance and end-to-end test coverage before deployment — with a clear Go/No-Go recommendation.</p>
+            <hr class="pkg-card__divider" />
+            <div class="pkg-card__includes-label">What's Included</div>
+            <ul class="pkg-features" role="list">
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Test Strategy Document &amp; Test Plan (scope, cycles, tools, environments)</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Requirements Traceability Matrix (RTM)</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>UAT Plan, Scripts &amp; Schedule</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Functional, Regression, Integration &amp; UAT Test Cases with test data</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Manual, exploratory &amp; cross-browser / mobile testing execution</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>UAT facilitation — end-user walkthroughs &amp; feedback capture</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Defect logging, triage, daily review meetings &amp; retest verification</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Daily/weekly execution reports &amp; defect dashboard</span></li>
+              <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>Final Test Summary Report &amp; Go/No-Go recommendation presentation</span></li>
+            </ul>
+            <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);margin-bottom:var(--space-5);">
+              <strong style="color:rgba(255,255,255,0.9);">Tools Supported:</strong> Azure DevOps · Jira / Xray / Zephyr · TestRail · qTest · BrowserStack · Postman
+            </div>
+            <div class="pkg-card__guarantee">
+              🛠️ <strong>Optional Add-Ons:</strong> Automation Testing ($140/hr) &nbsp;·&nbsp; Performance Testing — load, stress &amp; scalability ($150/hr) &nbsp;·&nbsp; Post-Deployment Hypercare, 2–4 weeks ($120/hr)
+            </div>
+            <hr class="pkg-card__divider" />
+            <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);margin-bottom:var(--space-6);">
+              <strong style="color:rgba(255,255,255,0.9);">Ideal for:</strong> Teams preparing for system go-live · Programs needing structured UAT · Agencies without internal QA capacity · Development teams needing independent testing
+            </div>
+            <a href="contact.html?pkg=uat" class="btn btn--teal pkg-card__cta">Start QA Engagement</a>
+          </article>
+
         </div>
       </div>
     </section>
@@ -359,6 +421,9 @@
             </tbody>
           </table>
         </div>
+        <p style="text-align:center;margin-top:var(--space-6);font-size:var(--text-sm);color:var(--color-text-muted);">
+          Looking for independent software testing? See the <a href="#uat" style="color:var(--color-blue);font-weight:var(--fw-semi);">🧪 QA &amp; UAT Package</a> — an hourly engagement at $120/hr.
+        </p>
       </div>
     </section>
 
@@ -454,7 +519,7 @@
           <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-5);"><span style="background:rgba(0,196,180,0.15);color:var(--color-teal);font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">VOSB Verified</span><span style="background:rgba(30,111,255,0.15);color:#7eb8ff;font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">TX HUB Certified</span></div>
           <div class="footer__social"><a href="https://linkedin.com/company/lbsconnect" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">in</a></div>
         </div>
-        <div><h3 class="footer__col-title">Services</h3><ul class="footer__links" role="list"><li><a href="services.html#silver" class="footer__link">Silver: Clarity Package</a></li><li><a href="services.html#gold" class="footer__link">Gold: Modernization Sprint</a></li><li><a href="services.html#platinum" class="footer__link">Platinum: Full Execution</a></li></ul></div>
+        <div><h3 class="footer__col-title">Services</h3><ul class="footer__links" role="list"><li><a href="services.html#silver" class="footer__link">Silver: Clarity Package</a></li><li><a href="services.html#gold" class="footer__link">Gold: Modernization Sprint</a></li><li><a href="services.html#platinum" class="footer__link">Platinum: Full Execution</a></li><li><a href="services.html#uat" class="footer__link">QA &amp; UAT Testing</a></li></ul></div>
         <div><h3 class="footer__col-title">Company</h3><ul class="footer__links" role="list"><li><a href="about.html" class="footer__link">About LBS</a></li><li><a href="about.html#certifications" class="footer__link">Certifications</a></li><li><a href="contact.html" class="footer__link">Contact</a></li></ul></div>
         <div><h3 class="footer__col-title">Contact</h3><ul class="footer__links" role="list"><li><a href="mailto:info@lbsconnect.net" class="footer__link">info@lbsconnect.net</a></li><li><span class="footer__link" style="cursor:default;">lbsconnect.net</span></li><li><span class="footer__link" style="cursor:default;">616 Cypress Creek Pkwy, Ste 575</span></li><li><span class="footer__link" style="cursor:default;">Houston, TX 77090</span></li></ul></div>
       </div>
