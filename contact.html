@@ -183,39 +183,97 @@
             </div>
           </div>
 
-          <!-- Right: Direct contact -->
+          <!-- Right: Inquiry Form -->
           <div>
-            <div class="contact-form" style="display:flex;flex-direction:column;gap:var(--space-6);">
-              <div>
-                <h3 style="font-size:var(--text-xl);font-weight:var(--fw-bold);color:var(--color-gray-800);margin-bottom:var(--space-2);">Ready to Start a Conversation?</h3>
-                <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:var(--lh-relaxed);">The fastest way to reach us is by email. Send us a brief description of your project and we'll reply within 1 business day to schedule a free 30-minute discovery call.</p>
-              </div>
 
-              <a href="mailto:info@lbsconnect.net?subject=Project%20Inquiry%20%E2%80%94%20LBS" class="btn btn--primary btn--lg" style="justify-content:center;text-align:center;">
-                Email Us at info@lbsconnect.net
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              </a>
-
-              <div style="border:1px solid var(--color-gray-200);border-radius:var(--radius-xl);padding:var(--space-6);">
-                <div style="font-size:var(--text-sm);font-weight:var(--fw-semi);color:var(--color-gray-800);margin-bottom:var(--space-4);">What to include in your email</div>
-                <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:var(--space-3);">
-                  <li style="display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--text-sm);color:var(--color-text-muted);">
-                    <span style="color:var(--color-teal);font-weight:700;flex-shrink:0;">&#10003;</span> Your name and organization
-                  </li>
-                  <li style="display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--text-sm);color:var(--color-text-muted);">
-                    <span style="color:var(--color-teal);font-weight:700;flex-shrink:0;">&#10003;</span> A brief description of your project or challenge
-                  </li>
-                  <li style="display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--text-sm);color:var(--color-text-muted);">
-                    <span style="color:var(--color-teal);font-weight:700;flex-shrink:0;">&#10003;</span> Your general timeline or deadline (if any)
-                  </li>
-                  <li style="display:flex;gap:var(--space-3);align-items:flex-start;font-size:var(--text-sm);color:var(--color-text-muted);">
-                    <span style="color:var(--color-teal);font-weight:700;flex-shrink:0;">&#10003;</span> Package interest: Silver, Gold, or Platinum (optional)
-                  </li>
-                </ul>
-              </div>
-
-              <p style="font-size:var(--text-xs);color:var(--color-text-muted);text-align:center;">We respond to every inquiry. No automated sequences — a real reply from Sean.</p>
+            <!-- Success banner (shown after Formspree redirect with ?submitted=1) -->
+            <div id="form-success" style="display:none;background:rgba(0,196,180,0.08);border:1px solid rgba(0,196,180,0.35);border-radius:var(--radius-xl);padding:var(--space-8);text-align:center;margin-bottom:var(--space-6);">
+              <div style="font-size:2.5rem;margin-bottom:var(--space-3);">✅</div>
+              <h3 style="font-size:var(--text-xl);font-weight:var(--fw-bold);color:var(--color-gray-800);margin-bottom:var(--space-2);">Message Received!</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted);">Thanks for reaching out. We'll reply within 1 business day.</p>
             </div>
+
+            <!--
+              FORMSPREE SETUP INSTRUCTIONS
+              ─────────────────────────────
+              1. Go to https://formspree.io and sign up for a free account.
+              2. Click "New Form", set the email to info@lbsconnect.net.
+              3. Copy the form ID from the endpoint URL (e.g. "xabcdefg").
+              4. Replace YOUR_FORM_ID below with that ID.
+              That's it — no backend, no server changes required.
+            -->
+            <form
+              id="contact-form"
+              class="contact-form"
+              action="https://formspree.io/f/xgonakra"
+              method="POST"
+            >
+              <!-- Honeypot — catches bots, invisible to real users -->
+              <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off" />
+              <!-- Redirect back to this page with success flag after submission -->
+              <input type="hidden" name="_next" value="https://www.lbsconnect.net/contact.html?submitted=1" />
+              <!-- Custom email subject line -->
+              <input type="hidden" name="_subject" value="New Inquiry — LBSconnect.net" />
+
+              <h3 style="font-size:var(--text-xl);font-weight:var(--fw-bold);color:var(--color-gray-800);margin-bottom:var(--space-2);">Send Us a Message</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-muted);line-height:var(--lh-relaxed);margin-bottom:var(--space-6);">Fill out the form and we'll reply within 1 business day to schedule your free 30-minute discovery call.</p>
+
+              <div class="form-grid">
+
+                <div class="form-grid form-grid--2">
+                  <div class="form-group">
+                    <label class="form-label" for="first-name">First Name <span>*</span></label>
+                    <input class="form-input" type="text" id="first-name" name="first_name" placeholder="Jane" required autocomplete="given-name" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="last-name">Last Name <span>*</span></label>
+                    <input class="form-input" type="text" id="last-name" name="last_name" placeholder="Smith" required autocomplete="family-name" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="email">Email Address <span>*</span></label>
+                  <input class="form-input" type="email" id="email" name="email" placeholder="jane.smith@agency.gov" required autocomplete="email" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="organization">Organization / Agency</label>
+                  <input class="form-input" type="text" id="organization" name="organization" placeholder="Texas Dept. of Transportation" autocomplete="organization" />
+                </div>
+
+                <div class="form-grid form-grid--2">
+                  <div class="form-group">
+                    <label class="form-label" for="phone">Phone (optional)</label>
+                    <input class="form-input" type="tel" id="phone" name="phone" placeholder="(713) 555-0100" autocomplete="tel" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="package">Package Interest</label>
+                    <select class="form-select" id="package" name="package_interest">
+                      <option value="">— Select one —</option>
+                      <option value="Discovery Call">Discovery Call (Not Sure Yet)</option>
+                      <option value="Silver">Silver — Clarity Package ($7,500)</option>
+                      <option value="Gold">Gold — Modernization Sprint ($20,000)</option>
+                      <option value="Platinum">Platinum — Full Execution ($55,000)</option>
+                      <option value="QA / UAT">QA &amp; UAT Testing ($120/hr)</option>
+                      <option value="Other">Other / Not Sure</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="message">Tell Us About Your Project <span>*</span></label>
+                  <textarea class="form-textarea" id="message" name="message" placeholder="Brief description of your project, challenge, or timeline..." required rows="5"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn--primary form-submit">
+                  Send Message
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+                </button>
+
+              </div>
+
+              <p class="form-note">We respond to every inquiry. No automated sequences — a real reply within 1 business day.</p>
+            </form>
           </div>
 
         </div>
@@ -270,5 +328,43 @@
     </div>
   </footer>
   <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+
+      // Show success banner if redirected back after Formspree submission
+      if (params.get('submitted') === '1') {
+        var banner = document.getElementById('form-success');
+        var form   = document.getElementById('contact-form');
+        if (banner) banner.style.display = 'block';
+        if (form)   form.style.display   = 'none';
+        // Scroll banner into view
+        if (banner) banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      // Pre-select package from ?pkg= query param (used by CTA buttons across the site)
+      var pkg = params.get('pkg');
+      if (pkg) {
+        var select = document.getElementById('package');
+        if (select) {
+          var map = {
+            silver:   'Silver',
+            gold:     'Gold',
+            platinum: 'Platinum',
+            uat:      'QA / UAT'
+          };
+          var val = map[pkg.toLowerCase()];
+          if (val) {
+            for (var i = 0; i < select.options.length; i++) {
+              if (select.options[i].value === val) {
+                select.selectedIndex = i;
+                break;
+              }
+            }
+          }
+        }
+      }
+    })();
+  </script>
 </body>
 </html>
