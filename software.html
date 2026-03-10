@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="description" content="Software products developed by Linton Business Solutions (LBS). Explore web applications built by our team, including MyEasyPass — a Texas exam prep platform for real estate and insurance licensing." />
+  <meta name="keywords" content="LBS software, web applications, MyEasyPass, Texas exam prep, TREC, insurance licensing, apps built by LBS, Linton Business Solutions software" />
+  <meta name="author" content="Linton Business Solutions LLC" />
+  <title>Software Products Built by LBS | Linton Business Solutions</title>
+  <link rel="canonical" href="https://www.lbsconnect.net/software.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Linton Business Solutions" />
+  <meta property="og:title" content="Software Products Built by LBS | Linton Business Solutions" />
+  <meta property="og:description" content="Web applications and software platforms developed by Linton Business Solutions, including MyEasyPass — a bilingual Texas exam prep platform for real estate and insurance licensing." />
+  <meta property="og:url" content="https://www.lbsconnect.net/software.html" />
+  <meta property="og:image" content="https://www.lbsconnect.net/assets/images/og-image.png" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Software Products Built by LBS | Linton Business Solutions" />
+  <meta name="twitter:description" content="Web applications developed by LBS, including MyEasyPass — a bilingual Texas exam prep platform." />
+  <meta name="twitter:image" content="https://www.lbsconnect.net/assets/images/og-image.png" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.lbsconnect.net/software.html",
+        "url": "https://www.lbsconnect.net/software.html",
+        "name": "Software Products Built by LBS | Linton Business Solutions",
+        "description": "Web applications and software platforms developed by Linton Business Solutions.",
+        "isPartOf": {"@id": "https://www.lbsconnect.net/#website"}
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "MyEasyPass",
+        "url": "https://www.myeasypass.net",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "description": "A bilingual (English/Spanish) Texas exam prep platform for real estate (TREC) and insurance licensing, featuring 200+ practice questions, timed mock exams, and score tracking.",
+        "author": {"@id": "https://www.lbsconnect.net/#organization"},
+        "inLanguage": ["en", "es"]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    /* Product card — featured (full-width spotlight) */
+    .product-spotlight {
+      background: var(--color-white);
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: box-shadow var(--transition-base), transform var(--transition-base);
+      margin-top: var(--space-12);
+    }
+    .product-spotlight:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+    .product-spotlight__header {
+      background: var(--gradient-hero);
+      padding: var(--space-10) var(--space-10);
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      position: relative;
+      overflow: hidden;
+    }
+    .product-spotlight__header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 80% 50%, rgba(0,196,180,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .product-spotlight__icon {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.25rem;
+      flex-shrink: 0;
+    }
+    .product-spotlight__name {
+      font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+      font-weight: var(--fw-black);
+      color: var(--color-white);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: var(--space-2);
+    }
+    .product-spotlight__category {
+      font-size: var(--text-sm);
+      font-weight: var(--fw-semi);
+      color: var(--color-teal);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .product-spotlight__url-badge {
+      margin-left: auto;
+      background: rgba(0,196,180,0.15);
+      border: 1px solid rgba(0,196,180,0.35);
+      border-radius: var(--radius-lg);
+      padding: var(--space-3) var(--space-5);
+      font-size: var(--text-sm);
+      font-weight: var(--fw-semi);
+      color: var(--color-teal);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background var(--transition-fast), border-color var(--transition-fast);
+    }
+    .product-spotlight__url-badge:hover {
+      background: rgba(0,196,180,0.25);
+      border-color: rgba(0,196,180,0.6);
+    }
+    .product-spotlight__body {
+      padding: var(--space-10);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+    @media (min-width: 768px) {
+      .product-spotlight__body { grid-template-columns: 1fr 1fr; gap: var(--space-12); }
+    }
+    .product-spotlight__desc {
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+      line-height: var(--lh-relaxed);
+      margin-bottom: var(--space-6);
+    }
+    .product-spotlight__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-6);
+    }
+    .product-tag {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-semi);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background: var(--color-gray-100);
+      color: var(--color-gray-600);
+    }
+    .product-tag--teal { background: rgba(0,196,180,0.1); color: var(--color-teal-dark); }
+    .product-tag--blue { background: rgba(30,111,255,0.1); color: var(--color-blue); }
+    .product-features {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .product-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      line-height: var(--lh-snug);
+    }
+    .product-feature__check {
+      width: 20px;
+      height: 20px;
+      border-radius: var(--radius-full);
+      background: rgba(0,196,180,0.12);
+      color: var(--color-teal-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: var(--fw-bold);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Stats row inside the spotlight */
+    .product-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      padding: var(--space-6);
+      background: var(--color-off-white);
+      border-radius: var(--radius-xl);
+      text-align: center;
+    }
+    .product-stat__number {
+      font-size: var(--text-2xl);
+      font-weight: var(--fw-black);
+      color: var(--color-navy);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .product-stat__label {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      margin-top: var(--space-1);
+    }
+
+    /* More products grid (for future additions) */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-10);
+    }
+    .product-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: box-shadow var(--transition-base), transform var(--transition-base);
+    }
+    .product-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+    .product-card__header {
+      background: var(--gradient-card);
+      padding: var(--space-6);
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+    .product-card__icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      flex-shrink: 0;
+    }
+    .product-card__title { font-size: var(--text-lg); font-weight: var(--fw-bold); color: white; margin-bottom: 2px; }
+    .product-card__category { font-size: var(--text-xs); font-weight: var(--fw-semi); color: var(--color-teal); text-transform: uppercase; letter-spacing: 0.06em; }
+    .product-card__body { padding: var(--space-6); }
+    .product-card__desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-4); }
+    .product-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      font-weight: var(--fw-semi);
+      color: var(--color-blue);
+      text-decoration: none;
+      transition: gap var(--transition-fast);
+    }
+    .product-card__link:hover { gap: var(--space-3); }
+    .product-card__link svg { width: 14px; height: 14px; }
+
+    /* Coming soon card */
+    .product-card--coming-soon { opacity: 0.65; }
+    .product-card--coming-soon .product-card__header { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); }
+    .coming-soon-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: var(--fw-semi);
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.12);
+      margin-top: var(--space-1);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="LBS Home">
+        <div class="nav__logo-mark">LBS</div>
+        <div class="nav__logo-text">
+          <span class="nav__logo-name">LBS</span>
+          <span class="nav__logo-tagline">Technology Solutions</span>
+        </div>
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="services.html" class="nav__link">Services</a></li>
+        <li><a href="portfolio.html" class="nav__link">Portfolio</a></li>
+        <li><a href="software.html" class="nav__link active">Software</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li><a href="https://www.LBS4.com" class="nav__link" target="_blank" rel="noopener noreferrer">Certification Center</a></li>
+      </ul>
+      <div class="nav__cta"><a href="contact.html" class="btn btn--primary">Get Started</a></div>
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <nav class="nav__mobile" id="nav-mobile" aria-label="Mobile navigation">
+    <a href="index.html" class="nav__mobile-link">Home</a>
+    <a href="about.html" class="nav__mobile-link">About</a>
+    <a href="services.html" class="nav__mobile-link">Services</a>
+    <a href="portfolio.html" class="nav__mobile-link">Portfolio</a>
+    <a href="software.html" class="nav__mobile-link active">Software</a>
+    <a href="contact.html" class="nav__mobile-link">Contact</a>
+    <a href="https://www.LBS4.com" class="nav__mobile-link" target="_blank" rel="noopener noreferrer">Certification Center</a>
+    <div class="nav__mobile-cta"><a href="contact.html" class="btn btn--primary" style="width:100%;justify-content:center;">Get Started</a></div>
+  </nav>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="about-hero" aria-label="Software Products">
+      <div class="container">
+        <div class="page-hero-label"><span>💻</span> Our Software</div>
+        <h1 class="page-hero-heading">Software Built<br>by LBS.</h1>
+        <p class="page-hero-desc">Beyond consulting, LBS designs and builds web applications that solve real problems. Explore the platforms our team has taken from concept to production.</p>
+      </div>
+    </section>
+
+    <!-- ============ FEATURED PRODUCT — myeasypass.net ============ -->
+    <section class="section" aria-labelledby="products-heading">
+      <div class="container">
+        <div>
+          <span class="section-label">Available Now</span>
+          <h2 class="section-heading" id="products-heading">Live Products</h2>
+          <p class="section-sub">Software products currently in production and available to users.</p>
+        </div>
+
+        <!-- MyEasyPass spotlight -->
+        <div class="product-spotlight fade-in">
+          <div class="product-spotlight__header">
+            <div class="product-spotlight__icon">🎓</div>
+            <div>
+              <div class="product-spotlight__name">MyEasyPass</div>
+              <div class="product-spotlight__category">Exam Prep Web Application</div>
+            </div>
+            <a href="https://www.myeasypass.net" class="product-spotlight__url-badge" target="_blank" rel="noopener noreferrer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              myeasypass.net
+            </a>
+          </div>
+
+          <div class="product-spotlight__body">
+            <!-- Left: description + tags + CTA -->
+            <div>
+              <p class="product-spotlight__desc">
+                MyEasyPass is a bilingual (English &amp; Spanish) Texas exam prep platform purpose-built for candidates pursuing real estate or insurance licensing. Powered by 200+ practice questions aligned to official exam blueprints, it helps users study smarter and walk into test day with confidence.
+              </p>
+              <div class="product-spotlight__tags">
+                <span class="product-tag product-tag--teal">Bilingual — EN / ES</span>
+                <span class="product-tag product-tag--blue">Texas TREC</span>
+                <span class="product-tag product-tag--blue">Insurance Licensing</span>
+                <span class="product-tag">Web App</span>
+                <span class="product-tag">Exam Prep</span>
+                <span class="product-tag">Score Tracking</span>
+              </div>
+              <a href="https://www.myeasypass.net" class="btn btn--teal" target="_blank" rel="noopener noreferrer">
+                Visit MyEasyPass
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+
+            <!-- Right: key features + stats -->
+            <div>
+              <ul class="product-features" style="margin-bottom: var(--space-6);">
+                <li class="product-feature"><span class="product-feature__check">✓</span><span>200+ practice questions mapped to Texas licensing exam blueprints</span></li>
+                <li class="product-feature"><span class="product-feature__check">✓</span><span>Timed mock exams that simulate real test conditions</span></li>
+                <li class="product-feature"><span class="product-feature__check">✓</span><span>Instant scoring and per-question feedback</span></li>
+                <li class="product-feature"><span class="product-feature__check">✓</span><span>Full bilingual interface — switch between English and Spanish</span></li>
+                <li class="product-feature"><span class="product-feature__check">✓</span><span>Covers Texas Real Estate (TREC) and Insurance licensing topics</span></li>
+                <li class="product-feature"><span class="product-feature__check">✓</span><span>Mobile-friendly — study from any device, anywhere</span></li>
+              </ul>
+              <div class="product-stats">
+                <div>
+                  <div class="product-stat__number">200<span style="color:var(--color-teal);">+</span></div>
+                  <div class="product-stat__label">Practice Questions</div>
+                </div>
+                <div>
+                  <div class="product-stat__number" style="font-size:var(--text-xl);">EN / ES</div>
+                  <div class="product-stat__label">Fully Bilingual</div>
+                </div>
+                <div>
+                  <div class="product-stat__number">2</div>
+                  <div class="product-stat__label">Exam Tracks</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ MORE PRODUCTS (coming soon) ============ -->
+    <section class="section section--light" aria-labelledby="coming-heading">
+      <div class="container">
+        <div>
+          <span class="section-label">In Development</span>
+          <h2 class="section-heading" id="coming-heading">More Products on the Way</h2>
+          <p class="section-sub">LBS continues to build tools that address gaps in operational software for businesses and agencies.</p>
+        </div>
+        <div class="products-grid" style="margin-top: var(--space-10);">
+
+          <div class="product-card product-card--coming-soon fade-in">
+            <div class="product-card__header">
+              <div class="product-card__icon">🏠</div>
+              <div>
+                <div class="product-card__title">PropFlow</div>
+                <div class="coming-soon-badge">Coming Soon</div>
+              </div>
+            </div>
+            <div class="product-card__body">
+              <p class="product-card__desc">A property management platform covering tenant management, lease tracking, maintenance requests, and reporting — designed for independent landlords and small property management firms.</p>
+            </div>
+          </div>
+
+          <div class="product-card product-card--coming-soon fade-in fade-in-delay-1">
+            <div class="product-card__header">
+              <div class="product-card__icon">🔍</div>
+              <div>
+                <div class="product-card__title">Rapid Audit Intake</div>
+                <div class="coming-soon-badge">Internal Tool</div>
+              </div>
+            </div>
+            <div class="product-card__body">
+              <p class="product-card__desc">A structured digital intake and scoring tool used during LBS Requirements Rapid Audit engagements to capture artifacts, identify gaps, and auto-generate the initial diagnostic report framework.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BUILD WITH US ============ -->
+    <section class="section section--dark" aria-labelledby="build-heading">
+      <div class="container">
+        <div class="two-col" style="align-items:center;">
+          <div>
+            <span class="section-label">Custom Development</span>
+            <h2 class="section-heading section-heading--white" id="build-heading">Need a Custom Application?</h2>
+            <p class="section-sub section-sub--white" style="margin-bottom: var(--space-8);">LBS brings the same BA rigor we apply to client engagements to every software project we build. If you have an operational problem that needs a purpose-built solution, let's talk.</p>
+            <a href="contact.html" class="btn btn--teal btn--lg">Start a Conversation</a>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+            <div class="pillar-card">
+              <div class="pillar-card__icon">🛠️</div>
+              <h3 class="pillar-card__title">Built by BAs</h3>
+              <p class="pillar-card__desc">Every app we build starts with requirements, not wireframes. We know what users actually need before a line of code is written.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-card__icon">🔒</div>
+              <h3 class="pillar-card__title">Compliance-Aware</h3>
+              <p class="pillar-card__desc">We build with government and regulated-sector clients in mind — accessible, audit-ready, and secure from day one.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="section" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-banner">
+          <h2 class="cta-banner__heading">Interested in MyEasyPass or a Custom Build?</h2>
+          <p class="cta-banner__sub">Reach out to learn more about our software products or to discuss a custom web application for your organization.</p>
+          <div class="cta-banner__actions">
+            <a href="contact.html" class="btn btn--teal btn--lg">Contact Us</a>
+            <a href="https://www.myeasypass.net" class="btn btn--outline btn--lg" target="_blank" rel="noopener noreferrer">Visit MyEasyPass</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo" style="margin-bottom:var(--space-4);display:inline-flex;"><div class="nav__logo-mark">LBS</div><div class="nav__logo-text"><span class="nav__logo-name">LBS</span><span class="nav__logo-tagline">Technology Solutions</span></div></a>
+          <p class="footer__brand-desc">Linton Business Solutions LLC, Veteran-owned business and technology consulting firm delivering measurable results for Texas state agencies since 2017.</p>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-5);"><span style="background:rgba(0,196,180,0.15);color:var(--color-teal);font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">VOSB Verified</span><span style="background:rgba(30,111,255,0.15);color:#7eb8ff;font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">TX HUB Certified</span></div>
+          <div class="footer__social"><a href="https://linkedin.com/company/lbsconnect" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">in</a></div>
+        </div>
+        <div><h3 class="footer__col-title">Services</h3><ul class="footer__links" role="list"><li><a href="services.html#silver" class="footer__link">Silver: Clarity Package</a></li><li><a href="services.html#gold" class="footer__link">Gold: Modernization Sprint</a></li><li><a href="services.html#platinum" class="footer__link">Platinum: Full Execution</a></li><li><a href="services.html#uat" class="footer__link">QA &amp; UAT Testing</a></li></ul></div>
+        <div><h3 class="footer__col-title">Company</h3><ul class="footer__links" role="list"><li><a href="about.html" class="footer__link">About LBS</a></li><li><a href="portfolio.html" class="footer__link">Portfolio</a></li><li><a href="software.html" class="footer__link">Software</a></li><li><a href="about.html#certifications" class="footer__link">Certifications</a></li><li><a href="contact.html" class="footer__link">Contact</a></li></ul></div>
+        <div><h3 class="footer__col-title">Contact</h3><ul class="footer__links" role="list"><li><a href="mailto:info@lbsconnect.net" class="footer__link">info@lbsconnect.net</a></li><li><a href="https://www.lbsconnect.net" class="footer__link">lbsconnect.net</a></li><li><span class="footer__link" style="cursor:default;">616 Cypress Creek Pkwy, Ste 575</span></li><li><span class="footer__link" style="cursor:default;">Houston, TX 77090</span></li></ul></div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2025 Linton Business Solutions LLC. All rights reserved.</p>
+        <nav class="footer__legal" aria-label="Legal links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
