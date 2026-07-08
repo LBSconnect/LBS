@@ -407,6 +407,29 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
+/* Shop nav link — bold + orange outline pill */
+.nav__link--shop {
+  font-weight: var(--fw-bold) !important;
+  color: #FF8C00 !important;
+  box-shadow: 0 0 0 1.5px #FF8C00;
+  border-radius: var(--radius-md);
+  padding: 3px 10px !important;
+}
+.nav__link--shop::after { display: none !important; }
+.nav__link--shop:hover { color: #FFAA00 !important; box-shadow: 0 0 0 1.5px #FFAA00; }
+
+.nav__mobile-link--shop {
+  font-weight: var(--fw-bold) !important;
+  color: #FF8C00 !important;
+}
+
+/* Logo image sizing */
+.nav__logo img {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
 .nav__cta {
   display: flex;
   align-items: center;

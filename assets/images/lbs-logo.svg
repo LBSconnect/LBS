@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="LBS Linton Business Solutions">
+  <defs>
+    <!-- Wing gradient: red-coral → orange -->
+    <linearGradient id="wg1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#D94055"/>
+      <stop offset="45%"  stop-color="#E8643A"/>
+      <stop offset="100%" stop-color="#F5A040"/>
+    </linearGradient>
+    <linearGradient id="wg2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#E04A5A"/>
+      <stop offset="45%"  stop-color="#F07A45"/>
+      <stop offset="100%" stop-color="#F5B050"/>
+    </linearGradient>
+    <!-- Body gradient: purple → royal blue -->
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#6854C8"/>
+      <stop offset="100%" stop-color="#3D68D8"/>
+    </linearGradient>
+    <!-- Tail gradient: blue shades -->
+    <linearGradient id="tg1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#5070D0"/>
+      <stop offset="100%" stop-color="#3B5FCC"/>
+    </linearGradient>
+  </defs>
+
+  <!--
+    Wing pivot / body center: (105, 100)
+    Head center: (140, 72)
+    Tail base: (110, 138)
+
+    WING FEATHERS — orange/coral, fan upper-left from pivot
+    Formula: ellipse center at (pivot + hl*[cos θ, sin θ]), rotated R=(θ-90°)
+  -->
+
+  <!-- Feather 1: θ=-135°, hl=42, hw=8 → center(75,70), R=135° -->
+  <ellipse cx="75" cy="70" rx="8" ry="42" fill="url(#wg1)"
+    transform="rotate(135,75,70)"/>
+
+  <!-- Feather 2: θ=-118°, hl=34, hw=7 → center(89,70), R=152° -->
+  <ellipse cx="89" cy="70" rx="7" ry="34" fill="url(#wg2)"
+    transform="rotate(152,89,70)"/>
+
+  <!-- Feather 3: θ=-103°, hl=25, hw=5.5 → center(99,76), R=167° -->
+  <ellipse cx="99" cy="76" rx="5.5" ry="25" fill="url(#wg1)"
+    transform="rotate(167,99,76)"/>
+
+  <!-- Feather 4: θ=-90°, hl=18, hw=5 → center(105,82), R=180° -->
+  <ellipse cx="105" cy="82" rx="5" ry="18" fill="url(#wg2)"
+    transform="rotate(180,105,82)"/>
+
+  <!--
+    BODY — flowing curve from head through wing pivot to tail base
+    Rendered as a thick stroke path (blue-purple gradient)
+  -->
+  <path d="M 140 68 C 124 82, 108 93, 106 100 C 105 110, 108 124, 110 138"
+    fill="none" stroke="url(#bg1)" stroke-width="9" stroke-linecap="round"
+    stroke-linejoin="round"/>
+
+  <!-- HEAD — elongated teardrop, purple-blue -->
+  <ellipse cx="140" cy="70" rx="12" ry="10" fill="#6050CC"/>
+
+  <!-- BEAK — thin line extending right from head -->
+  <path d="M 151 68 L 176 72" stroke="#8860CC" stroke-width="3.5"
+    stroke-linecap="round"/>
+
+  <!--
+    TAIL FEATHERS — blue, fan downward-right from tail base (110,138)
+  -->
+
+  <!-- Tail 1: θ=90°, hl=25 → center(110,163), R=0° -->
+  <ellipse cx="110" cy="163" rx="4.5" ry="25" fill="url(#tg1)"
+    transform="rotate(0,110,163)"/>
+
+  <!-- Tail 2: θ=72°, hl=22 → center(117,159), R=-18° -->
+  <ellipse cx="117" cy="159" rx="4.5" ry="22" fill="url(#tg1)"
+    transform="rotate(-18,117,159)"/>
+
+  <!-- Tail 3: θ=52°, hl=20 → center(122,154), R=-38° -->
+  <ellipse cx="122" cy="154" rx="4" ry="20" fill="url(#tg1)"
+    transform="rotate(-38,122,154)"/>
+
+  <!-- Tail 4: θ=32°, hl=17 → center(124,147), R=-58° -->
+  <ellipse cx="124" cy="147" rx="4" ry="17" fill="url(#tg1)"
+    transform="rotate(-58,124,147)"/>
+
+  <!-- Tail 5: θ=12°, hl=14 → center(124,141), R=-78° -->
+  <ellipse cx="124" cy="141" rx="3.5" ry="14" fill="url(#tg1)"
+    transform="rotate(-78,124,141)"/>
+
+</svg>

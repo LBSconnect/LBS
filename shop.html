@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="description" content="Shop LBS digital products — downloadable BA templates, 500 ChatGPT prompts for business analysts, and online Business Analysis training. Built from real government and enterprise consulting engagements. Instant download after payment." />
+  <meta name="keywords" content="business analysis templates download, BA template store, business requirements document template, 500 BA ChatGPT prompts, AI prompts business analyst, online BA training, government BA course, online business analysis training, requirements traceability matrix template, user story templates, SQL prompts business analyst, azure devops BA training" />
+  <meta name="author" content="Linton Business Solutions LLC" />
+  <title>Shop | BA Templates, AI Prompts & Online Training | Linton Business Solutions</title>
+  <link rel="canonical" href="https://www.lbsconnect.net/shop.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Linton Business Solutions" />
+  <meta property="og:title" content="Shop | BA Templates, AI Prompts & Online Training | LBS" />
+  <meta property="og:description" content="Downloadable BA templates, 500 ChatGPT prompts for business analysts, and online BA training — built by practicing BAs from real government engagements. Instant delivery." />
+  <meta property="og:url" content="https://www.lbsconnect.net/shop.html" />
+  <meta property="og:image" content="https://www.lbsconnect.net/assets/images/og-image.png" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Shop | BA Templates, AI Prompts & Online Training | LBS" />
+  <meta name="twitter:description" content="Downloadable BA templates, 500 ChatGPT prompts, and online BA training by Linton Business Solutions." />
+  <meta name="twitter:image" content="https://www.lbsconnect.net/assets/images/og-image.png" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.lbsconnect.net/shop.html",
+        "url": "https://www.lbsconnect.net/shop.html",
+        "name": "Shop | BA Templates, AI Prompts & Online Training | Linton Business Solutions",
+        "description": "Digital products by LBS: downloadable BA templates, 500 ChatGPT AI prompts for business analysts, and online Business Analysis training.",
+        "isPartOf": {"@id": "https://www.lbsconnect.net/#website"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.lbsconnect.net/"},
+          {"@type": "ListItem", "position": 2, "name": "Shop", "item": "https://www.lbsconnect.net/shop.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--space-8);
+      margin-top: var(--space-12);
+    }
+
+    .shop-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-md);
+      transition: box-shadow var(--transition-base), transform var(--transition-base);
+      position: relative;
+    }
+    .shop-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .shop-card--featured {
+      border-color: var(--color-teal);
+      box-shadow: 0 0 0 2px rgba(0,196,180,0.2), var(--shadow-md);
+    }
+    .shop-card--featured:hover {
+      box-shadow: 0 0 0 2px rgba(0,196,180,0.35), var(--shadow-lg);
+    }
+
+    .shop-badge {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-4);
+      background: var(--color-teal);
+      color: var(--color-navy);
+      font-size: var(--text-xs);
+      font-weight: var(--fw-bold);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+
+    .shop-card__header { padding: var(--space-8) var(--space-8) var(--space-6); }
+    .shop-card__header--teal { background: linear-gradient(135deg, #0a2e2a 0%, #0d2a4a 100%); }
+    .shop-card__header--blue { background: linear-gradient(135deg, #0d1b35 0%, #0d2a6a 100%); }
+    .shop-card__header--navy { background: linear-gradient(135deg, #0d1b35 0%, #1e3260 100%); }
+    .shop-card__header--gold { background: linear-gradient(135deg, #1c1408 0%, #162248 100%); }
+
+    .shop-card__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      margin-bottom: var(--space-4);
+    }
+    .shop-card__icon--teal { background: rgba(0,196,180,0.15); }
+    .shop-card__icon--blue { background: rgba(30,111,255,0.15); }
+    .shop-card__icon--navy { background: rgba(255,255,255,0.08); }
+    .shop-card__icon--gold { background: rgba(251,191,36,0.15); }
+
+    .shop-card__category {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-semi);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-2);
+    }
+    .shop-card__category--teal { color: var(--color-teal); }
+    .shop-card__category--blue { color: #7eb8ff; }
+    .shop-card__category--navy { color: rgba(255,255,255,0.5); }
+    .shop-card__category--gold { color: #fbbf24; }
+
+    .shop-card__name {
+      font-size: clamp(var(--text-lg), 2.5vw, var(--text-2xl));
+      font-weight: var(--fw-black);
+      color: var(--color-white);
+      line-height: var(--lh-snug);
+      margin-bottom: var(--space-4);
+    }
+    .shop-card__price-row {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+    .shop-card__price {
+      font-size: var(--text-3xl);
+      font-weight: var(--fw-black);
+      color: var(--color-white);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .shop-card__price-note { font-size: var(--text-sm); color: rgba(255,255,255,0.5); }
+
+    .shop-card__body {
+      padding: var(--space-6) var(--space-8);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .shop-card__desc {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      line-height: var(--lh-relaxed);
+      margin-bottom: var(--space-5);
+    }
+
+    .shop-section-label {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-bold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin: var(--space-4) 0 var(--space-3);
+    }
+    .shop-section-label:first-of-type { margin-top: 0; }
+
+    .shop-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-bottom: var(--space-6);
+      flex: 1;
+    }
+    .shop-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      line-height: var(--lh-snug);
+    }
+    .shop-feature__check {
+      width: 18px;
+      height: 18px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: var(--fw-bold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .shop-feature__check--teal { background: rgba(0,196,180,0.12); color: var(--color-teal-dark); }
+    .shop-feature__check--blue { background: rgba(30,111,255,0.12); color: var(--color-blue); }
+    .shop-feature__check--navy { background: rgba(13,27,53,0.1); color: var(--color-navy); }
+    .shop-feature__check--gold { background: rgba(251,191,36,0.12); color: #d97706; }
+
+    .shop-card__cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      width: 100%;
+      padding: var(--space-4) var(--space-6);
+      border-radius: var(--radius-lg);
+      font-size: var(--text-base);
+      font-weight: var(--fw-semi);
+      text-decoration: none;
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+      cursor: pointer;
+      border: none;
+    }
+    .shop-card__cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .shop-card__cta--teal { background: var(--color-teal); color: var(--color-navy); }
+    .shop-card__cta--blue { background: var(--color-blue); color: var(--color-white); }
+    .shop-card__cta--navy { background: var(--color-navy); color: var(--color-white); }
+    .shop-card__cta--gold { background: #fbbf24; color: #78350f; }
+
+    .delivery-note {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      margin-top: var(--space-3);
+      justify-content: center;
+    }
+
+    .shop-info-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+      justify-content: center;
+      margin-top: var(--space-12);
+      padding: var(--space-6) var(--space-8);
+      background: var(--color-off-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-gray-200);
+    }
+    .shop-info-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+    .shop-info-item a { color: var(--color-blue); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="LBS Home">
+        <img src="assets/images/lbs-logo.svg" alt="Linton Business Solutions" />
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="services.html" class="nav__link">Services</a></li>
+        <li><a href="portfolio.html" class="nav__link">Portfolio</a></li>
+        <li><a href="software.html" class="nav__link">Software</a></li>
+        <li><a href="shop.html" class="nav__link nav__link--shop active">Shop</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li><a href="https://www.LBS4.com" class="nav__link" target="_blank" rel="noopener noreferrer">Certification Center</a></li>
+      </ul>
+      <div class="nav__cta"><a href="contact.html" class="btn btn--primary">Get Started</a></div>
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <nav class="nav__mobile" id="nav-mobile" aria-label="Mobile navigation">
+    <a href="index.html" class="nav__mobile-link">Home</a>
+    <a href="about.html" class="nav__mobile-link">About</a>
+    <a href="services.html" class="nav__mobile-link">Services</a>
+    <a href="portfolio.html" class="nav__mobile-link">Portfolio</a>
+    <a href="software.html" class="nav__mobile-link">Software</a>
+    <a href="shop.html" class="nav__mobile-link nav__mobile-link--shop active">Shop</a>
+    <a href="contact.html" class="nav__mobile-link">Contact</a>
+    <a href="https://www.LBS4.com" class="nav__mobile-link" target="_blank" rel="noopener noreferrer">Certification Center</a>
+    <div class="nav__mobile-cta"><a href="contact.html" class="btn btn--primary" style="width:100%;justify-content:center;">Get Started</a></div>
+  </nav>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="about-hero" aria-label="LBS Shop">
+      <div class="container">
+        <div class="page-hero-label"><span>🛒</span> Digital Products</div>
+        <h1 class="page-hero-heading">LBS Shop.</h1>
+        <p class="page-hero-desc">Professional BA templates, AI prompt packs, and online training programs built from real government and enterprise consulting engagements. Instant delivery. Ready to use.</p>
+      </div>
+    </section>
+
+    <!-- ============ PRODUCTS GRID ============ -->
+    <section class="section" aria-labelledby="shop-heading">
+      <div class="container">
+        <div>
+          <span class="section-label">Available Now</span>
+          <h2 class="section-heading" id="shop-heading">Browse Products</h2>
+          <p class="section-sub">Every product is built by practicing Business Analysts — not generic course creators.</p>
+        </div>
+
+        <div class="shop-grid">
+
+          <!-- Card 1: Business Analyst Template Store -->
+          <div class="shop-card fade-in">
+            <div class="shop-card__header shop-card__header--teal">
+              <div class="shop-card__icon shop-card__icon--teal">📋</div>
+              <div class="shop-card__category shop-card__category--teal">Downloadable Templates</div>
+              <div class="shop-card__name">Business Analyst Template Store</div>
+              <div class="shop-card__price-row">
+                <span class="shop-card__price">$29</span>
+                <span class="shop-card__price-note">per template &nbsp;·&nbsp; Full bundle $199</span>
+              </div>
+            </div>
+            <div class="shop-card__body">
+              <p class="shop-card__desc">Professional, ready-to-use BA documents built from real government and enterprise engagements. Download, customize, and deliver — no blank page required.</p>
+              <div class="shop-section-label">Templates included</div>
+              <ul class="shop-features">
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--teal">✓</span><span>Business Requirements Document (BRD)</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--teal">✓</span><span>Functional Requirements Specification</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--teal">✓</span><span>User Stories Template</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--teal">✓</span><span>Process Mapping Templates</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--teal">✓</span><span>Risk Register</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--teal">✓</span><span>Stakeholder Register</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--teal">✓</span><span>Requirements Traceability Matrix (RTM)</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--teal">✓</span><span>RFP Template</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--teal">✓</span><span>Project Charter</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--teal">✓</span><span>Test Case Template</span></li>
+              </ul>
+              <a href="#" class="shop-card__cta shop-card__cta--teal">
+                Get Templates
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <div class="delivery-note">⚡ Instant download after payment</div>
+            </div>
+          </div>
+
+          <!-- Card 2: AI Prompt Library -->
+          <div class="shop-card fade-in fade-in-delay-1">
+            <div class="shop-card__header shop-card__header--blue">
+              <div class="shop-card__icon shop-card__icon--blue">🤖</div>
+              <div class="shop-card__category shop-card__category--blue">AI Prompt Pack</div>
+              <div class="shop-card__name">AI Prompt Library for Business Analysts</div>
+              <div class="shop-card__price-row">
+                <span class="shop-card__price">$49</span>
+                <span class="shop-card__price-note">starter &nbsp;·&nbsp; Complete library $99</span>
+              </div>
+            </div>
+            <div class="shop-card__body">
+              <p class="shop-card__desc">500 tested ChatGPT prompts engineered for Business Analysts. Accelerate every phase of the BA lifecycle — from elicitation to delivery.</p>
+              <div class="shop-section-label">Prompts included for</div>
+              <ul class="shop-features">
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--blue">✓</span><span>Writing user stories &amp; acceptance criteria</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--blue">✓</span><span>SQL generation &amp; data analysis</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--blue">✓</span><span>Process mapping &amp; documentation</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--blue">✓</span><span>Meeting minutes &amp; action items</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--blue">✓</span><span>Requirements gathering &amp; elicitation</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--blue">✓</span><span>Gap analysis &amp; risk identification</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--blue">✓</span><span>Agile ceremonies &amp; retrospectives</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--blue">✓</span><span>Product ownership &amp; backlog refinement</span></li>
+              </ul>
+              <a href="#" class="shop-card__cta shop-card__cta--blue">
+                Get the Library
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <div class="delivery-note">⚡ Instant delivery after payment</div>
+            </div>
+          </div>
+
+          <!-- Card 3: Online BA Academy -->
+          <div class="shop-card shop-card--featured fade-in fade-in-delay-2">
+            <div class="shop-badge">Most Popular</div>
+            <div class="shop-card__header shop-card__header--navy">
+              <div class="shop-card__icon shop-card__icon--navy">🏛️</div>
+              <div class="shop-card__category shop-card__category--navy">Online Academy</div>
+              <div class="shop-card__name">Online BA Academy</div>
+              <div class="shop-card__price-row">
+                <span class="shop-card__price">$299</span>
+                <span class="shop-card__price-note">per course &nbsp;·&nbsp; bundles available</span>
+              </div>
+            </div>
+            <div class="shop-card__body">
+              <p class="shop-card__desc">Structured, self-paced online training built around the exact methodologies LBS applies on federal and state government engagements.</p>
+              <div class="shop-section-label">What you get</div>
+              <ul class="shop-features">
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--navy">✓</span><span>Self-paced video curriculum</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--navy">✓</span><span>Government BA methodology track</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--navy">✓</span><span>Requirements Engineering fundamentals</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--navy">✓</span><span>Agile &amp; Scrum for Business Analysts</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--navy">✓</span><span>Live monthly Q&amp;A sessions with LBS team</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--navy">✓</span><span>Certificate of completion</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--navy">✓</span><span>Lifetime access to course updates</span></li>
+              </ul>
+              <a href="#" class="shop-card__cta shop-card__cta--navy">
+                Enroll Now
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 4: Online Business Analysis Training -->
+          <div class="shop-card fade-in fade-in-delay-3">
+            <div class="shop-card__header shop-card__header--gold">
+              <div class="shop-card__icon shop-card__icon--gold">🎓</div>
+              <div class="shop-card__category shop-card__category--gold">Online Course</div>
+              <div class="shop-card__name">Online Business Analysis Training</div>
+              <div class="shop-card__price-row">
+                <span class="shop-card__price">$299</span>
+                <span class="shop-card__price-note">per course</span>
+              </div>
+            </div>
+            <div class="shop-card__body">
+              <p class="shop-card__desc">A comprehensive self-paced course covering modern BA skills used in government and enterprise. Learn through recorded videos, test your knowledge, and earn a certificate.</p>
+              <div class="shop-section-label">Course format</div>
+              <ul class="shop-features" style="margin-bottom:var(--space-2);flex:none;">
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Self-paced — learn on your schedule</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Recorded video lessons</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Knowledge quizzes per module</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Certificate of completion</span></li>
+              </ul>
+              <div class="shop-section-label">Topics covered</div>
+              <ul class="shop-features">
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Agile &amp; Scrum</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Azure DevOps</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>User Stories &amp; Acceptance Criteria</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>SQL for Business Analysts</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Process Mapping</span></li>
+                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Government BA</span></li>
+              </ul>
+              <a href="#" class="shop-card__cta shop-card__cta--gold">
+                Start Learning
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Info strip -->
+        <div class="shop-info-strip">
+          <div class="shop-info-item">⚡ Instant digital delivery</div>
+          <div class="shop-info-item">🔒 Secure checkout</div>
+          <div class="shop-info-item">♻️ Free updates included</div>
+          <div class="shop-info-item">🏛️ Government &amp; enterprise ready</div>
+          <div class="shop-info-item">✉️ Questions? <a href="contact.html">Contact us</a></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="section section--dark" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-banner">
+          <h2 class="cta-banner__heading">Not Sure Where to Start?</h2>
+          <p class="cta-banner__sub">Reach out to the LBS team and we'll recommend the right product or training path for your role and goals.</p>
+          <div class="cta-banner__actions">
+            <a href="contact.html" class="btn btn--teal btn--lg">Contact Us</a>
+            <a href="services.html" class="btn btn--outline btn--lg">View Consulting Services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo" style="margin-bottom:var(--space-4);display:inline-flex;"><img src="assets/images/lbs-logo.svg" alt="Linton Business Solutions" /></a>
+          <p class="footer__brand-desc">Linton Business Solutions LLC, Veteran-owned business analysis and technology consulting firm delivering measurable results for federal, state, and local government agencies nationwide since 2017.</p>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-5);"><span style="background:rgba(0,196,180,0.15);color:var(--color-teal);font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">VOSB Verified</span><span style="background:rgba(30,111,255,0.15);color:#7eb8ff;font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">TX HUB Certified</span></div>
+          <div class="footer__social"><a href="https://linkedin.com/company/lbsconnect" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">in</a></div>
+        </div>
+        <div><h3 class="footer__col-title">Services</h3><ul class="footer__links" role="list"><li><a href="services.html#silver" class="footer__link">Silver: Project Readiness Package</a></li><li><a href="services.html#gold" class="footer__link">Gold: BA Sprint Package</a></li><li><a href="services.html#platinum" class="footer__link">Platinum: Full BA &amp; Delivery</a></li><li><a href="services.html#uat" class="footer__link">QA &amp; UAT Testing</a></li></ul></div>
+        <div><h3 class="footer__col-title">Company</h3><ul class="footer__links" role="list"><li><a href="about.html" class="footer__link">About LBS</a></li><li><a href="portfolio.html" class="footer__link">Portfolio</a></li><li><a href="software.html" class="footer__link">Software</a></li><li><a href="shop.html" class="footer__link">Shop</a></li><li><a href="about.html#certifications" class="footer__link">Certifications</a></li><li><a href="contact.html" class="footer__link">Contact</a></li></ul></div>
+        <div><h3 class="footer__col-title">Contact</h3><ul class="footer__links" role="list"><li><a href="mailto:info@lbsconnect.net" class="footer__link">info@lbsconnect.net</a></li><li><a href="https://www.lbsconnect.net" class="footer__link">lbsconnect.net</a></li><li><span class="footer__link" style="cursor:default;">616 FM 1960 Rd W, Ste 101</span></li><li><span class="footer__link" style="cursor:default;">Houston, TX 77090-3048</span></li></ul></div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2025 Linton Business Solutions LLC. All rights reserved.</p>
+        <nav class="footer__legal" aria-label="Legal links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
