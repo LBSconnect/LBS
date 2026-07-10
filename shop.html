@@ -231,6 +231,16 @@
     .shop-card__cta--blue { background: var(--color-blue); color: var(--color-white); }
     .shop-card__cta--navy { background: var(--color-navy); color: var(--color-white); }
     .shop-card__cta--gold { background: #fbbf24; color: #78350f; }
+    .shop-card__cta--disabled {
+      background: var(--color-gray-200);
+      color: var(--color-text-muted);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .shop-badge--coming-soon {
+      background: #64748b;
+      color: var(--color-white);
+    }
 
     .delivery-note {
       display: flex;
@@ -313,7 +323,7 @@
     <section class="section" aria-labelledby="shop-heading">
       <div class="container">
         <div>
-          <span class="section-label">Available Now</span>
+          <span class="section-label">Digital Products</span>
           <h2 class="section-heading" id="shop-heading">Browse Products</h2>
         </div>
 
@@ -345,7 +355,7 @@
                 <li class="shop-feature"><span class="shop-feature__check shop-feature__check--teal">✓</span><span>Project Charter</span></li>
                 <li class="shop-feature"><span class="shop-feature__check shop-feature__check--teal">✓</span><span>Test Case Template</span></li>
               </ul>
-              <a href="#" class="shop-card__cta shop-card__cta--teal">
+              <a href="ba-template-store.html" class="shop-card__cta shop-card__cta--teal">
                 Get Templates
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
@@ -386,8 +396,8 @@
           </div>
 
           <!-- Card 3: Online BA Academy -->
-          <div class="shop-card shop-card--featured fade-in fade-in-delay-2">
-            <div class="shop-badge">Most Popular</div>
+          <div class="shop-card fade-in fade-in-delay-2">
+            <div class="shop-badge shop-badge--coming-soon">Coming Soon</div>
             <div class="shop-card__header shop-card__header--navy">
               <div class="shop-card__icon shop-card__icon--navy">🏛️</div>
               <div class="shop-card__category shop-card__category--navy">Online Academy</div>
@@ -406,18 +416,15 @@
                 <li class="shop-feature"><span class="shop-feature__check shop-feature__check--navy">✓</span><span>Requirements Engineering fundamentals</span></li>
                 <li class="shop-feature"><span class="shop-feature__check shop-feature__check--navy">✓</span><span>Agile &amp; Scrum for Business Analysts</span></li>
                 <li class="shop-feature"><span class="shop-feature__check shop-feature__check--navy">✓</span><span>Live monthly Q&amp;A sessions with LBS team</span></li>
-                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--navy">✓</span><span>Certificate of completion</span></li>
                 <li class="shop-feature"><span class="shop-feature__check shop-feature__check--navy">✓</span><span>Lifetime access to course updates</span></li>
               </ul>
-              <a href="#" class="shop-card__cta shop-card__cta--navy">
-                Enroll Now
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
+              <span class="shop-card__cta shop-card__cta--disabled">Coming Soon</span>
             </div>
           </div>
 
           <!-- Card 4: Online Business Analysis Training -->
           <div class="shop-card fade-in fade-in-delay-3">
+            <div class="shop-badge shop-badge--coming-soon">Coming Soon</div>
             <div class="shop-card__header shop-card__header--gold">
               <div class="shop-card__icon shop-card__icon--gold">🎓</div>
               <div class="shop-card__category shop-card__category--gold">Online Course</div>
@@ -434,7 +441,6 @@
                 <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Self-paced, learn on your schedule</span></li>
                 <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Recorded video lessons</span></li>
                 <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Knowledge quizzes per module</span></li>
-                <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Certificate of completion</span></li>
               </ul>
               <div class="shop-section-label">Topics covered</div>
               <ul class="shop-features">
@@ -445,10 +451,7 @@
                 <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Process Mapping</span></li>
                 <li class="shop-feature"><span class="shop-feature__check shop-feature__check--gold">✓</span><span>Government BA</span></li>
               </ul>
-              <a href="#" class="shop-card__cta shop-card__cta--gold">
-                Start Learning
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
+              <span class="shop-card__cta shop-card__cta--disabled">Coming Soon</span>
             </div>
           </div>
 
