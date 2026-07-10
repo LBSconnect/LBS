@@ -1,0 +1,502 @@
+# AI Prompt Library for Business Analysts — Starter Pack
+**210 ChatGPT Prompts | Linton Business Solutions | lbsconnect.net**
+*Works with ChatGPT, Claude, Gemini, and Microsoft Copilot*
+
+---
+
+**Included in this pack:**
+- Category 1: User Stories & Acceptance Criteria — 70 prompts
+- Category 2: Requirements Gathering & Elicitation — 80 prompts
+- Category 3: Meeting Minutes & Action Items — 60 prompts
+
+**How to use:** Copy any prompt → replace [bracketed placeholders] with your project details → paste into ChatGPT, Claude, or Gemini.
+
+---
+
+## CATEGORY 1: USER STORIES & ACCEPTANCE CRITERIA
+*70 Prompts*
+
+### Writing User Stories
+
+1. Write 5 user stories for a government employee self-service portal where workers can submit time-off requests, view pay stubs, update personal information, and download tax documents. Use the format: As a [role], I want [goal], so that [benefit].
+
+2. I'm building a [system name] for a [agency/organization type]. Write 8 user stories covering the core workflows for a [user role] who needs to [main objective]. Use standard user story format.
+
+3. Convert these business requirements into user stories: [paste requirements]. Maintain the original intent but rewrite each requirement from the end user's perspective using the As a / I want / So that format.
+
+4. Write user stories for a mobile application that allows field inspectors at a state agency to complete inspection checklists, attach photos, add GPS coordinates, and submit reports offline when connectivity is unavailable.
+
+5. I have a large epic: "As a procurement officer, I want a digital contract management system." Decompose this into 8–10 sprint-ready user stories covering: creation, routing, approval, signature, storage, and search.
+
+6. Generate user stories for the Admin role in a case management platform used by a county social services department. Cover: user management, role assignment, audit logging, data exports, and system configuration.
+
+7. Write user stories for a reporting module that allows [user role] to generate standard reports, create custom reports using a drag-and-drop builder, schedule automated delivery, and export to PDF or Excel.
+
+8. I need user stories for a data migration project moving from [old system] to [new system]. Write 6 stories covering: data validation, mapping rules, migration scheduling, reconciliation reporting, error handling, and rollback procedures.
+
+9. Review these user stories and identify which violate the INVEST criteria (Independent, Negotiable, Valuable, Estimable, Small, Testable). For each violation, explain the issue and rewrite the story: [paste user stories].
+
+10. Write 5 user stories for Section 508 / WCAG 2.1 AA accessibility compliance. Cover: screen reader support, keyboard navigation, color contrast, text resizing, and form field labels.
+
+11. Generate user stories for a citizen-facing online permit application portal. The citizen should be able to: create an account, start an application, save drafts, upload supporting documents, pay fees online, and track application status.
+
+12. Write user stories for the notification system in a case management application. Users should receive email, SMS, and in-app alerts for: status changes, assigned tasks, approaching deadlines, and system messages.
+
+13. I have these stakeholder interview notes about what users need from a new scheduling system: [paste notes]. Extract and write user stories from these notes, grouping related functionality.
+
+14. Write user stories for an audit trail feature that must log all data changes, including: who made the change, what was changed, the old value, the new value, and the timestamp.
+
+15. Create user stories for a document management feature allowing users to: upload, version-control, tag, search, share, and archive documents within a case file.
+
+### Government & Compliance User Stories
+
+16. Write user stories for a FISMA-compliant authentication system. Cover: multi-factor authentication, PIV card support, session timeout, failed login lockout, and password policy enforcement.
+
+17. Generate user stories for a federal grant management system used by state agencies. Cover: grant discovery, application submission, award acceptance, reporting milestones, drawdown requests, and closeout procedures.
+
+18. Write 6 user stories for a Freedom of Information Act (FOIA) request management module. Cover: request intake, routing, tracking, redaction workflow, response generation, and appeals.
+
+19. Create user stories for a records retention module that must: automatically classify records by type, apply retention schedules, flag records for review, and initiate disposition workflows.
+
+20. Write user stories for a state agency procurement portal covering: vendor registration, solicitation publication, bid submission, evaluation scoring, award notification, and contract execution.
+
+21. Generate user stories for a public-facing data portal where citizens can search, view, filter, and download open government datasets. Include accessibility and mobile responsiveness requirements.
+
+22. Write user stories for an employee onboarding workflow at a government agency. Cover: HR setup, IT provisioning, badge issuance, training assignment, mentor assignment, and 90-day check-ins.
+
+23. Create user stories for a compliance tracking module that: monitors regulatory requirements, assigns owners, tracks completion status, and generates compliance dashboards for leadership.
+
+24. Write user stories for a government contract modification workflow covering: request, justification, legal review, CO approval, contractor acknowledgment, and system update.
+
+25. Generate user stories for a background investigation request system used by HR to: initiate, track, and receive results for security clearance investigations.
+
+### Acceptance Criteria — Gherkin Format
+
+26. Write Gherkin acceptance criteria (Given/When/Then) for this user story: As a registered user, I want to reset my password via email so that I can regain access when I forget my credentials.
+
+27. Generate Gherkin scenarios for a search feature that must: return results within 3 seconds, support keyword and phrase search, allow filtering by date range and category, and highlight matching terms in results.
+
+28. Write Gherkin acceptance criteria for a file upload feature where users can upload documents up to 25MB, in PDF, DOCX, or XLSX format only, with a virus scan before acceptance.
+
+29. Create Gherkin scenarios for a payment processing feature including: successful payment, declined card, insufficient funds, session timeout during payment, and duplicate transaction detection.
+
+30. Write Gherkin acceptance criteria for a role-based access control system where: Admin users can create and deactivate accounts, Manager users can view team reports, Standard users can only access their own data.
+
+31. Generate Gherkin scenarios for an auto-save feature that: saves form data every 60 seconds, preserves data on browser close, and prompts the user to restore their session on return.
+
+32. Write Gherkin acceptance criteria for a multi-step form wizard that: validates each step before progression, displays a progress indicator, allows backward navigation without losing data, and sends a confirmation email on completion.
+
+33. Create Gherkin scenarios covering the happy path and 3 error paths for a user login feature with MFA enabled.
+
+34. Write Gherkin acceptance criteria for a report generation feature that must: handle datasets up to 500,000 rows, complete within 30 seconds, and provide a download link via email for large reports.
+
+35. Generate Gherkin scenarios for a data import feature that: validates file structure, checks for duplicate records, displays a preview before import, logs all changes, and sends a summary report after completion.
+
+### Acceptance Criteria — Conditions of Satisfaction
+
+36. Write conditions of satisfaction for this user story: As a manager, I want to view a dashboard of my team's open tasks so that I can identify bottlenecks and reassign work as needed.
+
+37. Generate non-functional acceptance criteria for a web application that must: load pages within 2 seconds, support 500 concurrent users, maintain 99.5% uptime, and pass an OWASP security scan.
+
+38. Write acceptance criteria for a data synchronization feature that must: sync between the mobile app and server every 5 minutes when connected, queue changes when offline, and resolve conflicts using a last-write-wins rule.
+
+39. Create acceptance criteria for an email notification system that: delivers within 5 minutes of trigger, includes an unsubscribe link, renders correctly in Outlook, Gmail, and Apple Mail, and logs delivery status.
+
+40. Write conditions of satisfaction for an audit log feature covering: what events must be logged, required data fields, retention period, access controls, and export capability.
+
+### Epic Decomposition & Story Splitting
+
+41. This feature is too large for one sprint: "Build a complete vendor management module." Split it into 4–6 epics and break each epic into 3–4 user stories completable in a 2-week sprint.
+
+42. I have a user story estimated at 13 story points: "As a user, I want to complete my profile so the system can personalize my experience." Split this into stories of 3 points or less, maintaining user value.
+
+43. Decompose this workflow into user stories: A supervisor receives a daily digest of pending approvals, clicks through to review each item, can approve or reject with a comment, and the system notifies the requester of the decision.
+
+44. Break down "Build an API integration with [third-party system]" into user stories covering: technical discovery, authentication setup, data mapping, error handling, testing, monitoring, and documentation.
+
+45. I have an epic for a reporting module. Write the user stories for the MVP phase only — the smallest set of stories that still delivers real value to users.
+
+### Story Refinement & QA
+
+46. Review these user stories for ambiguity, missing actors, unclear benefits, and untestable criteria. Rewrite any that need improvement: [paste user stories].
+
+47. These user stories were written by a business stakeholder. Rewrite them using proper BA structure: remove implementation details, add the "so that" benefit, and make them testable: [paste stories].
+
+48. Identify the dependencies between these user stories and flag any that cannot be built independently: [paste list of user stories]. Suggest a recommended build sequence.
+
+49. Write the Definition of Ready checklist for user stories in our Agile team. Include criteria for: scope clarity, acceptance criteria, design availability, dependency identification, and estimate consensus.
+
+50. These user stories were each sized at 8 story points. Identify which can be split further and provide the split stories: [paste user stories].
+
+### Edge Cases & Error Scenarios
+
+51. I have this happy-path user story: [paste story]. Write 5 additional stories covering the key error scenarios, edge cases, and alternate flows.
+
+52. Write user stories for the error handling behavior of a form submission when: the network drops mid-submit, a required field is blank, a file exceeds size limits, the session has expired, and the server returns an error.
+
+53. Generate user stories covering accessibility edge cases for a form: a user navigating entirely by keyboard, a screen reader user, a user zoomed to 200%, and a user with a motor impairment using switch access.
+
+54. Write user stories for the system behavior when a concurrent editing conflict occurs — two users editing the same record at the same time.
+
+55. Create user stories for the data validation rules on a person record: name fields, date of birth, SSN format, phone number formats, email format, and address validation.
+
+56. Write user stories for the system's behavior during scheduled maintenance windows: advance notification, graceful degradation, read-only mode, and restoration confirmation.
+
+57. Generate user stories for offline functionality in a mobile application: what the user can do offline, what is restricted, how data syncs when connectivity returns, and how conflicts are handled.
+
+58. Write user stories for timeout and session management: idle session warning, session expiration, data preservation on timeout, and re-authentication without data loss.
+
+59. Create user stories for a cascading delete scenario: when a parent record is deleted, what happens to all related child records, dependent records, and historical audit data.
+
+60. Write user stories for system behavior when an integration with [external system] is unavailable: fallback behavior, user messaging, retry logic, and data reconciliation after restoration.
+
+### Specialized Story Types
+
+61. Write infrastructure/DevOps user stories for a CI/CD pipeline covering: automated testing, deployment to staging, approval gates, production deployment, and rollback capability.
+
+62. Generate data migration user stories for moving [X] years of historical records from a legacy system to a new platform, covering: data cleansing, mapping, validation, parallel run, and cutover.
+
+63. Write security user stories for a web application covering: input validation, SQL injection prevention, XSS protection, CSRF protection, and penetration testing sign-off.
+
+64. Create training and help content user stories: contextual help tooltips, searchable knowledge base, onboarding walkthrough, video tutorials, and printable user guides.
+
+65. Write performance user stories defining system behavior under load: normal load, peak load, stress testing, graceful performance degradation, and recovery time objectives.
+
+66. Generate integration user stories for connecting [System A] with [System B] via REST API: authentication, data mapping, error handling, retry logic, logging, and monitoring.
+
+67. Write user stories for a data archiving process that: moves records older than [X] years to cold storage, maintains searchability, enforces access controls on archived data, and supports legal hold exceptions.
+
+68. Create user stories for a multi-language and localization feature covering: language selection, date/number formatting, right-to-left text support, and translated content management.
+
+69. Write user stories for a self-service reporting feature where non-technical users can: build reports using a visual interface, save templates, schedule automated delivery, and share reports with colleagues.
+
+70. Generate user stories for an API documentation portal where developers can: browse endpoints, view request/response examples, test calls in a sandbox, and register for API keys.
+
+---
+
+## CATEGORY 2: REQUIREMENTS GATHERING & ELICITATION
+*80 Prompts*
+
+### Elicitation Interview Questions
+
+1. Generate 10 open-ended discovery questions for an initial stakeholder interview with an agency director about a new case management system. Focus on: current pain points, future vision, success metrics, and constraints.
+
+2. I'm meeting with end users of a legacy system being replaced. Write 12 interview questions to understand their: current workflows, workarounds, what they value in the current system, and what they wish it did differently.
+
+3. Write 8 probing follow-up questions for when a stakeholder says "the system should be user-friendly." These should help me define specific, measurable usability requirements.
+
+4. Create 10 questions for a technical discovery session with the IT team covering: existing architecture, integrations, data structures, and technical constraints.
+
+5. Generate interview questions for a session with a procurement officer about a new vendor management system. Include questions about: current process, pain points, regulatory requirements, transaction volume, and approval workflows.
+
+6. Write 8 questions for a requirements session focused on security and compliance for a system that will process [PII/PHI/federal data]. Include: classification level, access controls, audit requirements, and applicable regulations.
+
+7. I'm conducting requirements discovery for a data warehouse project. Generate 10 questions to ask business stakeholders about: reporting needs, data sources, analysis frequency, current tools, and decision-making use cases.
+
+8. Create discovery questions for a meeting with the finance department about a new budget tracking system. Cover: budget cycle, approval hierarchies, reporting requirements, integrations with existing tools, and year-end processes.
+
+9. Write elicitation questions for a session with field workers whose paper inspection form is being digitized. Focus on: their environment, connectivity, device preferences, data entry challenges, and form completion workflow.
+
+10. Generate 10 questions for a session about a customer-facing portal. Focus on: customer demographics, digital literacy, accessibility needs, preferred channels, common issues with the current process, and what success looks like.
+
+11. Write discovery questions to understand the reporting and analytics needs of an executive team. Focus on: what decisions they make, what data they currently use, how often they need updates, and what format they prefer.
+
+12. Create interview questions to understand a complex approval workflow. Cover: number of steps, who approves at each step, criteria used, how exceptions are handled, and current bottlenecks.
+
+13. Generate questions for a session about data migration requirements. Cover: what data exists, its quality, how it's structured, what needs to migrate vs. be archived, what validation is needed, and the acceptable cutover window.
+
+14. Write questions to elicit non-functional requirements from a technical stakeholder. Cover: performance, scalability, availability, disaster recovery, security, maintainability, and compliance requirements.
+
+15. Create questions for a kickoff meeting with a new client agency about a BA engagement. Cover: project goals, success criteria, key stakeholders, timeline constraints, budget boundaries, risks, and decision-making authority.
+
+### Requirements Workshops
+
+16. Design a 2-hour requirements workshop agenda for defining the scope of a new [system type] for a [agency type]. Include: icebreaker, current-state walkthrough, future-state vision, requirements prioritization, and next steps.
+
+17. Write a set of structured questions to guide a joint requirements session with both business and technical stakeholders who have conflicting priorities about a new system.
+
+18. Create a facilitation guide for a requirements prioritization workshop using MoSCoW method. Include: facilitator instructions, materials needed, ground rules, and a results capture template.
+
+19. I facilitated a 3-hour requirements workshop and have these raw notes: [paste notes]. Synthesize the requirements, group related items, and format as a structured requirements list with categories.
+
+20. Write the instructions and template for a "Day in the Life" workshop where users walk through their typical workday to help identify requirements and pain points.
+
+21. Design a requirements validation walkthrough agenda where stakeholders review and confirm a requirements document. Include: how to collect feedback, manage disagreements, and reach consensus.
+
+22. Create affinity mapping prompts and category headings for a workshop where 15 stakeholders contribute requirements for a new [system]. Use categories: Must-Haves, Nice-to-Haves, Concerns, and Questions.
+
+23. Write a structured questionnaire for a requirements survey sent to 50 end users who can't attend a workshop. Cover: current process satisfaction, task frequency, pain points, and feature priorities.
+
+24. I'm facilitating a workshop with stakeholders who have very different opinions about scope. Write ground rules, conflict resolution guidelines, and a decision-making framework for reaching consensus.
+
+25. Design a "Future State Visioning" exercise where stakeholders describe what success looks like in 2 years without thinking about current limitations. Include facilitator prompts and an output capture template.
+
+### Document Analysis
+
+26. I have a copy of the current system's user manual: [paste excerpt]. Extract a list of functional capabilities that represent existing features we need to replicate or replace in the new system.
+
+27. Analyze this existing report template: [paste template]. Identify all data fields, calculations, filters, and formatting requirements needed to replicate this report in a new system.
+
+28. Review this current-state process document: [paste document]. Identify requirements for the new system by extracting: decision points, data inputs/outputs, roles, system interactions, and pain points.
+
+29. I have the contract/SOW for a software implementation project: [paste relevant sections]. Extract the functional and non-functional requirements implied by the contract deliverables.
+
+30. Analyze this regulatory document: [paste section]. Identify all requirements it imposes on a [system type] that processes [data type] for [agency type]. Format as a compliance requirements table with regulation references.
+
+31. Review this data dictionary from the legacy system: [paste]. Identify which fields are critical to migrate, which are obsolete, and which need transformation for the new system.
+
+32. Analyze this collection of user complaints and support tickets: [paste]. Group them by theme and identify the underlying requirements or system deficiencies they reveal.
+
+33. I have meeting notes from the last 6 months of steering committee meetings: [paste]. Extract all decisions made, requirements implied, and constraints identified from these documents.
+
+34. Review this draft RFP: [paste]. Identify requirements that are unclear, ambiguous, missing, or potentially contradictory. Suggest improved wording for each.
+
+35. Analyze these screenshots from the current system: [describe screens]. Based on what you can see, write a list of functional requirements for a new system to replicate this functionality.
+
+### Stakeholder Analysis
+
+36. I'm starting a requirements project for a [system type] with these stakeholders: [list names and titles]. Create a stakeholder analysis matrix showing: influence level, interest level, requirements focus area, and recommended engagement approach.
+
+37. Write a stakeholder communication plan for a 6-month requirements and design phase for a state agency IT modernization. Cover: frequency, format, audience, channel, and responsible party for each communication type.
+
+38. I have conflicting requirements from two stakeholders: [describe conflict]. Write a structured summary of both positions, identify the underlying interests, and suggest 3 possible resolution approaches.
+
+39. Generate questions to identify hidden stakeholders for a project affecting [department/agency]. Include questions about: downstream impacts, system integrations, regulatory oversight, and indirect users.
+
+40. Write a RACI matrix for the requirements phase of a system development project with these roles: Business Sponsor, Program Manager, Business Analyst, Technical Lead, End User Representatives, Legal/Compliance, and IT Security.
+
+41. A key stakeholder is disengaged and not responding to meeting invitations or review requests. Write an escalation email to their supervisor explaining the situation and the impact on the project timeline.
+
+42. I need to present requirements to an executive who wants a 10-minute briefing. Write a one-page executive summary of these requirements: [paste requirements].
+
+43. Write a requirements sign-off email explaining: what stakeholders are approving, the implications of approval, the change request process after sign-off, and the response deadline.
+
+44. Two department heads disagree on the priority of a requirement. Write a decision memo presenting both perspectives, the trade-offs, and a recommendation for the project sponsor.
+
+45. Create a requirements FAQ document answering the 10 most common questions stakeholders ask during a requirements review cycle.
+
+### Business Rules Extraction
+
+46. Review this policy document: [paste]. Extract all business rules implied by the policy and format them as structured statements using the format: IF [condition] THEN [action/result].
+
+47. I need to document the decision logic for a loan eligibility check. Based on this description: [paste], write the business rules as a decision table showing conditions and outcomes.
+
+48. Convert these narrative business rules into structured rule statements: [paste narrative]. Each rule should be unambiguous, testable, and independent of implementation details.
+
+49. Write business rules for a document routing workflow where documents route to different approvers based on: document type, dollar amount, department, and urgency level.
+
+50. Validate that these business rules are complete. Identify any gaps, contradictions, or missing conditions in this rule set: [paste rules].
+
+### Requirements Organization & Documentation
+
+51. Organize these raw requirements into a structured Business Requirements Document (BRD) with sections: Executive Summary, Business Objectives, Stakeholder Analysis, Scope, Functional Requirements, Non-Functional Requirements, Constraints, and Assumptions.
+
+52. Write the Scope section of a BRD for a project to modernize the [agency]'s case management system. Include: what is in scope, what is explicitly out of scope, and the rationale for the boundaries.
+
+53. These requirements came from multiple stakeholders and contain duplicates, conflicts, and gaps. Deduplicate them, flag conflicts, identify gaps, and organize by functional area: [paste requirements].
+
+54. Write the Assumptions and Constraints section for a system modernization BRD. Include: technology constraints, regulatory constraints, resource constraints, timeline constraints, and key assumptions.
+
+55. Convert this list of high-level requirements into a Requirements Traceability Matrix (RTM) template with columns: Requirement ID, Description, Source, Priority, Status, Test Case ID, and Design Reference.
+
+56. Write a glossary of terms for a BRD for a [type] system in the [industry] sector. Include definitions for key business terms, acronyms, and technical terms used throughout the document.
+
+57. I need to prioritize 30 requirements with my stakeholders. Write a requirements prioritization memo proposing a scoring approach based on: business value, implementation risk, regulatory requirement, and user impact.
+
+58. Write the Business Objectives section of a BRD for a project to [objective]. Include 5–7 SMART objectives aligned to the organization's strategic goals.
+
+59. Create a requirements change log template and write the change control process description for a requirements document that has been baselined.
+
+60. Format these requirements into IEEE 830 Software Requirements Specification (SRS) structure: [paste requirements]. Use proper numbering, categories, and include a traceability table.
+
+### Gap & Coverage Analysis
+
+61. Review this requirements document: [paste]. Identify any functional areas that appear missing or underspecified compared to a typical [system type] implementation.
+
+62. I have requirements for a new system and a list of features in the current system. Identify which current features are not covered by the new requirements: Current features: [list]. New requirements: [list].
+
+63. Compare these requirements to the [regulation/standard] compliance checklist: [paste both]. Identify which compliance requirements are addressed, which are missing, and which are partially addressed.
+
+64. Review the functional requirements for this system: [paste]. Identify any non-functional requirements that are implied but not explicitly stated (security, performance, accessibility, auditability).
+
+65. I've drafted requirements for a user interface but may have missed some states. For a [form/screen type], identify all UI states that need requirements: empty, loading, error, success, disabled, read-only, and any others.
+
+### Validation & Review
+
+66. Review these requirements for testability. Identify any that contain vague terms like "user-friendly," "fast," or "should be easy" and rewrite them with specific, measurable criteria: [paste requirements].
+
+67. Conduct a requirements peer review of this section: [paste]. Check for: completeness, consistency, correctness, feasibility, and verifiability. Format your findings as a review comment log.
+
+68. These requirements were written 6 months ago and the business context has changed. Review them against this updated context: [paste context]. Identify which requirements are still valid, need updating, or can be removed.
+
+69. Write a requirements validation checklist that the project team can use before sending requirements to stakeholders for sign-off.
+
+70. I need to reconcile requirements from three different sources: stakeholder interviews, existing documentation, and regulatory requirements. Reconcile them into a single unified requirements list with sources noted: [paste all three].
+
+### Elicitation Techniques
+
+71. Design a card sorting exercise to help stakeholders prioritize 25 potential system features. Write: instructions, materials needed, facilitation guide, and how to interpret the results.
+
+72. Write a structured observation guide for shadowing a [role] at a [agency type] for one day. Include: what to observe, what to record, and what questions to ask.
+
+73. Create a prototype feedback questionnaire for collecting structured requirements input from users who have reviewed a low-fidelity mockup of a new [screen/feature].
+
+74. Write instructions and an analysis template for a "5 Whys" root cause exercise to understand why users are currently doing manual workarounds instead of using the existing system.
+
+75. Design a focus group discussion guide for gathering requirements from 8 end users about a new [feature] in a case management system. Include: opening questions, main topic questions, probing questions, and a wrap-up.
+
+76. Write a requirements brainstorming session plan using the "How Might We" technique for identifying solutions to [identified problem]. Include facilitator instructions, prompts, and grouping methodology.
+
+77. Create a structured questionnaire for evaluating whether an existing COTS product meets a set of requirements. Include: evaluation criteria, scoring methodology, and a comparison matrix template.
+
+78. Write a "Day in the Life" observation report template for documenting requirements gathered from shadowing a [role type] in their work environment.
+
+79. Design a requirements prioritization exercise using dot voting for 12 stakeholders choosing the top 10 priorities from 35 requirements. Include facilitation instructions and a scoring template.
+
+80. Write a structured elicitation plan for a 3-month requirements phase using a combination of interviews, workshops, document analysis, and prototyping. Include: timeline, responsible parties, and deliverables for each activity.
+
+---
+
+## CATEGORY 3: MEETING MINUTES & ACTION ITEMS
+*60 Prompts*
+
+### Organizing Raw Notes into Minutes
+
+1. I have these raw notes from a requirements workshop: [paste notes]. Organize them into formal meeting minutes with: Date & Time, Attendees, Agenda Items Discussed, Key Points, Decisions Made, Action Items (Owner + Due Date), and Next Meeting date.
+
+2. Clean up and professionalize these rough meeting notes: [paste notes]. Fix grammar, clarify unclear points, remove filler language, and format as polished meeting minutes.
+
+3. These notes are from a steering committee meeting: [paste notes]. Extract only the decisions made and action items assigned. Format as a Decision & Action Item Log.
+
+4. Here's a transcript of a 60-minute requirements meeting: [paste transcript]. Create structured meeting minutes highlighting: the most important discussions, decisions, and next steps. Omit small talk and tangents.
+
+5. Transform these bullet-point meeting notes into a formal narrative minutes document suitable for sharing with senior leadership: [paste notes].
+
+6. I attended a meeting where multiple topics were discussed but the conversation jumped around. Reorganize these notes by agenda topic and add subheadings: [paste notes].
+
+7. These notes were taken by multiple people during the same meeting and contain duplicates and contradictions. Merge them into a single clean set of minutes: [paste notes from Person A and Person B].
+
+8. Create a one-page executive summary of these meeting minutes for a sponsor who didn't attend: [paste minutes].
+
+9. I need to convert these informal Slack conversation notes into professional meeting minutes suitable for a project record: [paste conversation].
+
+10. Here are notes from a vendor demonstration. Extract: key capabilities shown, gaps identified, questions raised, and evaluation notes in a structured format: [paste notes].
+
+### Follow-Up Emails & Communications
+
+11. Write a follow-up email to all attendees of a requirements workshop summarizing: what was accomplished, key decisions made, action items with owners and due dates, and next steps. Meeting details: [paste notes].
+
+12. Draft a professional follow-up email to a stakeholder who missed a requirements meeting, summarizing the key decisions affecting their area and requesting their input by [date].
+
+13. Write a stakeholder update email to the project sponsor summarizing progress from this week's BA activities: [describe activities and findings].
+
+14. Create a meeting recap email for a kickoff meeting capturing: project overview, team introductions, scope summary, timeline, immediate next steps, and where to find project documents.
+
+15. Write a follow-up email requesting sign-off on requirements reviewed in today's meeting. Reference the specific sections, what attendees agreed to, and the deadline for formal approval.
+
+16. Draft a meeting cancellation email with rescheduling request. The original meeting was a requirements review. Include: why it's being rescheduled and what preparation attendees should do before the rescheduled meeting.
+
+17. Write a follow-up to a difficult meeting where stakeholders disagreed on scope. The email should summarize: areas of agreement, areas still in dispute, the proposed resolution process, and next steps.
+
+18. Create a pre-meeting email to distribute 48 hours before a requirements review. Include: agenda, documents to review, what participants should come prepared to do, and logistics.
+
+19. Write a post-meeting email acknowledging a stakeholder who provided valuable input and confirming how their feedback will be incorporated into the requirements.
+
+20. Draft an email to a stakeholder who verbally approved requirements in a meeting but hasn't signed the formal sign-off document. Include a polite but firm reminder with the attachment.
+
+### Action Item Management
+
+21. I have action items from various meetings this week: [paste items]. Consolidate them into a single tracker table with columns: ID, Description, Owner, Due Date, Status, and Notes.
+
+22. Write a weekly action item status update email to the project manager. Based on this list: [paste items with statuses], summarize: what's complete, what's on track, what's at risk, and what's blocked.
+
+23. I need to follow up with 5 team members about overdue action items. Write a professional but firm reminder email template that can be personalized for each person.
+
+24. Create an action item aging report from this list: [paste items with original due dates]. Categorize by: Completed On Time, Completed Late, Due This Week, Overdue 1–7 days, Overdue 8–30 days, and Critically Overdue 30+ days.
+
+25. Write an escalation email to a project manager about a team member who has had the same action item overdue for 3 weeks and is not responding to follow-ups.
+
+26. Review these action items and identify which are clearly defined vs. vague. For the vague ones, rewrite them with: a specific deliverable, a named owner, and a realistic due date: [paste items].
+
+27. Create a RACI-aligned action item list from these meeting notes: [paste notes]. For each action item, identify who is Responsible, Accountable, Consulted, and Informed.
+
+28. Write the action items section of a weekly status report for a BA engagement. Include: items completed this week, items due next week, items at risk, and items needing sponsor decision.
+
+29. I have action items assigned to external vendors and stakeholders outside the core team. Write a professional tracking email to each external party requesting a status update.
+
+30. Create an action item closeout confirmation email that formally marks an item as complete, documents the outcome, and notifies all relevant parties.
+
+### Meeting Agendas & Prep
+
+31. Create a detailed agenda for a 2-hour requirements review meeting reviewing [document name] with [number] stakeholders. Include: time allocations, facilitator notes, expected outcomes, and decision points.
+
+32. Write an agenda for a 90-minute sprint planning meeting. Cover: sprint goal definition, backlog review, story point estimation, capacity planning, and sprint commitment.
+
+33. Create an agenda for a 1-hour weekly project status meeting with standing items, rotating items, and a parking lot section. Make it efficient enough to finish in under 60 minutes.
+
+34. Write a kickoff meeting agenda for a new BA engagement with a government agency. Cover: introductions, project overview, scope discussion, roles and responsibilities, communication protocols, and next steps.
+
+35. Design an agenda for a lessons learned meeting at the end of a project phase. Include structured reflection on: what went well, what didn't, root causes, and improvement actions for future phases.
+
+36. Create an agenda for a vendor selection meeting evaluating 3 shortlisted vendors. Include: evaluation criteria review, scoring discussion, reference check findings, risk discussion, and recommendation vote.
+
+37. Write a pre-meeting preparation guide for stakeholders attending a BRD review session. Include: what to read in advance, how to provide feedback, what questions to think about, and what decisions will be made.
+
+38. Create an agenda for a data migration planning meeting covering: data inventory review, migration approach options, risk discussion, resource requirements, timeline, and go/no-go criteria.
+
+39. Design a UAT kickoff meeting agenda covering: UAT objectives, scope of testing, schedule, roles, defect reporting process, and go-live criteria.
+
+40. Write an agenda for a change control board meeting where 3 change requests will be reviewed. Include: presentation format, evaluation criteria, decision process, and documentation requirements.
+
+### Specialized Meeting Types
+
+41. Write minutes for a "Three Amigos" meeting (BA, Developer, Tester) reviewing a user story. Document: the story discussed, clarifications made, acceptance criteria confirmed, and edge cases identified.
+
+42. Create a meeting summary for a technical design review where an architect presented 2 solution options. Document: each option, pros and cons discussed, questions raised, and the decision made.
+
+43. Write minutes for an executive steering committee meeting where: project status was reviewed, a scope change was proposed, a budget variance was discussed, and a go/no-go decision was made.
+
+44. Create a summary document for an agile retrospective including: format used, what went well, what didn't, action items with owners, and a team satisfaction rating.
+
+45. Write minutes for a conflict resolution meeting where two departments disagreed on data ownership. Document: each party's position, the mediation process, the agreed resolution, and the escalation path if the issue recurs.
+
+46. Create a risk review meeting summary documenting: each risk discussed, current status, mitigation actions taken, revised probability and impact ratings, and new risks identified.
+
+47. Write a summary of a requirements walkthrough where a BA presented requirements to developers. Document: each section reviewed, clarifications needed, feasibility concerns raised, and technical questions requiring business answers.
+
+48. Create meeting notes for a go-live readiness review covering: completed items, outstanding items, open defects, risk assessment, business readiness confirmation, and go/no-go decision.
+
+49. Write a summary of a lessons learned debrief covering: what went well, what the team would do differently, specific process improvement recommendations, and who is responsible for implementing each.
+
+50. Create minutes for a contract negotiation meeting summarizing: items agreed, items still in negotiation, proposed compromise positions, legal concerns raised, and next steps.
+
+### Status Reporting
+
+51. Write a weekly BA status report for a project manager covering: work completed this week, work planned for next week, decisions needed, risks/issues, and percentage complete for each active deliverable.
+
+52. Create a monthly project status report for a government sponsor covering: executive summary, accomplishments, upcoming milestones, budget status, risks and mitigations, and decisions required.
+
+53. Write a concise "3 things" status update for a project sponsor who prefers brevity: completed, in progress, and blockers.
+
+54. Transform this detailed status report into a 5-slide executive presentation format: [paste report]. Each slide should have one clear message supported by 3 key points.
+
+55. Write a status report for a project that is behind schedule. Acknowledge the delay, explain the root cause, describe the recovery plan, and provide a revised forecast.
+
+56. Create a risk and issue log update for this week's status report. From these meeting notes: [paste], identify new risks, update existing statuses, and flag items requiring immediate escalation.
+
+57. Write a milestone completion memo documenting that the requirements phase is complete. Include: what was delivered, which stakeholders approved it, and what the next phase entails.
+
+58. Create a status dashboard summary in text format covering: overall project health (RAG status), schedule health, budget health, scope health, and team health for a weekly leadership briefing.
+
+59. Write a sprint velocity report for a 3-sprint period showing: planned vs. completed story points, team capacity, velocity trend, and projected completion based on remaining backlog.
+
+60. Draft an end-of-engagement summary report for a BA consulting assignment covering: objectives, what was delivered, key decisions made, lessons learned, and recommended next steps for the client.
+
+---
+
+
+---
+
+*AI Prompt Library for Business Analysts — Starter Pack*
+*210 Prompts | Linton Business Solutions | lbsconnect.net*
+*Questions? info@lbsconnect.net*

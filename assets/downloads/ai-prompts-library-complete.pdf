@@ -1,0 +1,1381 @@
+# AI Prompt Library for Business Analysts
+**500 ChatGPT Prompts | Linton Business Solutions | lbsconnect.net**
+*Works with ChatGPT, Claude, Gemini, and Microsoft Copilot*
+
+---
+
+## CATEGORY 1: USER STORIES & ACCEPTANCE CRITERIA
+*70 Prompts*
+
+### Writing User Stories
+
+1. Write 5 user stories for a government employee self-service portal where workers can submit time-off requests, view pay stubs, update personal information, and download tax documents. Use the format: As a [role], I want [goal], so that [benefit].
+
+2. I'm building a [system name] for a [agency/organization type]. Write 8 user stories covering the core workflows for a [user role] who needs to [main objective]. Use standard user story format.
+
+3. Convert these business requirements into user stories: [paste requirements]. Maintain the original intent but rewrite each requirement from the end user's perspective using the As a / I want / So that format.
+
+4. Write user stories for a mobile application that allows field inspectors at a state agency to complete inspection checklists, attach photos, add GPS coordinates, and submit reports offline when connectivity is unavailable.
+
+5. I have a large epic: "As a procurement officer, I want a digital contract management system." Decompose this into 8–10 sprint-ready user stories covering: creation, routing, approval, signature, storage, and search.
+
+6. Generate user stories for the Admin role in a case management platform used by a county social services department. Cover: user management, role assignment, audit logging, data exports, and system configuration.
+
+7. Write user stories for a reporting module that allows [user role] to generate standard reports, create custom reports using a drag-and-drop builder, schedule automated delivery, and export to PDF or Excel.
+
+8. I need user stories for a data migration project moving from [old system] to [new system]. Write 6 stories covering: data validation, mapping rules, migration scheduling, reconciliation reporting, error handling, and rollback procedures.
+
+9. Review these user stories and identify which violate the INVEST criteria (Independent, Negotiable, Valuable, Estimable, Small, Testable). For each violation, explain the issue and rewrite the story: [paste user stories].
+
+10. Write 5 user stories for Section 508 / WCAG 2.1 AA accessibility compliance. Cover: screen reader support, keyboard navigation, color contrast, text resizing, and form field labels.
+
+11. Generate user stories for a citizen-facing online permit application portal. The citizen should be able to: create an account, start an application, save drafts, upload supporting documents, pay fees online, and track application status.
+
+12. Write user stories for the notification system in a case management application. Users should receive email, SMS, and in-app alerts for: status changes, assigned tasks, approaching deadlines, and system messages.
+
+13. I have these stakeholder interview notes about what users need from a new scheduling system: [paste notes]. Extract and write user stories from these notes, grouping related functionality.
+
+14. Write user stories for an audit trail feature that must log all data changes, including: who made the change, what was changed, the old value, the new value, and the timestamp.
+
+15. Create user stories for a document management feature allowing users to: upload, version-control, tag, search, share, and archive documents within a case file.
+
+### Government & Compliance User Stories
+
+16. Write user stories for a FISMA-compliant authentication system. Cover: multi-factor authentication, PIV card support, session timeout, failed login lockout, and password policy enforcement.
+
+17. Generate user stories for a federal grant management system used by state agencies. Cover: grant discovery, application submission, award acceptance, reporting milestones, drawdown requests, and closeout procedures.
+
+18. Write 6 user stories for a Freedom of Information Act (FOIA) request management module. Cover: request intake, routing, tracking, redaction workflow, response generation, and appeals.
+
+19. Create user stories for a records retention module that must: automatically classify records by type, apply retention schedules, flag records for review, and initiate disposition workflows.
+
+20. Write user stories for a state agency procurement portal covering: vendor registration, solicitation publication, bid submission, evaluation scoring, award notification, and contract execution.
+
+21. Generate user stories for a public-facing data portal where citizens can search, view, filter, and download open government datasets. Include accessibility and mobile responsiveness requirements.
+
+22. Write user stories for an employee onboarding workflow at a government agency. Cover: HR setup, IT provisioning, badge issuance, training assignment, mentor assignment, and 90-day check-ins.
+
+23. Create user stories for a compliance tracking module that: monitors regulatory requirements, assigns owners, tracks completion status, and generates compliance dashboards for leadership.
+
+24. Write user stories for a government contract modification workflow covering: request, justification, legal review, CO approval, contractor acknowledgment, and system update.
+
+25. Generate user stories for a background investigation request system used by HR to: initiate, track, and receive results for security clearance investigations.
+
+### Acceptance Criteria — Gherkin Format
+
+26. Write Gherkin acceptance criteria (Given/When/Then) for this user story: As a registered user, I want to reset my password via email so that I can regain access when I forget my credentials.
+
+27. Generate Gherkin scenarios for a search feature that must: return results within 3 seconds, support keyword and phrase search, allow filtering by date range and category, and highlight matching terms in results.
+
+28. Write Gherkin acceptance criteria for a file upload feature where users can upload documents up to 25MB, in PDF, DOCX, or XLSX format only, with a virus scan before acceptance.
+
+29. Create Gherkin scenarios for a payment processing feature including: successful payment, declined card, insufficient funds, session timeout during payment, and duplicate transaction detection.
+
+30. Write Gherkin acceptance criteria for a role-based access control system where: Admin users can create and deactivate accounts, Manager users can view team reports, Standard users can only access their own data.
+
+31. Generate Gherkin scenarios for an auto-save feature that: saves form data every 60 seconds, preserves data on browser close, and prompts the user to restore their session on return.
+
+32. Write Gherkin acceptance criteria for a multi-step form wizard that: validates each step before progression, displays a progress indicator, allows backward navigation without losing data, and sends a confirmation email on completion.
+
+33. Create Gherkin scenarios covering the happy path and 3 error paths for a user login feature with MFA enabled.
+
+34. Write Gherkin acceptance criteria for a report generation feature that must: handle datasets up to 500,000 rows, complete within 30 seconds, and provide a download link via email for large reports.
+
+35. Generate Gherkin scenarios for a data import feature that: validates file structure, checks for duplicate records, displays a preview before import, logs all changes, and sends a summary report after completion.
+
+### Acceptance Criteria — Conditions of Satisfaction
+
+36. Write conditions of satisfaction for this user story: As a manager, I want to view a dashboard of my team's open tasks so that I can identify bottlenecks and reassign work as needed.
+
+37. Generate non-functional acceptance criteria for a web application that must: load pages within 2 seconds, support 500 concurrent users, maintain 99.5% uptime, and pass an OWASP security scan.
+
+38. Write acceptance criteria for a data synchronization feature that must: sync between the mobile app and server every 5 minutes when connected, queue changes when offline, and resolve conflicts using a last-write-wins rule.
+
+39. Create acceptance criteria for an email notification system that: delivers within 5 minutes of trigger, includes an unsubscribe link, renders correctly in Outlook, Gmail, and Apple Mail, and logs delivery status.
+
+40. Write conditions of satisfaction for an audit log feature covering: what events must be logged, required data fields, retention period, access controls, and export capability.
+
+### Epic Decomposition & Story Splitting
+
+41. This feature is too large for one sprint: "Build a complete vendor management module." Split it into 4–6 epics and break each epic into 3–4 user stories completable in a 2-week sprint.
+
+42. I have a user story estimated at 13 story points: "As a user, I want to complete my profile so the system can personalize my experience." Split this into stories of 3 points or less, maintaining user value.
+
+43. Decompose this workflow into user stories: A supervisor receives a daily digest of pending approvals, clicks through to review each item, can approve or reject with a comment, and the system notifies the requester of the decision.
+
+44. Break down "Build an API integration with [third-party system]" into user stories covering: technical discovery, authentication setup, data mapping, error handling, testing, monitoring, and documentation.
+
+45. I have an epic for a reporting module. Write the user stories for the MVP phase only — the smallest set of stories that still delivers real value to users.
+
+### Story Refinement & QA
+
+46. Review these user stories for ambiguity, missing actors, unclear benefits, and untestable criteria. Rewrite any that need improvement: [paste user stories].
+
+47. These user stories were written by a business stakeholder. Rewrite them using proper BA structure: remove implementation details, add the "so that" benefit, and make them testable: [paste stories].
+
+48. Identify the dependencies between these user stories and flag any that cannot be built independently: [paste list of user stories]. Suggest a recommended build sequence.
+
+49. Write the Definition of Ready checklist for user stories in our Agile team. Include criteria for: scope clarity, acceptance criteria, design availability, dependency identification, and estimate consensus.
+
+50. These user stories were each sized at 8 story points. Identify which can be split further and provide the split stories: [paste user stories].
+
+### Edge Cases & Error Scenarios
+
+51. I have this happy-path user story: [paste story]. Write 5 additional stories covering the key error scenarios, edge cases, and alternate flows.
+
+52. Write user stories for the error handling behavior of a form submission when: the network drops mid-submit, a required field is blank, a file exceeds size limits, the session has expired, and the server returns an error.
+
+53. Generate user stories covering accessibility edge cases for a form: a user navigating entirely by keyboard, a screen reader user, a user zoomed to 200%, and a user with a motor impairment using switch access.
+
+54. Write user stories for the system behavior when a concurrent editing conflict occurs — two users editing the same record at the same time.
+
+55. Create user stories for the data validation rules on a person record: name fields, date of birth, SSN format, phone number formats, email format, and address validation.
+
+56. Write user stories for the system's behavior during scheduled maintenance windows: advance notification, graceful degradation, read-only mode, and restoration confirmation.
+
+57. Generate user stories for offline functionality in a mobile application: what the user can do offline, what is restricted, how data syncs when connectivity returns, and how conflicts are handled.
+
+58. Write user stories for timeout and session management: idle session warning, session expiration, data preservation on timeout, and re-authentication without data loss.
+
+59. Create user stories for a cascading delete scenario: when a parent record is deleted, what happens to all related child records, dependent records, and historical audit data.
+
+60. Write user stories for system behavior when an integration with [external system] is unavailable: fallback behavior, user messaging, retry logic, and data reconciliation after restoration.
+
+### Specialized Story Types
+
+61. Write infrastructure/DevOps user stories for a CI/CD pipeline covering: automated testing, deployment to staging, approval gates, production deployment, and rollback capability.
+
+62. Generate data migration user stories for moving [X] years of historical records from a legacy system to a new platform, covering: data cleansing, mapping, validation, parallel run, and cutover.
+
+63. Write security user stories for a web application covering: input validation, SQL injection prevention, XSS protection, CSRF protection, and penetration testing sign-off.
+
+64. Create training and help content user stories: contextual help tooltips, searchable knowledge base, onboarding walkthrough, video tutorials, and printable user guides.
+
+65. Write performance user stories defining system behavior under load: normal load, peak load, stress testing, graceful performance degradation, and recovery time objectives.
+
+66. Generate integration user stories for connecting [System A] with [System B] via REST API: authentication, data mapping, error handling, retry logic, logging, and monitoring.
+
+67. Write user stories for a data archiving process that: moves records older than [X] years to cold storage, maintains searchability, enforces access controls on archived data, and supports legal hold exceptions.
+
+68. Create user stories for a multi-language and localization feature covering: language selection, date/number formatting, right-to-left text support, and translated content management.
+
+69. Write user stories for a self-service reporting feature where non-technical users can: build reports using a visual interface, save templates, schedule automated delivery, and share reports with colleagues.
+
+70. Generate user stories for an API documentation portal where developers can: browse endpoints, view request/response examples, test calls in a sandbox, and register for API keys.
+
+---
+
+## CATEGORY 2: REQUIREMENTS GATHERING & ELICITATION
+*80 Prompts*
+
+### Elicitation Interview Questions
+
+1. Generate 10 open-ended discovery questions for an initial stakeholder interview with an agency director about a new case management system. Focus on: current pain points, future vision, success metrics, and constraints.
+
+2. I'm meeting with end users of a legacy system being replaced. Write 12 interview questions to understand their: current workflows, workarounds, what they value in the current system, and what they wish it did differently.
+
+3. Write 8 probing follow-up questions for when a stakeholder says "the system should be user-friendly." These should help me define specific, measurable usability requirements.
+
+4. Create 10 questions for a technical discovery session with the IT team covering: existing architecture, integrations, data structures, and technical constraints.
+
+5. Generate interview questions for a session with a procurement officer about a new vendor management system. Include questions about: current process, pain points, regulatory requirements, transaction volume, and approval workflows.
+
+6. Write 8 questions for a requirements session focused on security and compliance for a system that will process [PII/PHI/federal data]. Include: classification level, access controls, audit requirements, and applicable regulations.
+
+7. I'm conducting requirements discovery for a data warehouse project. Generate 10 questions to ask business stakeholders about: reporting needs, data sources, analysis frequency, current tools, and decision-making use cases.
+
+8. Create discovery questions for a meeting with the finance department about a new budget tracking system. Cover: budget cycle, approval hierarchies, reporting requirements, integrations with existing tools, and year-end processes.
+
+9. Write elicitation questions for a session with field workers whose paper inspection form is being digitized. Focus on: their environment, connectivity, device preferences, data entry challenges, and form completion workflow.
+
+10. Generate 10 questions for a session about a customer-facing portal. Focus on: customer demographics, digital literacy, accessibility needs, preferred channels, common issues with the current process, and what success looks like.
+
+11. Write discovery questions to understand the reporting and analytics needs of an executive team. Focus on: what decisions they make, what data they currently use, how often they need updates, and what format they prefer.
+
+12. Create interview questions to understand a complex approval workflow. Cover: number of steps, who approves at each step, criteria used, how exceptions are handled, and current bottlenecks.
+
+13. Generate questions for a session about data migration requirements. Cover: what data exists, its quality, how it's structured, what needs to migrate vs. be archived, what validation is needed, and the acceptable cutover window.
+
+14. Write questions to elicit non-functional requirements from a technical stakeholder. Cover: performance, scalability, availability, disaster recovery, security, maintainability, and compliance requirements.
+
+15. Create questions for a kickoff meeting with a new client agency about a BA engagement. Cover: project goals, success criteria, key stakeholders, timeline constraints, budget boundaries, risks, and decision-making authority.
+
+### Requirements Workshops
+
+16. Design a 2-hour requirements workshop agenda for defining the scope of a new [system type] for a [agency type]. Include: icebreaker, current-state walkthrough, future-state vision, requirements prioritization, and next steps.
+
+17. Write a set of structured questions to guide a joint requirements session with both business and technical stakeholders who have conflicting priorities about a new system.
+
+18. Create a facilitation guide for a requirements prioritization workshop using MoSCoW method. Include: facilitator instructions, materials needed, ground rules, and a results capture template.
+
+19. I facilitated a 3-hour requirements workshop and have these raw notes: [paste notes]. Synthesize the requirements, group related items, and format as a structured requirements list with categories.
+
+20. Write the instructions and template for a "Day in the Life" workshop where users walk through their typical workday to help identify requirements and pain points.
+
+21. Design a requirements validation walkthrough agenda where stakeholders review and confirm a requirements document. Include: how to collect feedback, manage disagreements, and reach consensus.
+
+22. Create affinity mapping prompts and category headings for a workshop where 15 stakeholders contribute requirements for a new [system]. Use categories: Must-Haves, Nice-to-Haves, Concerns, and Questions.
+
+23. Write a structured questionnaire for a requirements survey sent to 50 end users who can't attend a workshop. Cover: current process satisfaction, task frequency, pain points, and feature priorities.
+
+24. I'm facilitating a workshop with stakeholders who have very different opinions about scope. Write ground rules, conflict resolution guidelines, and a decision-making framework for reaching consensus.
+
+25. Design a "Future State Visioning" exercise where stakeholders describe what success looks like in 2 years without thinking about current limitations. Include facilitator prompts and an output capture template.
+
+### Document Analysis
+
+26. I have a copy of the current system's user manual: [paste excerpt]. Extract a list of functional capabilities that represent existing features we need to replicate or replace in the new system.
+
+27. Analyze this existing report template: [paste template]. Identify all data fields, calculations, filters, and formatting requirements needed to replicate this report in a new system.
+
+28. Review this current-state process document: [paste document]. Identify requirements for the new system by extracting: decision points, data inputs/outputs, roles, system interactions, and pain points.
+
+29. I have the contract/SOW for a software implementation project: [paste relevant sections]. Extract the functional and non-functional requirements implied by the contract deliverables.
+
+30. Analyze this regulatory document: [paste section]. Identify all requirements it imposes on a [system type] that processes [data type] for [agency type]. Format as a compliance requirements table with regulation references.
+
+31. Review this data dictionary from the legacy system: [paste]. Identify which fields are critical to migrate, which are obsolete, and which need transformation for the new system.
+
+32. Analyze this collection of user complaints and support tickets: [paste]. Group them by theme and identify the underlying requirements or system deficiencies they reveal.
+
+33. I have meeting notes from the last 6 months of steering committee meetings: [paste]. Extract all decisions made, requirements implied, and constraints identified from these documents.
+
+34. Review this draft RFP: [paste]. Identify requirements that are unclear, ambiguous, missing, or potentially contradictory. Suggest improved wording for each.
+
+35. Analyze these screenshots from the current system: [describe screens]. Based on what you can see, write a list of functional requirements for a new system to replicate this functionality.
+
+### Stakeholder Analysis
+
+36. I'm starting a requirements project for a [system type] with these stakeholders: [list names and titles]. Create a stakeholder analysis matrix showing: influence level, interest level, requirements focus area, and recommended engagement approach.
+
+37. Write a stakeholder communication plan for a 6-month requirements and design phase for a state agency IT modernization. Cover: frequency, format, audience, channel, and responsible party for each communication type.
+
+38. I have conflicting requirements from two stakeholders: [describe conflict]. Write a structured summary of both positions, identify the underlying interests, and suggest 3 possible resolution approaches.
+
+39. Generate questions to identify hidden stakeholders for a project affecting [department/agency]. Include questions about: downstream impacts, system integrations, regulatory oversight, and indirect users.
+
+40. Write a RACI matrix for the requirements phase of a system development project with these roles: Business Sponsor, Program Manager, Business Analyst, Technical Lead, End User Representatives, Legal/Compliance, and IT Security.
+
+41. A key stakeholder is disengaged and not responding to meeting invitations or review requests. Write an escalation email to their supervisor explaining the situation and the impact on the project timeline.
+
+42. I need to present requirements to an executive who wants a 10-minute briefing. Write a one-page executive summary of these requirements: [paste requirements].
+
+43. Write a requirements sign-off email explaining: what stakeholders are approving, the implications of approval, the change request process after sign-off, and the response deadline.
+
+44. Two department heads disagree on the priority of a requirement. Write a decision memo presenting both perspectives, the trade-offs, and a recommendation for the project sponsor.
+
+45. Create a requirements FAQ document answering the 10 most common questions stakeholders ask during a requirements review cycle.
+
+### Business Rules Extraction
+
+46. Review this policy document: [paste]. Extract all business rules implied by the policy and format them as structured statements using the format: IF [condition] THEN [action/result].
+
+47. I need to document the decision logic for a loan eligibility check. Based on this description: [paste], write the business rules as a decision table showing conditions and outcomes.
+
+48. Convert these narrative business rules into structured rule statements: [paste narrative]. Each rule should be unambiguous, testable, and independent of implementation details.
+
+49. Write business rules for a document routing workflow where documents route to different approvers based on: document type, dollar amount, department, and urgency level.
+
+50. Validate that these business rules are complete. Identify any gaps, contradictions, or missing conditions in this rule set: [paste rules].
+
+### Requirements Organization & Documentation
+
+51. Organize these raw requirements into a structured Business Requirements Document (BRD) with sections: Executive Summary, Business Objectives, Stakeholder Analysis, Scope, Functional Requirements, Non-Functional Requirements, Constraints, and Assumptions.
+
+52. Write the Scope section of a BRD for a project to modernize the [agency]'s case management system. Include: what is in scope, what is explicitly out of scope, and the rationale for the boundaries.
+
+53. These requirements came from multiple stakeholders and contain duplicates, conflicts, and gaps. Deduplicate them, flag conflicts, identify gaps, and organize by functional area: [paste requirements].
+
+54. Write the Assumptions and Constraints section for a system modernization BRD. Include: technology constraints, regulatory constraints, resource constraints, timeline constraints, and key assumptions.
+
+55. Convert this list of high-level requirements into a Requirements Traceability Matrix (RTM) template with columns: Requirement ID, Description, Source, Priority, Status, Test Case ID, and Design Reference.
+
+56. Write a glossary of terms for a BRD for a [type] system in the [industry] sector. Include definitions for key business terms, acronyms, and technical terms used throughout the document.
+
+57. I need to prioritize 30 requirements with my stakeholders. Write a requirements prioritization memo proposing a scoring approach based on: business value, implementation risk, regulatory requirement, and user impact.
+
+58. Write the Business Objectives section of a BRD for a project to [objective]. Include 5–7 SMART objectives aligned to the organization's strategic goals.
+
+59. Create a requirements change log template and write the change control process description for a requirements document that has been baselined.
+
+60. Format these requirements into IEEE 830 Software Requirements Specification (SRS) structure: [paste requirements]. Use proper numbering, categories, and include a traceability table.
+
+### Gap & Coverage Analysis
+
+61. Review this requirements document: [paste]. Identify any functional areas that appear missing or underspecified compared to a typical [system type] implementation.
+
+62. I have requirements for a new system and a list of features in the current system. Identify which current features are not covered by the new requirements: Current features: [list]. New requirements: [list].
+
+63. Compare these requirements to the [regulation/standard] compliance checklist: [paste both]. Identify which compliance requirements are addressed, which are missing, and which are partially addressed.
+
+64. Review the functional requirements for this system: [paste]. Identify any non-functional requirements that are implied but not explicitly stated (security, performance, accessibility, auditability).
+
+65. I've drafted requirements for a user interface but may have missed some states. For a [form/screen type], identify all UI states that need requirements: empty, loading, error, success, disabled, read-only, and any others.
+
+### Validation & Review
+
+66. Review these requirements for testability. Identify any that contain vague terms like "user-friendly," "fast," or "should be easy" and rewrite them with specific, measurable criteria: [paste requirements].
+
+67. Conduct a requirements peer review of this section: [paste]. Check for: completeness, consistency, correctness, feasibility, and verifiability. Format your findings as a review comment log.
+
+68. These requirements were written 6 months ago and the business context has changed. Review them against this updated context: [paste context]. Identify which requirements are still valid, need updating, or can be removed.
+
+69. Write a requirements validation checklist that the project team can use before sending requirements to stakeholders for sign-off.
+
+70. I need to reconcile requirements from three different sources: stakeholder interviews, existing documentation, and regulatory requirements. Reconcile them into a single unified requirements list with sources noted: [paste all three].
+
+### Elicitation Techniques
+
+71. Design a card sorting exercise to help stakeholders prioritize 25 potential system features. Write: instructions, materials needed, facilitation guide, and how to interpret the results.
+
+72. Write a structured observation guide for shadowing a [role] at a [agency type] for one day. Include: what to observe, what to record, and what questions to ask.
+
+73. Create a prototype feedback questionnaire for collecting structured requirements input from users who have reviewed a low-fidelity mockup of a new [screen/feature].
+
+74. Write instructions and an analysis template for a "5 Whys" root cause exercise to understand why users are currently doing manual workarounds instead of using the existing system.
+
+75. Design a focus group discussion guide for gathering requirements from 8 end users about a new [feature] in a case management system. Include: opening questions, main topic questions, probing questions, and a wrap-up.
+
+76. Write a requirements brainstorming session plan using the "How Might We" technique for identifying solutions to [identified problem]. Include facilitator instructions, prompts, and grouping methodology.
+
+77. Create a structured questionnaire for evaluating whether an existing COTS product meets a set of requirements. Include: evaluation criteria, scoring methodology, and a comparison matrix template.
+
+78. Write a "Day in the Life" observation report template for documenting requirements gathered from shadowing a [role type] in their work environment.
+
+79. Design a requirements prioritization exercise using dot voting for 12 stakeholders choosing the top 10 priorities from 35 requirements. Include facilitation instructions and a scoring template.
+
+80. Write a structured elicitation plan for a 3-month requirements phase using a combination of interviews, workshops, document analysis, and prototyping. Include: timeline, responsible parties, and deliverables for each activity.
+
+---
+
+## CATEGORY 3: MEETING MINUTES & ACTION ITEMS
+*60 Prompts*
+
+### Organizing Raw Notes into Minutes
+
+1. I have these raw notes from a requirements workshop: [paste notes]. Organize them into formal meeting minutes with: Date & Time, Attendees, Agenda Items Discussed, Key Points, Decisions Made, Action Items (Owner + Due Date), and Next Meeting date.
+
+2. Clean up and professionalize these rough meeting notes: [paste notes]. Fix grammar, clarify unclear points, remove filler language, and format as polished meeting minutes.
+
+3. These notes are from a steering committee meeting: [paste notes]. Extract only the decisions made and action items assigned. Format as a Decision & Action Item Log.
+
+4. Here's a transcript of a 60-minute requirements meeting: [paste transcript]. Create structured meeting minutes highlighting: the most important discussions, decisions, and next steps. Omit small talk and tangents.
+
+5. Transform these bullet-point meeting notes into a formal narrative minutes document suitable for sharing with senior leadership: [paste notes].
+
+6. I attended a meeting where multiple topics were discussed but the conversation jumped around. Reorganize these notes by agenda topic and add subheadings: [paste notes].
+
+7. These notes were taken by multiple people during the same meeting and contain duplicates and contradictions. Merge them into a single clean set of minutes: [paste notes from Person A and Person B].
+
+8. Create a one-page executive summary of these meeting minutes for a sponsor who didn't attend: [paste minutes].
+
+9. I need to convert these informal Slack conversation notes into professional meeting minutes suitable for a project record: [paste conversation].
+
+10. Here are notes from a vendor demonstration. Extract: key capabilities shown, gaps identified, questions raised, and evaluation notes in a structured format: [paste notes].
+
+### Follow-Up Emails & Communications
+
+11. Write a follow-up email to all attendees of a requirements workshop summarizing: what was accomplished, key decisions made, action items with owners and due dates, and next steps. Meeting details: [paste notes].
+
+12. Draft a professional follow-up email to a stakeholder who missed a requirements meeting, summarizing the key decisions affecting their area and requesting their input by [date].
+
+13. Write a stakeholder update email to the project sponsor summarizing progress from this week's BA activities: [describe activities and findings].
+
+14. Create a meeting recap email for a kickoff meeting capturing: project overview, team introductions, scope summary, timeline, immediate next steps, and where to find project documents.
+
+15. Write a follow-up email requesting sign-off on requirements reviewed in today's meeting. Reference the specific sections, what attendees agreed to, and the deadline for formal approval.
+
+16. Draft a meeting cancellation email with rescheduling request. The original meeting was a requirements review. Include: why it's being rescheduled and what preparation attendees should do before the rescheduled meeting.
+
+17. Write a follow-up to a difficult meeting where stakeholders disagreed on scope. The email should summarize: areas of agreement, areas still in dispute, the proposed resolution process, and next steps.
+
+18. Create a pre-meeting email to distribute 48 hours before a requirements review. Include: agenda, documents to review, what participants should come prepared to do, and logistics.
+
+19. Write a post-meeting email acknowledging a stakeholder who provided valuable input and confirming how their feedback will be incorporated into the requirements.
+
+20. Draft an email to a stakeholder who verbally approved requirements in a meeting but hasn't signed the formal sign-off document. Include a polite but firm reminder with the attachment.
+
+### Action Item Management
+
+21. I have action items from various meetings this week: [paste items]. Consolidate them into a single tracker table with columns: ID, Description, Owner, Due Date, Status, and Notes.
+
+22. Write a weekly action item status update email to the project manager. Based on this list: [paste items with statuses], summarize: what's complete, what's on track, what's at risk, and what's blocked.
+
+23. I need to follow up with 5 team members about overdue action items. Write a professional but firm reminder email template that can be personalized for each person.
+
+24. Create an action item aging report from this list: [paste items with original due dates]. Categorize by: Completed On Time, Completed Late, Due This Week, Overdue 1–7 days, Overdue 8–30 days, and Critically Overdue 30+ days.
+
+25. Write an escalation email to a project manager about a team member who has had the same action item overdue for 3 weeks and is not responding to follow-ups.
+
+26. Review these action items and identify which are clearly defined vs. vague. For the vague ones, rewrite them with: a specific deliverable, a named owner, and a realistic due date: [paste items].
+
+27. Create a RACI-aligned action item list from these meeting notes: [paste notes]. For each action item, identify who is Responsible, Accountable, Consulted, and Informed.
+
+28. Write the action items section of a weekly status report for a BA engagement. Include: items completed this week, items due next week, items at risk, and items needing sponsor decision.
+
+29. I have action items assigned to external vendors and stakeholders outside the core team. Write a professional tracking email to each external party requesting a status update.
+
+30. Create an action item closeout confirmation email that formally marks an item as complete, documents the outcome, and notifies all relevant parties.
+
+### Meeting Agendas & Prep
+
+31. Create a detailed agenda for a 2-hour requirements review meeting reviewing [document name] with [number] stakeholders. Include: time allocations, facilitator notes, expected outcomes, and decision points.
+
+32. Write an agenda for a 90-minute sprint planning meeting. Cover: sprint goal definition, backlog review, story point estimation, capacity planning, and sprint commitment.
+
+33. Create an agenda for a 1-hour weekly project status meeting with standing items, rotating items, and a parking lot section. Make it efficient enough to finish in under 60 minutes.
+
+34. Write a kickoff meeting agenda for a new BA engagement with a government agency. Cover: introductions, project overview, scope discussion, roles and responsibilities, communication protocols, and next steps.
+
+35. Design an agenda for a lessons learned meeting at the end of a project phase. Include structured reflection on: what went well, what didn't, root causes, and improvement actions for future phases.
+
+36. Create an agenda for a vendor selection meeting evaluating 3 shortlisted vendors. Include: evaluation criteria review, scoring discussion, reference check findings, risk discussion, and recommendation vote.
+
+37. Write a pre-meeting preparation guide for stakeholders attending a BRD review session. Include: what to read in advance, how to provide feedback, what questions to think about, and what decisions will be made.
+
+38. Create an agenda for a data migration planning meeting covering: data inventory review, migration approach options, risk discussion, resource requirements, timeline, and go/no-go criteria.
+
+39. Design a UAT kickoff meeting agenda covering: UAT objectives, scope of testing, schedule, roles, defect reporting process, and go-live criteria.
+
+40. Write an agenda for a change control board meeting where 3 change requests will be reviewed. Include: presentation format, evaluation criteria, decision process, and documentation requirements.
+
+### Specialized Meeting Types
+
+41. Write minutes for a "Three Amigos" meeting (BA, Developer, Tester) reviewing a user story. Document: the story discussed, clarifications made, acceptance criteria confirmed, and edge cases identified.
+
+42. Create a meeting summary for a technical design review where an architect presented 2 solution options. Document: each option, pros and cons discussed, questions raised, and the decision made.
+
+43. Write minutes for an executive steering committee meeting where: project status was reviewed, a scope change was proposed, a budget variance was discussed, and a go/no-go decision was made.
+
+44. Create a summary document for an agile retrospective including: format used, what went well, what didn't, action items with owners, and a team satisfaction rating.
+
+45. Write minutes for a conflict resolution meeting where two departments disagreed on data ownership. Document: each party's position, the mediation process, the agreed resolution, and the escalation path if the issue recurs.
+
+46. Create a risk review meeting summary documenting: each risk discussed, current status, mitigation actions taken, revised probability and impact ratings, and new risks identified.
+
+47. Write a summary of a requirements walkthrough where a BA presented requirements to developers. Document: each section reviewed, clarifications needed, feasibility concerns raised, and technical questions requiring business answers.
+
+48. Create meeting notes for a go-live readiness review covering: completed items, outstanding items, open defects, risk assessment, business readiness confirmation, and go/no-go decision.
+
+49. Write a summary of a lessons learned debrief covering: what went well, what the team would do differently, specific process improvement recommendations, and who is responsible for implementing each.
+
+50. Create minutes for a contract negotiation meeting summarizing: items agreed, items still in negotiation, proposed compromise positions, legal concerns raised, and next steps.
+
+### Status Reporting
+
+51. Write a weekly BA status report for a project manager covering: work completed this week, work planned for next week, decisions needed, risks/issues, and percentage complete for each active deliverable.
+
+52. Create a monthly project status report for a government sponsor covering: executive summary, accomplishments, upcoming milestones, budget status, risks and mitigations, and decisions required.
+
+53. Write a concise "3 things" status update for a project sponsor who prefers brevity: completed, in progress, and blockers.
+
+54. Transform this detailed status report into a 5-slide executive presentation format: [paste report]. Each slide should have one clear message supported by 3 key points.
+
+55. Write a status report for a project that is behind schedule. Acknowledge the delay, explain the root cause, describe the recovery plan, and provide a revised forecast.
+
+56. Create a risk and issue log update for this week's status report. From these meeting notes: [paste], identify new risks, update existing statuses, and flag items requiring immediate escalation.
+
+57. Write a milestone completion memo documenting that the requirements phase is complete. Include: what was delivered, which stakeholders approved it, and what the next phase entails.
+
+58. Create a status dashboard summary in text format covering: overall project health (RAG status), schedule health, budget health, scope health, and team health for a weekly leadership briefing.
+
+59. Write a sprint velocity report for a 3-sprint period showing: planned vs. completed story points, team capacity, velocity trend, and projected completion based on remaining backlog.
+
+60. Draft an end-of-engagement summary report for a BA consulting assignment covering: objectives, what was delivered, key decisions made, lessons learned, and recommended next steps for the client.
+
+---
+
+## CATEGORY 4: SQL GENERATION & DATA ANALYSIS
+*60 Prompts*
+
+### Basic Queries
+
+1. Write a SQL query to retrieve all records from [table_name] where [status_column] equals 'Active' and [created_date_column] is within the last 30 days. Sort by created date descending.
+
+2. Generate a SQL query that joins the [employees] and [departments] tables, returning: employee name, employee ID, department name, and manager name. Include only active employees.
+
+3. Write a SQL SELECT statement to retrieve the top 10 records from [table_name] by [amount_column], including all columns and a calculated column showing each record's percentage of the total.
+
+4. Create a SQL query to find all duplicate records in [table_name] based on [column1] and [column2]. Return the duplicate values and a count of how many times each appears.
+
+5. Write a SQL query using a CASE statement to categorize records in [table_name] by [score_column]: 0–59 = 'Needs Improvement', 60–79 = 'Meets Expectations', 80–89 = 'Exceeds Expectations', 90–100 = 'Outstanding'.
+
+6. Generate a SQL query calculating the monthly count and total [amount] of [transaction_type] records from [table_name] for the current calendar year, grouped by month.
+
+7. Write a SQL query to identify all records in [table_name] where [date_column] is NULL, [status_column] is not 'Closed', and [assigned_to_column] is NULL.
+
+8. Create a SQL query using a subquery to find all employees who earn more than the average salary for their department.
+
+9. Write a SQL query to pivot this data: [describe current table structure with rows per month]. Transform rows into columns so each month becomes its own column with the total value.
+
+10. Generate a SQL query retrieving records from [table_name] modified in the last 7 days, showing: what changed (if audit columns exist), who changed it, and when.
+
+### Data Analysis Queries
+
+11. Write a SQL query to perform a cohort analysis showing how many customers acquired each month are still active after 1, 3, 6, and 12 months.
+
+12. Generate a SQL query to calculate the average time in business days between [event_start_column] and [event_end_column] in [table_name], excluding weekends.
+
+13. Write a SQL query to identify the top 10% of [customers/cases/accounts] by [value_column] and flag them as 'High Value' in the results.
+
+14. Create a SQL query showing a trend comparison: this month vs. same month last year for [metric], grouped by [category_column].
+
+15. Write a SQL query to calculate a running total and 7-day moving average of [metric] from [table_name], partitioned by [group_column].
+
+16. Generate a SQL query producing an aging report for [accounts receivable/open cases] with buckets: 0–30 days, 31–60 days, 61–90 days, and 90+ days, with counts and totals.
+
+17. Write a SQL query to identify which [products/services/categories] had the largest increase or decrease in [metric] between [period_1] and [period_2].
+
+18. Create a SQL query to calculate monthly user retention rate: what percentage of users active in month N were also active in month N+1.
+
+19. Write a SQL query to identify outliers: records where [value_column] is more than 2 standard deviations from the mean within each [category_column].
+
+20. Generate a SQL query showing a cross-tab summary: rows = [dimension1], columns = [dimension2], values = count or sum of [metric]. Format as a matrix result.
+
+### Data Quality & Validation
+
+21. Write a SQL data quality assessment for [table_name] checking: NULL values in required fields, invalid date ranges, duplicate primary keys, values outside expected ranges, and referential integrity violations.
+
+22. Generate a SQL query to compare record counts between [source_table] and [target_table] after a data migration, broken down by [category_column] to identify discrepancies.
+
+23. Write a SQL query to validate that all records in [child_table] have a valid matching record in [parent_table] (foreign key validation without a formal constraint).
+
+24. Create a SQL query to check data consistency: confirm that [sum_column] in the header table matches the sum of [detail_amount] in the detail table for every [transaction_id].
+
+25. Write a SQL query to identify test or dummy data based on patterns: emails containing 'test', names starting with 'Test' or 'QA', and phone numbers like '555-1234'.
+
+26. Generate a SQL data profiling query for [table_name] that returns: row count, distinct count, null count, min value, max value, and average for each numeric column.
+
+27. Write a SQL query to validate that all [status_column] values in [table_name] are within this allowed list: [list values]. Flag any records with invalid values.
+
+28. Create a SQL query to detect PII data in unexpected columns: search [table_name] text columns for patterns matching SSN format (XXX-XX-XXXX), phone number formats, and email addresses.
+
+29. Write a SQL query to reconcile two tables that should have matching data: show records in Table A not in Table B, records in Table B not in Table A, and records in both with differing values in key columns.
+
+30. Generate a SQL query to identify orphaned records (child records with no parent), stale records (unchanged for more than X days), and inactive records (closed status but still linked to active items).
+
+### Reporting Queries
+
+31. Write a SQL query for a case management performance dashboard showing: total cases by status, average resolution time by case type, case volume trend for 12 months, and top 10 case categories.
+
+32. Generate a SQL query for a financial summary report: total [revenue/expenditure] by [department] and [account_code], with subtotals by [division] and a grand total, formatted for Excel export.
+
+33. Write a SQL query for a staffing report showing: total headcount by [department], vacant positions, positions filled in the last 90 days, and turnover rate for the last 12 months.
+
+34. Create a SQL query for a project portfolio status report: project name, PM, planned end date, actual end date, budget, actual spend, percent complete, and RAG status.
+
+35. Write a SQL query for a customer service KPI scorecard: tickets opened this month, tickets closed, average first response time, average resolution time, and customer satisfaction score.
+
+36. Generate a SQL query for an executive dashboard snapshot comparing [metric1] vs. target, [metric2] vs. prior period, and [metric3] trend for 12 months — formatted as a single result set for a dashboard tool.
+
+37. Write a SQL query for a workload distribution report showing how many [cases/tasks/tickets] are assigned to each team member, categorized by [status] and [priority].
+
+38. Create a SQL query for a monthly reconciliation report comparing [planned values] to [actual values], showing variance amount and variance percentage for each line item.
+
+39. Write a SQL query for a compliance report showing which [accounts/cases/users] have not completed required [actions/attestations/reviews] within the required timeframe.
+
+40. Generate a SQL query for a contract expiration report showing all contracts expiring in the next 30, 60, and 90 days with: contract value, owner, and renewal decision status.
+
+### Explaining Data to Stakeholders
+
+41. I ran this SQL query: [paste query] and got these results: [paste results]. Write a plain-English explanation of what this data shows for a non-technical government program manager.
+
+42. Write an explanation of these data discrepancies found between two systems: [describe discrepancy]. Explain likely causes, impact, and recommended next steps in non-technical language.
+
+43. I need to explain to a director why two different reports show different numbers for the same metric. Differences are caused by: [describe filter/query differences]. Write a clear, non-technical explanation.
+
+44. Translate this database error message into plain English and explain what it means for the affected business process: [paste error message].
+
+45. I have a complex SQL query with multiple joins and subqueries: [paste query]. Explain step by step what this query does in plain language for a BA colleague who doesn't know SQL.
+
+46. Write talking points for presenting these data quality findings to a senior stakeholder: [paste findings]. Frame issues in terms of business impact, not technical details.
+
+47. Create a data dictionary entry for a non-technical audience for each of these database fields: [list field names]. Include: what the field represents, who uses it, valid values, and why it matters.
+
+48. I need to present these SQL query results as a written data narrative for a monthly report: [paste results]. Write 3 paragraphs summarizing key findings, trends, and recommended actions.
+
+49. A stakeholder is questioning the accuracy of a report. I know the data is correct. Write a response explaining the methodology, data sources, and calculation logic that supports the report's accuracy.
+
+50. Write a data glossary section defining these business terms used in a report: [list terms]. Language should be appropriate for both technical and non-technical readers.
+
+### Data Mapping & Advanced
+
+51. I'm mapping data from [source system] to [target system]. Source schema: [paste]. Target schema: [paste]. Identify: direct mappings, transformation-required mappings, and fields with no source equivalent.
+
+52. Write a data transformation rule for converting this source field: [describe format] into this target format: [describe target]. Include handling for NULL values, invalid values, and boundary conditions.
+
+53. Generate a SQL script to migrate data from [source_table] to [target_table], applying these transformation rules: [list rules]. Include error logging for rejected records.
+
+54. Write a data migration validation query comparing: record counts, sum of key numeric fields, and distinct counts of key reference values between source and target.
+
+55. Create a data mapping specification table for these fields: [source fields] → [target fields]. Include: source field, source type, target field, target type, transformation logic, and validation rules.
+
+56. Write a parameterized SQL stored procedure that generates a [report type] for a given [date_range] and [category_filter], returning a result set formatted for Excel export.
+
+57. Create a SQL script to implement soft-delete on [table_name]: instead of deleting records, set a [deleted_flag] and [deleted_date] column. Include a trigger to prevent hard deletes.
+
+58. Write a SQL query using window functions to rank [employees/cases/products] within each [department/category] by [metric], showing rank, value, and difference from the top-ranked item.
+
+59. Generate a SQL stored procedure to audit all changes to [table_name]: capture before and after values for all columns on INSERT, UPDATE, and DELETE into an [audit_log] table.
+
+60. Write a SQL query to implement pagination: return records [start_row] through [end_row] from [table_name] with consistent ordering, total record count, and current page number.
+## CATEGORY 5: Process Mapping & Documentation (65 Prompts)
+
+### 5A — Current-State Process Documentation (15 prompts)
+
+**Prompt 5.1**
+"Document the current-state process for [process name] at [organization type]. Interview [stakeholder role] and map every step from trigger event to final output. Use swimlane format with [department A], [department B], and [department C] as lanes. Flag any steps where work sits idle, gets duplicated, or requires manual re-entry of data."
+
+**Prompt 5.2**
+"Create a BPMN 2.0 process model narrative for [process name]. Describe each task, gateway decision point, and event in plain English so a developer can translate it into a diagram tool. Include: start event, [number] tasks, [number] gateways with condition labels, intermediate events, and end event. Note any subprocess candidates."
+
+**Prompt 5.3**
+"Write a process walkthrough document for [process name] that a new employee could follow on day one. Avoid jargon. Each step should state: who does it, what tool or system is used, what the input is, what the output is, and what can go wrong. Target audience: [role with no prior experience in this area]."
+
+**Prompt 5.4**
+"Map the handoff points in the [process name] process. For each handoff, document: sending party, receiving party, method of transfer (email / ticket / verbal / automated), SLA or expected turnaround, and common failure modes when the handoff breaks down. Identify which handoffs are highest risk."
+
+**Prompt 5.5**
+"Build a process inventory table for the [department or function] department. Columns: Process Name | Owner | Frequency | System(s) Used | Estimated Volume per Month | Last Documented | Automation Status. Populate with [number] processes based on this description: [paste description]. Flag any processes with no documented owner."
+
+**Prompt 5.6**
+"Convert this narrative process description into a structured step table: [paste description]. Use columns: Step # | Step Name | Actor | Action | Input | Output | System | Decision Point (Y/N). Maintain the original sequence but group related micro-steps into logical steps."
+
+**Prompt 5.7**
+"Write a process exception log template for [process name]. Include fields for: exception type, date identified, step where it occurred, root cause category, impact (High/Medium/Low), resolution taken, and preventive action recommended. Add 5 example entries based on common failures in [industry/process type]."
+
+**Prompt 5.8**
+"Create a process touchpoint map for the [customer journey or internal workflow]. List every point where [customer or internal user] interacts with a system, a person, or a document. For each touchpoint note: channel (phone/web/email/in-person), wait time, pain point rating (1–5), and improvement opportunity."
+
+**Prompt 5.9**
+"Document the data flow within the [process name] process. For each step that creates, transforms, or consumes data, record: data element name, source system, destination system, transformation applied, validation rule, and data owner. Flag any data elements that are manually re-keyed between systems."
+
+**Prompt 5.10**
+"Write an as-is process narrative for [process name] from this set of SME interview notes: [paste notes]. Organize into phases, assign step ownership, and note where the notes are ambiguous or contradictory — those gaps need follow-up with [stakeholder role]."
+
+**Prompt 5.11**
+"Create a process KPI baseline document for [process name]. For each metric — cycle time, error rate, volume, cost per transaction, and customer satisfaction — document: current baseline value, measurement method, data source, owner, and target state if known. Note any metrics that are currently unmeasured."
+
+**Prompt 5.12**
+"Build a process RACI for [process name] with the following roles: [role 1], [role 2], [role 3], [role 4], [role 5]. List every major activity as a row. Assign R, A, C, or I for each role-activity combination. Flag any activities with no Accountable or with multiple Responsibles — both are process risks."
+
+**Prompt 5.13**
+"Write a process scope statement for [process name]. Include: process objective, start trigger, end state, in-scope activities, out-of-scope activities, process owner, stakeholders, and linked systems. This will be used as the header section of the full BPD (Business Process Document)."
+
+**Prompt 5.14**
+"Create a process frequency and volume analysis for [process name]. Table format: Activity | Daily Volume | Weekly Volume | Monthly Volume | Peak Period | Seasonal Variation | Automation Candidate (Y/N). Use this usage data to populate: [paste data]. Add a summary row with totals and highlight top-5 by volume."
+
+**Prompt 5.15**
+"Generate a process risk register for [process name] before a system change or re-engineering effort. Columns: Risk ID | Risk Description | Process Step Affected | Likelihood (H/M/L) | Impact (H/M/L) | Risk Score | Mitigation Strategy | Owner. Include at least [number] risks covering people, process, technology, and compliance dimensions."
+
+---
+
+### 5B — Future-State Process Design (15 prompts)
+
+**Prompt 5.16**
+"Design the future-state process for [process name] after implementing [system or initiative]. Start from the same trigger as the current state but eliminate: [pain point 1], [pain point 2], and [pain point 3]. Show the ideal sequence of steps, who owns each, and what automation replaces manual work. Note assumptions made."
+
+**Prompt 5.17**
+"Write a to-be process narrative for [process name] that achieves these goals: reduce cycle time from [X days] to [Y days], eliminate manual data entry at [step], and give [role] real-time visibility into [status]. Describe the new process step by step and explain why each change achieves the stated goal."
+
+**Prompt 5.18**
+"Create a process redesign options paper for [process name]. Present three options: (1) Optimize the current process with minimal technology change, (2) Automate key steps using [system], (3) Fully re-engineer using [target architecture]. For each option: describe the approach, estimate effort, list benefits, and list risks."
+
+**Prompt 5.19**
+"Build a process gap analysis comparing current state to future state for [process name]. Table: Process Step | Current State Description | Future State Description | Gap | Change Required | Effort (H/M/L) | Priority. Derive the gaps from these two documents: [paste current-state summary] / [paste future-state summary]."
+
+**Prompt 5.20**
+"Write the business rules that govern the future-state [process name] process. For each rule: assign a Rule ID, state the rule in plain English, note the source (policy / regulation / business decision), identify the process step where it applies, and flag rules that require system enforcement vs. manual compliance."
+
+**Prompt 5.21**
+"Create a process transition plan for moving from current-state [process name] to the future state. Sections: parallel run period, cutover date, rollback trigger conditions, training requirements by role, communication plan, and success criteria. Assume go-live is [date] with [number] weeks of preparation."
+
+**Prompt 5.22**
+"Design the exception handling paths for the future-state [process name] process. For each exception type — [exception 1], [exception 2], [exception 3] — document: detection point, handler role, resolution steps, escalation path, and SLA for resolution. Ensure every exception path returns to the main flow or terminates cleanly."
+
+**Prompt 5.23**
+"Write a process improvement hypothesis for [process name] using the A3 format: Background, Current Condition, Target Condition, Root Cause Analysis, Countermeasures, Implementation Plan, and Follow-up / Confirmation. Base the analysis on these observations: [paste findings]."
+
+**Prompt 5.24**
+"Generate a value stream map narrative for [product or service] from [start point] to [end point]. For each process step identify: value-added time, non-value-added time, wait time, inventory/queue size, and the information flow that triggers it. Calculate total lead time and value-added ratio. Flag top 3 waste sources."
+
+**Prompt 5.25**
+"Create a process automation assessment for [process name]. For each step, rate: Automation Feasibility (High/Medium/Low/Not Feasible), Recommended Tool (RPA / workflow engine / AI / API / manual), Estimated Time Savings per Month, and Implementation Complexity. Summarize total automation ROI potential at the bottom."
+
+**Prompt 5.26**
+"Write a future-state swimlane process description for [process name] with lanes for: [system 1], [system 2], [department A], [department B], and [customer/external party]. Describe each task as: [Actor] [Action Verb] [Object] using [System] and [produces/sends/receives] [Output]. Keep each step to one sentence."
+
+**Prompt 5.27**
+"Design a monitoring and controls framework for the future-state [process name] process. For each control point: step number, control type (preventive / detective / corrective), control description, frequency, responsible role, and what management report or dashboard it feeds. Align controls to [regulation or policy] requirements."
+
+**Prompt 5.28**
+"Create a process standard operating procedure (SOP) template for [process name]. Sections: Purpose, Scope, Definitions, Roles and Responsibilities, Step-by-Step Instructions, Quality Checks, Exception Handling, References, Version History. Write the first full draft using this process description: [paste description]."
+
+**Prompt 5.29**
+"Write a quick reference guide (one-page job aid) for [role] performing [process name]. Include: step-by-step numbered instructions, key decision rules in plain language, common error codes and fixes, and contact information for escalation. Format for printing on a single A4 page."
+
+**Prompt 5.30**
+"Generate change impact questions for the future-state [process name] process redesign. Produce 20 questions that the project team must answer before go-live, covering: people impact, system configuration, data migration, training, reporting changes, and downstream process effects."
+
+---
+
+### 5C — Process Documentation Standards (15 prompts)
+
+**Prompt 5.31**
+"Write a process documentation style guide for the [organization] BA team. Cover: naming conventions for processes and documents, required sections in every BPD, diagram standards (notation, color codes, shape meanings), version control rules, review and approval workflow, and storage location protocol."
+
+**Prompt 5.32**
+"Create a process document review checklist. The reviewer should verify: title and version present, scope statement complete, RACI filled with no gaps, every process step has an owner, all systems referenced are listed in the systems inventory, decision gateways have labeled outcomes, and document is approved by process owner."
+
+**Prompt 5.33**
+"Write a process naming convention standard. Rules should cover: how to name a process (verb + noun format), how to number process IDs, how to name diagram files, how to label swimlane tasks, how to version documents (major.minor), and examples of compliant vs. non-compliant names."
+
+**Prompt 5.34**
+"Create a business process glossary for the [department or domain] covering [number] terms. For each term: provide the term, definition in plain English, related terms, source (internal / industry standard), and date added. Include terms specific to: [list domain-specific concepts]."
+
+**Prompt 5.35**
+"Write a process document header and footer template. Header must include: document title, process ID, version number, status (Draft / Under Review / Approved), owner, last modified date, and classification level. Footer must include: page number, document ID, and confidentiality statement."
+
+**Prompt 5.36**
+"Generate a process maturity assessment rubric for [organization or department]. Five maturity levels (1 = Ad Hoc, 2 = Documented, 3 = Standardized, 4 = Measured, 5 = Optimized). For each level, define observable characteristics in: documentation quality, process ownership, performance measurement, continuous improvement, and tool support."
+
+**Prompt 5.37**
+"Write instructions for facilitating a process mapping workshop with [number] participants from [departments]. Include: pre-workshop preparation tasks, room or virtual setup, agenda with timings, facilitation techniques for capturing steps on sticky notes or Miro, how to handle disagreements about the process, and post-workshop documentation steps."
+
+**Prompt 5.38**
+"Create a process interview guide for the [process name] discovery phase. Include [number] open-ended questions organized by theme: process triggers, step sequence, tools used, decision points, pain points, workarounds, exceptions, volume and frequency, and performance metrics. Add follow-up probes for each theme."
+
+**Prompt 5.39**
+"Write a process validation protocol for [process name]. After a BPD draft is complete, describe how to: schedule a walkthrough with the process owner, conduct a structured review using a checklist, capture feedback, resolve conflicts between SMEs, obtain sign-off, and update the document to final status."
+
+**Prompt 5.40**
+"Generate a process improvement log template for tracking continuous improvement ideas for [process name]. Columns: Idea ID | Submitted By | Date | Description | Category (Efficiency / Quality / Compliance / Cost) | Estimated Benefit | Effort | Status | Owner | Target Date | Outcome. Add 5 sample rows."
+
+---
+
+### 5D — Tools and Templates (20 prompts)
+
+**Prompt 5.41**
+"Write a Visio or Lucidchart shape legend for a swimlane process diagram. Define: rounded rectangle (task), diamond (gateway/decision), circle (start/end event), document shape (output document), cylinder (database), dashed arrow (information flow), solid arrow (sequence flow), and color code meanings for each department lane."
+
+**Prompt 5.42**
+"Create a process comparison table for [process name] across [number] business units or regions: [BU1], [BU2], [BU3]. Columns: Process Step | BU1 Approach | BU2 Approach | BU3 Approach | Recommended Standard | Rationale. Highlight where units diverge and where standardization would reduce risk or cost."
+
+**Prompt 5.43**
+"Write a root cause analysis for why [process name] is failing to meet its SLA of [target]. Use the 5-Whys method: state the problem, then ask 'Why?' five times to reach the root cause. Then use an Ishikawa (fishbone) narrative covering: People, Process, Technology, Environment, Materials, and Measurement causes."
+
+**Prompt 5.44**
+"Create a process health dashboard specification for [process name]. Define [number] KPIs to display, for each: metric name, formula, data source, update frequency, display format (gauge / bar / trend line / RAG status), target threshold, and alert threshold. This spec will be used to build a Power BI or Tableau dashboard."
+
+**Prompt 5.45**
+"Write a process simulation scenario for [process name] to test capacity under peak load. Describe: baseline assumptions (normal volume, average step durations, resource counts), peak load scenario ([X]x normal volume), bottleneck prediction, and what process changes would resolve the bottleneck without adding headcount."
+
+**Prompt 5.46**
+"Generate a process audit checklist for [process name] for use during an internal or external audit. Group checks by: documentation compliance, role adherence, system configuration, data integrity, exception handling, and reporting accuracy. Each item should be phrased as a yes/no question with an evidence source."
+
+**Prompt 5.47**
+"Write a process onboarding guide for a new [role] joining the [department] team. Cover: the 5 most critical processes they own, where to find documentation, who to go to for each process question, common mistakes new team members make, and a 30-60-90 day plan for becoming proficient."
+
+**Prompt 5.48**
+"Create a process decommission plan for [legacy process name] being replaced by [new process]. Steps: identify all users and systems dependent on the old process, communicate retirement timeline, redirect or migrate any in-flight cases, archive documentation, update downstream dependencies, and confirm completion with process owner."
+
+**Prompt 5.49**
+"Write a process benchmarking report outline for [process name] comparing [organization] performance to industry standards or peer organizations. Sections: scope and methodology, metrics selected, data sources, benchmark comparisons, gap analysis, improvement recommendations, and appendix of raw data."
+
+**Prompt 5.50**
+"Generate a process complexity rating for each of these [number] processes: [list process names]. Rating criteria: number of steps, number of roles involved, number of systems touched, number of decision points, exception rate, regulatory burden. Score each 1–5 per criterion and calculate a weighted total. Use weights: [list weights]."
+
+**Prompt 5.51**
+"Write a lean waste assessment for [process name] using the 8 wastes of lean (DOWNTIME: Defects, Overproduction, Waiting, Non-utilized talent, Transportation, Inventory, Motion, Extra-processing). For each waste type, identify a specific example from the current-state process and estimate its cost or time impact."
+
+**Prompt 5.52**
+"Create a process integration map for [process name] showing how it connects to adjacent processes. For each integration point: upstream process name, trigger/input received, downstream process name, output sent, frequency, system interface, and data format. Flag any integrations that are manual, undocumented, or point-to-point."
+
+**Prompt 5.53**
+"Write a process cost analysis for [process name]. Identify: direct labor cost (steps × time × hourly rate), system licensing cost attributable to this process, error and rework cost, delay cost, and compliance/audit cost. Total the annual cost and compare to the expected cost of the proposed improvement."
+
+**Prompt 5.54**
+"Generate a process rollout readiness checklist for [process name] before go-live. Categories: Documentation complete, Training delivered, Systems configured and tested, Data migrated and validated, Roles confirmed and communicated, Support team briefed, Rollback plan approved, Communication sent to stakeholders. Each item: Ready / Not Ready / In Progress."
+
+**Prompt 5.55**
+"Write a process lessons learned document for [project or initiative] that included a process redesign component. Sections: What worked well (3–5 items), What didn't work (3–5 items), What we'd do differently (3–5 items), Recommendations for future process projects, and owner of follow-up actions. Use this retrospective input: [paste notes]."
+
+**Prompt 5.56**
+"Create a process archiving standard for [organization]. Define: what triggers archival (process retired / replaced / merged), where archived documents are stored, retention period by document type, who can access archived processes, and how to retrieve a historical version for audit or reference purposes."
+
+**Prompt 5.57**
+"Write a process improvement charter for a Kaizen event on [process name]. Include: problem statement, current performance baseline, improvement target, event scope (in/out), team roster with roles, event dates, facilitator, executive sponsor, and success metrics. Keep it to one page."
+
+**Prompt 5.58**
+"Generate a process handoff agreement (interface agreement) between [team A] and [team B] for the [process name] process. Cover: what A delivers to B (format, content, timing), what B expects (quality standards), SLA, escalation path when SLA is missed, dispute resolution, and review cadence for the agreement itself."
+
+**Prompt 5.59**
+"Write a vendor process assessment for [vendor name] performing [outsourced process]. Evaluation criteria: process documentation maturity, compliance with [regulation], SLA performance history, error rates, escalation responsiveness, and continuous improvement evidence. Rate each criterion 1–5 with justification and an overall score."
+
+**Prompt 5.60**
+"Create a process center of excellence (CoE) charter for [organization]. Include: mission statement, scope of authority, services offered to business units (templates, facilitation, training, tool support), governance model, membership, funding model, success metrics, and a 12-month roadmap for establishing the CoE."
+
+**Prompt 5.61**
+"Write a process taxonomy for [organization or division]. Define the hierarchy: Value Chain → Core Process → Sub-Process → Activity → Task. Populate all levels for the [function] domain using [number] core processes. Assign a process ID to every node. This will be used as the master process library structure."
+
+**Prompt 5.62**
+"Generate a process compliance matrix for [process name] mapped to [regulation or standard]. Columns: Regulation Section | Requirement | Process Step(s) That Address It | Evidence Type | Compliance Status | Gap / Action Required. Identify any requirements with no corresponding process step — those are compliance gaps."
+
+**Prompt 5.63**
+"Write a process simulation debrief template for use after tabletop testing of [process name]. Sections: scenario tested, participants, findings by process phase, issues identified (with severity), workarounds used, recommended process changes, and sign-off by process owner. Include a scoring rubric for simulation success."
+
+**Prompt 5.64**
+"Create a process library maintenance schedule. Define: quarterly review triggers (volume change / system change / org change / regulatory update), annual full review requirements, owner responsibilities, version control steps, communication to process users after updates, and KPIs for library currency (e.g., % of processes reviewed in past 12 months)."
+
+**Prompt 5.65**
+"Write a process quick-wins identification guide. Criteria for a quick win: can be implemented in under [X weeks], requires no system change, improves a measurable metric, and has buy-in from the process owner. Apply these criteria to screen this list of improvement ideas for [process name]: [paste ideas list]. Rank the top 5."
+
+---
+
+## CATEGORY 6: Gap Analysis & Risk Identification (55 Prompts)
+
+### 6A — Gap Analysis Frameworks (18 prompts)
+
+**Prompt 6.1**
+"Conduct a gap analysis for [project or initiative] comparing current capabilities to the target state defined by [source: strategy doc / contract / regulation]. Format as a table: Capability Area | Current State | Target State | Gap Description | Gap Severity (Critical/High/Medium/Low) | Recommended Action | Owner | Target Date."
+
+**Prompt 6.2**
+"Write a requirements gap analysis for [system or process]. Compare the documented requirements from [source A] against the features delivered or available in [system B]. For each gap: requirement ID, requirement text, gap type (missing / partial / wrong behavior), severity, and recommended resolution."
+
+**Prompt 6.3**
+"Create a skills gap analysis for the [team or department] in preparation for [initiative]. Assess each required skill: Skill Name | Importance to Initiative (H/M/L) | Current Team Proficiency (1–5) | Required Proficiency (1–5) | Gap Score | Training or Hiring Action Needed. Summarize top 5 critical skill gaps."
+
+**Prompt 6.4**
+"Write a data gap analysis for [reporting requirement or system migration]. For each required data element: Field Name | Required for [Use Case] | Available in [Source System] (Y/N) | Data Quality Issue | Transformation Needed | Action to Close Gap. Flag fields that are missing entirely from available sources."
+
+**Prompt 6.5**
+"Perform a regulatory compliance gap analysis for [organization] against [regulation or standard: e.g., NIST 800-53 / ISO 27001 / HIPAA / FISMA]. For each control or requirement: Control ID | Requirement Summary | Current Implementation | Compliance Status (Compliant / Partial / Non-Compliant) | Evidence | Gap Description | Remediation Action."
+
+**Prompt 6.6**
+"Create a technology gap analysis for [department or program]. Current technology stack: [list systems]. Target architecture requires: [list capabilities]. For each capability gap: describe current workaround (if any), options to close the gap (buy / build / integrate), estimated cost range, and recommended priority."
+
+**Prompt 6.7**
+"Write a process maturity gap analysis for [organization] against the [CMMI / BPMM / ISO] maturity model. Current maturity level: [X]. Target maturity level: [Y]. For each process area below target maturity: describe the gap, list specific practices missing, and recommend the sequence of improvement actions to advance one level."
+
+**Prompt 6.8**
+"Generate a stakeholder expectation gap analysis for [project]. Interview findings showed these stakeholder expectations: [paste findings]. The project scope delivers: [paste scope]. For each expectation: document whether it is in scope, out of scope, or partially addressed, and draft the communication needed to realign each out-of-scope stakeholder."
+
+**Prompt 6.9**
+"Create a budget gap analysis for [program or project]. Approved budget: $[amount]. Current forecast at completion: $[amount]. Variance: $[amount]. Break the variance into: scope additions, estimate inaccuracies, resource rate changes, vendor overruns, and unforeseen issues. For each driver, recommend a corrective action to close the gap."
+
+**Prompt 6.10**
+"Write a vendor capability gap analysis for [procurement decision]. Required capabilities based on RFP: [list requirements]. Vendor A delivers: [list]. Vendor B delivers: [list]. For each requirement gap per vendor: severity, whether gap is a showstopper or acceptable risk, and recommended mitigation. Provide a total capability score per vendor."
+
+**Prompt 6.11**
+"Perform a testing coverage gap analysis for [system or release]. Test cases planned: [number]. Requirements covered: [number] of [total]. For each uncovered requirement: requirement ID, description, reason not yet tested, risk if untested, and recommendation (add test case / defer to next cycle / accept risk). Flag any critical or high-priority uncovered requirements."
+
+**Prompt 6.12**
+"Create a reporting gap analysis for [department or program]. Reports currently produced: [list]. Reports required by [stakeholder group / contract / regulation]: [list]. For each required but missing report: define the data needed, source system, frequency, owner, and estimated effort to build. Prioritize by stakeholder impact."
+
+**Prompt 6.13**
+"Write a change readiness gap analysis for [organization] preparing for [change initiative]. Assess: leadership alignment, communication effectiveness, training availability, process documentation readiness, system readiness, and user readiness by department. For each area below target readiness, define the specific action needed before go-live."
+
+**Prompt 6.14**
+"Generate a policy gap analysis for [department] against [policy framework or standard]. For each required policy: Policy Name | Required By | Exists (Y/N) | Last Reviewed | Compliant (Y/N) | Gap Description | Action | Owner | Due Date. Highlight policies that are missing entirely vs. those that exist but need updating."
+
+**Prompt 6.15**
+"Create a service level gap analysis for [vendor / internal team] performance against SLA commitments. For each SLA metric: Metric | Contracted Target | Actual Performance (Last 3 Months) | Gap | Financial Impact (if penalty applies) | Root Cause | Corrective Action. Summarize total SLA breach exposure in dollars."
+
+**Prompt 6.16**
+"Write an integration gap analysis for [system migration or modernization project]. Current integrations: [list]. Target integrations required: [list]. For each gap: integration name, sending system, receiving system, data exchanged, current method (manual / batch / API), target method, gap type (missing / needs rework / decommission), and priority."
+
+**Prompt 6.17**
+"Produce a user experience gap analysis for [application or portal] based on these usability test findings: [paste findings]. For each gap: user task affected, current friction point, severity (Critical / High / Medium / Low), root cause category (UI design / content / navigation / performance / access), and recommended UX improvement."
+
+**Prompt 6.18**
+"Write a gap analysis executive summary for [project or program]. Synthesize findings from the detailed gap analysis into: number of gaps by severity, top 5 critical gaps and their business risk, total estimated effort to close all gaps, recommended sequence of remediation, and resource requirements. Cap at one page for leadership review."
+
+---
+
+### 6B — Risk Identification & Assessment (20 prompts)
+
+**Prompt 6.19**
+"Create a project risk register for [project name] in [phase: initiation / planning / execution / closeout]. Columns: Risk ID | Risk Statement ('There is a risk that…') | Category | Probability (H/M/L) | Impact (H/M/L) | Risk Score | Response Strategy (Avoid / Transfer / Mitigate / Accept) | Response Action | Owner | Status. Include at least 20 risks."
+
+**Prompt 6.20**
+"Write risk identification prompts I can use in a workshop with [number] stakeholders for [project]. Produce [number] open-ended questions that draw out risks across: scope, schedule, budget, resources, technology, vendor, regulatory, and change management dimensions. Include a warm-up technique and a method for voting on risk severity."
+
+**Prompt 6.21**
+"Generate a risk breakdown structure (RBS) for [project or program]. Organize risks into a hierarchy with 4 Level-1 categories and 4–5 Level-2 subcategories each. Based on [project description]. Use this structure to ensure comprehensive risk identification across all dimensions of the initiative."
+
+**Prompt 6.22**
+"Write a risk probability and impact matrix definition for [organization]. Define: 5 probability levels (Rare / Unlikely / Possible / Likely / Almost Certain) with percentage thresholds, 5 impact levels (Negligible / Minor / Moderate / Major / Critical) with dollar and schedule definitions, and the resulting 5×5 risk score heatmap with response thresholds."
+
+**Prompt 6.23**
+"Create a technology risk assessment for [system or platform]. Assess risks in: security vulnerabilities, scalability limits, vendor support lifecycle, integration fragility, data quality, disaster recovery, and technical debt. For each risk: description, likelihood, impact, current controls, residual risk, and recommended improvement."
+
+**Prompt 6.24**
+"Write a business risk assessment for implementing [solution or change] in [organization]. Assess: operational disruption, revenue impact, customer experience degradation, regulatory exposure, reputational risk, and resource constraints. For each risk, provide the business owner, likelihood, financial exposure, and preferred mitigation."
+
+**Prompt 6.25**
+"Generate a security risk assessment for [application or process] handling [data type: PII / PHI / financial / classified]. For each asset: identify threats (unauthorized access, data breach, insider threat, ransomware, supply chain attack), existing controls, vulnerability, likelihood, impact, and recommended additional control. Align to [NIST / ISO 27001 / FedRAMP]."
+
+**Prompt 6.26**
+"Create a vendor/third-party risk assessment for [vendor name] providing [service]. Evaluate: financial stability, operational capability, security posture, geographic concentration, regulatory compliance, contractual protections, exit strategy difficulty, and dependency criticality. Score each dimension 1–5 and calculate an overall vendor risk rating."
+
+**Prompt 6.27**
+"Write a risk response plan for this high-rated risk: [paste risk statement and score]. Cover all four response strategies — Avoid, Transfer, Mitigate, Accept — with a concrete action for each. Recommend the best strategy with justification. Include: responsible party, timeline, residual risk after response, and trigger for escalation."
+
+**Prompt 6.28**
+"Generate a Monte Carlo simulation narrative for [project] schedule risk. Describe the inputs: task duration ranges (optimistic / most likely / pessimistic) for the [number] critical path tasks. Explain what the simulation would output, how to interpret the P50 and P80 confidence intervals, and what schedule contingency the results would justify."
+
+**Prompt 6.29**
+"Create a risk appetite and tolerance statement for [organization or project]. Define: overall risk appetite (Conservative / Moderate / Aggressive), tolerance thresholds by risk category (financial, operational, compliance, reputational), escalation triggers, and what risks require board or executive approval before acceptance."
+
+**Prompt 6.30**
+"Write a risk heat map narrative describing the current risk landscape for [project or department]. Describe [number] risks plotted on a 5×5 probability-impact grid. Group them into Red (unacceptable — immediate action), Amber (tolerable — mitigation planned), and Green (acceptable — monitor only) zones. Include a recommended management action for each zone."
+
+**Prompt 6.31**
+"Generate an emerging risk identification brief for [industry or domain]. Identify [number] trends or changes in the external environment (technology, regulation, market, geopolitical, workforce) that could create new risks for [organization] over the next [timeframe]. For each: describe the trend, potential risk it creates, and early warning indicators to monitor."
+
+**Prompt 6.32**
+"Create a risk escalation protocol for [project or program]. Define: who owns risk monitoring at each level (team / PM / sponsor / board), the risk score thresholds that trigger escalation, the format and frequency of risk reporting at each level, the escalation timeline (how quickly must a critical risk reach the sponsor?), and de-escalation criteria."
+
+**Prompt 6.33**
+"Write a dependency risk analysis for [project]. Identify [number] external dependencies (other projects, vendors, regulatory decisions, resource availability). For each dependency: what is needed, who owns it, when it is needed, what happens to this project if it is delayed or cancelled, and what mitigation exists if the dependency fails."
+
+**Prompt 6.34**
+"Generate a residual risk statement for [control or mitigation] applied to [risk]. Original risk: [paste]. Control implemented: [describe]. Residual risk: state the remaining probability, remaining impact, rationale for why the control doesn't fully eliminate the risk, and whether the residual level is within risk tolerance. Owner must formally accept if not."
+
+**Prompt 6.35**
+"Create a risk monitoring plan for [project] covering the next [timeframe]. For each top-10 risk: define the monitoring metric or early warning indicator, frequency of review, data source, threshold that triggers action, and the action to take when the threshold is crossed. This plan feeds the weekly risk review meeting agenda."
+
+**Prompt 6.36**
+"Write a risk communication plan for [project or change initiative]. Audience-specific messages: what project team members need to know about risks, what the steering committee needs, what end users need, and what regulators or auditors need. Include: frequency, format, owner of each communication, and what must never be communicated externally."
+
+**Prompt 6.37**
+"Generate a lessons learned risk brief for [completed project]. Risks that materialized: [list]. Risks that were identified but did not occur: [list]. Risks that were not identified until they occurred: [list]. For each category, derive recommendations for risk management on future similar projects. This feeds the organization's risk knowledge base."
+
+**Prompt 6.38**
+"Create a risk-adjusted business case for [initiative]. Start with the base case NPV/ROI. Then model three risk scenarios: optimistic (risks don't materialize), most likely (key risks partially materialize), and pessimistic (major risks materialize). Show the range of outcomes and the probability-weighted expected value. Recommend go/no-go based on risk-adjusted return."
+
+---
+
+### 6C — Issue Management & Resolution (17 prompts)
+
+**Prompt 6.39**
+"Write an issue log template for [project]. Columns: Issue ID | Date Raised | Raised By | Issue Description | Impact (H/M/L) | Urgency (H/M/L) | Category | Assigned To | Target Resolution Date | Status | Resolution Description | Date Closed. Add 5 sample entries based on common [project type] issues."
+
+**Prompt 6.40**
+"Create an issue escalation decision tree for [project or program]. Define: what makes an issue warrant escalation vs. team-level resolution, the escalation path (PM → Sponsor → Steering Committee), the timeframe for each escalation tier, the information package required at each level, and the criteria for de-escalating a resolved issue."
+
+**Prompt 6.41**
+"Write a root cause analysis for this issue: [paste issue description]. Apply the 5-Whys method. Then validate using an Ishikawa fishbone covering People, Process, Technology, and Environment. Conclude with: confirmed root cause, contributing factors, immediate corrective action, and long-term preventive action."
+
+**Prompt 6.42**
+"Generate an issue impact assessment for [issue description] affecting [system or process]. Assess impact on: schedule (days of delay), budget (cost impact $), quality (defects introduced), stakeholders (who is affected and how), regulatory compliance, and customer experience. Rate overall impact High / Medium / Low with justification."
+
+**Prompt 6.43**
+"Create a corrective action plan for this issue: [paste issue]. Include: root cause confirmed, corrective actions listed by owner and due date, verification steps to confirm the issue is resolved, monitoring plan to detect recurrence, and sign-off authority. Format as a standalone document that can be sent to a client or auditor."
+
+**Prompt 6.44**
+"Write a workaround documentation for [issue] while a permanent fix is pending. Include: description of the workaround steps, who performs it, how often, estimated additional time burden per occurrence, risk of the workaround (does it introduce new errors?), and the trigger that signals the workaround can be retired."
+
+**Prompt 6.45**
+"Generate a defect triage template for [application or system] release. Columns: Defect ID | Description | Severity (Critical/High/Medium/Low) | Frequency | Affected Users | Reproducibility | Root Cause Category | Fix Effort | Fix By (sprint / release) | Disposition (Fix Now / Defer / Won't Fix / Duplicate). Add decision rules for each Severity level."
+
+**Prompt 6.46**
+"Write a problem management record for a recurring issue: [describe issue]. Include: problem ID, date identified, affected systems, number of incidents caused, total business impact, root cause investigation approach, root cause confirmed, permanent solution proposed, implementation plan, and evidence of resolution. Format for an ITIL-aligned service desk."
+
+**Prompt 6.47**
+"Create a known error database entry for [issue or defect]. Fields: Error ID, Error Description, Affected Configuration Items, Workaround Available (Y/N), Workaround Steps, Fix Status, Fix Target Date, Business Impact, Review Date. This entry will be published to the service desk for front-line teams to reference."
+
+**Prompt 6.48**
+"Write an incident report for [incident description] that occurred on [date]. Sections: Incident Summary, Timeline of Events, Root Cause Analysis, Business Impact, Immediate Actions Taken, Permanent Corrective Actions, Preventive Measures, Lessons Learned, and Sign-off. Tone: factual, non-accusatory, suitable for executive review."
+
+**Prompt 6.49**
+"Generate a post-incident review agenda for [incident]. Meeting duration: [X minutes]. Agenda items: timeline reconstruction, root cause discussion, impact assessment, response effectiveness review, corrective actions assignment, and lessons learned for the runbook. Include facilitation notes for each agenda item."
+
+**Prompt 6.50**
+"Create a critical issue war room protocol for [organization]. When a Severity-1 issue is declared: who is called into the war room (by role), what each role is responsible for, how decisions are made, communication cadence to stakeholders during the incident, and the criteria for declaring the incident resolved and closing the war room."
+
+**Prompt 6.51**
+"Write a risk-to-issue conversion criteria document for [project]. Define: at what point a risk becomes an issue (probability threshold or trigger event), how the handoff from risk log to issue log is documented, whether the original risk record is retained, and how the PM communicates the conversion to the project team and sponsor."
+
+**Prompt 6.52**
+"Generate a third-party issue escalation template for when a vendor or partner's failure is causing a project issue. Include: incident description, business impact, contractual SLA being breached, escalation contact at vendor, escalation from [your org] (name and title), remediation request, response timeline expected, and consequences of non-response."
+
+**Prompt 6.53**
+"Create an issue closure checklist for [project]. Before closing an issue, verify: root cause confirmed in writing, corrective action implemented and tested, verification testing passed, stakeholders notified of resolution, issue log updated with resolution description and close date, lessons learned captured, and recurrence monitoring in place."
+
+**Prompt 6.54**
+"Write a risk and issue dashboard KPI specification for [project]. Metrics to display: Open Issues by Severity, Issues Closed This Week, Average Days to Resolve by Severity, Open Risks by Score, Risks Moved to Issues This Period, Top 5 Risks by Score, Risks with Overdue Response Actions. Define data source and update frequency for each."
+
+**Prompt 6.55**
+"Generate an end-of-project risk and issue retrospective summary for [project]. Cover: total risks identified, risks that materialized (as %), risks that were late identified, total issues logged, average resolution time, unresolved issues at project close (and disposition), and top 3 recommendations for risk management on the next similar project."
+
+---
+
+## CATEGORY 7: Agile Ceremonies & Retrospectives (55 Prompts)
+
+### 7A — Sprint Planning (12 prompts)
+
+**Prompt 7.1**
+"Facilitate a sprint planning session for a [number]-week sprint starting [date] for [team name]. Product Owner has prioritized these backlog items: [paste list]. Team velocity is [number] story points. Help me: (1) select which items fit this sprint, (2) draft the sprint goal, (3) break the top 3 items into tasks, and (4) identify any dependencies or blockers to raise before we commit."
+
+**Prompt 7.2**
+"Write a sprint goal for a sprint focused on [theme or feature area]. The sprint goal should: be achievable in [number] days, be testable (we can say yes or no at the end), communicate business value, and be short enough to display on a team dashboard. Generate 3 options and recommend the strongest."
+
+**Prompt 7.3**
+"Create a sprint planning agenda for a [number]-hour session with [number] team members. Include: pre-meeting preparation tasks for PO and Scrum Master, Part 1 (what we'll do — backlog review), Part 2 (how we'll do it — task breakdown), capacity check, commitment decision, and close. Add facilitation tips for each segment."
+
+**Prompt 7.4**
+"Write a capacity planning worksheet for the upcoming sprint. Team members: [list names and roles]. Sprint duration: [number] days. For each member: available days (minus PTO/holidays), focus factor (% of time on sprint work vs. meetings/support), and available story points. Calculate total team capacity in story points."
+
+**Prompt 7.5**
+"Review these sprint planning inputs and identify risks before the team commits: Sprint goal: [paste]. Planned items: [paste backlog list with estimates]. Team capacity: [number] points. Velocity last 3 sprints: [numbers]. Flag: overcommitment, unclear items that need splitting, items with unresolved dependencies, and items missing acceptance criteria."
+
+**Prompt 7.6**
+"Write acceptance criteria for these [number] user stories selected for the sprint: [paste stories]. Each AC set should: use Given/When/Then format, cover the happy path and 2 edge cases, be testable by a QA in under [time], and avoid implementation language. Flag any story that lacks enough detail to write AC for."
+
+**Prompt 7.7**
+"Create a definition of ready checklist for user stories to be eligible for sprint planning at [organization]. A story is Ready when: [generate 8–10 criteria covering: title, user story format, acceptance criteria, size estimate, dependencies identified, designs available, test scenarios outlined, non-functional requirements addressed]. Make it specific to [team type: gov / fintech / healthcare / etc.]."
+
+**Prompt 7.8**
+"Write a sprint commitment email from the Scrum Master to stakeholders after sprint planning. Include: sprint number, sprint dates, sprint goal, summary of committed items (count and story points), team capacity note, key risks or dependencies flagged, and when the team will provide the next status update."
+
+**Prompt 7.9**
+"Generate splitting strategies for this large user story: [paste story with estimate]. The story is estimated at [number] points and needs to fit in one sprint. Apply the SPIDR method (Spikes, Paths, Interfaces, Data, Rules) to identify at least 3 ways to split it into smaller, independently valuable slices. Recommend the best split and explain why."
+
+**Prompt 7.10**
+"Create a sprint backlog template for [team name]'s sprint [number]. Table columns: Story ID | Story Summary | Story Points | Task | Task Owner | Estimated Hours | Actual Hours | Status. Pre-populate with these committed stories: [paste list]. Leave task rows blank for the team to fill in during planning."
+
+**Prompt 7.11**
+"Write a planning poker facilitation guide for estimating [number] backlog items in a [number]-hour session. Include: how to present each item, how to reveal cards simultaneously, how to handle outlier votes, when to re-estimate vs. accept the median, and how to document the final estimate with rationale. Add a note on remote facilitation best practices."
+
+**Prompt 7.12**
+"Generate pre-sprint checklist for the Product Owner. Items to complete before sprint planning: backlog groomed to [number] ready stories, top [number] stories have acceptance criteria written, dependencies with [team B] confirmed, blocked items resolved or de-prioritized, velocity trend reviewed, and sprint goal drafted for team discussion."
+
+---
+
+### 7B — Daily Standups & Sprint Reviews (10 prompts)
+
+**Prompt 7.13**
+"Write standup update scripts for a team member working on [task type] for the past 24 hours. Generate 5 variations that answer: What did I complete yesterday? What will I work on today? Is there anything blocking me? Each should be specific, under 90 seconds spoken, and model the behavior we want from all team members."
+
+**Prompt 7.14**
+"Create a standup anti-patterns guide for [Scrum Master or team lead] to share with the team. List [number] common standup failures (status report to the manager, problem-solving in the standup, vague updates, silent blockers, phone-checking), explain why each is harmful, and give a specific reframe or intervention for each."
+
+**Prompt 7.15**
+"Write a sprint review agenda for Sprint [number] with [number] attendees including [stakeholder types]. Duration: [X hours]. Include: sprint goal recap, demo sequence for [number] features (with presenter assignments), what was not completed and why, metrics review (velocity, burndown), stakeholder Q&A, and Product Owner acceptance decisions."
+
+**Prompt 7.16**
+"Create a sprint demo script for [feature name] to present to stakeholders. The demo should: start with the user need this solves, show the exact user journey in [number] steps, highlight the key decision points, show what happens in the error case, and end with what this enables for the next sprint. Time: under [number] minutes."
+
+**Prompt 7.17**
+"Write a sprint review executive summary for Sprint [number]. Include: sprint goal (met/partially met/not met), velocity vs. forecast, key features delivered (3 bullets), items not completed and disposition, metrics trend (last 3 sprints), top risk or impediment resolved, and preview of Sprint [next number] focus. Cap at half a page."
+
+**Prompt 7.18**
+"Generate sprint review stakeholder feedback capture template. During the review, record: Feedback Item | Stakeholder | Feedback Type (Positive / Change Request / Question / Defect) | Priority | Backlog Action (New Story / Update Existing / No Action). Add a summary section for the PO to sign off on all captured items."
+
+**Prompt 7.19**
+"Write a sprint burndown chart narrative for Sprint [number]. The chart shows: [describe the burn pattern — steady burn / spike mid-sprint / flat then steep / etc.]. Interpret what the pattern means about the team's work behavior, identify the 2–3 most likely causes, and recommend one change for the next sprint to improve predictability."
+
+**Prompt 7.20**
+"Create a sprint metrics report for [team name] covering Sprints [X] through [Y]. Metrics: velocity (per sprint and 3-sprint rolling avg), story point completion rate, carryover rate, defect escape rate, sprint goal achievement rate, and team satisfaction score. Include a trend interpretation and one recommendation per metric showing a negative trend."
+
+**Prompt 7.21**
+"Write a failed sprint analysis for Sprint [number] where the sprint goal was not met. Cover: what the sprint goal was, what was actually delivered, root causes for the shortfall, contributing team behaviors or process failures, impact on the release plan, immediate corrective actions, and what the retrospective should focus on."
+
+**Prompt 7.22**
+"Generate a sprint review invitation email to [stakeholder group] for Sprint [number] review on [date/time]. Include: what will be demonstrated (feature names, not technical details), what decisions stakeholders are being asked to make, what feedback is needed, how long it will take, and the meeting link. Tone: clear, business-focused, not technical."
+
+---
+
+### 7C — Retrospectives (20 prompts)
+
+**Prompt 7.23**
+"Facilitate a sprint retrospective for Sprint [number] using the Start / Stop / Continue format. We have [number] people and [X minutes]. Generate [number] warm-up questions, the working prompt for each category, a dot-voting facilitation method for prioritizing action items, and a template for capturing 3 action items with owners and due dates."
+
+**Prompt 7.24**
+"Create a retrospective using the '4 Ls' format (Liked, Learned, Lacked, Longed For) for [team] after [sprint / release / project]. Write the prompt for each quadrant, suggest a timebox per section, and provide a synthesis question to help the team move from observations to action items."
+
+**Prompt 7.25**
+"Write a retrospective using the Mad / Sad / Glad format for a team that has had a difficult sprint. Include: how to create psychological safety before starting, prompts for each emotion category, a method for identifying patterns across items, and how to transition from venting to constructive action planning without dismissing the team's feelings."
+
+**Prompt 7.26**
+"Generate a retrospective action item plan from these raw retro outputs: [paste team's notes from a recent retro]. Categorize items, de-duplicate, identify the top 3 actionable improvements, assign an owner to each, set a review date, and write each as a SMART goal. Note any themes that need deeper follow-up beyond this sprint."
+
+**Prompt 7.27**
+"Create a retrospective health check for [team]. The team has been doing retrospectives for [number] sprints. Signs of retrospective fatigue: same issues recurring, low participation, no follow-through on action items, or very short sessions. Diagnose these signs and recommend: one format change, one facilitation technique change, and one structural change."
+
+**Prompt 7.28**
+"Write a remote retrospective facilitation guide for a distributed team in [number] time zones using [tool: Miro / MURAL / Mentimeter / FigJam]. Include: pre-work to send participants, template setup in the tool, how to handle time zone constraints, engagement techniques for async participants, and how to synthesize results when not all team members attended live."
+
+**Prompt 7.29**
+"Generate a retrospective agenda for a 90-minute end-of-release retrospective (not a sprint retro) for [team] that shipped [release name]. Sections: Celebrate wins, Review release metrics vs. plan, What slowed us down, What accelerated us, Process improvements for next release, and Action item commitment. Assign timebox to each section."
+
+**Prompt 7.30**
+"Create a retrospective for a team experiencing interpersonal conflict. The issue is: [describe issue broadly without attributing blame]. Design a safe retrospective format that: surfaces the systemic causes rather than personal blame, uses anonymous input collection, follows norms like 'Vegas rule' (what's said here stays here), and produces team agreements rather than individual call-outs."
+
+**Prompt 7.31**
+"Write retrospective discussion prompts specifically for a BA team (not a dev team). Focus areas: requirements quality, stakeholder engagement effectiveness, elicitation technique effectiveness, documentation standards adherence, and collaboration with the development team. Generate 3 prompts per focus area."
+
+**Prompt 7.32**
+"Generate a retrospective improvement tracking table for [team] over the last [number] sprints. Columns: Sprint # | Action Item | Owner | Due Date | Status | Outcome (if closed). Analyze the pattern: what % of action items were completed on time? What categories of improvement were most neglected? Recommend accountability structure changes."
+
+**Prompt 7.33**
+"Create a 'Sailboat' retrospective facilitation guide for [team]. Explain the metaphor (wind = what's helping, anchors = what's slowing us down, rocks = risks ahead, island = goal). Write the prompt for each element, the grouping and dot-voting process, and how to prioritize the most important anchor to remove this sprint."
+
+**Prompt 7.34**
+"Write a 'Timeline' retrospective for Sprint [number]. The team plots significant events (good and bad) on a timeline from sprint start to end. Generate: the instruction to participants, how to use color coding (green = positive, red = negative, yellow = learning moment), how to find patterns, and what questions to ask once the timeline is visible."
+
+**Prompt 7.35**
+"Generate a retrospective format for a team that keeps identifying the same problems sprint after sprint. The format should surface: why repeated action items failed, what systemic barrier is preventing improvement, what would need to change at the team / process / org level to make progress, and one focused experiment to try this sprint."
+
+**Prompt 7.36**
+"Write a retro-in-a-box kit for a new Scrum Master running their first retrospective with a team of [number] people. Include: materials list, room setup (or virtual setup), icebreaker, the exact script for opening the session, facilitation instructions for Start/Stop/Continue, how to handle silence or over-talkers, and the closing action."
+
+**Prompt 7.37**
+"Create a quarterly retrospective (big retro) agenda for [team] looking back at [number] sprints. Sections: Quantitative review (velocity trends, defect rates, retro action completion rate), Qualitative themes (patterns from individual sprint retros), What made our best sprint great, Team working agreements review, Goals for next quarter. Duration: [X hours]."
+
+**Prompt 7.38**
+"Write five creative retrospective icebreakers for a remote team that will run a [number]-minute retro. Each icebreaker should: take under 3 minutes, work in [tool], get people talking before the serious reflection, and connect loosely to the sprint or team theme. Provide the exact prompt and instructions for each."
+
+**Prompt 7.39**
+"Generate a retrospective facilitation debrief template for a Scrum Master to complete after running a retrospective. Fields: Date, Sprint #, Format Used, Attendance, Energy Level (1–5), Key Themes Surfaced, Action Items Captured (#), Any Facilitation Challenges, What I'd Do Differently Next Time, and Overall Retro Effectiveness Score (1–5)."
+
+**Prompt 7.40**
+"Create a team working agreements review agenda for a retrospective add-on. The team's current working agreements are: [paste list]. Review process: (1) read each agreement aloud, (2) ask the team to rate adherence 1–5, (3) identify the lowest-rated agreement, (4) discuss root cause of non-adherence, (5) revise the agreement or create an action to support it."
+
+**Prompt 7.41**
+"Write a psychological safety check-in for use at the start of retrospectives. Include: a 30-second framing statement about retro norms, a 1-question anonymous pulse check (e.g., 'On a scale of 1–5, how safe do you feel sharing honest feedback today?'), how to respond if the average is below 3, and how to reference it at the end to close the loop."
+
+**Prompt 7.42**
+"Generate a retrospective for a cross-functional team including [roles: BA, Dev, QA, UX, PM]. The format should ensure each discipline's perspective is heard, since devs often dominate and BA/QA/UX voices go unheard. Design: role-specific input prompts, a structured sharing protocol, and a synthesis step that balances across disciplines."
+
+---
+
+### 7D — Agile Ceremonies General (13 prompts)
+
+**Prompt 7.43**
+"Write a backlog refinement agenda for a [number]-hour session for [team]. Items to refine: [paste list]. Agenda: Review definition of ready, walk through each item for clarity questions, estimate using [method: T-shirt sizing / story points / #NoEstimates], identify dependencies, and assign priority tier. Facilitation note: if an item takes over [X minutes], timebox and schedule a follow-up."
+
+**Prompt 7.44**
+"Create a story refinement facilitation guide for [BA or PO]. When refining a story: start with the user's goal, identify acceptance criteria gaps, check for technical dependencies (ask the dev team), confirm sizing agreement, and assign to a sprint candidate. Write a script for presenting each story in under [number] minutes."
+
+**Prompt 7.45**
+"Generate a sprint 0 / team kickoff agenda for a new agile team forming to work on [project]. Sessions: Team charter and norms, Working agreements, Definition of Done workshop, Definition of Ready workshop, Backlog seeding (first round of story writing), Sprint cadence decisions, and tool setup. Duration: [X days]."
+
+**Prompt 7.46**
+"Write a definition of done (DoD) for a [type: software / data / content / government] team. Include: development complete, code reviewed and merged, unit tests written and passing, integration tests passing, documentation updated, QA tested in [environment], accessibility checked, product owner accepted, deployed to [environment]. Add rationale for each criterion."
+
+**Prompt 7.47**
+"Create a PI Planning agenda for [number] teams using SAFe. Two-day event. Day 1: briefings, draft plan, team breakouts. Day 2: draft plan review, risk management, final plan. Include: pre-PI preparation tasks, facilitator roles, how teams communicate cross-team dependencies, and how risks are escalated to the RTE. Timebox each block."
+
+**Prompt 7.48**
+"Write a Scrum of Scrums agenda for [number] teams for a [number]-minute weekly sync. Each team representative answers: What did our team complete that affects other teams? What will our team work on that other teams should know about? Are we blocked by another team or is another team blocked by us? Summarize decisions and escalations."
+
+**Prompt 7.49**
+"Generate an agile ceremony calendar for Sprint [number] for [team]. Include: Sprint Planning (day 1), Daily Standups (all days, 15 min), Backlog Refinement (mid-sprint, 60–90 min), Sprint Review (last day, [X min]), Retrospective (last day, [X min]). Add: who facilitates each, who is required to attend, and who is optional."
+
+**Prompt 7.50**
+"Create a remote ceremony best practices guide for a team fully distributed across [number] locations. Cover: daily standup etiquette (cameras on / muting protocol / note-taking), sprint review demo setup (screen share best practices, demo environment stability), retrospective digital tool setup, and how to handle poor connectivity without disrupting the session."
+
+**Prompt 7.51**
+"Write a ceremony anti-patterns catalog for [organization adopting agile]. Common failures: sprint planning that runs 5+ hours, daily standups that become status reports, sprint reviews with no stakeholder attendance, retrospectives with no action items, and backlog refinement skipped entirely. For each: describe the symptom, root cause, and the fix."
+
+**Prompt 7.52**
+"Generate a sprint goal quality checklist. A strong sprint goal must: express business value (not just task completion), be achievable by the team in one sprint, be testable at the sprint review, communicate enough context for stakeholders to understand without reading the backlog, and be agreed upon by both the team and the Product Owner. Rate this sprint goal: [paste goal]."
+
+**Prompt 7.53**
+"Write a new Scrum Master onboarding guide covering the first 90 days. Month 1: observe and map the current ceremonies, build relationships with team and stakeholders, identify impediments. Month 2: begin facilitating retrospectives and refining ceremonies. Month 3: introduce one process improvement and measure its impact. Include key questions to ask in each phase."
+
+**Prompt 7.54**
+"Create a hybrid agile/waterfall ceremony guide for [government or regulated industry] context. The team uses sprints for development but delivers under a fixed contract structure. Adapt: sprint planning (align to WBS and contract deliverables), sprint review (map demo outputs to deliverable acceptance), and retrospective (include contract compliance lens)."
+
+**Prompt 7.55**
+"Generate a ceremony effectiveness survey for [team]. 10 questions rated 1–5: sprint planning produces clear sprint goals, daily standups identify blockers early, sprint reviews get useful stakeholder feedback, retrospectives produce actionable improvements, backlog refinement keeps stories ready, etc. Include 2 open-text questions. Send after [X sprints] to measure ceremony health trend."
+
+---
+
+## CATEGORY 8: Product Ownership & Backlog Refinement (55 Prompts)
+
+### 8A — Product Vision & Strategy (12 prompts)
+
+**Prompt 8.1**
+"Write a product vision statement for [product name] serving [target user] in [market or domain]. Use the Geoffrey Moore template: 'For [target customer] who [need or opportunity], [product name] is a [product category] that [key benefit, compelling reason to buy]. Unlike [primary competitive alternative], our product [primary differentiation].' Then write a 3-sentence expansion of the vision."
+
+**Prompt 8.2**
+"Create a product strategy one-pager for [product name]. Sections: Vision (one sentence), Target Users (2–3 personas), Core Problem Being Solved, Strategic Bets (3 bets we're making about the market/users/technology), 12-Month Goals, Metrics for Success, and What We Are NOT Building. This will be shared with the exec team and engineering leadership."
+
+**Prompt 8.3**
+"Write a product roadmap for [product name] covering the next [number] quarters. Format: Now / Next / Later. For each time horizon: list the themes (not features), the business outcomes targeted, the key risks, and 2–3 specific initiatives. Derive from this strategic context: [paste goals or strategy doc]. Note any dependencies between themes."
+
+**Prompt 8.4**
+"Generate a product OKR set for [product / team] for [quarter]. Create [number] Objectives (inspirational, qualitative goals) each with [number] Key Results (measurable outcomes, not outputs). Align to these company goals: [paste]. Ensure at least one KR is a leading indicator and one is a lagging indicator per objective."
+
+**Prompt 8.5**
+"Create a product discovery research plan for [product or feature]. Include: hypotheses to test, target user segments to interview, research method (user interviews / survey / usability test / prototype test), sample size, recruitment criteria, interview guide (8–10 questions), analysis approach, and how findings will feed the backlog."
+
+**Prompt 8.6**
+"Write a product opportunity assessment for [new feature or product idea]. Sections: Problem/Opportunity Statement, Who experiences this problem, How are they solving it today, Market size estimate, Competitive landscape, Strategic fit with [product vision], Estimated development effort, Recommended go/no-go and rationale."
+
+**Prompt 8.7**
+"Generate a competitive analysis matrix for [product] vs. [competitor A], [competitor B], and [competitor C]. Evaluate across: [feature set 1], [feature set 2], [feature set 3], pricing model, target user, integration ecosystem, support quality, and customer ratings. Highlight where [product] is differentiated and where it lags. Recommend top 2 gaps to close."
+
+**Prompt 8.8**
+"Write a product metrics framework for [product name]. Tier 1 (North Star Metric): [define]. Tier 2 (Input Metrics): [list 3–5 metrics that drive the North Star]. Tier 3 (Health Metrics): [list metrics that flag problems but aren't primary goals]. For each metric: formula, data source, owner, update frequency, and target range."
+
+**Prompt 8.9**
+"Create a product hypothesis statement for [feature idea] using the format: 'We believe [doing this] for [this user] will achieve [this outcome]. We will know we are right when we see [measurable signal].' Then design a minimum experiment to test this hypothesis in [timeframe] with no more than [number] engineering days of investment."
+
+**Prompt 8.10**
+"Write a go-to-market plan for [product feature or release]. Sections: Target Segment, Value Proposition for This Release, Channels (where and how users will hear about it), Launch Date, Success Metrics (Week 1 and Month 1), Sales/Support Enablement (what teams need to know), and Rollback Criteria (what would trigger pulling the release)."
+
+**Prompt 8.11**
+"Generate a product feedback synthesis report from these raw user inputs: [paste survey results / interview notes / support tickets]. Group themes by frequency and impact. For each theme: quote 1–2 representative user statements, estimate % of users affected, rate the opportunity score (importance × satisfaction gap), and recommend a backlog action."
+
+**Prompt 8.12**
+"Write a product deprecation plan for [feature or product] being retired. Sections: Deprecation rationale, User segments affected, Communication timeline (when to announce, when to restrict, when to remove), Migration path for users, Support plan during transition, Success criteria for deprecation completion, and legal / contractual considerations."
+
+---
+
+### 8B — Backlog Management (18 prompts)
+
+**Prompt 8.13**
+"Create a product backlog template for [product name]. For each backlog item include: ID, Title (as a user story), Persona, Problem Being Solved, Acceptance Criteria (3–5 items), Story Points, Priority (MoSCoW), Sprint Target, Labels/Tags, and Link to Design. Pre-populate with [number] example items for [feature area]."
+
+**Prompt 8.14**
+"Write a backlog prioritization recommendation for these [number] items: [paste list]. Prioritize using RICE scoring: Reach (users affected per quarter), Impact (0.25/0.5/1/2/3), Confidence (%), Effort (person-months). Calculate RICE score = (R × I × C) / E. Rank the items by score and note any that should be moved to the ice box."
+
+**Prompt 8.15**
+"Create a MoSCoW prioritization for [release name] based on these constraints: launch date [date], team size [number], sprint capacity [number] points. Backlog items: [paste list with estimates]. Classify each item Must Have / Should Have / Could Have / Won't Have. Ensure the Must Haves fit within [X% of] total capacity."
+
+**Prompt 8.16**
+"Write a backlog grooming session output for [team]. Items reviewed: [paste list]. For each item: list the clarifications made, updated acceptance criteria (if changed), revised estimate (if re-estimated), and new status (Ready / Not Ready / Needs Design / Needs Discovery). Flag items that need follow-up outside this session."
+
+**Prompt 8.17**
+"Generate epic decomposition for this epic: [paste epic title and description]. Break it into [number] user stories that are independently deployable, end-to-end slices of value, and each completable in one sprint. Write each story in 'As a [user], I want [goal], so that [benefit]' format with at least 3 acceptance criteria."
+
+**Prompt 8.18**
+"Create a story splitting decision guide for [BA / PO] when a user story is too large. Apply the INVEST criteria (Independent, Negotiable, Valuable, Estimable, Small, Testable) to diagnose why a story is too big. Then provide 5 splitting patterns with examples: by workflow steps, by data variations, by user type, by business rules, and by interface/device."
+
+**Prompt 8.19**
+"Write a backlog health assessment for [product]. Evaluate: % of top backlog items that are Ready (have AC and estimates), oldest item in the backlog (staleness indicator), ratio of tech debt to feature stories, # of items with no owner or priority, and last date backlog was fully reviewed. Recommend 3 actions to improve backlog health."
+
+**Prompt 8.20**
+"Generate a technical debt backlog for [product or system]. For each tech debt item: ID, Description, System Component, Business Risk If Not Addressed, Estimated Remediation Effort, Recommended Sprint, Sponsor (who cares about this getting fixed), and Acceptance Criteria for 'done.' Include [number] items based on this tech debt description: [paste]."
+
+**Prompt 8.21**
+"Create a dependency map for the [product] backlog. For the top [number] backlog items, identify: dependencies on other teams, dependencies on vendors, dependencies on infrastructure decisions, and dependencies on regulatory approval. Format as a table and flag critical path dependencies that could delay the release."
+
+**Prompt 8.22**
+"Write a backlog item acceptance decision log for [sprint / release]. For each item reviewed at the sprint review: Item ID | Description | Demo Outcome | PO Decision (Accept / Reject / Conditional) | Conditions for Acceptance | Return to Backlog (Y/N) | New Backlog Item Created (Y/N). This log replaces informal verbal acceptance."
+
+**Prompt 8.23**
+"Generate a product backlog refinement checklist for [Product Owner] to complete before the refinement session. Items: top 10 stories have AC written, dependencies with [other team] confirmed, designs reviewed with UX for top 5 items, tech spike results incorporated, backlog pruned of items > [X months] old with no action, and capacity for this sprint confirmed."
+
+**Prompt 8.24**
+"Create a spike (research task) template for [topic]. A spike is time-boxed exploration with a defined output. Fields: Spike Title, Problem/Question to Answer, Time Box ([number] days), Who Does It, Expected Output (document / prototype / POC / recommendation), Success Criteria, and What Decision This Enables. Write a sample spike for [technical or design question]."
+
+**Prompt 8.25**
+"Write a backlog item for a non-functional requirement: [describe NFR, e.g., the system must load pages in under 2 seconds for 95% of users]. Include: NFR category (performance / security / accessibility / scalability / reliability), acceptance criteria with measurable thresholds, how it will be tested, and which features or epics it applies to."
+
+**Prompt 8.26**
+"Generate a release backlog cut for [release name] with deadline [date]. Total capacity: [number] story points. Priority 1 (Must Have): [list items with estimates]. Priority 2 (Should Have): [list]. Priority 3 (Could Have): [list]. Show: what fits in Must Have capacity, what can be added from Should Have, and what is deferred. Include a risk flag if Must Haves exceed capacity."
+
+**Prompt 8.27**
+"Create a user story writing guide for [new BA or PO]. Cover: the As a / I want / So that format and why each part matters, common mistakes (too technical / too large / no 'so that'), how to test whether a story is valuable vs. merely a task, and how to write 5 example stories for [domain]. Include before/after examples of poorly written vs. well-written stories."
+
+**Prompt 8.28**
+"Write a backlog item for a bug found in production: [describe bug]. Fields: Bug ID, Summary, Environment Found, Steps to Reproduce, Expected Behavior, Actual Behavior, Severity (Critical/High/Medium/Low), User Impact, Assigned To, Root Cause (if known), Fix Description, and Test Cases to Add to Regression Suite."
+
+**Prompt 8.29**
+"Generate a product backlog for [MVP] with [number] items. MVP goal: [describe]. User personas: [list]. For each item: user story, persona, problem solved, estimated size (S/M/L), priority (P1/P2/P3), and MVP inclusion justification. Ensure the set of P1 items represents the minimum functionality to validate the core value proposition."
+
+**Prompt 8.30**
+"Create an ice box policy for [product team]. Define: what goes in the ice box (backlog items not likely to be prioritized in [timeframe]), how often the ice box is reviewed, who can un-freeze an item and what triggers it, how long an item stays before being deleted, and how to communicate ice box decisions to stakeholders who submitted ideas."
+
+---
+
+### 8C — Product Owner Stakeholder Management (13 prompts)
+
+**Prompt 8.31**
+"Write a stakeholder feature request response email for when a stakeholder requests a feature that is in the backlog but not prioritized for the next [timeframe]. Acknowledge the request, explain the prioritization framework used, give an honest timeline estimate, invite them to a future roadmap review, and offer an interim workaround if one exists."
+
+**Prompt 8.32**
+"Create a product roadmap review meeting agenda for [number] business stakeholders. Duration: [X minutes]. Include: roadmap overview, Q3/Q4 theme walkthrough, stakeholder priority alignment exercise (dot voting on themes), questions and feedback capture, and next steps. Prepare the PO for the top 3 likely objections and how to respond."
+
+**Prompt 8.33**
+"Write a no-go decision communication for a feature that was deprioritized from [release]. Audience: [stakeholder who championed it]. Explain: the prioritization factors (capacity, strategic fit, user impact score), what was prioritized instead and why, whether this feature will be reconsidered in future cycles, and any alternative that partially addresses their need."
+
+**Prompt 8.34**
+"Generate a product council / governance forum update for [product name] covering [quarter]. Sections: progress vs. OKRs, features shipped, key metrics movement, top 3 risks and mitigations, stakeholder feedback themes, proposed priority changes for next quarter, and decisions needed from the council. Keep to [number] slides."
+
+**Prompt 8.35**
+"Write a user persona set for [product name] with [number] personas. For each persona: name, role/title, organization type, day-in-the-life narrative, top 3 goals, top 3 frustrations, tech comfort level, preferred communication channels, and the specific problem your product solves for them. Base on this research data: [paste]."
+
+**Prompt 8.36**
+"Create a customer journey map for [persona name] using [product name]. Map: Awareness → Consideration → Decision → Onboarding → Regular Use → Renewal/Advocacy. For each stage: what the user is thinking/feeling, their actions, touchpoints with the product or team, pain points, and opportunities for improvement. Flag the highest-impact moments."
+
+**Prompt 8.37**
+"Write a product steering committee escalation brief for [issue: budget overrun / scope change / missed milestone / strategic pivot]. One page. Include: situation summary, root cause, options considered (with pros/cons), recommended option, resource or decision needed from the committee, and timeline pressure. Close with a clear ask."
+
+**Prompt 8.38**
+"Generate a release communication plan for [product feature] launching [date]. Audiences: end users, internal team, support staff, executive sponsors, and external clients (if applicable). For each: the message (what they need to know), channel, timing, owner, and success signal (how will you know they received and understood it?)."
+
+**Prompt 8.39**
+"Create a product beta test plan for [feature]. Include: beta objective, success criteria, participant selection criteria, # of participants, beta duration, what participants will test (scenarios), how feedback is collected (form / interview / usage data), how issues are triaged during beta, and go/no-go criteria for general availability."
+
+**Prompt 8.40**
+"Write a product launch retrospective for [product or feature] launched [timeframe ago]. Sections: launch goals vs. actuals, adoption metrics at Day 30, user feedback themes (positive and negative), what the launch team did well, what went wrong, what we'd change about the launch process, and 3 action items for the next launch."
+
+**Prompt 8.41**
+"Generate a feature retirement decision framework for [product]. Criteria to retire a feature: below [X]% of users have used it in the past [Y months], maintenance cost exceeds [Z% of] team capacity, no strategic fit with current vision, and no contractual obligation to maintain it. Apply to this feature: [describe feature] with this usage data: [paste data]."
+
+**Prompt 8.42**
+"Write a product Q&A FAQ for an internal all-hands presentation about [product or upcoming release]. Anticipate [number] likely questions about: why this product / why now, what changes for users, what's not changing, timelines, how feedback will be incorporated, and what success looks like. Write both the question and the answer."
+
+**Prompt 8.43**
+"Create an A/B test plan for [feature variation]. Hypothesis: [state]. Variant A (control): [describe]. Variant B (test): [describe]. Success metric: [primary KPI]. Guardrail metrics: [metrics that must not degrade]. Sample size calculation: [describe methodology]. Duration: [X days]. Decision rules: when to call the test, what result triggers shipping Variant B."
+
+---
+
+### 8D — Agile BA Skills & Delivery (12 prompts)
+
+**Prompt 8.44**
+"Write a BA in Agile role guide for [organization transitioning to agile]. Explain: how the BA role shifts from writing big upfront requirements to continuous discovery and refinement, what BAs own vs. what POs own, how to collaborate with developers during a sprint, and how to maintain just-enough documentation in an agile context."
+
+**Prompt 8.45**
+"Create a just-in-time documentation strategy for [product team]. Define: what must be documented before development starts (AC, business rules, UI annotations), what can be documented concurrently (process flows, data dictionary), what can be documented after delivery (user guides, runbooks), and what doesn't need documentation at all."
+
+**Prompt 8.46**
+"Write a BA sprint contribution log for Sprint [number]. For each day of the sprint: what stories the BA refined, what stakeholder conversations happened, what acceptance criteria were clarified or updated, what blockers were resolved, and what work is queued for next sprint. This demonstrates BA value within the sprint even without a dev-like burndown."
+
+**Prompt 8.47**
+"Generate a BA-to-developer handoff checklist for [story type]. Before a story moves to development: AC written in Given/When/Then, wireframes or mockups attached, business rules listed, data requirements specified, error states defined, non-functional requirements noted, dependencies confirmed with [other team], and PO has accepted the AC."
+
+**Prompt 8.48**
+"Create a BA interview prep guide for a candidate interviewing for an Agile BA role at [company type]. Cover: expected questions about agile experience, how to describe your role in backlog refinement, how to demonstrate elicitation skills in a case study interview, common traps in BA interviews, and 5 questions the candidate should ask the panel."
+
+**Prompt 8.49**
+"Write a story map for [user journey or product flow]. The X-axis is the user journey (major activities from left to right). The Y-axis is priority (top = must have, bottom = nice to have). Populate with [number] user tasks across [number] journey phases. Slice the map into [number] releases. Use this user research: [paste research summary]."
+
+**Prompt 8.50**
+"Generate a BA toolbox inventory for [agile BA or Product Owner]. List [number] tools across categories: requirements documentation, wireframing, process mapping, backlog management, data analysis, stakeholder communication, testing support, and metrics / reporting. For each tool: tool name, primary use case, cost tier, and when you'd choose it over alternatives."
+
+**Prompt 8.51**
+"Write an impact mapping for [goal: grow active users by 20% in Q3]. Map: Goal → Actors who can help (or hinder) → Impacts (behavior changes needed from each actor) → Deliverables (what we can build to create those impacts). Use this to identify which backlog items support the goal and which should be deprioritized."
+
+**Prompt 8.52**
+"Create a non-functional requirements backlog for [system]. Categories: Performance (response time, throughput, load), Security (auth, encryption, audit logging), Reliability (uptime, failover, backup), Scalability (concurrent users, data volume), Usability (accessibility, device support), and Compliance (regulation, standard). Write [number] NFRs with measurable acceptance criteria."
+
+**Prompt 8.53**
+"Write a product increment review template for [program increment / PI] in a SAFe context. Sections: PI objectives met vs. planned, features delivered by team, features not completed and disposition, business value score (actual vs. planned), impediments resolved by RTE, risks closed, and top 3 learnings to apply to next PI."
+
+**Prompt 8.54**
+"Generate a continuous discovery rhythm for [product team]. Weekly cadence: [X hours] of user interviews, analysis of [data source] for behavioral signals, and 1 backlog item updated based on findings. Monthly cadence: discovery findings synthesis, assumptions tested, hypothesis backlog updated. Quarterly: persona refresh, opportunity scoring reset."
+
+**Prompt 8.55**
+"Write a BA performance review self-assessment for [quarter/year]. Dimensions: Requirements quality (defects caused by unclear requirements), Stakeholder satisfaction (feedback from sprint reviews and sponsors), Backlog health (% of items Ready before sprint planning), Agile ceremony contribution, Documentation standards adherence, and continuous improvement contributions. Write 3–5 bullet points per dimension."
+
+---
+
+*End of AI Prompt Library for Business Analysts — 500 Prompts Total*
+*Part 2 of 2 | Categories 5–8 | Linton Business Solutions | lbsconnect.net*
