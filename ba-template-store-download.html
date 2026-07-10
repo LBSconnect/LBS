@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Download Your BA Templates | Linton Business Solutions</title>
+  <meta name="description" content="Download your Business Analyst templates from Linton Business Solutions." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    /* ── Page wrapper ── */
+    .dl-hero {
+      background: linear-gradient(135deg, #0f2a4a 0%, #0d3a6e 60%, #0d9e8a22 100%);
+      padding: 80px 0 60px;
+      text-align: center;
+      color: #fff;
+    }
+    .dl-hero__badge {
+      display: inline-block;
+      background: #0d9e8a22;
+      border: 1px solid #0d9e8a;
+      color: #0d9e8a;
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .dl-hero__title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+    .dl-hero__sub {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      max-width: 560px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+    .dl-hero__trust {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 8px;
+    }
+    .dl-hero__trust span {
+      color: #cbd5e1;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dl-hero__trust span::before { content: "✓"; color: #0d9e8a; font-weight: 700; }
+
+    /* ── Section shells ── */
+    .dl-section {
+      padding: 64px 0;
+    }
+    .dl-section--alt {
+      background: #f8fafc;
+    }
+    .dl-section__heading {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0f2a4a;
+      margin-bottom: 8px;
+    }
+    .dl-section__sub {
+      text-align: center;
+      color: #64748b;
+      max-width: 560px;
+      margin: 0 auto 40px;
+      font-size: 0.97rem;
+      line-height: 1.6;
+    }
+
+    /* ── Bundle primary download ── */
+    .dl-bundle-box {
+      background: linear-gradient(135deg, #0f2a4a 0%, #0d3a6e 100%);
+      border: 2px solid #0d9e8a;
+      border-radius: 16px;
+      padding: 48px 40px;
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 48px;
+      color: #fff;
+    }
+    .dl-bundle-box__icon { font-size: 3rem; margin-bottom: 16px; }
+    .dl-bundle-box__title { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+    .dl-bundle-box__desc { color: #94a3b8; font-size: 0.95rem; margin-bottom: 24px; }
+    .dl-bundle-box__meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .dl-bundle-box__meta span {
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      background: rgba(255,255,255,0.07);
+      border-radius: 8px;
+      padding: 6px 14px;
+    }
+    .btn-download-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #0d9e8a;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 16px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-download-primary:hover {
+      background: #0b8a78;
+      transform: translateY(-1px);
+      color: #fff;
+    }
+
+    /* ── Individual pack note ── */
+    .dl-individual-note {
+      background: #f0fdf9;
+      border: 1px solid #0d9e8a40;
+      border-radius: 12px;
+      padding: 20px 24px;
+      max-width: 680px;
+      margin: 0 auto 40px;
+      text-align: center;
+      color: #0f2a4a;
+      font-size: 0.93rem;
+      line-height: 1.6;
+    }
+    .dl-individual-note strong { color: #0d9e8a; }
+
+    /* ── Template grid ── */
+    .dl-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .dl-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .dl-card:hover {
+      box-shadow: 0 8px 24px rgba(15,42,74,0.1);
+      border-color: #0d9e8a;
+    }
+    .dl-card__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .dl-card__icon {
+      font-size: 1.6rem;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0fdf9;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .dl-card__abbr {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #0d9e8a;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .dl-card__name {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: #0f2a4a;
+      line-height: 1.3;
+    }
+    .dl-card__desc {
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.5;
+      flex: 1;
+    }
+    .btn-download-card {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #0f2a4a;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 10px 18px;
+      border-radius: 7px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-download-card:hover {
+      background: #0d9e8a;
+      color: #fff;
+    }
+
+    /* ── Upsell (for individual buyers) ── */
+    .dl-upsell {
+      background: linear-gradient(135deg, #0f2a4a 0%, #0d3a6e 100%);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+      max-width: 640px;
+      margin: 48px auto 0;
+    }
+    .dl-upsell__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .dl-upsell__desc {
+      color: #94a3b8;
+      font-size: 0.93rem;
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+    .dl-upsell__price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #0d9e8a;
+      margin-bottom: 6px;
+    }
+    .dl-upsell__strike {
+      font-size: 0.9rem;
+      color: #64748b;
+      text-decoration: line-through;
+      margin-bottom: 20px;
+    }
+    .btn-upsell {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0d9e8a;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.97rem;
+      padding: 14px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-upsell:hover { background: #0b8a78; color: #fff; }
+
+    /* ── Support section ── */
+    .dl-support {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .dl-support__icon { font-size: 2rem; margin-bottom: 12px; }
+    .dl-support__title { font-size: 1.1rem; font-weight: 700; color: #0f2a4a; margin-bottom: 8px; }
+    .dl-support__text { color: #64748b; font-size: 0.9rem; line-height: 1.6; }
+    .dl-support__email {
+      display: inline-block;
+      margin-top: 12px;
+      color: #0d9e8a;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .dl-support__email:hover { text-decoration: underline; }
+
+    /* ── Hidden by default, shown via JS ── */
+    .pack-individual, .pack-bundle { display: none; }
+
+    @media (max-width: 640px) {
+      .dl-bundle-box { padding: 32px 20px; }
+      .dl-upsell { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar__brand">
+        <img src="assets/images/logo.png" alt="Linton Business Solutions" class="navbar__logo" />
+      </a>
+      <button class="navbar__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar__menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="software.html">Software</a></li>
+        <li><a href="shop.html" class="active">Shop</a></li>
+        <li><a href="contact.html" class="navbar__cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="dl-hero">
+    <div class="container">
+      <div class="dl-hero__badge" id="heroBadge">📋 Your Download Is Ready</div>
+      <h1 class="dl-hero__title" id="heroTitle">Download Your BA Templates</h1>
+      <p class="dl-hero__sub" id="heroSub">Thank you for your purchase. Your templates are ready to download below.</p>
+      <div class="dl-hero__trust">
+        <span>Instant download</span>
+        <span>Word &amp; Google Docs compatible</span>
+        <span>Government-ready</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUNDLE PACK -->
+  <div class="pack-bundle" id="packBundle">
+    <section class="dl-section">
+      <div class="container">
+        <h2 class="dl-section__heading">Your Complete Bundle</h2>
+        <p class="dl-section__sub">All 10 professional BA templates in a single ZIP file. Unzip and start using them immediately.</p>
+
+        <div class="dl-bundle-box">
+          <div class="dl-bundle-box__icon">📦</div>
+          <div class="dl-bundle-box__title">BA Template Bundle — All 10 Templates</div>
+          <div class="dl-bundle-box__desc">One ZIP file containing every template in Word (.docx) format, ready for immediate use or conversion to Google Docs.</div>
+          <div class="dl-bundle-box__meta">
+            <span>10 templates</span>
+            <span>.docx format</span>
+            <span>~356 KB</span>
+          </div>
+          <a href="assets/downloads/ba-templates-bundle.zip" download class="btn-download-primary">
+            ⬇ Download All 10 Templates (ZIP)
+          </a>
+        </div>
+
+        <h2 class="dl-section__heading">Or Download Individually</h2>
+        <p class="dl-section__sub">Prefer to grab them one at a time? All 10 are available below.</p>
+
+        <div class="dl-grid" id="bundleGrid"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- INDIVIDUAL PACK -->
+  <div class="pack-individual" id="packIndividual">
+    <section class="dl-section">
+      <div class="container">
+        <div class="dl-individual-note">
+          <strong>Your purchase covers one template of your choice.</strong>
+          Click the download button next to the template you want. Need help deciding which template fits your project? Email us at <a href="mailto:info@lbsconnect.net" style="color:#0d9e8a;font-weight:600;">info@lbsconnect.net</a>.
+        </div>
+
+        <h2 class="dl-section__heading">Choose Your Template</h2>
+        <p class="dl-section__sub">All 10 templates are listed below. Download the one you purchased.</p>
+
+        <div class="dl-grid" id="individualGrid"></div>
+
+        <!-- Upsell to bundle -->
+        <div class="dl-upsell">
+          <div class="dl-upsell__title">Want All 10 Templates?</div>
+          <div class="dl-upsell__desc">Upgrade to the Full Bundle and get every template for one low price. A $290 value if purchased individually.</div>
+          <div class="dl-upsell__price">$199</div>
+          <div class="dl-upsell__strike">$290 if purchased individually</div>
+          <a href="https://checkout.lbs4.com/b/aFa9AM9sRbfZ3xjgDe00003" class="btn-upsell">
+            Get the Full Bundle →
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- SUPPORT -->
+  <section class="dl-section dl-section--alt">
+    <div class="container">
+      <div class="dl-support">
+        <div class="dl-support__icon">💬</div>
+        <div class="dl-support__title">Need Help?</div>
+        <div class="dl-support__text">
+          If you have trouble downloading your files, have a question about a template,
+          or want guidance on how to adapt a template to your specific project, we are here to help.
+        </div>
+        <a href="mailto:info@lbsconnect.net" class="dl-support__email">info@lbsconnect.net</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="assets/images/logo.png" alt="Linton Business Solutions" class="footer__logo" />
+          <p class="footer__tagline">Professional Business Analysis, built for government.</p>
+        </div>
+        <div class="footer__links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="software.html">Software</a></li>
+          </ul>
+        </div>
+        <div class="footer__links">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="shop.html">All Products</a></li>
+            <li><a href="ba-template-store.html">BA Templates</a></li>
+            <li><a href="ai-prompt-library.html">AI Prompt Library</a></li>
+          </ul>
+        </div>
+        <div class="footer__contact">
+          <h4>Contact</h4>
+          <p>info@lbsconnect.net</p>
+          <a href="contact.html" class="footer__cta">Get In Touch</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Linton Business Solutions. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    const TEMPLATES = [
+      {
+        icon: "📄",
+        abbr: "BRD",
+        name: "Business Requirements Document",
+        desc: "Define what the business needs and why. Stakeholder sign-off tables, objectives, scope, and risk sections.",
+        file: "ba-template-brd.docx",
+      },
+      {
+        icon: "⚙️",
+        abbr: "FRS",
+        name: "Functional Requirements Specification",
+        desc: "Translate business needs into system behaviour. Use cases, NFRs, data requirements, and interface specs.",
+        file: "ba-template-frs.docx",
+      },
+      {
+        icon: "👤",
+        abbr: "User Stories",
+        name: "User Stories Template",
+        desc: "Agile/Scrum-ready story cards with acceptance criteria (Given-When-Then), story points, and definition of done.",
+        file: "ba-template-user-stories.docx",
+      },
+      {
+        icon: "🗺️",
+        abbr: "As-Is / To-Be",
+        name: "Process Mapping Templates",
+        desc: "Current-state and future-state process documentation with swim lane placeholders and gap analysis.",
+        file: "ba-template-process-mapping.docx",
+      },
+      {
+        icon: "⚠️",
+        abbr: "Risk Register",
+        name: "Risk Register",
+        desc: "Full risk log with colour-coded heat map, likelihood/impact scoring, mitigation, and contingency columns.",
+        file: "ba-template-risk-register.docx",
+      },
+      {
+        icon: "🤝",
+        abbr: "Stakeholder Register",
+        name: "Stakeholder Register",
+        desc: "Stakeholder identification, interest/influence matrix, communication plan, and engagement tracker.",
+        file: "ba-template-stakeholder-register.docx",
+      },
+      {
+        icon: "🔗",
+        abbr: "RTM",
+        name: "Requirements Traceability Matrix",
+        desc: "Trace every requirement from business need through design, development, and test sign-off.",
+        file: "ba-template-rtm.docx",
+      },
+      {
+        icon: "📋",
+        abbr: "RFP",
+        name: "Request for Proposal",
+        desc: "Government-ready RFP with scope of work, evaluation criteria, SLAs, and submission requirements.",
+        file: "ba-template-rfp.docx",
+      },
+      {
+        icon: "🚀",
+        abbr: "Project Charter",
+        name: "Project Charter",
+        desc: "Formally authorise a project with objectives, milestones, budget, team roster, and sponsor sign-off.",
+        file: "ba-template-project-charter.docx",
+      },
+      {
+        icon: "🧪",
+        abbr: "Test Cases",
+        name: "Test Case Template",
+        desc: "Structured test case cards with pre-conditions, steps, expected vs. actual results, and defect log.",
+        file: "ba-template-test-case.docx",
+      },
+    ];
+
+    function buildCard(tpl, basePath) {
+      return `
+        <div class="dl-card">
+          <div class="dl-card__header">
+            <div class="dl-card__icon">${tpl.icon}</div>
+            <div>
+              <div class="dl-card__abbr">${tpl.abbr}</div>
+              <div class="dl-card__name">${tpl.name}</div>
+            </div>
+          </div>
+          <p class="dl-card__desc">${tpl.desc}</p>
+          <a href="${basePath}${tpl.file}" download class="btn-download-card">
+            ⬇ Download .docx
+          </a>
+        </div>`;
+    }
+
+    function init() {
+      const params = new URLSearchParams(window.location.search);
+      const pack = (params.get("pack") || "").toLowerCase();
+      const base = "assets/downloads/";
+
+      if (pack === "bundle") {
+        document.getElementById("packBundle").style.display = "block";
+        document.getElementById("heroBadge").textContent = "📦 Full Bundle Purchased";
+        document.getElementById("heroTitle").textContent = "Download Your Complete BA Template Bundle";
+        document.getElementById("heroSub").textContent =
+          "All 10 professional BA templates are ready. Download the ZIP or grab them individually below.";
+        document.getElementById("bundleGrid").innerHTML =
+          TEMPLATES.map(t => buildCard(t, base)).join("");
+      } else {
+        // individual (default)
+        document.getElementById("packIndividual").style.display = "block";
+        document.getElementById("individualGrid").innerHTML =
+          TEMPLATES.map(t => buildCard(t, base)).join("");
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
