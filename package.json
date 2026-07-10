@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
+    "nock": "^14.0.16",
     "supertest": "^7.0.0"
   }
 }

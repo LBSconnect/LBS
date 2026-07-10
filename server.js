@@ -12,7 +12,7 @@ const app  = express();
 // ── Protected files ───────────────────────────────────────────────────────────
 // BA template .docx and bundle .zip are only served via /api/download.
 // This middleware must come before express.static().
-const PROTECTED = /^\/assets\/downloads\/(ba-template-[^/]+\.docx|ba-templates-bundle\.zip)$/;
+const PROTECTED = /^\/assets\/downloads\/(ba-template-[^/]+\.docx|ba-templates-bundle\.zip|ai-prompts-library-(starter|complete)\.pdf)$/;
 
 app.use((req, res, next) => {
   if (PROTECTED.test(req.path)) {
@@ -37,6 +37,9 @@ const TEMPLATE_MAP = {
   'project-charter':      'ba-template-project-charter.docx',
   'test-case':            'ba-template-test-case.docx',
   'bundle':               'ba-templates-bundle.zip',
+  // AI Prompt Library
+  'ai-starter':           'ai-prompts-library-starter.pdf',
+  'ai-complete':          'ai-prompts-library-complete.pdf',
 };
 
 const TEMPLATE_NAMES = {
@@ -50,6 +53,9 @@ const TEMPLATE_NAMES = {
   'rfp':                  'RFP Template',
   'project-charter':      'Project Charter',
   'test-case':            'Test Case Template',
+  // AI Prompt Library
+  'ai-starter':           'AI Prompt Library, Starter Pack (210 Prompts)',
+  'ai-complete':          'AI Prompt Library, Complete Edition (500 Prompts)',
 };
 
 const DOWNLOADS_DIR = path.join(__dirname, 'assets', 'downloads');
@@ -201,12 +207,12 @@ app.get('/api/download', (req, res) => {
   }
 
   res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-  res.setHeader(
-    'Content-Type',
-    filename.endsWith('.zip')
-      ? 'application/zip'
-      : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-  );
+  const contentType = filename.endsWith('.zip')
+    ? 'application/zip'
+    : filename.endsWith('.pdf')
+      ? 'application/pdf'
+      : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+  res.setHeader('Content-Type', contentType);
 
   fs.createReadStream(filePath).pipe(res);
 });
