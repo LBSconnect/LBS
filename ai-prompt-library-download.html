@@ -409,7 +409,7 @@
         badge.textContent = '📦 Starter Pack — 210 Prompts';
         title.textContent = 'AI Prompt Library — Starter Pack';
         desc.textContent = '210 tested prompts across 3 core BA categories: User Stories, Requirements Gathering, and Meeting Minutes.';
-        btn.href = 'assets/downloads/ai-prompt-library-starter.pdf';
+        btn.href = 'assets/downloads/ai-prompts-library-starter.pdf';
         btn.setAttribute('download', 'LBS-AI-Prompt-Library-Starter.pdf');
         upsell.style.display = 'block';
       } else if (pack === 'complete') {
@@ -419,12 +419,12 @@
         badge.style.borderColor = 'rgba(30,111,255,0.25)';
         title.textContent = 'AI Prompt Library — Complete Edition';
         desc.textContent = 'All 500 prompts across all 8 BA lifecycle categories. Yours to keep — plus all future prompt additions at no extra cost.';
-        btn.href = 'assets/downloads/ai-prompt-library-complete.pdf';
+        btn.href = 'assets/downloads/ai-prompts-library-complete.pdf';
         btn.setAttribute('download', 'LBS-AI-Prompt-Library-Complete.pdf');
         btn.classList.add('download-card__btn--complete');
       } else {
         // Fallback if no ?pack= param — show both links
-        btn.href = 'assets/downloads/ai-prompt-library-complete.pdf';
+        btn.href = 'assets/downloads/ai-prompts-library-complete.pdf';
         btn.setAttribute('download', 'LBS-AI-Prompt-Library.pdf');
       }
     })();
