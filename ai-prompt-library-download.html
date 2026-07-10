@@ -281,7 +281,7 @@
         <div class="confirm-hero__check" aria-hidden="true">✓</div>
         <div class="confirm-hero__eyebrow">Payment confirmed</div>
         <h1 class="confirm-hero__heading">Your prompts are ready.</h1>
-        <p class="confirm-hero__sub">Download your AI Prompt Library below. Your file is ready immediately — no waiting.</p>
+        <p class="confirm-hero__sub">Download your AI Prompt Library below. Your file is ready immediately. No waiting.</p>
         <div class="confirm-hero__pack-badge" id="pack-badge">📦 AI Prompt Library</div>
       </div>
     </section>
@@ -326,7 +326,7 @@
           <div class="next-card">
             <div class="next-card__step">1</div>
             <div class="next-card__title">Open the PDF</div>
-            <div class="next-card__desc">Find your category — User Stories, Requirements, SQL, or whichever matches your current project task.</div>
+            <div class="next-card__desc">Find your category: User Stories, Requirements, SQL, or whichever matches your current project task.</div>
           </div>
           <div class="next-card">
             <div class="next-card__step">2</div>
@@ -341,7 +341,7 @@
           <div class="next-card">
             <div class="next-card__step">4</div>
             <div class="next-card__title">Deliver Faster</div>
-            <div class="next-card__desc">Use the AI-drafted output as your first-pass deliverable. Edit, refine, and submit — in a fraction of the time.</div>
+            <div class="next-card__desc">Use the AI-drafted output as your first-pass deliverable. Edit, refine, and submit in a fraction of the time.</div>
           </div>
         </div>
       </div>
@@ -353,9 +353,9 @@
         <div style="max-width:600px;margin:0 auto;">
           <span style="font-size:var(--text-xs);font-weight:var(--fw-semi);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-teal);">Unlock the Full Library</span>
           <h2 style="font-size:clamp(1.5rem,3vw,2.25rem);font-weight:var(--fw-black);color:var(--color-white);letter-spacing:-0.03em;margin:var(--space-4) 0;">Get All 500 Prompts for $50 More</h2>
-          <p style="color:rgba(255,255,255,0.55);margin-bottom:var(--space-8);line-height:var(--lh-relaxed);">You have 210 prompts. Upgrade to the Complete Library and unlock 5 more categories: SQL, Process Mapping, Gap Analysis, Agile Ceremonies, and Product Ownership — plus all future prompt additions.</p>
-          <a href="https://checkout.lbs4.com/b/14AcMY8oN83N9VHgDe00000" class="btn btn--teal btn--lg">Upgrade to Complete Library — $99</a>
-          <p style="font-size:var(--text-xs);color:rgba(255,255,255,0.3);margin-top:var(--space-4);">Your existing Starter Pack is not refunded — upgrade price is the full $99. Questions? <a href="contact.html" style="color:#7eb8ff;text-decoration:none;">Contact us</a>.</p>
+          <p style="color:rgba(255,255,255,0.55);margin-bottom:var(--space-8);line-height:var(--lh-relaxed);">You have 210 prompts. Upgrade to the Complete Library and unlock 5 more categories: SQL, Process Mapping, Gap Analysis, Agile Ceremonies, and Product Ownership, plus all future prompt additions.</p>
+          <a href="https://checkout.lbs4.com/b/14AcMY8oN83N9VHgDe00000" class="btn btn--teal btn--lg">Upgrade to Complete Library, $99</a>
+          <p style="font-size:var(--text-xs);color:rgba(255,255,255,0.3);margin-top:var(--space-4);">Your existing Starter Pack is not refunded. Upgrade price is the full $99. Questions? <a href="contact.html" style="color:#7eb8ff;text-decoration:none;">Contact us</a>.</p>
         </div>
       </div>
     </section>
@@ -365,7 +365,7 @@
   <!-- ===== SUPPORT BAR ===== -->
   <div class="support-bar">
     <div class="container">
-      <p>Questions about your order? Email us at <a href="mailto:info@lbsconnect.net">info@lbsconnect.net</a> — we respond within one business day.</p>
+      <p>Questions about your order? Email us at <a href="mailto:info@lbsconnect.net">info@lbsconnect.net</a>. We respond within one business day.</p>
     </div>
   </div>
 
@@ -406,24 +406,24 @@
       var upsell = document.getElementById('upsell-section');
 
       if (pack === 'starter') {
-        badge.textContent = '📦 Starter Pack — 210 Prompts';
-        title.textContent = 'AI Prompt Library — Starter Pack';
+        badge.textContent = '📦 Starter Pack: 210 Prompts';
+        title.textContent = 'AI Prompt Library, Starter Pack';
         desc.textContent = '210 tested prompts across 3 core BA categories: User Stories, Requirements Gathering, and Meeting Minutes.';
         btn.href = 'assets/downloads/ai-prompts-library-starter.pdf';
         btn.setAttribute('download', 'LBS-AI-Prompt-Library-Starter.pdf');
         upsell.style.display = 'block';
       } else if (pack === 'complete') {
-        badge.textContent = '📦 Complete Library — 500 Prompts';
+        badge.textContent = '📦 Complete Library: 500 Prompts';
         badge.style.background = 'rgba(30,111,255,0.12)';
         badge.style.color = '#7eb8ff';
         badge.style.borderColor = 'rgba(30,111,255,0.25)';
-        title.textContent = 'AI Prompt Library — Complete Edition';
-        desc.textContent = 'All 500 prompts across all 8 BA lifecycle categories. Yours to keep — plus all future prompt additions at no extra cost.';
+        title.textContent = 'AI Prompt Library, Complete Edition';
+        desc.textContent = 'All 500 prompts across all 8 BA lifecycle categories. Yours to keep, plus all future prompt additions at no extra cost.';
         btn.href = 'assets/downloads/ai-prompts-library-complete.pdf';
         btn.setAttribute('download', 'LBS-AI-Prompt-Library-Complete.pdf');
         btn.classList.add('download-card__btn--complete');
       } else {
-        // Fallback if no ?pack= param — show both links
+        // Fallback if no ?pack= param, show both links
         btn.href = 'assets/downloads/ai-prompts-library-complete.pdf';
         btn.setAttribute('download', 'LBS-AI-Prompt-Library.pdf');
       }
