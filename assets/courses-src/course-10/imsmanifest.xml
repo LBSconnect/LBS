@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="no" ?>
+<manifest identifier="BA_COURSE_10" version="1"
+  xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+  xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd
+                      http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+  </metadata>
+  <organizations default="ORG-10">
+    <organization identifier="ORG-10">
+      <title>Strategy Analysis &amp; BA Career Readiness</title>
+      <item identifier="ITEM-10" identifierref="RES-10">
+        <title>Strategy Analysis &amp; BA Career Readiness</title>
+        <adlcp:masteryscore>70</adlcp:masteryscore>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="RES-10" type="webcontent" adlcp:scormtype="sco" href="index.html">
+      <file href="index.html"/>
+      <file href="style.css"/>
+      <file href="player.js"/>
+      <file href="scorm_api.js"/>
+      <file href="course-data.js"/>
+      <file href="slides/d10-1.jpg"/>
+      <file href="slides/d10-2.jpg"/>
+      <file href="slides/d10-3.jpg"/>
+      <file href="slides/d10-4.jpg"/>
+      <file href="slides/d10-5.jpg"/>
+      <file href="slides/d10-6.jpg"/>
+      <file href="slides/d10-7.jpg"/>
+      <file href="slides/d10-8.jpg"/>
+    </resource>
+  </resources>
+</manifest>

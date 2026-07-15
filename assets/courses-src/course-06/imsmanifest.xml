@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="no" ?>
+<manifest identifier="BA_COURSE_6" version="1"
+  xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+  xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd
+                      http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+  </metadata>
+  <organizations default="ORG-6">
+    <organization identifier="ORG-6">
+      <title>Process Mapping, BPMN &amp; UML Fundamentals</title>
+      <item identifier="ITEM-6" identifierref="RES-6">
+        <title>Process Mapping, BPMN &amp; UML Fundamentals</title>
+        <adlcp:masteryscore>70</adlcp:masteryscore>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="RES-6" type="webcontent" adlcp:scormtype="sco" href="index.html">
+      <file href="index.html"/>
+      <file href="style.css"/>
+      <file href="player.js"/>
+      <file href="scorm_api.js"/>
+      <file href="course-data.js"/>
+      <file href="slides/d6-1.jpg"/>
+      <file href="slides/d6-2.jpg"/>
+      <file href="slides/d6-3.jpg"/>
+      <file href="slides/d6-4.jpg"/>
+      <file href="slides/d6-5.jpg"/>
+      <file href="slides/d6-6.jpg"/>
+      <file href="slides/d6-7.jpg"/>
+      <file href="slides/d6-8.jpg"/>
+    </resource>
+  </resources>
+</manifest>
