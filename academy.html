@@ -196,12 +196,11 @@
       </a>
       <ul class="nav__links" role="list">
         <li><a href="index.html" class="nav__link">Home</a></li>
-        <li><a href="shop.html" class="nav__link nav__link--shop active">Shop</a></li>
+        <li><a href="shop.html" class="nav__link nav__link--shop">Shop</a></li>
+        <li><a href="academy.html" class="nav__link active">Academy</a></li>
         <li><a href="services.html" class="nav__link">Services</a></li>
         <li><a href="software.html" class="nav__link">Software</a></li>
         <li><a href="portfolio.html" class="nav__link">Portfolio</a></li>
-        <li><a href="https://www.LBS4.com" class="nav__link" target="_blank" rel="noopener noreferrer">Career Hub</a></li>
-        <li><a href="about.html" class="nav__link">About</a></li>
         <li><a href="contact.html" class="nav__link">Contact</a></li>
       </ul>
       <div class="nav__cta"><a href="contact.html" class="btn btn--primary">Get Started</a></div>
@@ -212,12 +211,11 @@
   </nav>
   <nav class="nav__mobile" id="nav-mobile" aria-label="Mobile navigation">
     <a href="index.html" class="nav__mobile-link">Home</a>
-    <a href="shop.html" class="nav__mobile-link nav__mobile-link--shop active">Shop</a>
+    <a href="shop.html" class="nav__mobile-link nav__mobile-link--shop">Shop</a>
+    <a href="academy.html" class="nav__mobile-link active">Academy</a>
     <a href="services.html" class="nav__mobile-link">Services</a>
     <a href="software.html" class="nav__mobile-link">Software</a>
     <a href="portfolio.html" class="nav__mobile-link">Portfolio</a>
-    <a href="https://www.LBS4.com" class="nav__mobile-link" target="_blank" rel="noopener noreferrer">Career Hub</a>
-    <a href="about.html" class="nav__mobile-link">About</a>
     <a href="contact.html" class="nav__mobile-link">Contact</a>
     <div class="nav__mobile-cta"><a href="contact.html" class="btn btn--primary" style="width:100%;justify-content:center;">Get Started</a></div>
   </nav>
@@ -483,9 +481,8 @@
   <script>
     // One fixed-price Stripe Payment Link, reused for all 10 courses via
     // client_reference_id, exactly like the $29 template link and the
-    // $49/$99 AI Prompt Library links. Create a single $29 Payment Link in
-    // Stripe and paste its checkout.lbs4.com URL here before this goes live.
-    var STRIPE_COURSE_LINK = 'STRIPE_COURSE_LINK_TBD';
+    // $49/$99 AI Prompt Library links.
+    var STRIPE_COURSE_LINK = 'https://checkout.lbs4.com/b/14A7sE6gFfwfgk59aM00004';
 
     document.querySelectorAll('.enroll-btn').forEach(function (btn) {
       btn.href = STRIPE_COURSE_LINK + '?client_reference_id=' + btn.dataset.slug;
