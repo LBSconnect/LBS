@@ -739,6 +739,15 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: var(--space-12);
 }
 
+/* Forces the 4 package cards onto a single row on wide screens instead of
+   wrapping to 3+1. Only applied where explicitly requested (services-grid
+   still defaults to auto-fit everywhere else, e.g. the 3-card BA Shop grid). */
+@media (min-width: 1100px) {
+  .services-grid--row4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 .service-card {
   background: var(--color-white);
   border: 1px solid var(--color-gray-200);
