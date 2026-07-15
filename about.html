@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script src="assets/js/analytics.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow" />
@@ -38,9 +41,10 @@
         "description": "Founded by a US Marine veteran in 2017, LBS is a VA VOSB-verified and Texas HUB-certified business analysis firm serving federal, state, and local government agencies nationwide.",
         "isPartOf": {"@id": "https://www.lbsconnect.net/#website"},
         "about": {
-          "@type": "Organization",
+          "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
           "@id": "https://www.lbsconnect.net/#organization",
           "name": "Linton Business Solutions",
+          "telephone": "+1-281-836-5357",
           "foundingDate": "2017",
           "areaServed": {"@type": "Country", "name": "United States"},
           "founder": {
