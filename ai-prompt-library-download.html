@@ -377,6 +377,10 @@
         setText('heroSub', 'Your file is ready to download. Click the button below.');
 
         var isStarter = data.template === 'ai-starter';
+
+        gaTrackPurchaseOnce(sessionId, isStarter ? 49.00 : 99.00, [
+          { item_id: data.template, item_name: data.templateName },
+        ]);
         var badge     = document.getElementById('heroBadge');
         var btn       = document.getElementById('downloadBtn');
 

@@ -541,6 +541,8 @@
         show('stateSupport');
 
         if (data.pack === 'bundle') {
+          gaTrackPurchaseOnce(sessionId, 199.00, [{ item_id: 'bundle', item_name: 'Full BA Template Bundle' }]);
+
           // Update hero
           document.getElementById('heroBadge').textContent = '📦 Full Bundle Purchased';
           setText('heroTitle', 'Download Your Complete BA Template Bundle');
@@ -559,6 +561,8 @@
         } else {
           // Individual
           const tpl = TEMPLATES.find(t => t.slug === data.template) || {};
+
+          gaTrackPurchaseOnce(sessionId, 29.00, [{ item_id: data.template, item_name: data.templateName }]);
 
           document.getElementById('heroBadge').textContent = '📋 Template Ready to Download';
           setText('heroTitle', 'Your BA Template Is Ready');

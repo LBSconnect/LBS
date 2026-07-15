@@ -372,6 +372,8 @@
         hide('stateLoading');
         show('stateSupport');
 
+        gaTrackPurchaseOnce(sessionId, 29.00, [{ item_id: data.slug, item_name: data.courseName }]);
+
         const courseUrl = '/courses/' + data.slug + '/index.html';
 
         document.getElementById('heroBadge').textContent = '✓ Purchase Verified';

@@ -354,6 +354,13 @@
         if (form)   form.style.display   = 'none';
         // Scroll banner into view
         if (banner) banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Once per browser session — a page refresh or back-button on this
+        // same confirmation URL shouldn't count as a second lead.
+        if (typeof gtag === 'function' && !sessionStorage.getItem('ga_lead_sent')) {
+          sessionStorage.setItem('ga_lead_sent', '1');
+          gtag('event', 'generate_lead');
+        }
       }
 
       // Pre-select package from ?pkg= query param (used by CTA buttons across the site)
