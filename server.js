@@ -37,6 +37,12 @@ const COURSE_MAP = {
   'course-10': 'Strategy Analysis & BA Career Readiness',
 };
 
+// Every course has a working SCORM package, but only these have a finished,
+// narrated video produced from it. Purchase is gated on this set (not just
+// hidden client-side) so a hand-crafted checkout link can't buy a course
+// that isn't actually ready yet. Add a slug here once its video is built.
+const COURSE_AVAILABLE = new Set(['course-01', 'course-07']);
+
 // Course files live outside the public static tree (assets/courses-src, not
 // /courses) so express.static() never serves them directly — the routes below
 // are the only path to this content, and they require a valid access cookie.
@@ -322,6 +328,12 @@ app.get('/api/verify-course', async (req, res) => {
     if (!COURSE_MAP[slug]) {
       return res.status(400).json({
         error: 'We could not determine which course you purchased. Please contact info@lbsconnect.net with your receipt.',
+      });
+    }
+
+    if (!COURSE_AVAILABLE.has(slug)) {
+      return res.status(400).json({
+        error: `${COURSE_MAP[slug]} isn't available yet. If you were charged for it, contact info@lbsconnect.net with your receipt and we'll make it right.`,
       });
     }
 

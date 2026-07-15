@@ -109,6 +109,18 @@ describe('GET /api/verify-course — validation', () => {
     const res = await request(app).get('/api/verify-course?session_id=cs_empty_ref');
     expect(res.status).toBe(400);
   });
+
+  it('returns 400 for a known slug that is not yet available for purchase', async () => {
+    // course-02 has a working SCORM package but no finished video yet — not
+    // for sale even though it's a valid, recognized course slug.
+    mockStripeSession('cs_not_available', { client_reference_id: 'course-02' });
+    const res = await request(app).get('/api/verify-course?session_id=cs_not_available');
+
+    expect(res.status).toBe(400);
+    expect(res.body.error).toContain("isn't available yet");
+    // No cookie should be issued for an unavailable course.
+    expect(res.headers['set-cookie']).toBeUndefined();
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -141,14 +153,20 @@ describe('GET /api/verify-course — success', () => {
     expect(r1.body.slug).toBe(r2.body.slug);
   });
 
-  it('works for every course slug course-01 through course-10', async () => {
-    const slugs = Array.from({ length: 10 }, (_, i) => `course-${String(i + 1).padStart(2, '0')}`);
+  it('succeeds only for the available courses (course-01, course-07) — the rest 400', async () => {
+    const AVAILABLE = ['course-01', 'course-07'];
+    const allSlugs = Array.from({ length: 10 }, (_, i) => `course-${String(i + 1).padStart(2, '0')}`);
 
-    for (const slug of slugs) {
-      mockStripeSession(`cs_${slug}`, { client_reference_id: slug });
-      const res = await request(app).get(`/api/verify-course?session_id=cs_${slug}`);
-      expect(res.status).toBe(200);
-      expect(res.body.slug).toBe(slug);
+    for (const slug of allSlugs) {
+      mockStripeSession(`cs_avail_${slug}`, { client_reference_id: slug });
+      const res = await request(app).get(`/api/verify-course?session_id=cs_avail_${slug}`);
+
+      if (AVAILABLE.includes(slug)) {
+        expect(res.status).toBe(200);
+        expect(res.body.slug).toBe(slug);
+      } else {
+        expect(res.status).toBe(400);
+      }
     }
   });
 });
@@ -192,9 +210,11 @@ describe('GET /courses/:slug/* — with a valid cookie', () => {
   });
 
   it('the cookie is reusable across repeated requests (not single-use)', async () => {
-    const cookie = await getCookie('cs_repeat', 'course-02');
-    const r1 = await request(app).get('/courses/course-02/index.html').set('Cookie', cookie);
-    const r2 = await request(app).get('/courses/course-02/index.html').set('Cookie', cookie);
+    // course-07 is the second available course (course-02 is a valid slug but
+    // not yet for sale — see the availability tests above).
+    const cookie = await getCookie('cs_repeat', 'course-07');
+    const r1 = await request(app).get('/courses/course-07/index.html').set('Cookie', cookie);
+    const r2 = await request(app).get('/courses/course-07/index.html').set('Cookie', cookie);
 
     expect(r1.status).toBe(200);
     expect(r2.status).toBe(200);

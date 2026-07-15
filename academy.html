@@ -185,6 +185,25 @@
       font-size: var(--text-sm);
       text-align: center;
     }
+
+    .course-card--soon { opacity: 0.7; }
+    .course-card--soon:hover { transform: none; box-shadow: none; }
+    .course-card__soon-badge {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-bold);
+      color: #9a3412;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+    .course-card__cta--disabled {
+      background: var(--color-gray-200);
+      color: var(--color-text-muted);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -264,7 +283,7 @@
             </div>
           </div>
 
-          <div class="course-card fade-in">
+          <div class="course-card course-card--soon fade-in">
             <div class="course-card__top">
               <div class="course-card__icon">🔍</div>
               <div class="course-card__num">Course 2</div>
@@ -278,11 +297,11 @@
             </ul>
             <div class="course-card__bottom">
               <span class="course-card__price">$29</span>
-              <a href="#" data-slug="course-02" class="course-card__cta enroll-btn">Enroll →</a>
+              <span class="course-card__cta course-card__cta--disabled">Coming Soon</span>
             </div>
           </div>
 
-          <div class="course-card fade-in">
+          <div class="course-card course-card--soon fade-in">
             <div class="course-card__top">
               <div class="course-card__icon">🤝</div>
               <div class="course-card__num">Course 3</div>
@@ -296,11 +315,11 @@
             </ul>
             <div class="course-card__bottom">
               <span class="course-card__price">$29</span>
-              <a href="#" data-slug="course-03" class="course-card__cta enroll-btn">Enroll →</a>
+              <span class="course-card__cta course-card__cta--disabled">Coming Soon</span>
             </div>
           </div>
 
-          <div class="course-card fade-in">
+          <div class="course-card course-card--soon fade-in">
             <div class="course-card__top">
               <div class="course-card__icon">📄</div>
               <div class="course-card__num">Course 4</div>
@@ -314,11 +333,11 @@
             </ul>
             <div class="course-card__bottom">
               <span class="course-card__price">$29</span>
-              <a href="#" data-slug="course-04" class="course-card__cta enroll-btn">Enroll →</a>
+              <span class="course-card__cta course-card__cta--disabled">Coming Soon</span>
             </div>
           </div>
 
-          <div class="course-card fade-in">
+          <div class="course-card course-card--soon fade-in">
             <div class="course-card__top">
               <div class="course-card__icon">🗂️</div>
               <div class="course-card__num">Course 5</div>
@@ -332,11 +351,11 @@
             </ul>
             <div class="course-card__bottom">
               <span class="course-card__price">$29</span>
-              <a href="#" data-slug="course-05" class="course-card__cta enroll-btn">Enroll →</a>
+              <span class="course-card__cta course-card__cta--disabled">Coming Soon</span>
             </div>
           </div>
 
-          <div class="course-card fade-in">
+          <div class="course-card course-card--soon fade-in">
             <div class="course-card__top">
               <div class="course-card__icon">🗺️</div>
               <div class="course-card__num">Course 6</div>
@@ -350,7 +369,7 @@
             </ul>
             <div class="course-card__bottom">
               <span class="course-card__price">$29</span>
-              <a href="#" data-slug="course-06" class="course-card__cta enroll-btn">Enroll →</a>
+              <span class="course-card__cta course-card__cta--disabled">Coming Soon</span>
             </div>
           </div>
 
@@ -372,7 +391,7 @@
             </div>
           </div>
 
-          <div class="course-card fade-in">
+          <div class="course-card course-card--soon fade-in">
             <div class="course-card__top">
               <div class="course-card__icon">📊</div>
               <div class="course-card__num">Course 8</div>
@@ -386,11 +405,11 @@
             </ul>
             <div class="course-card__bottom">
               <span class="course-card__price">$29</span>
-              <a href="#" data-slug="course-08" class="course-card__cta enroll-btn">Enroll →</a>
+              <span class="course-card__cta course-card__cta--disabled">Coming Soon</span>
             </div>
           </div>
 
-          <div class="course-card fade-in">
+          <div class="course-card course-card--soon fade-in">
             <div class="course-card__top">
               <div class="course-card__icon">💾</div>
               <div class="course-card__num">Course 9</div>
@@ -404,11 +423,11 @@
             </ul>
             <div class="course-card__bottom">
               <span class="course-card__price">$29</span>
-              <a href="#" data-slug="course-09" class="course-card__cta enroll-btn">Enroll →</a>
+              <span class="course-card__cta course-card__cta--disabled">Coming Soon</span>
             </div>
           </div>
 
-          <div class="course-card fade-in">
+          <div class="course-card course-card--soon fade-in">
             <div class="course-card__top">
               <div class="course-card__icon">🎯</div>
               <div class="course-card__num">Course 10</div>
@@ -422,7 +441,7 @@
             </ul>
             <div class="course-card__bottom">
               <span class="course-card__price">$29</span>
-              <a href="#" data-slug="course-10" class="course-card__cta enroll-btn">Enroll →</a>
+              <span class="course-card__cta course-card__cta--disabled">Coming Soon</span>
             </div>
           </div>
 
