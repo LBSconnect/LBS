@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="no" ?>
+<manifest identifier="BA_COURSE_9" version="1"
+  xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+  xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd
+                      http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+  </metadata>
+  <organizations default="ORG-9">
+    <organization identifier="ORG-9">
+      <title>SQL Basics &amp; Power BI for Business Analysts</title>
+      <item identifier="ITEM-9" identifierref="RES-9">
+        <title>SQL Basics &amp; Power BI for Business Analysts</title>
+        <adlcp:masteryscore>70</adlcp:masteryscore>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="RES-9" type="webcontent" adlcp:scormtype="sco" href="index.html">
+      <file href="index.html"/>
+      <file href="style.css"/>
+      <file href="player.js"/>
+      <file href="scorm_api.js"/>
+      <file href="course-data.js"/>
+      <file href="slides/d9-1.jpg"/>
+      <file href="slides/d9-2.jpg"/>
+      <file href="slides/d9-3.jpg"/>
+      <file href="slides/d9-4.jpg"/>
+      <file href="slides/d9-5.jpg"/>
+      <file href="slides/d9-6.jpg"/>
+      <file href="slides/d9-7.jpg"/>
+      <file href="slides/d9-8.jpg"/>
+    </resource>
+  </resources>
+</manifest>

@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="no" ?>
+<manifest identifier="BA_COURSE_2" version="1"
+  xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+  xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd
+                      http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+  </metadata>
+  <organizations default="ORG-2">
+    <organization identifier="ORG-2">
+      <title>Requirements Gathering &amp; Elicitation Techniques</title>
+      <item identifier="ITEM-2" identifierref="RES-2">
+        <title>Requirements Gathering &amp; Elicitation Techniques</title>
+        <adlcp:masteryscore>70</adlcp:masteryscore>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="RES-2" type="webcontent" adlcp:scormtype="sco" href="index.html">
+      <file href="index.html"/>
+      <file href="style.css"/>
+      <file href="player.js"/>
+      <file href="scorm_api.js"/>
+      <file href="course-data.js"/>
+      <file href="slides/d2-1.jpg"/>
+      <file href="slides/d2-2.jpg"/>
+      <file href="slides/d2-3.jpg"/>
+      <file href="slides/d2-4.jpg"/>
+      <file href="slides/d2-5.jpg"/>
+      <file href="slides/d2-6.jpg"/>
+      <file href="slides/d2-7.jpg"/>
+      <file href="slides/d2-8.jpg"/>
+    </resource>
+  </resources>
+</manifest>

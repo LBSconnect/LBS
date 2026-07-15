@@ -21,6 +21,104 @@ app.use((req, res, next) => {
   next();
 });
 
+// ── Course registry ────────────────────────────────────────────────────────────
+// Online Academy courses. Sold individually at a single fixed price via one
+// Stripe Payment Link + client_reference_id, same pattern as the templates.
+const COURSE_MAP = {
+  'course-01': 'Requirements Engineering Fundamentals',
+  'course-02': 'Requirements Gathering & Elicitation Techniques',
+  'course-03': 'Stakeholder Management & Communication',
+  'course-04': 'BRDs & FRDs: Writing Effective Requirements Documents',
+  'course-05': 'User Stories & Use Cases for Business Analysts',
+  'course-06': 'Process Mapping, BPMN & UML Fundamentals',
+  'course-07': 'Agile & Scrum Foundations for Business Analysts',
+  'course-08': 'Scrum Ceremonies, Backlog & Kanban',
+  'course-09': 'SQL Basics & Power BI for Business Analysts',
+  'course-10': 'Strategy Analysis & BA Career Readiness',
+};
+
+// Course files live outside the public static tree (assets/courses-src, not
+// /courses) so express.static() never serves them directly — the routes below
+// are the only path to this content, and they require a valid access cookie.
+const COURSES_DIR = path.join(__dirname, 'assets', 'courses-src');
+
+// Course access is a long-lived cookie (not the 24h download token used for
+// templates) because a course is a multi-file app the buyer revisits
+// indefinitely, not a one-time file download. 400 days is the browser cap on
+// Set-Cookie Max-Age (Chrome), so it's the longest a "lifetime" grant can be.
+const COURSE_TOKEN_TTL    = 400 * 24 * 60 * 60 * 1000;
+const courseTokens        = new Map(); // token -> { slug, expiresAt }
+const courseSessionIndex  = new Map(); // session_id -> token
+
+setInterval(() => {
+  const now = Date.now();
+  for (const [t, d] of courseTokens)       if (d.expiresAt < now) courseTokens.delete(t);
+  for (const [s, t] of courseSessionIndex) if (!courseTokens.has(t)) courseSessionIndex.delete(s);
+}, 60 * 60 * 1000).unref();
+
+function parseCookies(header) {
+  const out = {};
+  if (!header) return out;
+  header.split(';').forEach((pair) => {
+    const idx = pair.indexOf('=');
+    if (idx === -1) return;
+    out[pair.slice(0, idx).trim()] = decodeURIComponent(pair.slice(idx + 1).trim());
+  });
+  return out;
+}
+
+const COURSE_CONTENT_TYPES = {
+  '.html': 'text/html; charset=UTF-8',
+  '.css':  'text/css; charset=UTF-8',
+  '.js':   'application/javascript; charset=UTF-8',
+  '.jpg':  'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.png':  'image/png',
+  '.xml':  'application/xml',
+};
+
+// ── GET /courses/:slug ────────────────────────────────────────────────────────
+app.get('/courses/:slug', (req, res) => {
+  res.redirect(`/courses/${req.params.slug}/index.html`);
+});
+
+// ── GET /courses/:slug/* ──────────────────────────────────────────────────────
+// Serves a purchased course's files. Registered before express.static() so it
+// fully owns the /courses/ URL space; static never gets a chance to see these
+// requests (and there's no folder named "courses" in the static root anyway).
+app.get('/courses/:slug/*', (req, res) => {
+  const { slug } = req.params;
+
+  if (!COURSE_MAP[slug]) {
+    return res.status(404).send('Course not found.');
+  }
+
+  const cookies = parseCookies(req.headers.cookie);
+  const token   = cookies[`course_${slug}`];
+  const entry   = token && courseTokens.get(token);
+
+  if (!entry || entry.expiresAt < Date.now() || entry.slug !== slug) {
+    return res.redirect(`/academy.html?locked=${encodeURIComponent(slug)}`);
+  }
+
+  const courseDir = path.join(COURSES_DIR, slug);
+  const relPath   = req.params[0] || 'index.html';
+  const filePath  = path.normalize(path.join(courseDir, relPath));
+  const relative  = path.relative(courseDir, filePath);
+
+  if (relative.startsWith('..') || path.isAbsolute(relative)) {
+    return res.status(400).send('Invalid path.');
+  }
+
+  if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
+    return res.status(404).send('File not found.');
+  }
+
+  const ext = path.extname(filePath).toLowerCase();
+  res.setHeader('Content-Type', COURSE_CONTENT_TYPES[ext] || 'application/octet-stream');
+  fs.createReadStream(filePath).pipe(res);
+});
+
 // Static files
 app.use(express.static(path.join(__dirname)));
 
@@ -168,6 +266,72 @@ app.get('/api/verify', async (req, res) => {
     });
   } catch (err) {
     console.error('Stripe verify error:', err.message);
+    return res.status(502).json({ error: 'Verification failed. Please refresh the page or contact info@lbsconnect.net.' });
+  }
+});
+
+// ── GET /api/verify-course?session_id=cs_xxx ─────────────────────────────────
+// Verifies a completed Stripe checkout session for a course purchase and
+// grants long-lived cookie access to /courses/<slug>/ (see COURSE_TOKEN_TTL).
+app.get('/api/verify-course', async (req, res) => {
+  const { session_id } = req.query;
+
+  if (!session_id || !String(session_id).startsWith('cs_')) {
+    return res.status(400).json({ error: 'Invalid session.' });
+  }
+
+  if (!process.env.STRIPE_SECRET_KEY) {
+    return res.status(503).json({ error: 'Payment verification is temporarily unavailable. Please contact info@lbsconnect.net.' });
+  }
+
+  function grantAccess(slug, token) {
+    res.cookie(`course_${slug}`, token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'Lax',
+      maxAge: COURSE_TOKEN_TTL,
+      path: `/courses/${slug}`,
+    });
+    return res.json({ ok: true, slug, courseName: COURSE_MAP[slug] });
+  }
+
+  // Return existing token if still valid
+  const existing = courseSessionIndex.get(session_id);
+  if (existing && courseTokens.has(existing)) {
+    const e = courseTokens.get(existing);
+    if (e.expiresAt > Date.now()) {
+      return grantAccess(e.slug, existing);
+    }
+  }
+
+  try {
+    const { status, data } = await stripeGet(
+      `/v1/checkout/sessions/${encodeURIComponent(session_id)}`
+    );
+
+    if (status !== 200) {
+      return res.status(400).json({ error: 'Purchase session not found.' });
+    }
+
+    if (data.payment_status !== 'paid') {
+      return res.status(402).json({ error: 'Payment has not been completed.' });
+    }
+
+    const slug = String(data.client_reference_id || '').toLowerCase().trim();
+
+    if (!COURSE_MAP[slug]) {
+      return res.status(400).json({
+        error: 'We could not determine which course you purchased. Please contact info@lbsconnect.net with your receipt.',
+      });
+    }
+
+    const token = crypto.randomBytes(32).toString('hex');
+    courseTokens.set(token, { slug, expiresAt: Date.now() + COURSE_TOKEN_TTL });
+    courseSessionIndex.set(session_id, token);
+
+    return grantAccess(slug, token);
+  } catch (err) {
+    console.error('Stripe verify-course error:', err.message);
     return res.status(502).json({ error: 'Verification failed. Please refresh the page or contact info@lbsconnect.net.' });
   }
 });

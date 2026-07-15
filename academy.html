@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="description" content="LBS Online Academy: 10 self-paced Business Analysis courses covering requirements engineering, elicitation, stakeholder management, BRDs/FRDs, user stories, process mapping, Agile & Scrum, SQL & Power BI, and BA career readiness. $299 per course, lifetime access." />
+  <meta name="keywords" content="online business analyst training, BA course, requirements engineering course, agile scrum training for business analysts, BRD FRD course, user stories training, process mapping BPMN course, SQL power BI for business analysts, BA career course" />
+  <meta name="author" content="Linton Business Solutions LLC" />
+  <title>Online Academy | 10 Self-Paced Business Analysis Courses | LBS</title>
+  <link rel="canonical" href="https://www.lbsconnect.net/academy.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Linton Business Solutions" />
+  <meta property="og:title" content="Online Academy | 10 Self-Paced Business Analysis Courses | LBS" />
+  <meta property="og:description" content="Self-paced online BA training built from real government and enterprise consulting engagements. 10 courses, $299 each, lifetime access." />
+  <meta property="og:url" content="https://www.lbsconnect.net/academy.html" />
+  <meta property="og:image" content="https://www.lbsconnect.net/assets/images/og-image.png" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Online Academy | 10 Self-Paced Business Analysis Courses | LBS" />
+  <meta name="twitter:description" content="Self-paced online BA training, 10 courses, $299 each, lifetime access." />
+  <meta name="twitter:image" content="https://www.lbsconnect.net/assets/images/og-image.png" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ItemList",
+        "@id": "https://www.lbsconnect.net/academy.html",
+        "name": "LBS Online Academy",
+        "description": "10 self-paced Business Analysis courses, $299 each, lifetime access.",
+        "url": "https://www.lbsconnect.net/academy.html"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.lbsconnect.net/"},
+          {"@type": "ListItem", "position": 2, "name": "Shop", "item": "https://www.lbsconnect.net/shop.html"},
+          {"@type": "ListItem", "position": 3, "name": "Online Academy", "item": "https://www.lbsconnect.net/academy.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <style>
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-10);
+    }
+    .course-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      transition: box-shadow var(--transition-base), transform var(--transition-base);
+    }
+    .course-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+    .course-card__top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-3);
+    }
+    .course-card__icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-lg);
+      background: rgba(13,27,53,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .course-card__num {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-bold);
+      color: var(--color-text-muted);
+      background: var(--color-gray-100);
+      border: 1px solid var(--color-gray-200);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+    .course-card__name {
+      font-size: var(--text-base);
+      font-weight: var(--fw-bold);
+      color: var(--color-gray-800);
+      line-height: var(--lh-snug);
+    }
+    .course-card__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: var(--lh-relaxed);
+    }
+    .course-card__topics {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+    .course-card__topics li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2);
+      font-size: var(--text-xs);
+      color: var(--color-text);
+      line-height: var(--lh-snug);
+    }
+    .course-card__topics li::before { content: "✓"; color: var(--color-teal-dark); font-weight: var(--fw-bold); flex-shrink: 0; }
+    .course-card__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding-top: var(--space-2);
+      border-top: 1px solid var(--color-gray-100);
+    }
+    .course-card__price {
+      font-size: var(--text-lg);
+      font-weight: var(--fw-black);
+      color: var(--color-navy);
+    }
+    .course-card__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: var(--space-3) var(--space-5);
+      background: var(--color-navy);
+      color: var(--color-white);
+      font-size: var(--text-sm);
+      font-weight: var(--fw-semi);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: opacity var(--transition-fast);
+    }
+    .course-card__cta:hover { opacity: 0.88; }
+
+    .academy-info-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+      justify-content: center;
+      margin-top: var(--space-12);
+      padding: var(--space-6) var(--space-8);
+      background: var(--color-off-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-gray-200);
+    }
+    .academy-info-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+    .academy-info-item a { color: var(--color-blue); text-decoration: none; }
+
+    .academy-locked-note {
+      max-width: 700px;
+      margin: 0 auto var(--space-8);
+      padding: var(--space-4) var(--space-6);
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: var(--radius-lg);
+      color: #9a3412;
+      font-size: var(--text-sm);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="LBS Home">
+        <img src="assets/images/lbs-logo.svg" alt="Linton Business Solutions" />
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="shop.html" class="nav__link nav__link--shop active">Shop</a></li>
+        <li><a href="services.html" class="nav__link">Services</a></li>
+        <li><a href="software.html" class="nav__link">Software</a></li>
+        <li><a href="portfolio.html" class="nav__link">Portfolio</a></li>
+        <li><a href="https://www.LBS4.com" class="nav__link" target="_blank" rel="noopener noreferrer">Career Hub</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__cta"><a href="contact.html" class="btn btn--primary">Get Started</a></div>
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <nav class="nav__mobile" id="nav-mobile" aria-label="Mobile navigation">
+    <a href="index.html" class="nav__mobile-link">Home</a>
+    <a href="shop.html" class="nav__mobile-link nav__mobile-link--shop active">Shop</a>
+    <a href="services.html" class="nav__mobile-link">Services</a>
+    <a href="software.html" class="nav__mobile-link">Software</a>
+    <a href="portfolio.html" class="nav__mobile-link">Portfolio</a>
+    <a href="https://www.LBS4.com" class="nav__mobile-link" target="_blank" rel="noopener noreferrer">Career Hub</a>
+    <a href="about.html" class="nav__mobile-link">About</a>
+    <a href="contact.html" class="nav__mobile-link">Contact</a>
+    <div class="nav__mobile-cta"><a href="contact.html" class="btn btn--primary" style="width:100%;justify-content:center;">Get Started</a></div>
+  </nav>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="about-hero" aria-label="LBS Online Academy">
+      <div class="container">
+        <div class="page-hero-label"><span>🎓</span> Online Academy</div>
+        <h1 class="page-hero-heading">Online Business Analysis Training.</h1>
+        <p class="page-hero-desc"><strong>10 self-paced courses built around the exact methodologies LBS applies on federal, state, and enterprise engagements. Each course stands on its own, buy only the topics you need.</strong></p>
+      </div>
+    </section>
+
+    <!-- ============ COURSES GRID ============ -->
+    <section class="section" aria-labelledby="academy-heading">
+      <div class="container">
+
+        <div id="lockedNote" class="academy-locked-note" hidden>
+          It looks like you tried to open a course you haven't purchased yet, or your access link expired. Enroll below, or if you've already paid, use the link from your Stripe receipt email to restore access.
+        </div>
+
+        <div>
+          <span class="section-label">10 Courses</span>
+          <h2 class="section-heading" id="academy-heading">Browse the Curriculum</h2>
+        </div>
+
+        <div class="course-grid">
+
+          <div class="course-card fade-in">
+            <div class="course-card__top">
+              <div class="course-card__icon">📘</div>
+              <div class="course-card__num">Course 1</div>
+            </div>
+            <div class="course-card__name">Requirements Engineering Fundamentals</div>
+            <div class="course-card__desc">The foundation course for every Business Analyst: what requirements engineering is, the six BABOK knowledge areas, and the four types of requirements every BA must be able to tell apart.</div>
+            <ul class="course-card__topics">
+              <li>BABOK's six knowledge areas</li>
+              <li>Business, stakeholder, solution &amp; transition requirements</li>
+              <li>How development lifecycle shapes BA work</li>
+            </ul>
+            <div class="course-card__bottom">
+              <span class="course-card__price">$299</span>
+              <a href="#" data-slug="course-01" class="course-card__cta enroll-btn">Enroll →</a>
+            </div>
+          </div>
+
+          <div class="course-card fade-in">
+            <div class="course-card__top">
+              <div class="course-card__icon">🔍</div>
+              <div class="course-card__num">Course 2</div>
+            </div>
+            <div class="course-card__name">Requirements Gathering &amp; Elicitation Techniques</div>
+            <div class="course-card__desc">Go beyond "ask the stakeholder": the interviews, workshops, document analysis, and observation techniques BAs use to draw out real requirements.</div>
+            <ul class="course-card__topics">
+              <li>Interview &amp; workshop facilitation</li>
+              <li>Document analysis &amp; observation</li>
+              <li>Choosing the right technique per situation</li>
+            </ul>
+            <div class="course-card__bottom">
+              <span class="course-card__price">$299</span>
+              <a href="#" data-slug="course-02" class="course-card__cta enroll-btn">Enroll →</a>
+            </div>
+          </div>
+
+          <div class="course-card fade-in">
+            <div class="course-card__top">
+              <div class="course-card__icon">🤝</div>
+              <div class="course-card__num">Course 3</div>
+            </div>
+            <div class="course-card__name">Stakeholder Management &amp; Communication</div>
+            <div class="course-card__desc">Identify, analyze, and manage the people whose needs, and whose approval, determine whether a project succeeds.</div>
+            <ul class="course-card__topics">
+              <li>Stakeholder identification &amp; analysis</li>
+              <li>Power/interest mapping</li>
+              <li>Managing conflicting stakeholder needs</li>
+            </ul>
+            <div class="course-card__bottom">
+              <span class="course-card__price">$299</span>
+              <a href="#" data-slug="course-03" class="course-card__cta enroll-btn">Enroll →</a>
+            </div>
+          </div>
+
+          <div class="course-card fade-in">
+            <div class="course-card__top">
+              <div class="course-card__icon">📄</div>
+              <div class="course-card__num">Course 4</div>
+            </div>
+            <div class="course-card__name">BRDs &amp; FRDs: Writing Effective Requirements Documents</div>
+            <div class="course-card__desc">Write Business Requirements Documents and Functional Requirements Specifications precise enough to build against and clear enough for a non-technical sponsor to sign off on.</div>
+            <ul class="course-card__topics">
+              <li>BRD &amp; FRD structure and content</li>
+              <li>Writing testable requirements</li>
+              <li>Common documentation mistakes to avoid</li>
+            </ul>
+            <div class="course-card__bottom">
+              <span class="course-card__price">$299</span>
+              <a href="#" data-slug="course-04" class="course-card__cta enroll-btn">Enroll →</a>
+            </div>
+          </div>
+
+          <div class="course-card fade-in">
+            <div class="course-card__top">
+              <div class="course-card__icon">🗂️</div>
+              <div class="course-card__num">Course 5</div>
+            </div>
+            <div class="course-card__name">User Stories &amp; Use Cases for Business Analysts</div>
+            <div class="course-card__desc">Translate requirements into Agile-ready user stories and formal use cases, with acceptance criteria that leave no room for ambiguity.</div>
+            <ul class="course-card__topics">
+              <li>User story structure &amp; INVEST criteria</li>
+              <li>Given-When-Then acceptance criteria</li>
+              <li>Use case diagrams &amp; flows</li>
+            </ul>
+            <div class="course-card__bottom">
+              <span class="course-card__price">$299</span>
+              <a href="#" data-slug="course-05" class="course-card__cta enroll-btn">Enroll →</a>
+            </div>
+          </div>
+
+          <div class="course-card fade-in">
+            <div class="course-card__top">
+              <div class="course-card__icon">🗺️</div>
+              <div class="course-card__num">Course 6</div>
+            </div>
+            <div class="course-card__name">Process Mapping, BPMN &amp; UML Fundamentals</div>
+            <div class="course-card__desc">Document current and future-state processes using the visual modeling standards every BA is expected to know: swim lanes, BPMN, and core UML diagrams.</div>
+            <ul class="course-card__topics">
+              <li>As-is / to-be process mapping</li>
+              <li>BPMN notation basics</li>
+              <li>UML diagram types for BAs</li>
+            </ul>
+            <div class="course-card__bottom">
+              <span class="course-card__price">$299</span>
+              <a href="#" data-slug="course-06" class="course-card__cta enroll-btn">Enroll →</a>
+            </div>
+          </div>
+
+          <div class="course-card fade-in">
+            <div class="course-card__top">
+              <div class="course-card__icon">🔄</div>
+              <div class="course-card__num">Course 7</div>
+            </div>
+            <div class="course-card__name">Agile &amp; Scrum Foundations for Business Analysts</div>
+            <div class="course-card__desc">How the BA role adapts inside Agile and Scrum teams: roles, artifacts, and how requirements work changes when delivery happens in sprints.</div>
+            <ul class="course-card__topics">
+              <li>Agile values &amp; principles</li>
+              <li>Scrum roles &amp; artifacts</li>
+              <li>The BA's role on a Scrum team</li>
+            </ul>
+            <div class="course-card__bottom">
+              <span class="course-card__price">$299</span>
+              <a href="#" data-slug="course-07" class="course-card__cta enroll-btn">Enroll →</a>
+            </div>
+          </div>
+
+          <div class="course-card fade-in">
+            <div class="course-card__top">
+              <div class="course-card__icon">📊</div>
+              <div class="course-card__num">Course 8</div>
+            </div>
+            <div class="course-card__name">Scrum Ceremonies, Backlog &amp; Kanban</div>
+            <div class="course-card__desc">A practical walkthrough of the Scrum ceremonies and backlog management practices a BA participates in every sprint, plus Kanban as an alternative flow model.</div>
+            <ul class="course-card__topics">
+              <li>Sprint planning, standups, review &amp; retro</li>
+              <li>Backlog refinement &amp; prioritization</li>
+              <li>Kanban boards &amp; WIP limits</li>
+            </ul>
+            <div class="course-card__bottom">
+              <span class="course-card__price">$299</span>
+              <a href="#" data-slug="course-08" class="course-card__cta enroll-btn">Enroll →</a>
+            </div>
+          </div>
+
+          <div class="course-card fade-in">
+            <div class="course-card__top">
+              <div class="course-card__icon">💾</div>
+              <div class="course-card__num">Course 9</div>
+            </div>
+            <div class="course-card__name">SQL Basics &amp; Power BI for Business Analysts</div>
+            <div class="course-card__desc">The SQL queries and Power BI skills a BA needs to pull, validate, and visualize data, no data engineering background required.</div>
+            <ul class="course-card__topics">
+              <li>SQL SELECT, JOIN &amp; filtering basics</li>
+              <li>Data validation for requirements work</li>
+              <li>Power BI fundamentals &amp; a basic dashboard</li>
+            </ul>
+            <div class="course-card__bottom">
+              <span class="course-card__price">$299</span>
+              <a href="#" data-slug="course-09" class="course-card__cta enroll-btn">Enroll →</a>
+            </div>
+          </div>
+
+          <div class="course-card fade-in">
+            <div class="course-card__top">
+              <div class="course-card__icon">🎯</div>
+              <div class="course-card__num">Course 10</div>
+            </div>
+            <div class="course-card__name">Strategy Analysis &amp; BA Career Readiness</div>
+            <div class="course-card__desc">Connect requirements work to business strategy, and prepare for BA interviews and career growth with a clear picture of what comes next.</div>
+            <ul class="course-card__topics">
+              <li>Current state / future state / gap analysis</li>
+              <li>Business case basics</li>
+              <li>Career paths &amp; interview preparation</li>
+            </ul>
+            <div class="course-card__bottom">
+              <span class="course-card__price">$299</span>
+              <a href="#" data-slug="course-10" class="course-card__cta enroll-btn">Enroll →</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Info strip -->
+        <div class="academy-info-strip">
+          <div class="academy-info-item">⚡ Instant enrollment after payment</div>
+          <div class="academy-info-item">🔒 Secure checkout via Stripe</div>
+          <div class="academy-info-item">♾️ Lifetime access</div>
+          <div class="academy-info-item">🏛️ Government &amp; enterprise ready</div>
+          <div class="academy-info-item">✉️ Questions? <a href="contact.html">Contact us</a></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="section section--dark" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-banner">
+          <h2 class="cta-banner__heading">Not Sure Where to Start?</h2>
+          <p class="cta-banner__sub">Reach out to the LBS team and we'll recommend the right course for your role and goals.</p>
+          <div class="cta-banner__actions">
+            <a href="contact.html" class="btn btn--teal btn--lg">Contact Us</a>
+            <a href="shop.html" class="btn btn--outline btn--lg">Back to Shop</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo" style="margin-bottom:var(--space-4);display:inline-flex;"><img src="assets/images/lbs-logo.svg" alt="Linton Business Solutions" /></a>
+          <p class="footer__brand-desc">Linton Business Solutions LLC, Veteran-owned business analysis and technology consulting firm delivering measurable results for federal, state, and local government agencies nationwide since 2017.</p>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-5);"><span style="background:rgba(0,196,180,0.15);color:var(--color-teal);font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">VOSB Verified</span><span style="background:rgba(30,111,255,0.15);color:#7eb8ff;font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">TX HUB Certified</span></div>
+          <div class="footer__social"><a href="https://linkedin.com/company/lbsconnect" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">in</a></div>
+        </div>
+        <div><h3 class="footer__col-title">Services</h3><ul class="footer__links" role="list"><li><a href="services.html#silver" class="footer__link">Silver: Project Readiness Package</a></li><li><a href="services.html#gold" class="footer__link">Gold: BA Sprint Package</a></li><li><a href="services.html#platinum" class="footer__link">Platinum: Full BA &amp; Delivery</a></li><li><a href="services.html#uat" class="footer__link">QA &amp; UAT Testing</a></li></ul></div>
+        <div><h3 class="footer__col-title">Company</h3><ul class="footer__links" role="list"><li><a href="about.html" class="footer__link">About LBS</a></li><li><a href="portfolio.html" class="footer__link">Portfolio</a></li><li><a href="software.html" class="footer__link">Software</a></li><li><a href="shop.html" class="footer__link">Shop</a></li><li><a href="about.html#certifications" class="footer__link">Certifications</a></li><li><a href="contact.html" class="footer__link">Contact</a></li></ul></div>
+        <div><h3 class="footer__col-title">Contact</h3><ul class="footer__links" role="list"><li><a href="mailto:info@lbsconnect.net" class="footer__link">info@lbsconnect.net</a></li><li><a href="https://www.lbsconnect.net" class="footer__link">lbsconnect.net</a></li><li><span class="footer__link" style="cursor:default;">616 FM 1960 Rd W, Ste 101</span></li><li><span class="footer__link" style="cursor:default;">Houston, TX 77090-3048</span></li></ul></div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2025 Linton Business Solutions LLC. All rights reserved.</p>
+        <nav class="footer__legal" aria-label="Legal links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // One fixed-price Stripe Payment Link, reused for all 10 courses via
+    // client_reference_id, exactly like the $29 template link and the
+    // $49/$99 AI Prompt Library links. Create a single $299 Payment Link in
+    // Stripe and paste its checkout.lbs4.com URL here before this goes live.
+    var STRIPE_COURSE_LINK = 'STRIPE_COURSE_LINK_TBD';
+
+    document.querySelectorAll('.enroll-btn').forEach(function (btn) {
+      btn.href = STRIPE_COURSE_LINK + '?client_reference_id=' + btn.dataset.slug;
+    });
+
+    var locked = new URLSearchParams(window.location.search).get('locked');
+    if (locked) {
+      var note = document.getElementById('lockedNote');
+      if (note) note.hidden = false;
+    }
+  </script>
+</body>
+</html>

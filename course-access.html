@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Access Your Course | Linton Business Solutions</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    /* ── Layout ── */
+    .dl-hero {
+      background: linear-gradient(135deg, #0f2a4a 0%, #0d3a6e 60%, #0d9e8a22 100%);
+      padding: 80px 0 56px;
+      text-align: center;
+      color: #fff;
+    }
+    .dl-hero__badge {
+      display: inline-block;
+      background: rgba(13,158,138,.15);
+      border: 1px solid #0d9e8a;
+      color: #0d9e8a;
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .dl-hero__title {
+      font-size: clamp(1.7rem,4vw,2.5rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.15;
+    }
+    .dl-hero__sub {
+      color: #94a3b8;
+      font-size: 1rem;
+      max-width: 540px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+    .dl-hero__trust {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .dl-hero__trust span {
+      color: #cbd5e1;
+      font-size: .83rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dl-hero__trust span::before { content: "✓"; color: #0d9e8a; font-weight: 700; }
+
+    .dl-section { padding: 56px 0; }
+    .dl-section--alt { background: #f8fafc; }
+    .dl-section__heading {
+      text-align: center;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f2a4a;
+      margin-bottom: 6px;
+    }
+    .dl-section__sub {
+      text-align: center;
+      color: #64748b;
+      max-width: 520px;
+      margin: 0 auto 36px;
+      font-size: .95rem;
+      line-height: 1.6;
+    }
+
+    /* ── States ── */
+    .dl-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 100px 20px;
+      color: #64748b;
+    }
+    .dl-spinner {
+      width: 44px;
+      height: 44px;
+      border: 3px solid #e2e8f0;
+      border-top-color: #0d9e8a;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .dl-error {
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      max-width: 560px;
+      margin: 60px auto;
+    }
+    .dl-error__icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .dl-error__title { font-size: 1.1rem; font-weight: 700; color: #991b1b; margin-bottom: 8px; }
+    .dl-error__msg { color: #7f1d1d; font-size: .9rem; line-height: 1.6; }
+    .dl-error__link {
+      display: inline-block;
+      margin-top: 16px;
+      color: #0d9e8a;
+      font-weight: 600;
+      font-size: .9rem;
+      text-decoration: none;
+    }
+    .dl-error__link:hover { text-decoration: underline; }
+
+    /* ── Course ready card ── */
+    .dl-single-card {
+      background: #fff;
+      border: 2px solid #0d9e8a;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 560px;
+      margin: 0 auto 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+    }
+    .dl-single-card__icon { font-size: 3rem; }
+    .dl-single-card__abbr {
+      font-size: .75rem;
+      font-weight: 700;
+      color: #0d9e8a;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .dl-single-card__name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0f2a4a;
+    }
+    .dl-single-card__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0fdf9;
+      border: 1px solid #0d9e8a40;
+      color: #0d9e8a;
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: .8rem;
+      font-weight: 600;
+    }
+
+    .btn-dl-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #0d9e8a;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.03rem;
+      padding: 15px 34px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .btn-dl-primary:hover { background: #0b8a78; transform: translateY(-1px); color: #fff; }
+
+    /* ── Support ── */
+    .dl-support {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .dl-support__icon { font-size: 2rem; margin-bottom: 10px; }
+    .dl-support__title { font-size: 1.05rem; font-weight: 700; color: #0f2a4a; margin-bottom: 7px; }
+    .dl-support__text { color: #64748b; font-size: .88rem; line-height: 1.6; }
+    .dl-support__email {
+      display: inline-block; margin-top: 10px;
+      color: #0d9e8a; font-weight: 600; text-decoration: none; font-size: .9rem;
+    }
+    .dl-support__email:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .dl-single-card { padding: 28px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar__brand">
+        <img src="assets/images/logo.png" alt="Linton Business Solutions" class="navbar__logo" />
+      </a>
+      <button class="navbar__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar__menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="software.html">Software</a></li>
+        <li><a href="shop.html" class="active">Shop</a></li>
+        <li><a href="contact.html" class="navbar__cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO (populated by JS) -->
+  <section class="dl-hero" id="dlHero">
+    <div class="container">
+      <div class="dl-hero__badge" id="heroBadge">🎓 Your Course Is Ready</div>
+      <h1 class="dl-hero__title" id="heroTitle">Loading your purchase&hellip;</h1>
+      <p class="dl-hero__sub" id="heroSub">Please wait while we verify your payment.</p>
+      <div class="dl-hero__trust">
+        <span>Secure verified enrollment</span>
+        <span>Lifetime access</span>
+        <span>Self-paced</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT AREA -->
+  <main>
+
+    <!-- Loading -->
+    <div id="stateLoading" class="dl-section">
+      <div class="container">
+        <div class="dl-loading">
+          <div class="dl-spinner" aria-label="Verifying your purchase"></div>
+          <p>Verifying your purchase&hellip;</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error -->
+    <div id="stateError" class="dl-section" hidden>
+      <div class="container">
+        <div class="dl-error">
+          <div class="dl-error__icon">⚠️</div>
+          <div class="dl-error__title">We could not verify your purchase</div>
+          <div class="dl-error__msg" id="errorMsg">Please try refreshing the page. If the problem persists, contact us and we will get you into your course right away.</div>
+          <a href="mailto:info@lbsconnect.net" class="dl-error__link">info@lbsconnect.net</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Course ready -->
+    <div id="stateReady" hidden>
+      <section class="dl-section">
+        <div class="container">
+          <h2 class="dl-section__heading">You're Enrolled</h2>
+          <p class="dl-section__sub">Your purchase has been verified. This page grants lifetime access to your course, bookmark it and jump back in anytime.</p>
+
+          <div class="dl-single-card" id="courseCard">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Support (shown once content loads) -->
+    <section class="dl-section dl-section--alt" id="stateSupport" hidden>
+      <div class="container">
+        <div class="dl-support">
+          <div class="dl-support__icon">💬</div>
+          <div class="dl-support__title">Need Help?</div>
+          <div class="dl-support__text">
+            Trouble getting into your course? Lost access after clearing your browser data?
+            We reply to every email, usually within a few hours on business days.
+          </div>
+          <a href="mailto:info@lbsconnect.net" class="dl-support__email">info@lbsconnect.net</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="assets/images/logo.png" alt="Linton Business Solutions" class="footer__logo" />
+          <p class="footer__tagline">Professional Business Analysis, built for government.</p>
+        </div>
+        <div class="footer__links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="software.html">Software</a></li>
+          </ul>
+        </div>
+        <div class="footer__links">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="shop.html">All Products</a></li>
+            <li><a href="academy.html">Online Academy</a></li>
+            <li><a href="ba-template-store.html">BA Templates</a></li>
+            <li><a href="ai-prompt-library.html">AI Prompt Library</a></li>
+          </ul>
+        </div>
+        <div class="footer__contact">
+          <h4>Contact</h4>
+          <p>info@lbsconnect.net</p>
+          <a href="contact.html" class="footer__cta">Get In Touch</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Linton Business Solutions. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    const COURSE_ICONS = {
+      'course-01': '📘', 'course-02': '🔍', 'course-03': '🤝', 'course-04': '📄', 'course-05': '🗂️',
+      'course-06': '🗺️', 'course-07': '🔄', 'course-08': '📊', 'course-09': '💾', 'course-10': '🎯',
+    };
+
+    function show(id)   { const el = document.getElementById(id); if (el) { el.removeAttribute('hidden'); el.style.display = ''; } }
+    function hide(id)   { const el = document.getElementById(id); if (el) el.setAttribute('hidden', ''); }
+    function setText(id, txt) { const el = document.getElementById(id); if (el) el.textContent = txt; }
+
+    function showError(msg) {
+      hide('stateLoading');
+      document.getElementById('errorMsg').textContent = msg;
+      show('stateError');
+      document.getElementById('heroBadge').textContent = '⚠️ Verification Failed';
+      setText('heroTitle', 'We could not verify your purchase');
+      setText('heroSub', 'Please try refreshing, or contact us for help.');
+    }
+
+    async function init() {
+      const params    = new URLSearchParams(window.location.search);
+      const sessionId = params.get('session_id');
+
+      if (!sessionId) {
+        showError(
+          'No purchase session was found in this URL. If you just completed a purchase, ' +
+          'use the link Stripe sent you or contact info@lbsconnect.net with your receipt.'
+        );
+        return;
+      }
+
+      try {
+        const resp = await fetch('/api/verify-course?session_id=' + encodeURIComponent(sessionId));
+        const data = await resp.json();
+
+        if (!resp.ok) {
+          showError(data.error || 'Verification failed. Please contact info@lbsconnect.net.');
+          return;
+        }
+
+        hide('stateLoading');
+        show('stateSupport');
+
+        const courseUrl = '/courses/' + data.slug + '/index.html';
+
+        document.getElementById('heroBadge').textContent = '✓ Purchase Verified';
+        setText('heroTitle', 'Welcome to Your Course');
+        setText('heroSub', data.courseName + ' is ready. Redirecting you in a moment...');
+
+        document.getElementById('courseCard').innerHTML = `
+          <div class="dl-single-card__icon">${COURSE_ICONS[data.slug] || '🎓'}</div>
+          <div class="dl-single-card__abbr">Online Academy</div>
+          <div class="dl-single-card__name">${data.courseName}</div>
+          <div class="dl-single-card__badge">✓ Enrollment Verified</div>
+          <a href="${courseUrl}" class="btn-dl-primary">
+            ▶ Start the Course
+          </a>
+          <p style="font-size:.8rem;color:#64748b;margin-top:4px;">
+            Bookmark this course link, you have lifetime access. If you ever lose access after clearing
+            your browser data, return to this page (using your original Stripe receipt link) to restore it.
+          </p>
+        `;
+
+        show('stateReady');
+
+        // Auto-continue into the course; the button above is the fallback if this is blocked.
+        setTimeout(() => { window.location.href = courseUrl; }, 1800);
+
+      } catch (err) {
+        showError('Connection error. Please refresh the page or contact info@lbsconnect.net.');
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
