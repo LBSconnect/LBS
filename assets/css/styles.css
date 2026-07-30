@@ -1634,15 +1634,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .legal a { color: var(--color-blue); }
 .legal strong { color: var(--color-gray-800); }
-.legal__confirm {
-  background: rgba(255, 176, 32, 0.12);
-  border: 1px solid rgba(255, 176, 32, 0.4);
-  border-radius: var(--radius-md);
-  padding: var(--space-1) var(--space-2);
-  font-size: var(--text-sm);
-  color: var(--color-gray-800);
-  display: inline-block;
-}
 .legal__note {
   background: var(--color-off-white);
   border: 1px solid var(--color-gray-200);
