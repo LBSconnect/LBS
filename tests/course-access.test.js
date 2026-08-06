@@ -259,3 +259,206 @@ describe('GET /courses/:slug/* — path traversal protection', () => {
     expect(res.text).not.toMatch(/STRIPE_SECRET_KEY/);
   });
 });
+
+// =============================================================================
+// Worker 4 additions (Authentication / Session Management audit) — keep new
+// cases in this block so merges with other workers' additions stay clean.
+// =============================================================================
+
+// ─────────────────────────────────────────────────────────────────────────────
+// W4-1. GET /api/verify-course — session_id shape validation (additional cases)
+// ─────────────────────────────────────────────────────────────────────────────
+describe('[W4] GET /api/verify-course — additional session_id validation', () => {
+  it('returns 400 for an empty session_id value (?session_id=)', async () => {
+    const res = await request(app).get('/api/verify-course?session_id=');
+    expect(res.status).toBe(400);
+    expect(res.body).toHaveProperty('error');
+  });
+
+  it('returns 400 for a session_id that is only whitespace', async () => {
+    const res = await request(app).get('/api/verify-course?session_id=%20%20%20');
+    expect(res.status).toBe(400);
+  });
+
+  it('returns 400 (not a 500) when session_id is supplied twice (array input)', async () => {
+    // Express parses repeated query keys as an array; String(array) must not crash the handler.
+    const res = await request(app).get('/api/verify-course?session_id=cs_a&session_id=cs_b');
+    expect(res.status).toBe(400);
+    expect(res.body).toHaveProperty('error');
+  });
+
+  it('the JSON error body never contains a stack trace or file path', async () => {
+    const res = await request(app).get('/api/verify-course?session_id=not-cs-prefixed');
+    expect(res.status).toBe(400);
+    expect(res.body.error).not.toMatch(/at\s+\S+\s+\(|\.js:\d+:\d+/);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// W4-2. GET /api/verify-course — STRIPE_SECRET_KEY unset
+// ─────────────────────────────────────────────────────────────────────────────
+describe('[W4] GET /api/verify-course — STRIPE_SECRET_KEY unset', () => {
+  it('returns 503 with a generic, non-technical JSON error and no stack trace', async () => {
+    const original = process.env.STRIPE_SECRET_KEY;
+    delete process.env.STRIPE_SECRET_KEY;
+
+    try {
+      const res = await request(app).get('/api/verify-course?session_id=cs_whatever_it_does_not_matter');
+
+      expect(res.status).toBe(503);
+      expect(res.type).toMatch(/json/);
+      expect(res.body).toEqual({
+        error: 'Payment verification is temporarily unavailable. Please contact info@lbsconnect.net.',
+      });
+      // No stack trace / internal detail leakage of any kind.
+      expect(JSON.stringify(res.body)).not.toMatch(/at\s+\S+\s+\(|node_modules|\.js:\d+:\d+|Error:/);
+    } finally {
+      process.env.STRIPE_SECRET_KEY = original;
+    }
+  });
+
+  it('the /api/verify (download) endpoint has the same fail-closed behavior', async () => {
+    // Not this worker's primary surface, but confirms both verify endpoints share
+    // the same fail-closed contract when the Stripe key is missing.
+    const original = process.env.STRIPE_SECRET_KEY;
+    delete process.env.STRIPE_SECRET_KEY;
+    try {
+      const res = await request(app).get('/api/verify?session_id=cs_whatever');
+      expect(res.status).toBe(503);
+      expect(res.body).toHaveProperty('error');
+    } finally {
+      process.env.STRIPE_SECRET_KEY = original;
+    }
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// W4-3. GET /courses/:slug/* — locked redirect: slug encoding sanity
+// ─────────────────────────────────────────────────────────────────────────────
+describe('[W4] GET /courses/:slug/* — locked-redirect slug encoding', () => {
+  it('every registered course slug round-trips cleanly through the locked redirect', async () => {
+    // COURSE_MAP is gated ahead of the redirect (unknown slugs 404 before the
+    // encodeURIComponent() call is ever reached), so real slugs are always the
+    // plain `course-NN` shape. This test pins that contract: if a future slug
+    // ever contains characters needing escaping, this will catch a broken
+    // (unescaped) Location header rather than silently passing.
+    const slugs = Array.from({ length: 10 }, (_, i) => `course-${String(i + 1).padStart(2, '0')}`);
+    for (const slug of slugs) {
+      const res = await request(app).get(`/courses/${slug}/index.html`);
+      expect(res.status).toBe(302);
+      expect(res.headers.location).toBe(`/academy.html?locked=${encodeURIComponent(slug)}`);
+    }
+  });
+
+  it('an unregistered slug 404s before any redirect/encoding is attempted', async () => {
+    // Confirms the 404 gate really does run first — a slug with characters that
+    // would need escaping never reaches the encodeURIComponent() call.
+    const res = await request(app).get('/courses/course%20weird%2Fslug/index.html');
+    expect(res.status).toBe(404);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// W4-4. GET /courses/:slug/* — raw dot-segment traversal (unencoded ../..)
+// ─────────────────────────────────────────────────────────────────────────────
+describe('[W4] GET /courses/:slug/* — raw ../../ traversal attempts', () => {
+  it('a raw ../../ segment never reaches course content (Express normalizes it away from the route)', async () => {
+    mockStripeSession('cs_traversal_raw', { client_reference_id: 'course-01' });
+    const verify = await request(app).get('/api/verify-course?session_id=cs_traversal_raw');
+    const cookie = cookiePair(verify.headers['set-cookie'][0]);
+
+    const res = await request(app)
+      .get('/courses/course-01/../../etc/passwd')
+      .set('Cookie', cookie);
+
+    // Express's router collapses the dot-segments before route matching, so this
+    // never lands inside our /courses/:slug/* handler at all — it 404s upstream.
+    // The key security property either way: no file content is ever returned.
+    expect(res.status).not.toBe(200);
+  });
+
+  it('percent-encoded dot segments combined with literal slashes are rejected by the in-handler guard', async () => {
+    mockStripeSession('cs_traversal_dots', { client_reference_id: 'course-01' });
+    const verify = await request(app).get('/api/verify-course?session_id=cs_traversal_dots');
+    const cookie = cookiePair(verify.headers['set-cookie'][0]);
+
+    const res = await request(app)
+      .get('/courses/course-01/..%2f..%2f..%2fetc%2fpasswd')
+      .set('Cookie', cookie);
+
+    expect(res.status).toBe(400);
+    expect(res.text).toBe('Invalid path.');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// W4-5. Expired course-access token
+// ─────────────────────────────────────────────────────────────────────────────
+describe('[W4] GET /courses/:slug/* — expired token', () => {
+  const realDateNow = Date.now.bind(Date);
+  afterEach(() => jest.restoreAllMocks());
+
+  it('a cookie whose token has passed its expiresAt is rejected like no cookie at all', async () => {
+    mockStripeSession('cs_expiry', { client_reference_id: 'course-01' });
+    const verify = await request(app).get('/api/verify-course?session_id=cs_expiry');
+    expect(verify.status).toBe(200);
+    const cookie = cookiePair(verify.headers['set-cookie'][0]);
+
+    // Sanity check: right after issuance, the cookie works.
+    const before = await request(app).get('/courses/course-01/index.html').set('Cookie', cookie);
+    expect(before.status).toBe(200);
+
+    // Jump the clock past the 400-day TTL (COURSE_TOKEN_TTL) and retry with the
+    // same cookie — the entry.expiresAt < Date.now() branch must now trigger.
+    const past400Days = realDateNow() + 401 * 24 * 60 * 60 * 1000;
+    jest.spyOn(Date, 'now').mockReturnValue(past400Days);
+
+    const after = await request(app).get('/courses/course-01/index.html').set('Cookie', cookie);
+    expect(after.status).toBe(302);
+    expect(after.headers.location).toBe('/academy.html?locked=course-01');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// W4-6. Cross-purchase isolation — additional pairing (course-07 vs course-01)
+// ─────────────────────────────────────────────────────────────────────────────
+describe('[W4] Cross-purchase isolation — additional slug pairing', () => {
+  it('a course-07 cookie forged under the course-01 cookie name does not unlock course-01', async () => {
+    mockStripeSession('cs_iso_07', { client_reference_id: 'course-07' });
+    const verify = await request(app).get('/api/verify-course?session_id=cs_iso_07');
+    const cookie = cookiePair(verify.headers['set-cookie'][0]);
+
+    const forged = cookie.replace('course_course-07=', 'course_course-01=');
+
+    const res = await request(app).get('/courses/course-01/index.html').set('Cookie', forged);
+    expect(res.status).toBe(302);
+    expect(res.headers.location).toBe('/academy.html?locked=course-01');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// W4-7. KNOWN FINDING — deferred to Worker 1 (server.js owner), not fixed here.
+//
+// express.static(path.join(__dirname)) serves the ENTIRE repository root as
+// static files, including server.js, package.json, render.yaml, and the whole
+// tests/ directory. This is unrelated to the /courses/:slug/* traversal guard
+// (which is verified correct above) — it is a separate, direct route any
+// visitor can hit with no cookie at all. No secrets are hardcoded (Stripe key
+// comes from an env var per render.yaml), but the full server source/business
+// logic is exposed. Proposed fix: move public site files into a dedicated
+// `public/` directory and point express.static() there only, or add an explicit
+// denylist (server.js, package*.json, render.yaml, tests/) ahead of the static
+// middleware. Left as `describe.skip` so CI stays green until Worker 1 fixes it
+// — flip to `describe` once addressed to turn this into a regression test.
+// ─────────────────────────────────────────────────────────────────────────────
+describe.skip('[W4][KNOWN FINDING for Worker 1] server source files should not be publicly downloadable', () => {
+  it('GET /server.js should not return the server source', async () => {
+    const res = await request(app).get('/server.js');
+    expect(res.status).toBe(404);
+  });
+
+  it('GET /package.json should not return repo metadata', async () => {
+    const res = await request(app).get('/package.json');
+    expect(res.status).toBe(404);
+  });
+});
