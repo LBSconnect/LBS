@@ -176,13 +176,17 @@
     .comp-table tbody tr:last-child td { border-bottom:none; }
     .comp-table tbody tr:nth-child(even) { background:var(--color-gray-100); }
     .comp-table td:first-child { font-weight:var(--fw-medium); color:var(--color-gray-800); }
-    .comp-table td { color:var(--color-text-muted); }
-    .comp-table .check-yes { color:var(--color-teal-dark); font-weight:var(--fw-bold); }
-    .comp-table .check-no { color:var(--color-gray-400); }
+    /* --color-text-muted is 4.34:1 on the striped (gray-100) rows here,
+       just under AA 4.5:1; gray-600 clears it on both row backgrounds. */
+    .comp-table td { color:var(--color-gray-600); }
+    /* --color-teal-dark/--color-gray-400 are ~2.3-3:1 here (fail AA); swap
+       for tokens/shades that clear 4.5:1 on both white and gray-100 rows. */
+    .comp-table .check-yes { color:var(--color-teal-text); font-weight:var(--fw-bold); }
+    .comp-table .check-no { color:var(--color-gray-600); }
     .comp-table .price-row td { font-weight:var(--fw-bold); font-size:var(--text-base); }
     .comp-table .price-row td:nth-child(2) { color:var(--color-gray-600); }
     .comp-table .price-row td:nth-child(3) { color:var(--color-blue); }
-    .comp-table .price-row td:nth-child(4) { color:#8b5cf6; }
+    .comp-table .price-row td:nth-child(4) { color:#7c3aed; }
 
     /* Terms section */
     .terms-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:var(--space-5); margin-top:var(--space-8); }

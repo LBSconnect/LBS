@@ -13,9 +13,11 @@
     "express-rate-limit": "^8.6.2"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
     "@playwright/test": "^1.62.1",
     "jest": "^29.7.0",
     "nock": "^14.0.16",
+    "playwright": "^1.62.1",
     "supertest": "^7.0.0"
   },
   "jest": {
