@@ -237,28 +237,28 @@
                 <div class="form-grid form-grid--2">
                   <div class="form-group">
                     <label class="form-label" for="first-name">First Name <span>*</span></label>
-                    <input class="form-input" type="text" id="first-name" name="first_name" placeholder="Jane" required autocomplete="given-name" />
+                    <input class="form-input" type="text" id="first-name" name="first_name" placeholder="Jane" required autocomplete="given-name" maxlength="100" />
                   </div>
                   <div class="form-group">
                     <label class="form-label" for="last-name">Last Name <span>*</span></label>
-                    <input class="form-input" type="text" id="last-name" name="last_name" placeholder="Smith" required autocomplete="family-name" />
+                    <input class="form-input" type="text" id="last-name" name="last_name" placeholder="Smith" required autocomplete="family-name" maxlength="100" />
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="form-label" for="email">Email Address <span>*</span></label>
-                  <input class="form-input" type="email" id="email" name="email" placeholder="jane.smith@agency.gov" required autocomplete="email" />
+                  <input class="form-input" type="email" id="email" name="email" placeholder="jane.smith@agency.gov" required autocomplete="email" maxlength="254" />
                 </div>
 
                 <div class="form-group">
                   <label class="form-label" for="organization">Organization / Agency</label>
-                  <input class="form-input" type="text" id="organization" name="organization" placeholder="Texas Dept. of Transportation" autocomplete="organization" />
+                  <input class="form-input" type="text" id="organization" name="organization" placeholder="Texas Dept. of Transportation" autocomplete="organization" maxlength="150" />
                 </div>
 
                 <div class="form-grid form-grid--2">
                   <div class="form-group">
                     <label class="form-label" for="phone">Phone (optional)</label>
-                    <input class="form-input" type="tel" id="phone" name="phone" placeholder="(713) 555-0100" autocomplete="tel" />
+                    <input class="form-input" type="tel" id="phone" name="phone" placeholder="(713) 555-0100" autocomplete="tel" maxlength="30" />
                   </div>
                   <div class="form-group">
                     <label class="form-label" for="package">Package Interest</label>
@@ -276,7 +276,7 @@
 
                 <div class="form-group">
                   <label class="form-label" for="message">Tell Us About Your Project <span>*</span></label>
-                  <textarea class="form-textarea" id="message" name="message" placeholder="Brief description of your project, challenge, or timeline..." required rows="5"></textarea>
+                  <textarea class="form-textarea" id="message" name="message" placeholder="Brief description of your project, challenge, or timeline..." required rows="5" maxlength="5000"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn--primary form-submit">
@@ -343,6 +343,26 @@
   </footer>
   <script src="assets/js/main.js"></script>
   <script>
+    (function () {
+      // Prevent double-submission: the form POSTs directly to Formspree via a
+      // full page navigation (no fetch/AJAX), so a double-click before the
+      // browser navigates away could fire two requests. Disabling the button
+      // synchronously in the 'submit' handler stops that without touching the
+      // Formspree integration itself. The 'submit' event only fires once native
+      // HTML5 required/type validation has passed, so this never blocks or
+      // interferes with the browser's built-in validation UI.
+      var contactForm = document.getElementById('contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function () {
+          var btn = contactForm.querySelector('.form-submit');
+          if (!btn || btn.disabled) return;
+          btn.disabled = true;
+          btn.setAttribute('aria-busy', 'true');
+          btn.textContent = 'Sending…';
+        });
+      }
+    })();
+
     (function () {
       var params = new URLSearchParams(window.location.search);
 
