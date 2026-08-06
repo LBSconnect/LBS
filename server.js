@@ -1,13 +1,61 @@
 'use strict';
 
-const express = require('express');
-const path    = require('path');
-const https   = require('https');
-const crypto  = require('crypto');
-const fs      = require('fs');
+const express   = require('express');
+const path      = require('path');
+const https     = require('https');
+const crypto    = require('crypto');
+const fs        = require('fs');
+const rateLimit = require('express-rate-limit');
 
 const PORT = process.env.PORT || 3000;
 const app  = express();
+
+// Render terminates TLS and proxies to this app — without this, express-rate-limit
+// (and anything else keying off req.ip) sees Render's proxy IP for every visitor,
+// not the real client IP.
+app.set('trust proxy', 1);
+
+// ── Security headers ──────────────────────────────────────────────────────────
+// No framework middleware (e.g. helmet) was in use; these are the baseline
+// headers for a site with no inline-script requirements beyond GA4/Formspree.
+// HSTS is intentionally NOT set here — Render's edge terminates TLS in front
+// of this app and is the more correct place to enforce it.
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader(
+    'Content-Security-Policy',
+    [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "font-src 'self' https://fonts.gstatic.com",
+      "img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com",
+      "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://formspree.io",
+      "frame-ancestors 'none'",
+      "form-action 'self' https://formspree.io",
+      "base-uri 'self'",
+    ].join('; ')
+  );
+  next();
+});
+
+// ── Rate limiting on sensitive endpoints ──────────────────────────────────────
+// /api/verify, /api/verify-course, and /api/download were previously
+// unthrottled. This is a starting-point threshold, not tuned against real
+// traffic — revisit post-launch.
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests. Please try again later.' },
+  // The test suite legitimately fires far more than 30 requests at these
+  // routes in quick succession; Jest sets NODE_ENV=test by default, so skip
+  // throttling there rather than making tests fight the limiter.
+  skip: () => process.env.NODE_ENV === 'test',
+});
 
 // ── Protected files ───────────────────────────────────────────────────────────
 // BA template .docx and bundle .zip are only served via /api/download.
@@ -215,19 +263,35 @@ function stripeGet(apiPath) {
   return new Promise((resolve, reject) => {
     const key  = process.env.STRIPE_SECRET_KEY || '';
     const auth = Buffer.from(key + ':').toString('base64');
+    // AbortController rather than the legacy `timeout` socket option — the
+    // latter altered low-level socket setup enough to introduce a rare race
+    // with nock's mock sockets in the test suite (intermittent unhandled
+    // "socket hang up" on unrelated nock.replyWithError() cases). This is the
+    // modern, better-supported way to bound an outbound request's lifetime
+    // and doesn't touch socket-level timing at all.
+    // Without this, a Stripe API hang (no response, no socket error) would
+    // leave the request pending forever instead of failing over to the
+    // generic 502 error path below.
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 10000);
     const req  = https.request(
       { hostname: 'api.stripe.com', path: apiPath, method: 'GET',
-        headers: { Authorization: `Basic ${auth}` } },
+        headers: { Authorization: `Basic ${auth}` },
+        signal: controller.signal },
       (res) => {
         let body = '';
         res.on('data', (c) => (body += c));
         res.on('end', () => {
+          clearTimeout(timer);
           try { resolve({ status: res.statusCode, data: JSON.parse(body) }); }
           catch (e) { reject(e); }
         });
       }
     );
-    req.on('error', reject);
+    req.on('error', (err) => {
+      clearTimeout(timer);
+      reject(err.name === 'AbortError' ? new Error('Stripe request timed out') : err);
+    });
     req.end();
   });
 }
@@ -235,7 +299,7 @@ function stripeGet(apiPath) {
 // ── GET /api/verify?session_id=cs_xxx ────────────────────────────────────────
 // Verifies a completed Stripe checkout session and returns a download token.
 // The same session always returns the same token within its 24-hour window.
-app.get('/api/verify', async (req, res) => {
+app.get('/api/verify', apiLimiter, async (req, res) => {
   const { session_id } = req.query;
 
   if (!session_id || !String(session_id).startsWith('cs_')) {
@@ -306,7 +370,7 @@ app.get('/api/verify', async (req, res) => {
 // ── GET /api/verify-course?session_id=cs_xxx ─────────────────────────────────
 // Verifies a completed Stripe checkout session for a course purchase and
 // grants long-lived cookie access to /courses/<slug>/ (see COURSE_TOKEN_TTL).
-app.get('/api/verify-course', async (req, res) => {
+app.get('/api/verify-course', apiLimiter, async (req, res) => {
   const { session_id } = req.query;
 
   if (!session_id || !String(session_id).startsWith('cs_')) {
@@ -379,7 +443,7 @@ app.get('/api/verify-course', async (req, res) => {
 // Streams the purchased file.
 // Individual buyers: always gets their purchased template (file param ignored).
 // Bundle buyers:     gets ZIP by default, or any individual template via ?file=slug.
-app.get('/api/download', (req, res) => {
+app.get('/api/download', apiLimiter, (req, res) => {
   const { token, file } = req.query;
 
   if (!token) {

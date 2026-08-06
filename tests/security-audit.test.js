@@ -41,7 +41,9 @@ function cookiePair(setCookieHeader) {
   return setCookieHeader.split(';')[0];
 }
 
+beforeEach(() => nock.cleanAll());
 afterEach(() => nock.cleanAll());
+afterAll(() => nock.restore());
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. Path traversal — multiple encodings, always rejected before file access

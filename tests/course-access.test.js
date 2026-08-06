@@ -36,7 +36,9 @@ function cookiePair(setCookieHeader) {
   return setCookieHeader.split(';')[0];
 }
 
+beforeEach(() => nock.cleanAll());
 afterEach(() => nock.cleanAll());
+afterAll(() => nock.restore());
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. Direct access — no cookie means no course content
@@ -448,10 +450,11 @@ describe('[W4] Cross-purchase isolation — additional slug pairing', () => {
 // logic is exposed. Proposed fix: move public site files into a dedicated
 // `public/` directory and point express.static() there only, or add an explicit
 // denylist (server.js, package*.json, render.yaml, tests/) ahead of the static
-// middleware. Left as `describe.skip` so CI stays green until Worker 1 fixes it
-// — flip to `describe` once addressed to turn this into a regression test.
+// middleware. FIXED by Worker 1 (server.js now 404s these paths ahead of
+// express.static()) — flipped from `describe.skip` to `describe` so this is
+// now a live regression test guarding against the fix ever regressing.
 // ─────────────────────────────────────────────────────────────────────────────
-describe.skip('[W4][KNOWN FINDING for Worker 1] server source files should not be publicly downloadable', () => {
+describe('[W4][FIXED by Worker 1] server source files should not be publicly downloadable', () => {
   it('GET /server.js should not return the server source', async () => {
     const res = await request(app).get('/server.js');
     expect(res.status).toBe(404);

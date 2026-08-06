@@ -30,7 +30,9 @@ function mockStripeSession(sessionId, overrides = {}) {
     });
 }
 
+beforeEach(() => nock.cleanAll());
 afterEach(() => nock.cleanAll());
+afterAll(() => nock.restore());
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. Protected files — direct static access must be blocked
