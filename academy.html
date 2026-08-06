@@ -288,7 +288,11 @@
   <style>
     .course-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      /* minmax(320px,...) forces a 320px-wide track even when the container
+         has less than 320px to give it (288px at a 320px viewport, after
+         padding) — that's a confirmed 16px horizontal-overflow bug at the
+         320px breakpoint. min(320px, 100%) lets the track shrink to fit. */
+      grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
       gap: var(--space-6);
       margin-top: var(--space-10);
     }
@@ -323,7 +327,10 @@
     .course-card__num {
       font-size: var(--text-xs);
       font-weight: var(--fw-bold);
-      color: var(--color-text-muted);
+      /* --color-text-muted is 4.34:1 on this badge bg (fails AA 4.5:1), and
+         .course-card--soon's opacity:0.7 drops it further to ~2.5:1; use the
+         darker text token so contrast holds in both states. */
+      color: var(--color-text);
       background: var(--color-gray-100);
       border: 1px solid var(--color-gray-200);
       padding: 3px 10px;
@@ -338,7 +345,10 @@
     }
     .course-card__desc {
       font-size: var(--text-sm);
-      color: var(--color-text-muted);
+      /* --color-text-muted is only 2.7:1 once .course-card--soon's opacity
+         is applied (see below); gray-600 keeps a healthy margin in both
+         states. */
+      color: var(--color-gray-600);
       line-height: var(--lh-relaxed);
     }
     .course-card__topics {
@@ -417,7 +427,11 @@
       text-align: center;
     }
 
-    .course-card--soon { opacity: 0.7; }
+    /* opacity:0.7 previously dimmed the whole card, which alpha-blended
+       --color-text-muted text down to ~2.7:1 (fails AA 4.5:1). An opaque
+       muted background keeps the "de-emphasized" cue without touching any
+       child element's effective text contrast. */
+    .course-card--soon { background: var(--color-gray-100); }
     .course-card--soon:hover { transform: none; box-shadow: none; }
     .course-card__soon-badge {
       font-size: var(--text-xs);
@@ -431,7 +445,7 @@
     }
     .course-card__cta--disabled {
       background: var(--color-gray-200);
-      color: var(--color-text-muted);
+      color: var(--color-gray-600);
       cursor: not-allowed;
       pointer-events: none;
     }

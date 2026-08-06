@@ -99,7 +99,11 @@
     }
     .app-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      /* minmax(320px,...) forces a 320px-wide track even when the container
+         has less than 320px to give it (288px at a 320px viewport, after
+         padding) — a confirmed 16px horizontal-overflow bug at the 320px
+         breakpoint. min(320px, 100%) lets the track shrink to fit. */
+      grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
       gap: var(--space-6);
       margin-top: var(--space-12);
     }

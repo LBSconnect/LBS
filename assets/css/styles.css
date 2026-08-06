@@ -9,10 +9,14 @@
   --color-navy:        #0d1b35;
   --color-navy-mid:    #162448;
   --color-navy-light:  #1e3260;
-  --color-blue:        #1e6fff;
+  --color-blue:        #1a63e6;
   --color-blue-dark:   #1558d6;
   --color-teal:        #00c4b4;
   --color-teal-dark:   #00a89a;
+  /* Darker teal reserved for text on light backgrounds — --color-teal and
+     --color-teal-dark are brand accents tuned for buttons/badges and don't
+     meet 4.5:1 as text; this token does (WCAG 2.2 AA 1.4.3). */
+  --color-teal-text:   #006e64;
   --color-white:       #ffffff;
   --color-off-white:   #f8faff;
   --color-gray-100:    #f1f5f9;
@@ -108,6 +112,29 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* === Focus visibility (WCAG 2.2 AA 2.4.7 / 2.4.11) ===
+   No focus style was previously defined for links, buttons, or nav items —
+   keyboard users fell back to (often inconsistent) UA defaults. This gives
+   every interactive element a consistent, visible focus ring, and only when
+   navigating by keyboard (":focus-visible" skips showing it on mouse click). */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--color-teal);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* .btn links (colored backgrounds, own border/box-shadow) need a more
+   specific rule than the generic a:focus-visible above to reliably win. */
+.btn:focus-visible {
+  outline: 3px solid var(--color-teal);
+  outline-offset: 3px;
+}
+
 body {
   font-family: var(--font-sans);
   font-size: var(--text-base);
@@ -176,6 +203,12 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-white);
 }
 
+/* --color-teal-text (used by .section-label) is tuned for light backgrounds
+   and only hits 3.28:1 on navy; the brighter --color-teal clears 7.8:1 here. */
+.section--dark .section-label {
+  color: var(--color-teal);
+}
+
 .section--light {
   background: var(--color-off-white);
 }
@@ -188,7 +221,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: var(--fw-semi);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-teal);
+  color: var(--color-teal-text);
   margin-bottom: var(--space-4);
 }
 
@@ -237,7 +270,11 @@ h1, h2, h3, h4, h5, h6 {
   font-size: var(--text-base);
   font-weight: var(--fw-semi);
   border-radius: var(--radius-md);
-  transition: all var(--transition-base);
+  /* "all" was fading the keyboard focus outline in over 250ms instead of
+     showing it immediately; transition everything except outline so the
+     focus indicator snaps in right away. */
+  transition: background var(--transition-base), border-color var(--transition-base),
+    box-shadow var(--transition-base), transform var(--transition-base), color var(--transition-base);
   white-space: nowrap;
   cursor: pointer;
   text-decoration: none;
@@ -439,14 +476,19 @@ h1, h2, h3, h4, h5, h6 {
 .nav__toggle {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
-  width: 28px;
+  /* Hit area meets the 44x44px minimum touch target (WCAG 2.2 AA 2.5.8);
+     the visible bars stay 28px wide via the fixed-width spans below. */
+  width: 44px;
+  height: 44px;
   cursor: pointer;
-  padding: var(--space-1);
 }
 
 .nav__toggle span {
   display: block;
+  width: 28px;
   height: 2px;
   background: var(--color-white);
   border-radius: var(--radius-full);
@@ -1100,7 +1142,9 @@ h1, h2, h3, h4, h5, h6 {
 .timeline-content__year {
   font-size: var(--text-sm);
   font-weight: var(--fw-bold);
-  color: var(--color-teal);
+  /* --color-teal is 2.19:1 on this white card (fails AA 4.5:1); teal-text
+     is the darker token tuned for light backgrounds. */
+  color: var(--color-teal-text);
   letter-spacing: 0.05em;
   margin-bottom: var(--space-1);
 }
@@ -1349,7 +1393,10 @@ h1, h2, h3, h4, h5, h6 {
 .form-select:focus,
 .form-textarea:focus {
   border-color: var(--color-blue);
-  box-shadow: 0 0 0 3px rgba(30,111,255,0.12);
+  /* Border-color change plus this ring is the visible focus indicator
+     for form fields (outline is intentionally suppressed above to avoid a
+     double ring); alpha raised from 0.12 -> 0.35 so it's actually visible. */
+  box-shadow: 0 0 0 3px rgba(26,99,230,0.35);
 }
 
 .form-textarea {
@@ -1405,7 +1452,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .badge--blue { background: rgba(30,111,255,0.1); color: var(--color-blue); }
-.badge--teal { background: rgba(0,196,180,0.1); color: var(--color-teal-dark); }
+.badge--teal { background: rgba(0,196,180,0.1); color: var(--color-teal-text); }
 .badge--navy { background: rgba(13,27,53,0.08); color: var(--color-navy); }
 
 /* === Divider === */
@@ -1506,10 +1553,11 @@ h1, h2, h3, h4, h5, h6 {
   font-size: var(--text-sm);
 }
 
-.footer__copy { color: rgba(255,255,255,0.4); }
+/* rgba(...,0.4) on navy was 3.75:1 (fails AA 4.5:1); 0.6 clears it. */
+.footer__copy { color: rgba(255,255,255,0.6); }
 .footer__legal { display: flex; gap: var(--space-6); }
 .footer__legal a {
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.6);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
@@ -1554,6 +1602,32 @@ h1, h2, h3, h4, h5, h6 {
 .fade-in-delay-3 { transition-delay: 0.3s; }
 .fade-in-delay-4 { transition-delay: 0.4s; }
 
+/* === Reduced motion (WCAG 2.2 AA 2.3.3) ===
+   Respect the OS-level "reduce motion" preference: skip scroll-triggered
+   fade/slide animation and smooth-scroll easing, but keep content visible
+   and functional (no opacity:0 traps for users who never fire a
+   transitionend/IntersectionObserver callback). */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* === Trusted by strip === */
 .trust-strip {
   padding-block: var(--space-10);
@@ -1582,7 +1656,10 @@ h1, h2, h3, h4, h5, h6 {
 .trust-strip__logo {
   font-size: var(--text-sm);
   font-weight: var(--fw-bold);
-  color: var(--color-gray-400);
+  /* --color-gray-400 was 2.56:1 on white (fails AA 4.5:1); --color-text-muted
+     is an existing token that clears it (4.76:1) without changing the
+     "muted" intent. */
+  color: var(--color-text-muted);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -1632,7 +1709,9 @@ h1, h2, h3, h4, h5, h6 {
   line-height: var(--lh-relaxed);
   margin-bottom: var(--space-2);
 }
-.legal a { color: var(--color-blue); }
+/* Underline required: link color vs. surrounding muted paragraph text is
+   ~1.08:1, so color alone doesn't distinguish links here (WCAG 2.2 AA 1.4.1). */
+.legal a { color: var(--color-blue); text-decoration: underline; text-underline-offset: 2px; }
 .legal strong { color: var(--color-gray-800); }
 .legal__note {
   background: var(--color-off-white);
