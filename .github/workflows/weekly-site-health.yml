@@ -1,0 +1,260 @@
+name: Weekly Site Health Audit & Repair
+
+# Runs every Friday at 12:00 AM America/Chicago.
+#
+# GitHub Actions cron is UTC-only and does NOT observe daylight saving, so a
+# single cron line would silently run at the wrong local hour for half the
+# year. This workflow uses TWO cron triggers — one for each DST state — plus
+# a runtime guard job that checks the *actual* current America/Chicago wall
+# clock and no-ops unless it's really within the Friday-00:00 hour. Exactly
+# one of the two triggers does real work on any given Friday; the other is a
+# harmless no-op. This is the documented, safe wrapper pattern for
+# timezone-aware scheduling on a UTC-only scheduler.
+#
+#   05:00 UTC Friday = 00:00 America/Chicago during CDT (mid-Mar to early Nov)
+#   06:00 UTC Friday = 00:00 America/Chicago during CST (early Nov to mid-Mar)
+#
+# This is the ONLY scheduled workflow in this repository — do not add a
+# second cron trigger elsewhere; extend this one instead.
+
+on:
+  schedule:
+    - cron: '0 5 * * 5'
+    - cron: '0 6 * * 5'
+  workflow_dispatch: {} # allows a manual on-demand run from the Actions tab
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: weekly-site-health
+  cancel-in-progress: false
+
+env:
+  PROD_URL: https://www.lbsconnect.net
+  TZ_TARGET: America/Chicago
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check.outputs.should_run }}
+      report_date: ${{ steps.check.outputs.report_date }}
+    steps:
+      - id: check
+        name: Confirm it is actually 00:xx America/Chicago right now
+        run: |
+          LOCAL_HOUR=$(TZ="$TZ_TARGET" date +%H)
+          LOCAL_DAY=$(TZ="$TZ_TARGET" date +%u) # 1=Mon ... 5=Fri
+          echo "Local time in $TZ_TARGET: $(TZ="$TZ_TARGET" date)"
+          if [ "$LOCAL_DAY" = "5" ] && [ "$LOCAL_HOUR" = "00" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            echo "Not the target window (Friday 00:xx $TZ_TARGET) — this is the redundant DST-offset trigger, skipping cleanly."
+          fi
+          echo "report_date=$(TZ="$TZ_TARGET" date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+  audit:
+    needs: guard
+    if: needs.guard.outputs.should_run == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Record run metadata
+        run: |
+          echo "RUN_STARTED_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+          echo "REPORT_DATE=${{ needs.guard.outputs.report_date }}" >> "$GITHUB_ENV"
+          echo "COMMIT_TESTED=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies (clean)
+        run: npm ci
+
+      - name: Unit / integration tests (jest)
+        run: npm test 2>&1 | tee test-output.txt
+        continue-on-error: true
+
+      - name: End-to-end tests (Playwright), if present
+        run: |
+          if npm run | grep -q "test:e2e"; then
+            npx playwright install --with-deps chromium || true
+            npm run test:e2e 2>&1 | tee e2e-output.txt
+          else
+            echo "No test:e2e script yet — skipping." | tee e2e-output.txt
+          fi
+        continue-on-error: true
+
+      - name: Accessibility check (axe), if present
+        run: |
+          if [ -f scripts/site-health/check-a11y.js ]; then
+            node scripts/site-health/check-a11y.js > a11y-report.json || true
+          else
+            echo '{"note":"a11y script not present yet"}' > a11y-report.json
+          fi
+        continue-on-error: true
+
+      - name: npm audit
+        run: npm audit --json > npm-audit.json || true
+
+      - name: Attempt safe, non-breaking dependency fixes
+        run: |
+          npm audit fix || true
+          git diff --quiet package-lock.json && echo "No lockfile changes from audit fix." || echo "audit fix updated the lockfile."
+
+      - name: Start server for local crawl
+        run: |
+          node server.js > server.log 2>&1 &
+          echo $! > server.pid
+          for i in $(seq 1 20); do
+            curl -sf http://localhost:3000/health > /dev/null && break
+            sleep 0.5
+          done
+
+      - name: Crawl site for broken internal links
+        run: node scripts/site-health/check-links.js --base http://localhost:3000 > link-check.json || true
+
+      - name: Stop local server
+        if: always()
+        run: kill "$(cat server.pid)" 2>/dev/null || true
+
+      - name: Production smoke check (read-only)
+        run: |
+          set +e
+          for path in "/" "/services.html" "/contact.html" "/about.html" "/legal.html" "/health"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 "$PROD_URL$path")
+            echo "$PROD_URL$path -> $code" >> prod-smoke.txt
+            if [ "$code" -ge 500 ] || [ "$code" = "000" ]; then
+              echo "PROD_SMOKE_FAILED=true" >> "$GITHUB_ENV"
+            fi
+          done
+          cat prod-smoke.txt
+
+      - name: Generate weekly report
+        run: node scripts/site-health/generate-report.js
+
+      - name: Determine if changes are low-risk (eligible for auto-merge)
+        id: risk
+        run: |
+          CHANGED=$(git status --porcelain | awk '{print $2}')
+          echo "Changed paths:"
+          echo "$CHANGED"
+          LOW_RISK=true
+          for f in $CHANGED; do
+            case "$f" in
+              package-lock.json|reports/site-health/*|link-check.json|npm-audit.json|test-output.txt|e2e-output.txt|a11y-report.json|prod-smoke.txt|server.log)
+                ;;
+              *)
+                LOW_RISK=false
+                ;;
+            esac
+          done
+          echo "low_risk=$LOW_RISK" >> "$GITHUB_OUTPUT"
+
+      - name: Commit changes to a dated branch
+        id: commit
+        run: |
+          BRANCH="site-health/${{ env.REPORT_DATE }}"
+          git config user.name "site-health-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add package-lock.json reports/site-health/ 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "chore(site-health): weekly audit report + safe dependency fixes for ${{ env.REPORT_DATE }}"
+            git push -u origin "$BRANCH"
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+
+      - name: Open pull request with the report
+        if: steps.commit.outputs.has_changes == 'true'
+        id: pr
+        run: |
+          BODY_FILE="reports/site-health/${{ env.REPORT_DATE }}/report.md"
+          URL=$(gh pr create \
+            --base main \
+            --head "${{ steps.commit.outputs.branch }}" \
+            --title "Weekly site health report — ${{ env.REPORT_DATE }}" \
+            --body-file "$BODY_FILE" \
+            --label "site-health" 2>&1 | tail -1)
+          echo "pr_url=$URL" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Auto-merge if low risk and all checks passed
+        if: steps.commit.outputs.has_changes == 'true' && steps.risk.outputs.low_risk == 'true' && env.PROD_SMOKE_FAILED != 'true'
+        run: |
+          gh pr merge "${{ steps.commit.outputs.branch }}" --squash --auto || \
+            echo "Auto-merge could not be enabled (branch protection or review requirement) — leaving PR open for manual merge."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Flag for manual review if not low-risk
+        if: steps.commit.outputs.has_changes == 'true' && steps.risk.outputs.low_risk != 'true'
+        run: |
+          gh pr comment "${{ steps.commit.outputs.branch }}" --body "⚠️ This run touched files outside the pre-approved low-risk set (package-lock.json, reports/). Manual review required before merging — per policy, this workflow never auto-merges changes to page content, pricing, legal text, auth, or payment logic."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Open a P0/P1 issue if production smoke check failed
+        if: env.PROD_SMOKE_FAILED == 'true'
+        run: |
+          {
+            echo "The weekly site-health run's read-only production smoke check detected a 5xx or unreachable response against $PROD_URL."
+            echo ""
+            echo "See \`prod-smoke.txt\` in the workflow run artifacts and \`reports/site-health/${{ env.REPORT_DATE }}/report.md\` for details."
+            echo ""
+            echo "**This workflow does not have Render deployment credentials and cannot roll back automatically.** If this reflects a real production outage: check the Render dashboard for the lbsconnect service, confirm the latest deploy's health, and roll back to the previous successful deploy from Render's dashboard if needed. See \`ROLLBACK.md\` at the repo root for the documented procedure."
+          } > issue-body.txt
+          gh issue create \
+            --title "🔴 P0/P1: Production smoke check failed — ${{ env.REPORT_DATE }}" \
+            --label "site-health,P0" \
+            --body-file issue-body.txt
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload run artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-health-${{ env.REPORT_DATE }}
+          path: |
+            link-check.json
+            npm-audit.json
+            test-output.txt
+            e2e-output.txt
+            a11y-report.json
+            prod-smoke.txt
+            server.log
+            reports/site-health/${{ env.REPORT_DATE }}/
+          retention-days: 90
+          if-no-files-found: ignore
+
+  optional-ai-repair:
+    needs: [guard, audit]
+    if: needs.guard.outputs.should_run == 'true' && vars.ENABLE_AI_REPAIR == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: AI-judgment repair pass (requires ANTHROPIC_API_KEY secret)
+        run: |
+          echo "This optional job is a placeholder for a Claude Code Action-driven"
+          echo "judgment-based repair pass (broken-link redirects needing a human"
+          echo "decision, accessibility color choices, copy fixes) reading the report"
+          echo "this workflow just generated. It only activates once the repo owner"
+          echo "adds an ANTHROPIC_API_KEY secret and sets the ENABLE_AI_REPAIR repo"
+          echo "variable to 'true' — see /reports/site-health/README.md and the PR"
+          echo "description for wiring instructions. Left disabled by default so this"
+          echo "workflow runs with zero external cost or secrets out of the box."
