@@ -2,3 +2,8 @@ node_modules/
 api/node_modules/
 test-artifacts/
 .claude/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+test-artifacts/

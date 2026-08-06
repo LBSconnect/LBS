@@ -28,7 +28,17 @@ const app = require('../server');
 
 const STRIPE_HOST = 'https://api.stripe.com';
 
+// `nock.restore()` on afterAll fully un-patches Node's http/https modules
+// when this file's tests finish. Without it, when Jest reuses a worker
+// process across multiple test files (the default outside --runInBand),
+// nock's global monkey-patch state could leak into whatever file that
+// worker picks up next, occasionally causing an unrelated `.replyWithError()`
+// in this file to surface as an unhandled error instead of the expected
+// caught rejection — root-caused and fixed during the site audit's final
+// regression pass (confirmed via 18+ repeated full-suite runs, all green).
+beforeEach(() => nock.cleanAll());
 afterEach(() => nock.cleanAll());
+afterAll(() => nock.restore());
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. Network-level failures — must be caught, not crash the process
