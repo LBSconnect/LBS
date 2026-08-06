@@ -96,10 +96,11 @@ jobs:
           fi
         continue-on-error: true
 
-      - name: Accessibility check (axe), if present
+      - name: Accessibility check (axe)
         run: |
-          if [ -f scripts/site-health/check-a11y.js ]; then
-            node scripts/site-health/check-a11y.js > a11y-report.json || true
+          npx playwright install --with-deps chromium || true
+          if [ -f scripts/a11y-check.js ]; then
+            node scripts/a11y-check.js --json > a11y-report.json || true
           else
             echo '{"note":"a11y script not present yet"}' > a11y-report.json
           fi

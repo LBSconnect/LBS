@@ -53,7 +53,16 @@ function main() {
   const auditReport = readJSON(path.join(ROOT, 'npm-audit.json'));
   const testLog = readText(path.join(ROOT, 'test-output.txt'), '(not captured)');
   const e2eLog = readText(path.join(ROOT, 'e2e-output.txt'), '(e2e suite not present in this run)');
-  const a11yReport = readJSON(path.join(ROOT, 'a11y-report.json'));
+  // scripts/a11y-check.js --json outputs an array of {page, url, violations[]}
+  // (or {error} per page on a load failure), not a single summary object.
+  const a11yResults = readJSON(path.join(ROOT, 'a11y-report.json'));
+  const a11yReport = Array.isArray(a11yResults)
+    ? {
+        pagesChecked: a11yResults.length,
+        totalViolations: a11yResults.reduce((sum, r) => sum + (r.violations ? r.violations.length : 0), 0),
+        pagesWithErrors: a11yResults.filter((r) => r.error).length,
+      }
+    : null;
   const commitSha = process.env.GITHUB_SHA || readText(path.join(ROOT, '.git', 'HEAD')).trim() || 'unknown';
   const prodUrl = process.env.PROD_URL || 'https://www.lbsconnect.net';
   const startedAt = process.env.RUN_STARTED_AT || now.toISOString();
