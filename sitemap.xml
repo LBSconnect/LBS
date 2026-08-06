@@ -3,72 +3,240 @@
 
   <url>
     <loc>https://www.lbsconnect.net/</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://www.lbsconnect.net/services.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://www.lbsconnect.net/about.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.lbsconnect.net/contact.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.lbsconnect.net/portfolio.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.lbsconnect.net/software.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://www.lbsconnect.net/shop.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.lbsconnect.net/ai-prompt-library.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.lbsconnect.net/ba-template-store.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.lbsconnect.net/academy.html</loc>
-    <lastmod>2026-07-15</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/accessibility-statement.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/legal.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/privacy-policy.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/cookie-policy.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/copyright-dmca-policy.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/electronic-communications-terms.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/notice-at-collection.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/privacy-request.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/records-retention-schedule.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/lbs4-terms.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/lbs4-booking-cancellation-policy.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/lbs4-business-center-document-handling-notice.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/lbs4-candidate-rules-surveillance-notice.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/lbsconnect-digital-product-license.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/lbsconnect-professional-services-terms.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/lbsconnect-website-shop-terms.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/myeasypass-exam-disclaimer.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/myeasypass-refund-policy.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/myeasypass-terms.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/workabeez-acceptable-use-policy.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/workabeez-data-processing-addendum.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/workabeez-subprocessor-security-disclosure.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/workabeez-subscription-refund-policy.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.lbsconnect.net/workabeez-terms.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>
