@@ -203,7 +203,7 @@
   <nav class="navbar">
     <div class="container">
       <a href="index.html" class="navbar__brand">
-        <img src="assets/images/logo.png" alt="Linton Business Solutions" class="navbar__logo" />
+        <img src="assets/images/lbs-logo.svg" alt="Linton Business Solutions" class="navbar__logo" />
       </a>
       <button class="navbar__toggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -224,8 +224,8 @@
   <section class="dl-hero" id="dlHero">
     <div class="container">
       <div class="dl-hero__badge" id="heroBadge">🎓 Your Course Is Ready</div>
-      <h1 class="dl-hero__title" id="heroTitle">Loading your purchase&hellip;</h1>
-      <p class="dl-hero__sub" id="heroSub">Please wait while we verify your payment.</p>
+      <h1 class="dl-hero__title" id="heroTitle" aria-live="polite">Loading your purchase&hellip;</h1>
+      <p class="dl-hero__sub" id="heroSub" aria-live="polite">Please wait while we verify your payment.</p>
       <div class="dl-hero__trust">
         <span>Secure verified enrollment</span>
         <span>Lifetime access</span>
@@ -233,6 +233,22 @@
       </div>
     </div>
   </section>
+
+  <noscript>
+    <div class="dl-section">
+      <div class="container">
+        <div class="dl-error">
+          <div class="dl-error__icon">⚠️</div>
+          <div class="dl-error__title">JavaScript is required to access your course</div>
+          <div class="dl-error__msg">
+            Please enable JavaScript in your browser and reload this page. If you're not sure how,
+            or you'd rather we handle it, email us your receipt and we'll get you into your course directly.
+          </div>
+          <a href="mailto:info@lbsconnect.net" class="dl-error__link">info@lbsconnect.net</a>
+        </div>
+      </div>
+    </div>
+  </noscript>
 
   <!-- MAIN CONTENT AREA -->
   <main>
@@ -248,19 +264,22 @@
     </div>
 
     <!-- Error -->
-    <div id="stateError" class="dl-section" hidden>
+    <div id="stateError" class="dl-section" hidden role="alert" aria-live="assertive">
       <div class="container">
         <div class="dl-error">
           <div class="dl-error__icon">⚠️</div>
           <div class="dl-error__title">We could not verify your purchase</div>
           <div class="dl-error__msg" id="errorMsg">Please try refreshing the page. If the problem persists, contact us and we will get you into your course right away.</div>
-          <a href="mailto:info@lbsconnect.net" class="dl-error__link">info@lbsconnect.net</a>
+          <div class="dl-error__actions" style="margin-top:16px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <a href="#" id="retryLink" class="dl-error__link">↻ Try again</a>
+            <a href="mailto:info@lbsconnect.net" class="dl-error__link">info@lbsconnect.net</a>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Course ready -->
-    <div id="stateReady" hidden>
+    <div id="stateReady" hidden role="status" aria-live="polite">
       <section class="dl-section">
         <div class="container">
           <h2 class="dl-section__heading">You're Enrolled</h2>
@@ -295,7 +314,7 @@
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
-          <img src="assets/images/logo.png" alt="Linton Business Solutions" class="footer__logo" />
+          <img src="assets/images/lbs-logo.svg" alt="Linton Business Solutions" class="footer__logo" />
           <p class="footer__tagline">Professional Business Analysis, built for government.</p>
         </div>
         <div class="footer__links">
@@ -348,6 +367,17 @@
       setText('heroSub', 'Please try refreshing, or contact us for help.');
     }
 
+    // "Try again" just reloads with the same query string, which re-runs
+    // verification from scratch (safe to retry: verification is read-only
+    // and idempotent on the server, so this never double-charges or double-grants).
+    const retryLink = document.getElementById('retryLink');
+    if (retryLink) {
+      retryLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.location.reload();
+      });
+    }
+
     async function init() {
       const params    = new URLSearchParams(window.location.search);
       const sessionId = params.get('session_id');
@@ -360,9 +390,25 @@
         return;
       }
 
+      // Guard against a hung request (e.g. flaky connection) leaving the visitor
+      // staring at a spinner forever with no way out.
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+
       try {
-        const resp = await fetch('/api/verify-course?session_id=' + encodeURIComponent(sessionId));
-        const data = await resp.json();
+        const resp = await fetch(
+          '/api/verify-course?session_id=' + encodeURIComponent(sessionId),
+          { signal: controller.signal }
+        );
+        clearTimeout(timeoutId);
+
+        let data = {};
+        try {
+          data = await resp.json();
+        } catch (parseErr) {
+          showError('Something went wrong on our end. Please refresh the page or contact info@lbsconnect.net.');
+          return;
+        }
 
         if (!resp.ok) {
           showError(data.error || 'Verification failed. Please contact info@lbsconnect.net.');
@@ -400,7 +446,12 @@
         setTimeout(() => { window.location.href = courseUrl; }, 1800);
 
       } catch (err) {
-        showError('Connection error. Please refresh the page or contact info@lbsconnect.net.');
+        clearTimeout(timeoutId);
+        if (err && err.name === 'AbortError') {
+          showError('This is taking longer than expected. Please check your connection and try again, or contact info@lbsconnect.net.');
+        } else {
+          showError('Connection error. Please refresh the page or contact info@lbsconnect.net.');
+        }
       }
     }
 
