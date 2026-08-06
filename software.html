@@ -277,7 +277,10 @@
     .product-card__title { font-size: var(--text-lg); font-weight: var(--fw-bold); color: white; margin-bottom: 2px; }
     .product-card__category { font-size: var(--text-xs); font-weight: var(--fw-semi); color: var(--color-teal); text-transform: uppercase; letter-spacing: 0.06em; }
     .product-card__body { padding: var(--space-6); }
-    .product-card__desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-4); }
+    /* --color-text-muted is only ~2.5:1 once .product-card--coming-soon's
+       opacity is applied (see below); gray-600 keeps a healthy margin in
+       both states. */
+    .product-card__desc { font-size: var(--text-sm); color: var(--color-gray-600); line-height: var(--lh-relaxed); margin-bottom: var(--space-4); }
     .product-card__link {
       display: inline-flex;
       align-items: center;
@@ -292,7 +295,11 @@
     .product-card__link svg { width: 14px; height: 14px; }
 
     /* Coming soon card */
-    .product-card--coming-soon { opacity: 0.65; }
+    /* opacity:0.65 alpha-blended --color-text-muted body text down to
+       ~2.5:1 (fails AA 4.5:1). The header already has its own dedicated
+       dark gradient below, so dropping the opacity doesn't lose the
+       "de-emphasized" cue there; the body just stays plain white/gray-600. */
+    .product-card--coming-soon { opacity: 1; }
     .product-card--coming-soon .product-card__header { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); }
     .coming-soon-badge {
       display: inline-flex;
