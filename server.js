@@ -21,6 +21,23 @@ app.use((req, res, next) => {
   next();
 });
 
+// ── Hidden server internals ───────────────────────────────────────────────────
+// express.static() below serves the whole repo root, which is also where
+// server.js, package.json/package-lock.json, tests/, and (once `npm install`
+// runs at deploy time per render.yaml) node_modules/ all live. None of that
+// is meant to be public — only the HTML pages and assets/ are. Block it here,
+// before express.static(), with a plain 404 so a probe can't tell the
+// difference between "doesn't exist" and "exists but hidden".
+const HIDDEN_ROOT_FILES = new Set(['/server.js', '/package.json', '/package-lock.json', '/render.yaml']);
+const HIDDEN_ROOT_DIRS  = /^\/(node_modules|tests)(\/|$)/;
+
+app.use((req, res, next) => {
+  if (HIDDEN_ROOT_FILES.has(req.path) || HIDDEN_ROOT_DIRS.test(req.path)) {
+    return res.status(404).send('Not found.');
+  }
+  next();
+});
+
 // ── Course registry ────────────────────────────────────────────────────────────
 // Online Academy courses. Sold individually at a single fixed price via one
 // Stripe Payment Link + client_reference_id, same pattern as the templates.
@@ -122,7 +139,17 @@ app.get('/courses/:slug/*', (req, res) => {
 
   const ext = path.extname(filePath).toLowerCase();
   res.setHeader('Content-Type', COURSE_CONTENT_TYPES[ext] || 'application/octet-stream');
-  fs.createReadStream(filePath).pipe(res);
+  const stream = fs.createReadStream(filePath);
+  // Without this, a read error after the existsSync/statSync check above
+  // (file removed/locked in the moment between check and open) would emit an
+  // unhandled 'error' on the stream and crash the whole process for every
+  // user, not just this request.
+  stream.on('error', (err) => {
+    console.error('Course file stream error:', err.message);
+    if (!res.headersSent) res.status(500).send('Unable to read file.');
+    else res.destroy();
+  });
+  stream.pipe(res);
 });
 
 // Static files
@@ -390,11 +417,30 @@ app.get('/api/download', (req, res) => {
       : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
   res.setHeader('Content-Type', contentType);
 
-  fs.createReadStream(filePath).pipe(res);
+  const stream = fs.createReadStream(filePath);
+  // Same TOCTOU/crash concern as the course-file stream above.
+  stream.on('error', (err) => {
+    console.error('Download file stream error:', err.message);
+    if (!res.headersSent) res.status(500).send('Unable to read file. Please contact info@lbsconnect.net for assistance.');
+    else res.destroy();
+  });
+  stream.pipe(res);
 });
 
 // ── Health check ──────────────────────────────────────────────────────────────
 app.get('/health', (_req, res) => res.json({ ok: true }));
+
+// ── Fallback error handler ────────────────────────────────────────────────────
+// Express's built-in default error handler renders an HTML page with the raw
+// err.stack whenever app.get('env') !== 'production' — and that env value
+// just mirrors process.env.NODE_ENV, which nothing in this repo (including
+// render.yaml) sets. Rather than depend on the host happening to set it,
+// this always returns a generic JSON error, in production or not.
+app.use((err, _req, res, next) => {
+  if (res.headersSent) return next(err);
+  console.error('Unhandled error:', err && err.stack ? err.stack : err);
+  res.status(500).json({ error: 'Something went wrong. Please try again or contact info@lbsconnect.net.' });
+});
 
 if (require.main === module) {
   app.listen(PORT, () => console.log(`LBS server listening on port ${PORT}`));
