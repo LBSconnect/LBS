@@ -136,6 +136,19 @@
       justify-content: center;
       flex-shrink: 0;
     }
+    /* Product cards use the real brand mark; internal project cards keep an
+       emoji glyph. The white tile keeps light-background logos legible against
+       the navy card header. */
+    .app-card__icon--logo {
+      background: var(--color-white);
+      padding: 6px;
+    }
+    .app-card__icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
     .app-card__title {
       font-size: var(--text-base);
       font-weight: var(--fw-bold);
@@ -284,7 +297,9 @@
 
           <div class="app-card fade-in">
             <div class="app-card__header">
-              <div class="app-card__icon">🎓</div>
+              <div class="app-card__icon app-card__icon--logo">
+                <img src="assets/images/myeasypass-logo.png" alt="MyEasyPass logo" width="52" height="52" loading="lazy" decoding="async" />
+              </div>
               <div>
                 <div class="app-card__title">MyEasyPass</div>
                 <div class="app-card__category">Exam Prep Platform</div>
@@ -303,7 +318,9 @@
 
           <div class="app-card fade-in fade-in-delay-1">
             <div class="app-card__header">
-              <div class="app-card__icon">🐝</div>
+              <div class="app-card__icon app-card__icon--logo">
+                <img src="assets/images/workabeez-logo.png" alt="Work-A-Beez logo" width="52" height="52" loading="lazy" decoding="async" />
+              </div>
               <div>
                 <div class="app-card__title">Work-A-Beez</div>
                 <div class="app-card__category">Timekeeping &amp; Payroll Platform</div>

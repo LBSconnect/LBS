@@ -119,6 +119,20 @@
       font-size: 2.25rem;
       flex-shrink: 0;
     }
+    /* Real brand marks sit on a white tile: the MyEasyPass mark ships with an
+       opaque white background, and the translucent default tile would leave it
+       as a white square floating on the gradient header. */
+    .product-spotlight__icon--logo {
+      background: var(--color-white);
+      border-color: rgba(255,255,255,0.35);
+      padding: 9px;
+    }
+    .product-spotlight__icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
     .product-spotlight__name {
       font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
       font-weight: var(--fw-black);
@@ -371,7 +385,9 @@
         <!-- MyEasyPass spotlight -->
         <div class="product-spotlight fade-in">
           <div class="product-spotlight__header">
-            <div class="product-spotlight__icon">🎓</div>
+            <div class="product-spotlight__icon product-spotlight__icon--logo">
+              <img src="assets/images/myeasypass-logo.png" alt="MyEasyPass logo" width="72" height="72" loading="lazy" decoding="async" />
+            </div>
             <div>
               <div class="product-spotlight__name">MyEasyPass</div>
               <div class="product-spotlight__category">Exam Prep Web Application</div>
@@ -433,7 +449,9 @@
         <!-- Work-A-Beez spotlight -->
         <div class="product-spotlight fade-in">
           <div class="product-spotlight__header">
-            <div class="product-spotlight__icon">🐝</div>
+            <div class="product-spotlight__icon product-spotlight__icon--logo">
+              <img src="assets/images/workabeez-logo.png" alt="Work-A-Beez logo" width="72" height="72" loading="lazy" decoding="async" />
+            </div>
             <div>
               <div class="product-spotlight__name">Work-A-Beez</div>
               <div class="product-spotlight__category">Timekeeping &amp; Payroll Web Application</div>
