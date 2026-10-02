@@ -17,6 +17,20 @@ document.addEventListener('click', function (e) {
   });
 });
 
+// Fires package_cta_click when a visitor clicks any consulting CTA that
+// carries ?pkg= (services, home, about, portfolio, contact), so GA4 shows
+// which package and which page drive interest before the form is sent.
+document.addEventListener('click', function (e) {
+  var link = e.target.closest && e.target.closest('a[href*="contact.html?pkg="]');
+  if (!link) return;
+  var url = new URL(link.href, window.location.href);
+  gtag('event', 'package_cta_click', {
+    package: url.searchParams.get('pkg') || 'unknown',
+    source_page: window.location.pathname,
+    link_text: (link.textContent || '').trim().slice(0, 100),
+  });
+});
+
 // Fires purchase exactly once per Stripe session, even if the confirmation
 // page is reloaded, bookmarked, or revisited later (GA4 does not dedupe
 // repeated purchase events with the same transaction_id on its own).
