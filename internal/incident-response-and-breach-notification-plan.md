@@ -124,8 +124,8 @@ Within 30 days after closure:
 ## 12. Contact Directory
 
 Linton Business Solutions LLC
-616 FM 1960 Road West, Suite 101
-Houston, Texas 77090-3048
+20214 Calliope Knolls Drive, Suite 1
+Spring, Texas 77379
 Phone: (281) 836-5357
 Email: info@lbsconnect.net
 
