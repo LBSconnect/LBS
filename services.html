@@ -7,7 +7,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow" />
-  <meta name="description" content="Fixed-fee business analysis packages for federal, state, and local government agencies. Silver $7,500, Gold $20,000, Platinum $55,000. VOSB-verified, compliance-ready deliverables. Serving procurement teams and contracting officers nationwide." />
+  <meta name="description" content="Stalled or unclear government IT project? Get requirements clarity in 10 business days. Fixed-fee business analysis for federal, state, and local agencies. Invoiced after delivery. VOSB-verified, Texas HUB certified." />
   <meta name="keywords" content="business analysis packages government, federal agency BA consulting, state agency IT modernization packages, local government business analysis, government procurement consulting, fixed-fee consulting government, VOSB business analysis contractor, requirements engineering government, public sector IT modernization, digital transformation government agencies, procurement team BA support, contracting officer consulting, government digital modernization" />
   <meta name="author" content="Linton Business Solutions LLC" />
   <title>Business Analysis Packages for Government Agencies | Silver, Gold, Platinum | Linton Business Solutions</title>
@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Linton Business Solutions" />
   <meta property="og:title" content="Business Analysis Packages for Government Agencies | LBS" />
-  <meta property="og:description" content="Fixed-fee business analysis packages for federal, state, and local government agencies. Silver $7,500, Gold $20,000, Platinum $55,000. VOSB-verified. Compliance-ready deliverables." />
+  <meta property="og:description" content="Requirements clarity in 10 business days for stalled or unclear government IT projects. Fixed-fee, invoiced after delivery. VOSB-verified, Texas HUB certified." />
   <meta property="og:url" content="https://www.lbsconnect.net/services.html" />
   <meta property="og:image" content="https://www.lbsconnect.net/assets/images/og-image.png" />
   <meta property="og:locale" content="en_US" />
@@ -25,7 +25,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Business Analysis Packages for Government Agencies | LBS" />
-  <meta name="twitter:description" content="Fixed-fee BA packages for federal, state, and local government agencies. Silver $7,500, Gold $20,000, Platinum $55,000. VOSB-verified." />
+  <meta name="twitter:description" content="Requirements clarity in 10 business days for government IT projects. Fixed-fee, invoiced after delivery. VOSB-verified." />
   <meta name="twitter:image" content="https://www.lbsconnect.net/assets/images/og-image.png" />
 
   <!-- JSON-LD Structured Data -->
@@ -64,8 +64,9 @@
         "areaServed": {"@type": "Country", "name": "United States"},
         "audience": {"@type": "Audience", "audienceType": "Federal Agencies, State Agencies, Local Government, Procurement Teams, Prime Contractors"},
         "offers": {
-          "@type": "Offer",
-          "price": "20000",
+          "@type": "AggregateOffer",
+          "lowPrice": "18000",
+          "highPrice": "25000",
           "priceCurrency": "USD"
         }
       },
@@ -79,8 +80,11 @@
         "audience": {"@type": "Audience", "audienceType": "Federal Agencies, State Agencies, Local Government, Procurement Teams, Prime Contractors"},
         "offers": {
           "@type": "Offer",
-          "price": "55000",
-          "priceCurrency": "USD"
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "50000",
+            "priceCurrency": "USD"
+          }
         }
       },
       {
@@ -210,6 +214,24 @@
     .pkg-card--uat .pkg-feature { color: rgba(255,255,255,0.8); }
     .pkg-card--uat .pkg-feature__check { background: rgba(0,196,180,0.15); color: var(--color-teal); }
     .pkg-card--uat .pkg-card__guarantee { background: rgba(0,196,180,0.08); color: rgba(255,255,255,0.7); border: 1px solid rgba(0,196,180,0.2); }
+
+    /* Purchase-card note on Silver */
+    .pkg-card__pcard { display:inline-block; margin-bottom:var(--space-5); padding:4px 10px; border-radius:var(--radius-full); background:rgba(0,196,180,0.12); color:var(--color-teal-text); font-size:var(--text-xs); font-weight:var(--fw-semi); }
+    .pkg-card__price-note { font-size:var(--text-sm); font-weight:var(--fw-semi); letter-spacing:0; }
+
+    /* Past performance */
+    .proof-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:var(--space-6); margin-top:var(--space-10); }
+    .proof-card { background:var(--color-white); border:1px solid var(--color-gray-200); border-radius:var(--radius-lg); padding:var(--space-6); display:flex; flex-direction:column; gap:var(--space-3); }
+    .proof-card__client { font-size:var(--text-xs); font-weight:var(--fw-bold); letter-spacing:0.08em; text-transform:uppercase; color:var(--color-blue); }
+    .proof-card__title { font-size:var(--text-lg); font-weight:var(--fw-bold); color:var(--color-gray-800); }
+    .proof-card__row { font-size:var(--text-sm); color:var(--color-text-muted); line-height:var(--lh-relaxed); }
+    .proof-card__row strong { color:var(--color-gray-800); }
+
+    /* Procurement facts */
+    .proc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:var(--space-5); margin-top:var(--space-10); }
+    .proc-card { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:var(--radius-lg); padding:var(--space-6); }
+    .proc-card__title { font-size:var(--text-base); font-weight:var(--fw-semi); color:white; margin-bottom:var(--space-3); }
+    .proc-card__list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:var(--space-2); font-size:var(--text-sm); color:rgba(255,255,255,0.8); line-height:var(--lh-snug); }
   </style>
 </head>
 <body>
@@ -251,13 +273,12 @@
     <section class="about-hero" aria-label="Services">
       <div class="container">
         <div class="page-hero-label"><span>📋</span> Business Analysis Packages</div>
-        <h1 class="page-hero-heading">Fixed Scope.<br>Fixed Fees.<br>Guaranteed Results.</h1>
-        <p class="page-hero-desc">Three purpose-built packages designed for clarity, speed, and compliance for federal, state, and local government agencies nationwide. No ambiguous retainers. No surprise invoices.</p>
+        <h1 class="page-hero-heading">Stalled Project?<br>Requirements Clarity<br>in 10 Business Days.</h1>
+        <p class="page-hero-desc">We turn unclear, stuck, or at-risk government IT programs into a prioritized backlog and a roadmap your team and vendors can execute. Fixed scope, fixed fee, and invoiced after delivery for federal, state, and local agencies.</p>
         <div style="display:flex;flex-wrap:wrap;gap:var(--space-4);margin-top:var(--space-8);">
-          <a href="#silver" class="btn btn--outline">🥈 Silver $7,500</a>
-          <a href="#gold" class="btn btn--teal">🥇 Gold $20,000</a>
-          <a href="#platinum" class="btn btn--outline">💎 Platinum $55,000</a>
-          <a href="#uat" class="btn btn--outline">🧪 QA &amp; UAT $120/hr</a>
+          <a href="contact.html?pkg=healthcheck" class="btn btn--teal">Book a Free Requirements Health Check</a>
+          <a href="#packages" class="btn btn--outline">Compare Packages</a>
+          <a href="#procurement" class="btn btn--outline">For Contracting Officers &amp; Primes</a>
         </div>
       </div>
     </section>
@@ -269,6 +290,7 @@
         <div class="trust-strip__logos">
           <span class="trust-strip__logo">🎖️ VA Veteran-Owned (VOSB)</span>
           <span class="trust-strip__logo">⭐ Texas HUB Certified</span>
+          <span class="trust-strip__logo">🤝 Microsoft Partner</span>
           <span class="trust-strip__logo">🇺🇸 U.S. Marine Corps</span>
           <span class="trust-strip__logo">🏛️ Federal, State &amp; Local Gov</span>
           <span class="trust-strip__logo">🛡️ Delivery Guarantee or We Work Free</span>
@@ -278,12 +300,12 @@
     </section>
 
     <!-- PACKAGES -->
-    <section class="section" aria-labelledby="packages-heading">
+    <section class="section" id="packages" aria-labelledby="packages-heading">
       <div class="container">
         <div class="text-center">
           <span class="section-label">Business Analysis Packages</span>
           <h2 class="section-heading" id="packages-heading">Choose Your Business Analysis Path</h2>
-          <p class="section-sub">Start where you are. Every package includes a credit toward the next tier, so your investment always moves you forward.</p>
+          <p class="section-sub">Start where you are. Each tier builds on the last, and $2,500 of your Silver fee is credited toward Gold or Platinum, so your first step always moves you forward.</p>
         </div>
 
         <div class="pkg-grid">
@@ -292,7 +314,8 @@
           <article class="pkg-card pkg-card--silver" id="silver">
             <div class="pkg-card__tier">🥈 Silver</div>
             <div class="pkg-card__price">$7,500</div>
-            <div class="pkg-card__duration">10 Business Days</div>
+            <div class="pkg-card__duration">Fixed fee · Results in 10 Business Days</div>
+            <div class="pkg-card__pcard">💳 Priced for government purchase-card buying</div>
             <h2 class="pkg-card__name">Project Readiness Package</h2>
             <p class="pkg-card__desc">A fast, low-risk way for agencies to get clear requirements and a modernization direction with zero long commitments.</p>
             <hr class="pkg-card__divider" />
@@ -304,7 +327,7 @@
               <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>10-page diagnostic report: key gaps, risks, missing requirements, top 10 prioritized fixes</span></li>
               <li class="pkg-feature"><span class="pkg-feature__check">✓</span><span>High-level modernization roadmap (30–60 day view)</span></li>
             </ul>
-            <div class="pkg-card__upgrade-credit">💡 $2,500 credited toward Gold or Platinum if you proceed</div>
+            <div class="pkg-card__upgrade-credit">💡 $2,500 of your Silver fee is credited toward Gold or Platinum</div>
             <hr class="pkg-card__divider" style="margin-top:var(--space-5);" />
             <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-6);">
               <strong style="color:var(--color-gray-800);">Ideal for:</strong> Agencies with a stalled or unclear project · Divisions preparing for RFP/vendor selection · Programs needing clarity before fiscal-year deadlines
@@ -317,8 +340,8 @@
             <div class="pkg-card__popular">Most Popular</div>
             <div class="pkg-card__crown">🥇</div>
             <div class="pkg-card__tier">Gold</div>
-            <div class="pkg-card__price">$20,000</div>
-            <div class="pkg-card__duration">6-Week Sprint</div>
+            <div class="pkg-card__price">$18K–$25K <span class="pkg-card__price-note">typical</span></div>
+            <div class="pkg-card__duration">6-Week Sprint · Fixed fee once scoped</div>
             <h2 class="pkg-card__name">Business Analyst Sprint Package</h2>
             <p class="pkg-card__desc">Full requirements clarity, stakeholder alignment, and a compliance-ready BA plan. Everything in Silver, plus the complete Sprint.</p>
             <hr class="pkg-card__divider" />
@@ -344,15 +367,15 @@
             <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);margin-bottom:var(--space-6);">
               <strong style="color:rgba(255,255,255,0.9);">Ideal for:</strong> Programs needing modernization clarity · Agencies preparing to onboard vendors · Primes needing requirements to hit delivery milestones
             </div>
-            <a href="contact.html?pkg=gold" class="btn btn--teal pkg-card__cta">Start with Gold</a>
+            <a href="contact.html?pkg=gold" class="btn btn--teal pkg-card__cta">Scope My Sprint</a>
           </article>
 
           <!-- PLATINUM -->
           <article class="pkg-card pkg-card--platinum" id="platinum">
             <div class="pkg-card__crown">💎</div>
             <div class="pkg-card__tier">Platinum</div>
-            <div class="pkg-card__price">$55,000</div>
-            <div class="pkg-card__duration">18-Week Program (6 + 12)</div>
+            <div class="pkg-card__price">From $50K</div>
+            <div class="pkg-card__duration">18-Week Program (6 + 12) · Custom scoped · Micro-SOW ready</div>
             <h2 class="pkg-card__name">Full BA &amp; Delivery Execution</h2>
             <p class="pkg-card__desc">Your end-to-end BA and delivery engine for a full quarter. Everything in Silver + Gold, plus 12-week Execution Support.</p>
             <hr class="pkg-card__divider" />
@@ -378,7 +401,7 @@
             <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);margin-bottom:var(--space-6);">
               <strong style="color:rgba(255,255,255,0.9);">Ideal for:</strong> Programs moving into implementation · Agencies onboarding vendors needing BA/PM support · Primes facing delivery pressure
             </div>
-            <a href="contact.html?pkg=platinum" class="btn btn--primary pkg-card__cta" style="background:rgba(139,92,246,0.9);border-color:rgba(139,92,246,0.9);">Start with Platinum</a>
+            <a href="contact.html?pkg=platinum" class="btn btn--primary pkg-card__cta" style="background:rgba(139,92,246,0.9);border-color:rgba(139,92,246,0.9);">Request a Scoping Call</a>
           </article>
 
           <!-- SOFTWARE TESTING & UAT -->
@@ -425,7 +448,7 @@
         <div class="text-center">
           <span class="section-label">Side-by-Side</span>
           <h2 class="section-heading" id="compare-heading">Package Comparison</h2>
-          <p class="section-sub">Every tier builds on the last, your investment always moves you forward.</p>
+          <p class="section-sub">Every tier builds on the last, so your investment always moves you forward.</p>
         </div>
         <div class="comp-table-wrap">
           <table class="comp-table" aria-label="Package comparison">
@@ -455,8 +478,8 @@
               <tr><td>UAT Readiness Support</td><td class="check-no"></td><td class="check-no"></td><td class="check-yes">✔</td></tr>
               <tr><td>Transparency Dashboards</td><td class="check-no"></td><td class="check-no"></td><td class="check-yes">✔</td></tr>
               <tr><td>On-Site Days</td><td class="check-no"></td><td class="check-no"></td><td>Up to 2</td></tr>
-              <tr><td>Upgrade Credit</td><td>$2,500 off Gold/Platinum</td><td></td><td></td></tr>
-              <tr class="price-row"><td><strong>Investment</strong></td><td><strong>$7,500</strong></td><td><strong>$20,000</strong></td><td><strong>$55,000</strong></td></tr>
+              <tr><td>Upgrade Credit</td><td>$2,500 of Silver fee credited toward Gold/Platinum</td><td></td><td></td></tr>
+              <tr class="price-row"><td><strong>Investment</strong></td><td><strong>$7,500 fixed</strong></td><td><strong>$18K–$25K typical</strong></td><td><strong>From $50K, custom scoped</strong></td></tr>
             </tbody>
           </table>
         </div>
@@ -466,19 +489,101 @@
       </div>
     </section>
 
+    <!-- PAST PERFORMANCE -->
+    <section class="section" aria-labelledby="proof-heading">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-label">Past Performance</span>
+          <h2 class="section-heading" id="proof-heading">Proven on Texas State Agency Programs</h2>
+          <p class="section-sub">The same methods behind every package, applied to real public-sector modernization work.</p>
+        </div>
+        <div class="proof-grid">
+          <article class="proof-card">
+            <div class="proof-card__client">Texas Department of Agriculture</div>
+            <h3 class="proof-card__title">Food &amp; Nutrition TANS Modernization</h3>
+            <p class="proof-card__row"><strong>Challenge:</strong> An aging program system needed modernizing without disrupting program delivery or compliance tracking.</p>
+            <p class="proof-card__row"><strong>What we did:</strong> Business analysis and digital modernization support for the Food and Nutrition division, plus procurement-grade requirements and vendor evaluation support.</p>
+            <p class="proof-card__row"><strong>Outcome:</strong> A modernization path focused on program delivery, compliance tracking, and operational efficiency.</p>
+          </article>
+          <article class="proof-card">
+            <div class="proof-card__client">Texas Department of Transportation</div>
+            <h3 class="proof-card__title">Digital Process Modernization</h3>
+            <p class="proof-card__row"><strong>Challenge:</strong> Leadership needed clearer requirements and better visibility into traffic and operational data.</p>
+            <p class="proof-card__row"><strong>What we did:</strong> Requirements engineering for process modernization, and a traffic data dashboard covering operational metrics and agency performance indicators.</p>
+            <p class="proof-card__row"><strong>Outcome:</strong> Real-time visibility to support data-driven decision making.</p>
+          </article>
+          <article class="proof-card">
+            <div class="proof-card__client">Federal Prime Contractors</div>
+            <h3 class="proof-card__title">Subcontract BA Capacity</h3>
+            <p class="proof-card__row"><strong>Challenge:</strong> Primes under delivery pressure needed sprint-ready requirements to hit agency milestones.</p>
+            <p class="proof-card__row"><strong>What we did:</strong> Backlog readiness, user stories with acceptance criteria, and sprint support as a VOSB subcontractor.</p>
+            <p class="proof-card__row"><strong>Outcome:</strong> Sprint-ready backlogs supporting delivery velocity and agency deliverable compliance.</p>
+          </article>
+        </div>
+        <p style="text-align:center;margin-top:var(--space-8);"><a href="portfolio.html" class="btn btn--outline">See the Full Portfolio</a></p>
+      </div>
+    </section>
+
+    <!-- PROCUREMENT -->
+    <section class="section section--dark" id="procurement" aria-labelledby="procurement-heading">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-label">For Contracting Officers &amp; Primes</span>
+          <h2 class="section-heading section-heading--white" id="procurement-heading">Everything Your Procurement File Needs</h2>
+          <p class="section-sub section-sub--white">Buying through a purchase card, a direct award, or a prime's contract vehicle? Here are the facts your office will ask for.</p>
+        </div>
+        <div class="proc-grid">
+          <div class="proc-card">
+            <h3 class="proc-card__title">🎖️ Certifications</h3>
+            <ul class="proc-card__list" role="list">
+              <li>VA Veteran-Owned Small Business (VOSB), verified</li>
+              <li>Texas Historically Underutilized Business (HUB)</li>
+              <li>Microsoft Partner</li>
+              <li>Linton Business Solutions LLC · in business since 2017</li>
+            </ul>
+          </div>
+          <div class="proc-card">
+            <h3 class="proc-card__title">🔢 Primary NAICS Codes</h3>
+            <ul class="proc-card__list" role="list">
+              <li><strong>541611</strong> Administrative &amp; General Management Consulting</li>
+              <li><strong>541512</strong> Computer Systems Design Services</li>
+              <li><strong>541519</strong> Other Computer Related Services</li>
+              <li><a href="about.html" style="color:var(--color-teal);">All registered NAICS codes</a></li>
+            </ul>
+          </div>
+          <div class="proc-card">
+            <h3 class="proc-card__title">📄 Ways to Buy</h3>
+            <ul class="proc-card__list" role="list">
+              <li>Silver: priced to fit typical purchase-card limits</li>
+              <li>Direct award or small-purchase procedures</li>
+              <li>Subcontract through primes on TX DIR, HHSC, GSA, and agency vehicles</li>
+              <li>Invoiced after delivery, Net-30</li>
+            </ul>
+          </div>
+          <div class="proc-card">
+            <h3 class="proc-card__title">📥 Capability Statement</h3>
+            <ul class="proc-card__list" role="list">
+              <li>Capability statement with UEI, CAGE, and past performance references, sent on request</li>
+            </ul>
+            <a href="contact.html?pkg=capability" class="btn btn--teal" style="margin-top:var(--space-5);width:100%;justify-content:center;">Request Capability Statement</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- TERMS & PAYMENT -->
     <section class="section" aria-labelledby="terms-heading">
       <div class="container">
         <div class="text-center">
           <span class="section-label">Pricing &amp; Terms</span>
           <h2 class="section-heading" id="terms-heading">Transparent Terms. No Surprises.</h2>
-          <p class="section-sub">We protect your organization's investment and our cash flow with clear, milestone-based payment structures.</p>
+          <p class="section-sub">Built to fit how government buys: no advance payment, invoices after delivery, and terms your contracting office already knows.</p>
         </div>
         <div class="terms-grid">
           <div class="term-card">
             <div class="term-card__icon">💳</div>
             <div class="term-card__title">Payment Terms</div>
-            <div class="term-card__desc">50% upfront for all fixed-fee engagements. Balance due Net-15 upon delivery of final deliverables. Milestone-based structure available for Platinum.</div>
+            <div class="term-card__desc">No upfront payment for government agencies. Invoiced in arrears at accepted milestones (Silver: once, on delivery), payable Net-30. Commercial clients: 50% deposit, balance Net-15 on delivery.</div>
           </div>
           <div class="term-card">
             <div class="term-card__icon">🛡️</div>
@@ -488,17 +593,17 @@
           <div class="term-card">
             <div class="term-card__icon">💡</div>
             <div class="term-card__title">Upgrade Credit</div>
-            <div class="term-card__desc">The full $2,500 Silver fee is credited toward Gold or Platinum if you choose to proceed. Your initial investment always moves you forward.</div>
+            <div class="term-card__desc">$2,500 of your $7,500 Silver fee is credited toward Gold or Platinum if you proceed. Your first step always moves you forward.</div>
           </div>
           <div class="term-card">
             <div class="term-card__icon">📄</div>
             <div class="term-card__title">Procurement Flexibility</div>
-            <div class="term-card__desc">Ready to invoice via prime contractors when that's the fastest path. Micro-SOW ready for Platinum engagements. Can work under existing state contract vehicles.</div>
+            <div class="term-card__desc">Silver is priced to fit typical micro-purchase limits, so many offices can buy it with a government purchase card. Ready to invoice through prime contractors and their contract vehicles. Micro-SOW ready for Platinum.</div>
           </div>
           <div class="term-card">
             <div class="term-card__icon">🔒</div>
             <div class="term-card__title">Risk Reversal</div>
-            <div class="term-card__desc">Milestone-based payments protect your organization. We guarantee completeness of all core artifacts before the final invoice is due.</div>
+            <div class="term-card__desc">You only pay for accepted deliverables. Every core artifact is complete before the final invoice is issued.</div>
           </div>
           <div class="term-card">
             <div class="term-card__icon">🤝</div>
@@ -534,10 +639,10 @@
     <section class="section" aria-label="Call to action">
       <div class="container">
         <div class="cta-banner">
-          <h2 class="cta-banner__heading">Not Sure Which Package to Start With?</h2>
-          <p class="cta-banner__sub">Most clients start with Silver to get clarity fast, then move to Gold with the $2,500 upgrade credit already in their pocket. Book a free 30-minute discovery call and we'll recommend the right fit.</p>
+          <h2 class="cta-banner__heading">Get a Free Requirements Health Check</h2>
+          <p class="cta-banner__sub">In 30 minutes we'll review where your project is stuck, flag the top risks in your requirements, and tell you honestly whether you need a package at all. No cost and no obligation. If you do go ahead, most clients start with Silver and apply $2,500 of it toward Gold.</p>
           <div class="cta-banner__actions">
-            <a href="contact.html" class="btn btn--teal btn--lg">Book a Free Discovery Call</a>
+            <a href="contact.html?pkg=healthcheck" class="btn btn--teal btn--lg">Book My Free Health Check</a>
             <a href="about.html" class="btn btn--outline btn--lg">Learn About LBS</a>
           </div>
         </div>
@@ -552,7 +657,7 @@
         <div class="footer__brand">
           <a href="index.html" class="nav__logo" style="margin-bottom:var(--space-4);display:inline-flex;"><img src="assets/images/lbs-logo.svg" alt="Linton Business Solutions" /></a>
           <p class="footer__brand-desc">Linton Business Solutions LLC, Veteran-owned business analysis and technology consulting firm delivering measurable results for federal, state, and local government agencies nationwide since 2017.</p>
-          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-5);"><span style="background:rgba(0,196,180,0.15);color:var(--color-teal);font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">VOSB Verified</span><span style="background:rgba(30,111,255,0.15);color:#7eb8ff;font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">TX HUB Certified</span></div>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-5);"><span style="background:rgba(0,196,180,0.15);color:var(--color-teal);font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">VOSB Verified</span><span style="background:rgba(30,111,255,0.15);color:#7eb8ff;font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">TX HUB Certified</span><span style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);font-size:var(--text-xs);font-weight:600;padding:4px 10px;border-radius:20px;">Microsoft Partner</span></div>
           <div class="footer__social"><a href="https://linkedin.com/company/lbsconnect" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">in</a></div>
         </div>
         <div><h3 class="footer__col-title">Services</h3><ul class="footer__links" role="list"><li><a href="services.html#silver" class="footer__link">Silver: Project Readiness Package</a></li><li><a href="services.html#gold" class="footer__link">Gold: BA Sprint Package</a></li><li><a href="services.html#platinum" class="footer__link">Platinum: Full BA &amp; Delivery</a></li><li><a href="services.html#uat" class="footer__link">QA &amp; UAT Testing</a></li></ul></div>

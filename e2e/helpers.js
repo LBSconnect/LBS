@@ -98,7 +98,7 @@ const NAV_LINKS = [
   { href: 'index.html', text: 'Home', h1: /Modernize Your/i },
   { href: 'shop.html', text: 'BA Shop', h1: /LBS Shop/i },
   { href: 'academy.html', text: 'BA Academy', h1: /Online Business Analysis Training/i },
-  { href: 'services.html', text: 'BA Consulting', h1: /Fixed Scope/i },
+  { href: 'services.html', text: 'BA Consulting', h1: /Requirements Clarity/i },
   { href: 'software.html', text: 'Software', h1: /Software Built/i },
   { href: 'portfolio.html', text: 'Portfolio', h1: /Clients Served/i },
   { href: 'contact.html', text: 'Contact', h1: /Let's Talk About/i },
