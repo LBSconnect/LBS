@@ -58,6 +58,14 @@
   --lh-normal:  1.6;
   --lh-relaxed: 1.75;
 
+  /* Body-text scale. Every paragraph on the site uses one of these four
+     tiers so text reads the same from page to page:
+       lead    hero intro under the page H1         --text-lead / relaxed
+       intro   section subheads, CTA banner copy    --text-lg   / relaxed
+       body    paragraphs, card descriptions, prose --text-base / relaxed
+       small   checklists, meta lines, form hints   --text-sm   / normal */
+  --text-lead:  clamp(var(--text-lg), 2vw, var(--text-xl));
+
   /* Spacing */
   --space-1:  0.25rem;
   --space-2:  0.5rem;
@@ -142,6 +150,20 @@ body {
   color: var(--color-text);
   background: var(--color-white);
   overflow-x: hidden;
+}
+
+/* Body-text tiers (see --text-lead above) for paragraphs that don't belong
+   to a component class. Color can still be overridden on dark sections. */
+.text-body {
+  font-size: var(--text-base);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-muted);
+}
+
+.text-small {
+  font-size: var(--text-sm);
+  line-height: var(--lh-normal);
+  color: var(--color-text-muted);
 }
 
 img, video {
@@ -626,7 +648,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero__desc {
-  font-size: clamp(var(--text-base), 2vw, var(--text-xl));
+  font-size: var(--text-lead);
   color: rgba(255,255,255,0.7);
   line-height: var(--lh-relaxed);
   max-width: 50ch;
@@ -856,6 +878,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
+  min-height: 44px;
   font-size: var(--text-sm);
   font-weight: var(--fw-semi);
   color: var(--color-blue);
@@ -906,7 +929,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pillar-card__desc {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: rgba(255,255,255,0.6);
   line-height: var(--lh-relaxed);
 }
@@ -953,7 +976,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .process-step__desc {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: var(--color-text-muted);
   line-height: var(--lh-relaxed);
 }
@@ -1040,7 +1063,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .page-hero-desc {
-  font-size: var(--text-xl);
+  font-size: var(--text-lead);
   color: rgba(255,255,255,0.7);
   max-width: 52ch;
   line-height: var(--lh-relaxed);
@@ -1094,7 +1117,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .value-item__desc {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: var(--color-text-muted);
   line-height: var(--lh-relaxed);
 }
@@ -1273,7 +1296,9 @@ h1, h2, h3, h4, h5, h6 {
 /* === Contact page === */
 .contact-layout {
   display: grid;
-  grid-template-columns: 1fr;
+  /* minmax(0, …) so a long unbreakable value (the LinkedIn URL) can't widen
+     the column past a 320px viewport. */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-12);
 }
 
@@ -1321,9 +1346,15 @@ h1, h2, h3, h4, h5, h6 {
   font-size: var(--text-base);
   font-weight: var(--fw-medium);
   color: var(--color-gray-800);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
+.contact-info-item > div:last-child { min-width: 0; }
+
 .contact-info-item__value a {
+  display: inline-block;
+  padding-block: var(--space-1);
   color: var(--color-blue);
   text-decoration: none;
 }
@@ -1570,10 +1601,12 @@ h1, h2, h3, h4, h5, h6 {
 .footer__links {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: 0;
 }
 
 .footer__link {
+  display: inline-block;
+  padding-block: 6px;
   font-size: var(--text-sm);
   color: rgba(255,255,255,0.55);
   text-decoration: none;
@@ -1776,8 +1809,8 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 1.2em;
   margin: 0;
 }
-.legal__toc li { font-size: var(--text-sm); margin-bottom: var(--space-2); }
-.legal__toc a { color: var(--color-text-muted); text-decoration: none; }
+.legal__toc li { font-size: var(--text-sm); margin-bottom: 0; }
+.legal__toc a { display: inline-block; padding-block: 4px; color: var(--color-text-muted); text-decoration: none; }
 .legal__toc a:hover { color: var(--color-blue); text-decoration: underline; }
 @media (max-width: 640px) {
   .legal__toc ol { columns: 1; }
@@ -1846,3 +1879,26 @@ h1, h2, h3, h4, h5, h6 {
 .req-form__radios label { display: flex; align-items: center; gap: var(--space-2); font-weight: var(--fw-normal); margin-bottom: 0; }
 .req-form__radios input { width: auto; }
 .req-form__hint { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-1); }
+
+/* === Phone refinements ===
+   Kept at the end of the file so they override the base component rules
+   above (several of which, like the trust strip, are declared after the
+   earlier breakpoint blocks). */
+@media (max-width: 640px) {
+  /* Wrap credentials as compact chips instead of one per line. */
+  .trust-strip__logos { gap: var(--space-3) var(--space-6); }
+
+  /* Desktop card padding leaves too narrow a text column on phones. */
+  .service-card { padding: var(--space-6); }
+}
+
+@media (max-width: 480px) {
+  /* Stacked CTAs read as one set when they share the full width. */
+  .hero__actions .btn,
+  .cta-banner__actions .btn,
+  .product-hero__ctas .btn,
+  .about-hero .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

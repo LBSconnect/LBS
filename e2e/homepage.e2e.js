@@ -9,7 +9,7 @@ test.describe('Homepage', () => {
     expect(response.status()).toBe(200);
 
     await expect(page).toHaveTitle(
-      /Business Analysis & Government IT Modernization Consulting \| Linton Business Solutions \(LBS\)/
+      /Business Analysis & IT Modernization Consulting \| Linton Business Solutions \(LBS\)/
     );
     await expect(page.locator('h1').first()).toContainText(/Modernize Your/i);
 
