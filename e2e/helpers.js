@@ -19,7 +19,7 @@
  *   concession, not evidence the site is broken — every request to the
  *   app's own origin is still fully asserted on.
  * - Formspree (contact form target) and Stripe checkout links are never hit
- *   in this suite; see contact.spec.js and shop-academy-store.spec.js for
+ *   in this suite; see contact.spec.js and free-templates.spec.js for
  *   how each avoids a real submission/navigation.
  */
 
@@ -96,11 +96,10 @@ function trackPage(page) {
 // blocks shared across every page (see assets/js/main.js + any *.html header).
 const NAV_LINKS = [
   { href: 'index.html', text: 'Home', h1: /Modernize Your/i },
-  { href: 'shop.html', text: 'BA Shop', h1: /LBS Shop/i },
-  { href: 'academy.html', text: 'BA Academy', h1: /Online Business Analysis Training/i },
-  { href: 'services.html', text: 'BA Consulting', h1: /Requirements Clarity/i },
-  { href: 'software.html', text: 'Software', h1: /Software Built/i },
+  { href: 'services.html', text: 'Services', h1: /Requirements Clarity/i },
   { href: 'portfolio.html', text: 'Portfolio', h1: /Clients Served/i },
+  { href: 'about.html', text: 'About', h1: /Built on Service/i },
+  { href: 'free-ba-templates.html', text: 'Free Templates', h1: /Free BA Templates/i },
   { href: 'contact.html', text: 'Contact', h1: /Let's Talk About/i },
 ];
 

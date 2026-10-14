@@ -34,10 +34,9 @@ const PAGES = [
   'about.html',
   'services.html',
   'contact.html',
-  'shop.html',
-  'academy.html',
+  'free-ba-templates.html',
+  'portfolio.html',
   'privacy-policy.html', // legal page template
-  'software.html',
 ];
 
 const asJson = process.argv.includes('--json');

@@ -66,7 +66,11 @@ module.exports = defineConfig({
   webServer: {
     command: 'node server.js',
     url: BASE_URL,
-    env: { PORT: String(PORT) },
+    // Point lead forwarding at a closed local port so the free-templates
+    // spec never submits a real lead to Formspree. The server logs the
+    // forwarding failure and still unlocks the download, which is exactly
+    // the behavior under test.
+    env: { PORT: String(PORT), LEAD_FORM_ENDPOINT: 'https://127.0.0.1:9/e2e-no-forward' },
     reuseExistingServer: !process.env.CI,
     timeout: 30_000,
   },

@@ -92,25 +92,18 @@ describe('GET /courses/:slug/* — path traversal is blocked under an authentica
 describe('Error responses never leak stack traces, absolute paths, or env var contents', () => {
   const REPO_ROOT_MARKER = path.join(__dirname, '..'); // absolute path fragment that must never appear
 
-  it('GET /api/verify with a malformed session id', async () => {
-    const res = await request(app).get('/api/verify?session_id=not-a-real-session');
-    expect(res.body.error).toBeTruthy();
-    expect(JSON.stringify(res.body)).not.toMatch(/at [A-Za-z]+\.[A-Za-z]+ \(/); // stack frame signature
-    expect(JSON.stringify(res.body)).not.toContain(REPO_ROOT_MARKER);
-  });
-
   it('GET /api/verify-course with a malformed session id', async () => {
     const res = await request(app).get('/api/verify-course?session_id=not-a-real-session');
     expect(res.body.error).toBeTruthy();
     expect(JSON.stringify(res.body)).not.toMatch(/at [A-Za-z]+\.[A-Za-z]+ \(/);
   });
 
-  it('GET /api/verify when Stripe returns a network/parse error surfaces a generic 502, not the raw error', async () => {
+  it('GET /api/verify-course when Stripe returns a network/parse error surfaces a generic 502, not the raw error', async () => {
     nock(STRIPE_HOST)
       .get('/v1/checkout/sessions/cs_boom')
       .reply(200, 'not json{{{'); // triggers the JSON.parse catch path in stripeGet()
 
-    const res = await request(app).get('/api/verify?session_id=cs_boom');
+    const res = await request(app).get('/api/verify-course?session_id=cs_boom');
     expect(res.status).toBe(502);
     expect(res.body.error).toBe('Verification failed. Please refresh the page or contact info@lbsconnect.net.');
     expect(JSON.stringify(res.body)).not.toMatch(/SyntaxError/);
@@ -155,12 +148,10 @@ describe('Course-access cookie is issued with correct security flags', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. Protected downloadable assets are never reachable via static file serving
 // ─────────────────────────────────────────────────────────────────────────────
-describe('Protected purchasable assets cannot be fetched directly, only via /api/download', () => {
+describe('Gated template files cannot be fetched directly, only via /api/download', () => {
   const protectedPaths = [
     '/assets/downloads/ba-template-brd.docx',
     '/assets/downloads/ba-templates-bundle.zip',
-    '/assets/downloads/ai-prompts-library-starter.pdf',
-    '/assets/downloads/ai-prompts-library-complete.pdf',
   ];
 
   it.each(protectedPaths)('GET %s is blocked with 403 regardless of the file existing on disk', async (p) => {

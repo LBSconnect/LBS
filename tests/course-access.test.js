@@ -319,19 +319,6 @@ describe('[W4] GET /api/verify-course — STRIPE_SECRET_KEY unset', () => {
     }
   });
 
-  it('the /api/verify (download) endpoint has the same fail-closed behavior', async () => {
-    // Not this worker's primary surface, but confirms both verify endpoints share
-    // the same fail-closed contract when the Stripe key is missing.
-    const original = process.env.STRIPE_SECRET_KEY;
-    delete process.env.STRIPE_SECRET_KEY;
-    try {
-      const res = await request(app).get('/api/verify?session_id=cs_whatever');
-      expect(res.status).toBe(503);
-      expect(res.body).toHaveProperty('error');
-    } finally {
-      process.env.STRIPE_SECRET_KEY = original;
-    }
-  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

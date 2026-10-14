@@ -31,7 +31,7 @@ const ARTIFACT_DIR = path.join(__dirname, '..', 'test-artifacts', 'a11y-responsi
 const SCREENSHOT_WIDTHS = [320, 375, 1440];
 
 const WIDTHS = [320, 375, 430, 768, 1024, 1280, 1440, 1920];
-const PAGES = ['index.html', 'services.html', 'contact.html', 'academy.html'];
+const PAGES = ['index.html', 'services.html', 'contact.html', 'free-ba-templates.html'];
 
 function waitForServer(timeoutMs) {
   const deadline = Date.now() + timeoutMs;

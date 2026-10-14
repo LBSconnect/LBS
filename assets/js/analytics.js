@@ -4,19 +4,6 @@ function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
 gtag('config', 'G-XFCXVR2BFX');
 
-// Fires begin_checkout whenever a visitor clicks through to Stripe, on any
-// page. Delegated on document so product pages don't need their own
-// listener wired up per button.
-document.addEventListener('click', function (e) {
-  var link = e.target.closest && e.target.closest('a[href*="checkout.lbs4.com"]');
-  if (!link) return;
-  var url = new URL(link.href, window.location.href);
-  gtag('event', 'begin_checkout', {
-    currency: 'USD',
-    items: [{ item_id: url.searchParams.get('client_reference_id') || 'unknown' }],
-  });
-});
-
 // Fires package_cta_click when a visitor clicks any consulting CTA that
 // carries ?pkg= (services, home, about, portfolio, contact), so GA4 shows
 // which package and which page drive interest before the form is sent.
@@ -31,7 +18,8 @@ document.addEventListener('click', function (e) {
   });
 });
 
-// Fires purchase exactly once per Stripe session, even if the confirmation
+// Used by course-access.html for legacy academy purchases. Fires purchase
+// exactly once per Stripe session, even if the confirmation
 // page is reloaded, bookmarked, or revisited later (GA4 does not dedupe
 // repeated purchase events with the same transaction_id on its own).
 function gaTrackPurchaseOnce(transactionId, value, items) {
