@@ -1,33 +1,37 @@
 'use strict';
 
 /**
- * End-to-end tests for the token-based download system.
- * Covers both BA Template Store and AI Prompt Library workflows:
+ * Tests for the free BA template lead magnet:
  *   - Protected file access (direct static paths blocked)
- *   - GET /api/verify (Stripe session validation + token issuance)
+ *   - POST /api/templates/request (lead validation, forwarding, token issuance)
  *   - GET /api/download (token validation + file streaming)
+ *   - Retired shop/academy/software pages 301 to their replacements
  */
 
 const nock    = require('nock');
 const request = require('supertest');
 
-// ── Environment setup ────────────────────────────────────────────────────────
-process.env.STRIPE_SECRET_KEY = 'sk_test_fake';
+process.env.LEAD_FORM_ENDPOINT = 'https://leads.example.test/f/lead123';
 
 const app = require('../server');
 
-const STRIPE_HOST = 'https://api.stripe.com';
+const LEAD_HOST = 'https://leads.example.test';
+const LEAD_PATH = '/f/lead123';
 
-/** Register a nock intercept that returns a Stripe checkout.session response. */
-function mockStripeSession(sessionId, overrides = {}) {
-  nock(STRIPE_HOST)
-    .get(`/v1/checkout/sessions/${encodeURIComponent(sessionId)}`)
-    .reply(200, {
-      id: sessionId,
-      payment_status: 'paid',
-      client_reference_id: 'brd',
-      ...overrides,
-    });
+const VALID_LEAD = {
+  name: 'Jane Smith',
+  email: 'Jane.Smith@Agency.gov',
+  organization: 'Texas DOT',
+  role: 'Business Analyst',
+  consent: true,
+};
+
+/** Submit a valid lead (forwarding mocked) and return the issued token. */
+async function getToken() {
+  nock(LEAD_HOST).post(LEAD_PATH).reply(200, { ok: true });
+  const res = await request(app).post('/api/templates/request').send(VALID_LEAD);
+  expect(res.status).toBe(200);
+  return res.body.token;
 }
 
 beforeEach(() => nock.cleanAll());
@@ -50,8 +54,6 @@ describe('Protected files — direct access returns 403', () => {
     '/assets/downloads/ba-template-project-charter.docx',
     '/assets/downloads/ba-template-test-case.docx',
     '/assets/downloads/ba-templates-bundle.zip',
-    '/assets/downloads/ai-prompts-library-starter.pdf',
-    '/assets/downloads/ai-prompts-library-complete.pdf',
   ];
 
   test.each(PROTECTED)('GET %s → 403', async (path) => {
@@ -66,123 +68,114 @@ describe('Protected files — direct access returns 403', () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. GET /api/verify — input validation
+// 2. POST /api/templates/request — validation
 // ─────────────────────────────────────────────────────────────────────────────
-describe('GET /api/verify — validation', () => {
-  it('returns 400 when session_id is missing', async () => {
-    const res = await request(app).get('/api/verify');
+describe('POST /api/templates/request — validation', () => {
+  it('returns 400 when name is missing', async () => {
+    const res = await request(app).post('/api/templates/request').send({ ...VALID_LEAD, name: '  ' });
     expect(res.status).toBe(400);
-    expect(res.body).toHaveProperty('error');
+    expect(res.body.error).toMatch(/name/i);
   });
 
-  it('returns 400 when session_id does not start with cs_', async () => {
-    const res = await request(app).get('/api/verify?session_id=pi_abc123');
+  it('returns 400 for an invalid email', async () => {
+    const res = await request(app).post('/api/templates/request').send({ ...VALID_LEAD, email: 'not-an-email' });
     expect(res.status).toBe(400);
-    expect(res.body).toHaveProperty('error');
+    expect(res.body.error).toMatch(/email/i);
   });
 
-  it('returns 400 when Stripe returns a non-200 status', async () => {
-    nock(STRIPE_HOST)
-      .get('/v1/checkout/sessions/cs_notfound')
-      .reply(404, { error: { message: 'No such checkout.session' } });
-
-    const res = await request(app).get('/api/verify?session_id=cs_notfound');
+  it('returns 400 when consent is not given', async () => {
+    const res = await request(app).post('/api/templates/request').send({ ...VALID_LEAD, consent: false });
     expect(res.status).toBe(400);
   });
 
-  it('returns 402 when payment_status is not paid', async () => {
-    mockStripeSession('cs_unpaid', { payment_status: 'unpaid' });
-    const res = await request(app).get('/api/verify?session_id=cs_unpaid');
-    expect(res.status).toBe(402);
-  });
-
-  it('returns 400 when client_reference_id is an unknown slug', async () => {
-    mockStripeSession('cs_bad_ref', { client_reference_id: 'not-a-real-product' });
-    const res = await request(app).get('/api/verify?session_id=cs_bad_ref');
+  it('returns 400 for a non-JSON body', async () => {
+    const res = await request(app)
+      .post('/api/templates/request')
+      .set('Content-Type', 'text/plain')
+      .send('name=x');
     expect(res.status).toBe(400);
   });
 
-  it('returns 400 when client_reference_id is empty', async () => {
-    mockStripeSession('cs_empty_ref', { client_reference_id: '' });
-    const res = await request(app).get('/api/verify?session_id=cs_empty_ref');
+  it('returns 400 (not 500) for malformed JSON, without echoing parser internals', async () => {
+    const res = await request(app)
+      .post('/api/templates/request')
+      .set('Content-Type', 'application/json')
+      .send('{"name": ');
     expect(res.status).toBe(400);
+    expect(res.text).not.toMatch(/SyntaxError|Unexpected/);
+  });
+
+  it('returns 413 for an oversized body', async () => {
+    const res = await request(app)
+      .post('/api/templates/request')
+      .send({ ...VALID_LEAD, organization: 'x'.repeat(20000) });
+    expect(res.status).toBe(413);
+  });
+
+  it('honeypot submissions get a fake success, no lead is forwarded, and the token does not work', async () => {
+    const scope = nock(LEAD_HOST).post(LEAD_PATH).reply(200);
+    const res = await request(app).post('/api/templates/request').send({ ...VALID_LEAD, _gotcha: 'spam' });
+    expect(res.status).toBe(200);
+    expect(scope.isDone()).toBe(false);
+
+    const dl = await request(app).get(`/api/download?token=${res.body.token}`);
+    expect(dl.status).toBe(403);
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. GET /api/verify — BA Template Store: all 10 individual slugs + bundle
+// 3. POST /api/templates/request — success and forwarding
 // ─────────────────────────────────────────────────────────────────────────────
-describe('GET /api/verify — BA Template Store', () => {
-  const BA_SLUGS = [
-    'brd', 'frs', 'user-stories', 'process-mapping', 'risk-register',
-    'stakeholder-register', 'rtm', 'rfp', 'project-charter', 'test-case',
-  ];
+describe('POST /api/templates/request — success', () => {
+  it('forwards the cleaned lead and returns a token', async () => {
+    let forwarded;
+    nock(LEAD_HOST)
+      .post(LEAD_PATH, (body) => { forwarded = body; return true; })
+      .reply(200, { ok: true });
 
-  test.each(BA_SLUGS)('individual template "%s" returns token + pack:individual', async (slug) => {
-    mockStripeSession(`cs_ba_${slug}`, { client_reference_id: slug });
-    const res = await request(app).get(`/api/verify?session_id=cs_ba_${slug}`);
+    const res = await request(app).post('/api/templates/request').send(VALID_LEAD);
 
     expect(res.status).toBe(200);
-    expect(res.body).toMatchObject({ pack: 'individual', template: slug });
-    expect(typeof res.body.token).toBe('string');
-    expect(res.body.token).toHaveLength(64); // 32 bytes hex
-    expect(res.body.templateName).toBeTruthy();
+    expect(res.body.ok).toBe(true);
+    expect(res.body.token).toMatch(/^[a-f0-9]{64}$/);
+    expect(forwarded).toMatchObject({
+      name: 'Jane Smith',
+      email: 'jane.smith@agency.gov',
+      organization: 'Texas DOT',
+      role: 'Business Analyst',
+      source: 'free-ba-templates',
+    });
+    expect(forwarded).not.toHaveProperty('consent');
   });
 
-  it('bundle returns token + pack:bundle', async () => {
-    mockStripeSession('cs_ba_bundle', { client_reference_id: 'bundle' });
-    const res = await request(app).get('/api/verify?session_id=cs_ba_bundle');
+  it('still issues a token when lead forwarding fails (network error)', async () => {
+    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    nock(LEAD_HOST).post(LEAD_PATH).replyWithError('ECONNRESET');
+
+    const res = await request(app).post('/api/templates/request').send(VALID_LEAD);
 
     expect(res.status).toBe(200);
-    expect(res.body).toMatchObject({ pack: 'bundle', template: 'bundle' });
-    expect(res.body.token).toHaveLength(64);
+    expect(res.body.token).toMatch(/^[a-f0-9]{64}$/);
+    // The lead is logged so it can be recovered.
+    expect(spy.mock.calls.flat().join(' ')).toContain('jane.smith@agency.gov');
+    spy.mockRestore();
+  });
+
+  it('still issues a token when the lead endpoint returns a non-2xx status', async () => {
+    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    nock(LEAD_HOST).post(LEAD_PATH).reply(422, { error: 'nope' });
+
+    const res = await request(app).post('/api/templates/request').send(VALID_LEAD);
+
+    expect(res.status).toBe(200);
+    expect(res.body.token).toBeTruthy();
+    expect(res.text).not.toMatch(/nope/);
+    spy.mockRestore();
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. GET /api/verify — AI Prompt Library: starter + complete
-// ─────────────────────────────────────────────────────────────────────────────
-describe('GET /api/verify — AI Prompt Library', () => {
-  it('ai-starter returns token with template:ai-starter', async () => {
-    mockStripeSession('cs_ai_starter', { client_reference_id: 'ai-starter' });
-    const res = await request(app).get('/api/verify?session_id=cs_ai_starter');
-
-    expect(res.status).toBe(200);
-    expect(res.body).toMatchObject({ template: 'ai-starter' });
-    expect(res.body.token).toHaveLength(64);
-    expect(res.body.templateName).toContain('Starter');
-  });
-
-  it('ai-complete returns token with template:ai-complete', async () => {
-    mockStripeSession('cs_ai_complete', { client_reference_id: 'ai-complete' });
-    const res = await request(app).get('/api/verify?session_id=cs_ai_complete');
-
-    expect(res.status).toBe(200);
-    expect(res.body).toMatchObject({ template: 'ai-complete' });
-    expect(res.body.token).toHaveLength(64);
-    expect(res.body.templateName).toContain('Complete');
-  });
-});
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 5. Session token caching — same session always returns the same token within TTL
-// ─────────────────────────────────────────────────────────────────────────────
-describe('GET /api/verify — session token caching', () => {
-  it('returns the same token for two calls with the same session_id', async () => {
-    // Only one nock needed — second call hits the in-memory cache
-    mockStripeSession('cs_cache_test', { client_reference_id: 'brd' });
-
-    const r1 = await request(app).get('/api/verify?session_id=cs_cache_test');
-    const r2 = await request(app).get('/api/verify?session_id=cs_cache_test');
-
-    expect(r1.status).toBe(200);
-    expect(r2.status).toBe(200);
-    expect(r1.body.token).toBe(r2.body.token);
-  });
-});
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 6. GET /api/download — token validation
+// 4. GET /api/download — token validation
 // ─────────────────────────────────────────────────────────────────────────────
 describe('GET /api/download — token validation', () => {
   it('returns 400 when token param is missing', async () => {
@@ -191,161 +184,76 @@ describe('GET /api/download — token validation', () => {
   });
 
   it('returns 403 for a random invalid token', async () => {
-    const res = await request(app).get('/api/download?token=deadbeef1234');
+    const res = await request(app).get('/api/download?token=deadbeef');
     expect(res.status).toBe(403);
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 7. GET /api/download — BA Template Store file delivery
+// 5. GET /api/download — serving files with a lead token
 // ─────────────────────────────────────────────────────────────────────────────
-describe('GET /api/download — BA Template Store', () => {
-  /** Helper: get a valid download token via /api/verify */
-  async function getToken(sessionId, slug) {
-    mockStripeSession(sessionId, { client_reference_id: slug });
-    const res = await request(app).get(`/api/verify?session_id=${sessionId}`);
+describe('GET /api/download — free templates', () => {
+  let token;
+  beforeAll(async () => { token = await getToken(); });
+
+  it('serves the ZIP bundle by default', async () => {
+    const res = await request(app).get(`/api/download?token=${token}`);
     expect(res.status).toBe(200);
-    return res.body.token;
-  }
-
-  it('serves the correct .docx for a valid BRD token', async () => {
-    const token = await getToken('cs_dl_brd', 'brd');
-    const res   = await request(app).get(`/api/download?token=${token}`);
-
-    expect(res.status).toBe(200);
-    expect(res.headers['content-disposition']).toContain('ba-template-brd.docx');
-    expect(res.headers['content-type']).toContain('wordprocessingml');
-  });
-
-  it('serves the correct .docx for a valid FRS token', async () => {
-    const token = await getToken('cs_dl_frs', 'frs');
-    const res   = await request(app).get(`/api/download?token=${token}`);
-
-    expect(res.status).toBe(200);
-    expect(res.headers['content-disposition']).toContain('ba-template-frs.docx');
-  });
-
-  it('serves the ZIP for a bundle token (no ?file= param)', async () => {
-    const token = await getToken('cs_dl_bundle_zip', 'bundle');
-    const res   = await request(app).get(`/api/download?token=${token}`);
-
-    expect(res.status).toBe(200);
+    expect(res.headers['content-type']).toMatch(/zip/);
     expect(res.headers['content-disposition']).toContain('ba-templates-bundle.zip');
-    expect(res.headers['content-type']).toBe('application/zip');
   });
 
-  it('serves a specific template for a bundle token with ?file=rtm', async () => {
-    const token = await getToken('cs_dl_bundle_file', 'bundle');
-    const res   = await request(app).get(`/api/download?token=${token}&file=rtm`);
-
+  test.each([
+    ['brd', 'ba-template-brd.docx'],
+    ['rtm', 'ba-template-rtm.docx'],
+    ['test-case', 'ba-template-test-case.docx'],
+  ])('serves ?file=%s as %s', async (slug, filename) => {
+    const res = await request(app).get(`/api/download?token=${token}&file=${slug}`);
     expect(res.status).toBe(200);
-    expect(res.headers['content-disposition']).toContain('ba-template-rtm.docx');
+    expect(res.headers['content-type']).toMatch(/wordprocessingml/);
+    expect(res.headers['content-disposition']).toContain(filename);
   });
 
-  it('ignores ?file= for an individual token — always serves the purchased template', async () => {
-    const token = await getToken('cs_dl_locked', 'brd');
-    // Attempt to download FRS using a BRD token — must still get BRD
-    const res   = await request(app).get(`/api/download?token=${token}&file=frs`);
-
-    expect(res.status).toBe(200);
-    expect(res.headers['content-disposition']).toContain('ba-template-brd.docx');
-    expect(res.headers['content-disposition']).not.toContain('frs');
-  });
-
-  it('token remains valid for repeated downloads (not single-use)', async () => {
-    const token = await getToken('cs_dl_repeat', 'project-charter');
-    const r1    = await request(app).get(`/api/download?token=${token}`);
-    const r2    = await request(app).get(`/api/download?token=${token}`);
-
-    expect(r1.status).toBe(200);
-    expect(r2.status).toBe(200);
-    expect(r1.headers['content-disposition']).toContain('ba-template-project-charter.docx');
-  });
-
-  it('bundle token with unrecognised ?file= falls back to ZIP', async () => {
-    const token = await getToken('cs_dl_bundle_bad_file', 'bundle');
-    const res   = await request(app).get(`/api/download?token=${token}&file=not-a-real-slug`);
-
+  it('falls back to the ZIP for an unrecognised ?file=', async () => {
+    const res = await request(app).get(`/api/download?token=${token}&file=../../server.js`);
     expect(res.status).toBe(200);
     expect(res.headers['content-disposition']).toContain('ba-templates-bundle.zip');
   });
-});
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 8. GET /api/download — AI Prompt Library file delivery
-// ─────────────────────────────────────────────────────────────────────────────
-describe('GET /api/download — AI Prompt Library', () => {
-  async function getToken(sessionId, slug) {
-    mockStripeSession(sessionId, { client_reference_id: slug });
-    const res = await request(app).get(`/api/verify?session_id=${sessionId}`);
-    expect(res.status).toBe(200);
-    return res.body.token;
-  }
-
-  it('serves the Starter PDF for an ai-starter token', async () => {
-    const token = await getToken('cs_ai_dl_starter', 'ai-starter');
-    const res   = await request(app).get(`/api/download?token=${token}`);
-
-    expect(res.status).toBe(200);
-    expect(res.headers['content-disposition']).toContain('ai-prompts-library-starter.pdf');
-    expect(res.headers['content-type']).toBe('application/pdf');
+  it('the retired AI prompt PDFs are no longer downloadable', async () => {
+    const res = await request(app).get(`/api/download?token=${token}&file=ai-complete`);
+    expect(res.headers['content-disposition']).not.toMatch(/ai-prompts/);
   });
 
-  it('serves the Complete PDF for an ai-complete token', async () => {
-    const token = await getToken('cs_ai_dl_complete', 'ai-complete');
-    const res   = await request(app).get(`/api/download?token=${token}`);
-
-    expect(res.status).toBe(200);
-    expect(res.headers['content-disposition']).toContain('ai-prompts-library-complete.pdf');
-    expect(res.headers['content-type']).toBe('application/pdf');
-  });
-
-  it('ignores ?file= param for ai-starter — always serves the PDF', async () => {
-    const token = await getToken('cs_ai_locked', 'ai-starter');
-    // Should not be able to substitute a BA template via ?file=
-    const res   = await request(app).get(`/api/download?token=${token}&file=brd`);
-
-    expect(res.status).toBe(200);
-    expect(res.headers['content-disposition']).toContain('ai-prompts-library-starter.pdf');
-    expect(res.headers['content-disposition']).not.toContain('brd');
-  });
-
-  it('ai-starter token is reusable within TTL', async () => {
-    const token = await getToken('cs_ai_repeat', 'ai-starter');
-    const r1    = await request(app).get(`/api/download?token=${token}`);
-    const r2    = await request(app).get(`/api/download?token=${token}`);
-
+  it('token is reusable within its TTL', async () => {
+    const r1 = await request(app).get(`/api/download?token=${token}&file=brd`);
+    const r2 = await request(app).get(`/api/download?token=${token}&file=brd`);
     expect(r1.status).toBe(200);
     expect(r2.status).toBe(200);
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 9. Cross-product isolation — tokens cannot be used across products
+// 6. Retired pages redirect permanently
 // ─────────────────────────────────────────────────────────────────────────────
-describe('Cross-product isolation', () => {
-  async function getToken(sessionId, slug) {
-    mockStripeSession(sessionId, { client_reference_id: slug });
-    const res = await request(app).get(`/api/verify?session_id=${sessionId}`);
-    expect(res.status).toBe(200);
-    return res.body.token;
-  }
-
-  it('an ai-starter token always serves the AI PDF, not a BA template', async () => {
-    // Even if the client passes ?file=brd, they should get the AI PDF
-    const token = await getToken('cs_iso_ai', 'ai-starter');
-    const res   = await request(app).get(`/api/download?token=${token}&file=brd`);
-
-    expect(res.status).toBe(200);
-    expect(res.headers['content-disposition']).toContain('ai-prompts-library-starter.pdf');
+describe('Retired pages 301 to their replacements', () => {
+  test.each([
+    ['/shop.html', '/free-ba-templates.html'],
+    ['/ba-template-store.html', '/free-ba-templates.html'],
+    ['/ba-template-store-download.html', '/free-ba-templates.html'],
+    ['/ai-prompt-library.html', '/free-ba-templates.html'],
+    ['/ai-prompt-library-download.html', '/free-ba-templates.html'],
+    ['/academy.html', '/services.html'],
+    ['/software.html', '/portfolio.html'],
+  ])('GET %s → 301 %s', async (from, to) => {
+    const res = await request(app).get(from);
+    expect(res.status).toBe(301);
+    expect(res.headers.location).toBe(to);
   });
 
-  it('a BRD token always serves BRD, not an AI PDF', async () => {
-    const token = await getToken('cs_iso_ba', 'brd');
-    const res   = await request(app).get(`/api/download?token=${token}&file=ai-complete`);
-
+  it('the free templates page itself is served', async () => {
+    const res = await request(app).get('/free-ba-templates.html');
     expect(res.status).toBe(200);
-    // ?file= is ignored for individual tokens; still serves BRD
-    expect(res.headers['content-disposition']).toContain('ba-template-brd.docx');
+    expect(res.text).toMatch(/Free BA Templates/i);
   });
 });

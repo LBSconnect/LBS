@@ -58,14 +58,35 @@ const apiLimiter = rateLimit({
 });
 
 // ── Protected files ───────────────────────────────────────────────────────────
-// BA template .docx and bundle .zip are only served via /api/download.
-// This middleware must come before express.static().
-const PROTECTED = /^\/assets\/downloads\/(ba-template-[^/]+\.docx|ba-templates-bundle\.zip|ai-prompts-library-(starter|complete)\.pdf)$/;
+// BA template .docx and bundle .zip are free, but only served via
+// /api/download after the visitor submits the lead form on
+// free-ba-templates.html. This middleware must come before express.static().
+const PROTECTED = /^\/assets\/downloads\/(ba-template-[^/]+\.docx|ba-templates-bundle\.zip)$/;
 
 app.use((req, res, next) => {
   if (PROTECTED.test(req.path)) {
-    return res.status(403).json({ error: 'Purchase required.' });
+    return res.status(403).json({ error: 'Request the free templates at /free-ba-templates.html.' });
   }
+  next();
+});
+
+// ── Retired pages ─────────────────────────────────────────────────────────────
+// lbsconnect.net is consulting-only. The shop, prompt library, academy, and
+// software pages were removed; 301 their old URLs so search rankings and
+// existing links carry over to the closest live page.
+const RETIRED_PAGES = {
+  '/shop.html':                       '/free-ba-templates.html',
+  '/ba-template-store.html':          '/free-ba-templates.html',
+  '/ba-template-store-download.html': '/free-ba-templates.html',
+  '/ai-prompt-library.html':          '/free-ba-templates.html',
+  '/ai-prompt-library-download.html': '/free-ba-templates.html',
+  '/academy.html':                    '/services.html',
+  '/software.html':                   '/portfolio.html',
+};
+
+app.use((req, res, next) => {
+  const target = RETIRED_PAGES[req.path];
+  if (target) return res.redirect(301, target);
   next();
 });
 
@@ -87,8 +108,8 @@ app.use((req, res, next) => {
 });
 
 // ── Course registry ────────────────────────────────────────────────────────────
-// Online Academy courses. Sold individually at a single fixed price via one
-// Stripe Payment Link + client_reference_id, same pattern as the templates.
+// Online Academy courses. The academy is no longer sold (academy.html now
+// redirects), but access for anyone who already bought a course is kept.
 const COURSE_MAP = {
   'course-01': 'Requirements Engineering Fundamentals',
   'course-02': 'Requirements Gathering & Elicitation Techniques',
@@ -216,40 +237,18 @@ const TEMPLATE_MAP = {
   'project-charter':      'ba-template-project-charter.docx',
   'test-case':            'ba-template-test-case.docx',
   'bundle':               'ba-templates-bundle.zip',
-  // AI Prompt Library
-  'ai-starter':           'ai-prompts-library-starter.pdf',
-  'ai-complete':          'ai-prompts-library-complete.pdf',
-};
-
-const TEMPLATE_NAMES = {
-  'brd':                  'Business Requirements Document',
-  'frs':                  'Functional Requirements Specification',
-  'user-stories':         'User Stories Template',
-  'process-mapping':      'Process Mapping Templates',
-  'risk-register':        'Risk Register',
-  'stakeholder-register': 'Stakeholder Register',
-  'rtm':                  'Requirements Traceability Matrix',
-  'rfp':                  'RFP Template',
-  'project-charter':      'Project Charter',
-  'test-case':            'Test Case Template',
-  // AI Prompt Library
-  'ai-starter':           'AI Prompt Library, Starter Pack (210 Prompts)',
-  'ai-complete':          'AI Prompt Library, Complete Edition (500 Prompts)',
 };
 
 const DOWNLOADS_DIR = path.join(__dirname, 'assets', 'downloads');
 
 // ── Token store ───────────────────────────────────────────────────────────────
-// token  → { template: string, expiresAt: number }
-// session → token  (so the same session always gets the same token within its TTL)
-const tokens       = new Map();
-const sessionIndex = new Map();
-const TOKEN_TTL    = 24 * 60 * 60 * 1000; // 24 h
+// token → { template: string, expiresAt: number }
+const tokens    = new Map();
+const TOKEN_TTL = 24 * 60 * 60 * 1000; // 24 h
 
 setInterval(() => {
   const now = Date.now();
-  for (const [t, d] of tokens)       if (d.expiresAt < now) tokens.delete(t);
-  for (const [s, t] of sessionIndex) if (!tokens.has(t))    sessionIndex.delete(s);
+  for (const [t, d] of tokens) if (d.expiresAt < now) tokens.delete(t);
 }, 60 * 60 * 1000).unref();
 
 function issueToken(template) {
@@ -296,75 +295,89 @@ function stripeGet(apiPath) {
   });
 }
 
-// ── GET /api/verify?session_id=cs_xxx ────────────────────────────────────────
-// Verifies a completed Stripe checkout session and returns a download token.
-// The same session always returns the same token within its 24-hour window.
-app.get('/api/verify', apiLimiter, async (req, res) => {
-  const { session_id } = req.query;
+// ── Lead forwarding ───────────────────────────────────────────────────────────
+// Template requests are forwarded to Formspree so each lead lands in the same
+// inbox as contact-form inquiries. LEAD_FORM_ENDPOINT can point at a separate
+// Formspree form (or any endpoint accepting the same JSON) without a deploy.
+const LEAD_FORM_ENDPOINT = process.env.LEAD_FORM_ENDPOINT || 'https://formspree.io/f/xgonakra';
 
-  if (!session_id || !String(session_id).startsWith('cs_')) {
-    return res.status(400).json({ error: 'Invalid session.' });
-  }
-
-  if (!process.env.STRIPE_SECRET_KEY) {
-    return res.status(503).json({ error: 'Payment verification is temporarily unavailable. Please contact info@lbsconnect.net.' });
-  }
-
-  // Return existing token if still valid
-  const existing = sessionIndex.get(session_id);
-  if (existing && tokens.has(existing)) {
-    const e = tokens.get(existing);
-    if (e.expiresAt > Date.now()) {
-      const isPack = e.template === 'bundle' ? 'bundle' : 'individual';
-      return res.json({
-        pack: isPack,
-        template: e.template,
-        templateName: e.template === 'bundle' ? 'Full Bundle — All 10 Templates' : TEMPLATE_NAMES[e.template],
-        token: existing,
-      });
-    }
-  }
-
-  // Verify with Stripe
-  try {
-    const { status, data } = await stripeGet(
-      `/v1/checkout/sessions/${encodeURIComponent(session_id)}`
+function postJson(endpoint, payload) {
+  return new Promise((resolve, reject) => {
+    const url  = new URL(endpoint);
+    const body = JSON.stringify(payload);
+    // Same AbortController-based timeout as stripeGet, for the same reasons.
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 10000);
+    const req = https.request(
+      { hostname: url.hostname, port: url.port || undefined, path: url.pathname + url.search, method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Content-Length': Buffer.byteLength(body),
+        },
+        signal: controller.signal },
+      (res) => {
+        res.resume();
+        res.on('end', () => { clearTimeout(timer); resolve(res.statusCode); });
+      }
     );
-
-    if (status !== 200) {
-      return res.status(400).json({ error: 'Purchase session not found.' });
-    }
-
-    if (data.payment_status !== 'paid') {
-      return res.status(402).json({ error: 'Payment has not been completed.' });
-    }
-
-    const ref = String(data.client_reference_id || '').toLowerCase().trim();
-
-    let template;
-    if (ref === 'bundle') {
-      template = 'bundle';
-    } else if (TEMPLATE_MAP[ref]) {
-      template = ref;
-    } else {
-      return res.status(400).json({
-        error: 'We could not determine which template you purchased. Please contact info@lbsconnect.net with your receipt.',
-      });
-    }
-
-    const token = issueToken(template);
-    sessionIndex.set(session_id, token);
-
-    return res.json({
-      pack: template === 'bundle' ? 'bundle' : 'individual',
-      template,
-      templateName: template === 'bundle' ? 'Full Bundle — All 10 Templates' : TEMPLATE_NAMES[template],
-      token,
+    req.on('error', (err) => {
+      clearTimeout(timer);
+      reject(err.name === 'AbortError' ? new Error('Lead forward timed out') : err);
     });
-  } catch (err) {
-    console.error('Stripe verify error:', err.message);
-    return res.status(502).json({ error: 'Verification failed. Please refresh the page or contact info@lbsconnect.net.' });
+    req.end(body);
+  });
+}
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function cleanField(value, max) {
+  return String(value == null ? '' : value).replace(/[\r\n\t]+/g, ' ').trim().slice(0, max);
+}
+
+// ── POST /api/templates/request ───────────────────────────────────────────────
+// Free lead magnet: validates the form on free-ba-templates.html, forwards the
+// lead, and returns a 24h token that unlocks every template via /api/download.
+app.post('/api/templates/request', apiLimiter, express.json({ limit: '10kb' }), async (req, res) => {
+  const body = req.body && typeof req.body === 'object' ? req.body : {};
+
+  // Honeypot: real visitors never see this field. Pretend success so bots
+  // don't learn to skip it, but don't forward the lead or issue a token.
+  if (cleanField(body._gotcha, 200)) {
+    return res.json({ ok: true, token: crypto.randomBytes(32).toString('hex') });
   }
+
+  const lead = {
+    name:         cleanField(body.name, 100),
+    email:        cleanField(body.email, 254).toLowerCase(),
+    organization: cleanField(body.organization, 150),
+    role:         cleanField(body.role, 100),
+  };
+
+  if (!lead.name) {
+    return res.status(400).json({ error: 'Please enter your name.' });
+  }
+  if (!EMAIL_RE.test(lead.email)) {
+    return res.status(400).json({ error: 'Please enter a valid email address.' });
+  }
+  if (body.consent !== true) {
+    return res.status(400).json({ error: 'Please agree to receive the templates and occasional emails from LBS.' });
+  }
+
+  try {
+    const status = await postJson(LEAD_FORM_ENDPOINT, {
+      ...lead,
+      _subject: 'Free BA Templates Download, LBSconnect.net',
+      source: 'free-ba-templates',
+    });
+    if (status < 200 || status >= 300) throw new Error(`Lead endpoint returned ${status}`);
+  } catch (err) {
+    // Never block the download on a forwarding failure. Log the lead so it can
+    // be recovered from the server logs instead of being lost.
+    console.error('Lead forward failed:', err.message, JSON.stringify(lead));
+  }
+
+  return res.json({ ok: true, token: issueToken('bundle') });
 });
 
 // ── GET /api/verify-course?session_id=cs_xxx ─────────────────────────────────
@@ -440,9 +453,9 @@ app.get('/api/verify-course', apiLimiter, async (req, res) => {
 });
 
 // ── GET /api/download?token=xxx[&file=slug] ───────────────────────────────────
-// Streams the purchased file.
-// Individual buyers: always gets their purchased template (file param ignored).
-// Bundle buyers:     gets ZIP by default, or any individual template via ?file=slug.
+// Streams a free template. Tokens come from /api/templates/request and are
+// always 'bundle' tokens: the ZIP by default, or one template via ?file=slug.
+// (Non-bundle tokens are still honored, locked to their single template.)
 app.get('/api/download', apiLimiter, (req, res) => {
   const { token, file } = req.query;
 
@@ -459,10 +472,10 @@ app.get('/api/download', apiLimiter, (req, res) => {
 
   let slug;
   if (entry.template === 'bundle') {
-    // Bundle buyers can download any file or the ZIP
+    // Bundle tokens can download any file or the ZIP
     slug = (file && TEMPLATE_MAP[String(file)]) ? String(file) : 'bundle';
   } else {
-    // Individual buyers are locked to the template they purchased
+    // Single-template tokens are locked to that template
     slug = entry.template;
   }
 
@@ -476,9 +489,7 @@ app.get('/api/download', apiLimiter, (req, res) => {
   res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
   const contentType = filename.endsWith('.zip')
     ? 'application/zip'
-    : filename.endsWith('.pdf')
-      ? 'application/pdf'
-      : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+    : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
   res.setHeader('Content-Type', contentType);
 
   const stream = fs.createReadStream(filePath);
@@ -502,6 +513,11 @@ app.get('/health', (_req, res) => res.json({ ok: true }));
 // this always returns a generic JSON error, in production or not.
 app.use((err, _req, res, next) => {
   if (res.headersSent) return next(err);
+  // Body-parser errors (malformed JSON, oversized body) are the client's
+  // fault: answer with their 4xx status, still without echoing internals.
+  if (err && err.status >= 400 && err.status < 500) {
+    return res.status(err.status).json({ error: 'Invalid request.' });
+  }
   console.error('Unhandled error:', err && err.stack ? err.stack : err);
   res.status(500).json({ error: 'Something went wrong. Please try again or contact info@lbsconnect.net.' });
 });
